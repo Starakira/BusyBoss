@@ -1,0 +1,691 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30D2551380E00B78AFC /* AppDelegate.swift */; };
+		F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30F2551380E00B78AFC /* SceneDelegate.swift */; };
+		F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F599E3162551380E00B78AFC /* BusyBoss.xcdatamodeld */; };
+		F599E31A2551380F00B78AFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F599E3192551380F00B78AFC /* Assets.xcassets */; };
+		F599E33A2551394800B78AFC /* serviceStructManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E32E2551394700B78AFC /* serviceStructManager.swift */; };
+		F599E33B2551394800B78AFC /* DummyDataTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E32F2551394700B78AFC /* DummyDataTransaction.swift */; };
+		F599E33C2551394800B78AFC /* clientsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3302551394700B78AFC /* clientsStruct.swift */; };
+		F599E33D2551394800B78AFC /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3312551394700B78AFC /* CurrentUser.swift */; };
+		F599E33E2551394800B78AFC /* Clients.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3322551394700B78AFC /* Clients.swift */; };
+		F599E33F2551394800B78AFC /* clientsStructManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3332551394700B78AFC /* clientsStructManager.swift */; };
+		F599E3402551394800B78AFC /* goodsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3342551394700B78AFC /* goodsStruct.swift */; };
+		F599E3412551394800B78AFC /* goodsStructManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3352551394700B78AFC /* goodsStructManager.swift */; };
+		F599E3422551394800B78AFC /* DummyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3362551394700B78AFC /* DummyDataManager.swift */; };
+		F599E3432551394800B78AFC /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3372551394700B78AFC /* CloudKitManager.swift */; };
+		F599E3442551394800B78AFC /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3382551394700B78AFC /* Products.swift */; };
+		F599E3452551394800B78AFC /* serviceStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3392551394700B78AFC /* serviceStruct.swift */; };
+		F599E3632551398400B78AFC /* ListProductBarangJasaNewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3472551398300B78AFC /* ListProductBarangJasaNewTransactionViewController.swift */; };
+		F599E3642551398400B78AFC /* productListNewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3482551398300B78AFC /* productListNewTransactionViewController.swift */; };
+		F599E3652551398400B78AFC /* completeTransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3492551398300B78AFC /* completeTransactionViewCell.swift */; };
+		F599E3662551398400B78AFC /* ClientContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34A2551398300B78AFC /* ClientContactViewController.swift */; };
+		F599E3672551398400B78AFC /* ProductListBarangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34B2551398300B78AFC /* ProductListBarangViewController.swift */; };
+		F599E3682551398400B78AFC /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34C2551398300B78AFC /* ProductsViewController.swift */; };
+		F599E3692551398400B78AFC /* InputClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34D2551398300B78AFC /* InputClientsViewController.swift */; };
+		F599E36A2551398400B78AFC /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34E2551398300B78AFC /* GoodsViewController.swift */; };
+		F599E36B2551398400B78AFC /* OnGoingTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */; };
+		F599E36C2551398400B78AFC /* ProductListBarangViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */; };
+		F599E36D2551398400B78AFC /* ServicesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3512551398300B78AFC /* ServicesDetailsViewController.swift */; };
+		F599E36E2551398400B78AFC /* allTransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3522551398300B78AFC /* allTransactionViewCell.swift */; };
+		F599E36F2551398400B78AFC /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3532551398300B78AFC /* ServicesViewController.swift */; };
+		F599E3702551398400B78AFC /* CompleteTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3542551398300B78AFC /* CompleteTransactionViewController.swift */; };
+		F599E3712551398400B78AFC /* InputServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3552551398300B78AFC /* InputServicesViewController.swift */; };
+		F599E3722551398400B78AFC /* InputGoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3562551398300B78AFC /* InputGoodsViewController.swift */; };
+		F599E3732551398400B78AFC /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3572551398300B78AFC /* ClientsViewController.swift */; };
+		F599E3742551398400B78AFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3582551398300B78AFC /* RegisterViewController.swift */; };
+		F599E3752551398400B78AFC /* productListNewTransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3592551398300B78AFC /* productListNewTransactionViewCell.swift */; };
+		F599E3762551398400B78AFC /* AllTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35A2551398300B78AFC /* AllTransactionViewController.swift */; };
+		F599E3772551398400B78AFC /* OnGoingTransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */; };
+		F599E3782551398400B78AFC /* ProductListJasaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35C2551398300B78AFC /* ProductListJasaViewController.swift */; };
+		F599E3792551398400B78AFC /* GoodsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35D2551398400B78AFC /* GoodsDetailsViewController.swift */; };
+		F599E37A2551398400B78AFC /* ClientContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */; };
+		F599E37B2551398400B78AFC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35F2551398400B78AFC /* LoginViewController.swift */; };
+		F599E37C2551398400B78AFC /* ClientsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3602551398400B78AFC /* ClientsDetailsViewController.swift */; };
+		F599E37D2551398400B78AFC /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3612551398400B78AFC /* TransactionViewController.swift */; };
+		F599E37E2551398400B78AFC /* ProductListJasaViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3622551398400B78AFC /* ProductListJasaViewCell.swift */; };
+		F599E38325513ADA00B78AFC /* ServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E38025513ADA00B78AFC /* ServicesTableViewCell.swift */; };
+		F599E38425513ADA00B78AFC /* ClientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */; };
+		F599E38525513ADA00B78AFC /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E38225513ADA00B78AFC /* GoodsTableViewCell.swift */; };
+		F599E39225513D2500B78AFC /* Clients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38C25513D2500B78AFC /* Clients.storyboard */; };
+		F599E39325513D2500B78AFC /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38D25513D2500B78AFC /* Products.storyboard */; };
+		F599E39425513D2500B78AFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38E25513D2500B78AFC /* Main.storyboard */; };
+		F599E39525513D2500B78AFC /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38F25513D2500B78AFC /* Settings.storyboard */; };
+		F599E39625513D2500B78AFC /* Profile~.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39025513D2500B78AFC /* Profile~.storyboard */; };
+		F599E39725513D2500B78AFC /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39125513D2500B78AFC /* Transactions.storyboard */; };
+		F599E39E25513D4C00B78AFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39A25513D4C00B78AFC /* LaunchScreen.storyboard */; };
+		F599E3A925513FFD00B78AFC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3A825513FFD00B78AFC /* Alert.swift */; };
+		F599E3AE2551408900B78AFC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F599E3AD2551408900B78AFC /* CloudKit.framework */; };
+		F599E3B22551549E00B78AFC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39D25513D4C00B78AFC /* Login.storyboard */; };
+		F599E3B62551686100B78AFC /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3B52551686100B78AFC /* Transactions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F599E30A2551380E00B78AFC /* BusyBoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F599E30D2551380E00B78AFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F599E30F2551380E00B78AFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F599E3172551380E00B78AFC /* BusyBoss.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BusyBoss.xcdatamodel; sourceTree = "<group>"; };
+		F599E3192551380F00B78AFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F599E31E2551380F00B78AFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F599E32E2551394700B78AFC /* serviceStructManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serviceStructManager.swift; sourceTree = "<group>"; };
+		F599E32F2551394700B78AFC /* DummyDataTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataTransaction.swift; sourceTree = "<group>"; };
+		F599E3302551394700B78AFC /* clientsStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = clientsStruct.swift; sourceTree = "<group>"; };
+		F599E3312551394700B78AFC /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		F599E3322551394700B78AFC /* Clients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Clients.swift; sourceTree = "<group>"; };
+		F599E3332551394700B78AFC /* clientsStructManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = clientsStructManager.swift; sourceTree = "<group>"; };
+		F599E3342551394700B78AFC /* goodsStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goodsStruct.swift; sourceTree = "<group>"; };
+		F599E3352551394700B78AFC /* goodsStructManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goodsStructManager.swift; sourceTree = "<group>"; };
+		F599E3362551394700B78AFC /* DummyDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataManager.swift; sourceTree = "<group>"; };
+		F599E3372551394700B78AFC /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		F599E3382551394700B78AFC /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
+		F599E3392551394700B78AFC /* serviceStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serviceStruct.swift; sourceTree = "<group>"; };
+		F599E3472551398300B78AFC /* ListProductBarangJasaNewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProductBarangJasaNewTransactionViewController.swift; sourceTree = "<group>"; };
+		F599E3482551398300B78AFC /* productListNewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = productListNewTransactionViewController.swift; sourceTree = "<group>"; };
+		F599E3492551398300B78AFC /* completeTransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = completeTransactionViewCell.swift; sourceTree = "<group>"; };
+		F599E34A2551398300B78AFC /* ClientContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientContactViewController.swift; sourceTree = "<group>"; };
+		F599E34B2551398300B78AFC /* ProductListBarangViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListBarangViewController.swift; sourceTree = "<group>"; };
+		F599E34C2551398300B78AFC /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		F599E34D2551398300B78AFC /* InputClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputClientsViewController.swift; sourceTree = "<group>"; };
+		F599E34E2551398300B78AFC /* GoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
+		F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnGoingTransactionViewController.swift; sourceTree = "<group>"; };
+		F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListBarangViewCell.swift; sourceTree = "<group>"; };
+		F599E3512551398300B78AFC /* ServicesDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesDetailsViewController.swift; sourceTree = "<group>"; };
+		F599E3522551398300B78AFC /* allTransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = allTransactionViewCell.swift; sourceTree = "<group>"; };
+		F599E3532551398300B78AFC /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		F599E3542551398300B78AFC /* CompleteTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteTransactionViewController.swift; sourceTree = "<group>"; };
+		F599E3552551398300B78AFC /* InputServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputServicesViewController.swift; sourceTree = "<group>"; };
+		F599E3562551398300B78AFC /* InputGoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputGoodsViewController.swift; sourceTree = "<group>"; };
+		F599E3572551398300B78AFC /* ClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsViewController.swift; sourceTree = "<group>"; };
+		F599E3582551398300B78AFC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F599E3592551398300B78AFC /* productListNewTransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = productListNewTransactionViewCell.swift; sourceTree = "<group>"; };
+		F599E35A2551398300B78AFC /* AllTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTransactionViewController.swift; sourceTree = "<group>"; };
+		F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnGoingTransactionViewCell.swift; sourceTree = "<group>"; };
+		F599E35C2551398300B78AFC /* ProductListJasaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListJasaViewController.swift; sourceTree = "<group>"; };
+		F599E35D2551398400B78AFC /* GoodsDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsDetailsViewController.swift; sourceTree = "<group>"; };
+		F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientContactTableViewCell.swift; sourceTree = "<group>"; };
+		F599E35F2551398400B78AFC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F599E3602551398400B78AFC /* ClientsDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsDetailsViewController.swift; sourceTree = "<group>"; };
+		F599E3612551398400B78AFC /* TransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		F599E3622551398400B78AFC /* ProductListJasaViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListJasaViewCell.swift; sourceTree = "<group>"; };
+		F599E38025513ADA00B78AFC /* ServicesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesTableViewCell.swift; sourceTree = "<group>"; };
+		F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsTableViewCell.swift; sourceTree = "<group>"; };
+		F599E38225513ADA00B78AFC /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
+		F599E38C25513D2500B78AFC /* Clients.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clients.storyboard; sourceTree = "<group>"; };
+		F599E38D25513D2500B78AFC /* Products.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
+		F599E38E25513D2500B78AFC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F599E38F25513D2500B78AFC /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		F599E39025513D2500B78AFC /* Profile~.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Profile~.storyboard"; sourceTree = "<group>"; };
+		F599E39125513D2500B78AFC /* Transactions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
+		F599E39B25513D4C00B78AFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F599E39D25513D4C00B78AFC /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		F599E3A825513FFD00B78AFC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		F599E3AB2551407F00B78AFC /* BusyBoss.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BusyBoss.entitlements; sourceTree = "<group>"; };
+		F599E3AD2551408900B78AFC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F599E3B52551686100B78AFC /* Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F599E3072551380E00B78AFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F599E3AE2551408900B78AFC /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F599E3012551380E00B78AFC = {
+			isa = PBXGroup;
+			children = (
+				F599E30C2551380E00B78AFC /* BusyBoss */,
+				F599E30B2551380E00B78AFC /* Products */,
+				F599E3AC2551408900B78AFC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F599E30B2551380E00B78AFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F599E30A2551380E00B78AFC /* BusyBoss.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F599E30C2551380E00B78AFC /* BusyBoss */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3AB2551407F00B78AFC /* BusyBoss.entitlements */,
+				F599E3162551380E00B78AFC /* BusyBoss.xcdatamodeld */,
+				F599E30D2551380E00B78AFC /* AppDelegate.swift */,
+				F599E30F2551380E00B78AFC /* SceneDelegate.swift */,
+				F599E3A725513FAA00B78AFC /* Helper */,
+				F599E3252551384300B78AFC /* Model */,
+				F599E3272551384E00B78AFC /* Controller */,
+				F599E3262551384900B78AFC /* View */,
+				F599E3192551380F00B78AFC /* Assets.xcassets */,
+				F599E31E2551380F00B78AFC /* Info.plist */,
+			);
+			path = BusyBoss;
+			sourceTree = "<group>";
+		};
+		F599E3252551384300B78AFC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3A425513F2D00B78AFC /* UserEssentials */,
+				F599E3A225513EDE00B78AFC /* CloudKit */,
+				F599E3A125513ED000B78AFC /* Clients */,
+				F599E3A525513F4900B78AFC /* Products */,
+				F599E3B32551624500B78AFC /* Transactions */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F599E3262551384900B78AFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F599E39925513D4C00B78AFC /* Base.lproj */,
+				F599E39D25513D4C00B78AFC /* Login.storyboard */,
+				F599E38C25513D2500B78AFC /* Clients.storyboard */,
+				F599E38D25513D2500B78AFC /* Products.storyboard */,
+				F599E39025513D2500B78AFC /* Profile~.storyboard */,
+				F599E38F25513D2500B78AFC /* Settings.storyboard */,
+				F599E39125513D2500B78AFC /* Transactions.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F599E3272551384E00B78AFC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F599E38A25513C1700B78AFC /* Login */,
+				F599E38B25513C2200B78AFC /* Register */,
+				F599E38925513B1400B78AFC /* Transactions */,
+				F599E38825513B0400B78AFC /* Products */,
+				F599E38725513AE500B78AFC /* Clients */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F599E38725513AE500B78AFC /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				F599E34D2551398300B78AFC /* InputClientsViewController.swift */,
+				F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */,
+				F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */,
+				F599E34A2551398300B78AFC /* ClientContactViewController.swift */,
+				F599E3602551398400B78AFC /* ClientsDetailsViewController.swift */,
+				F599E3572551398300B78AFC /* ClientsViewController.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		F599E38825513B0400B78AFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */,
+				F599E34B2551398300B78AFC /* ProductListBarangViewController.swift */,
+				F599E3622551398400B78AFC /* ProductListJasaViewCell.swift */,
+				F599E35C2551398300B78AFC /* ProductListJasaViewController.swift */,
+				F599E3472551398300B78AFC /* ListProductBarangJasaNewTransactionViewController.swift */,
+				F599E3592551398300B78AFC /* productListNewTransactionViewCell.swift */,
+				F599E3482551398300B78AFC /* productListNewTransactionViewController.swift */,
+				F599E3562551398300B78AFC /* InputGoodsViewController.swift */,
+				F599E3552551398300B78AFC /* InputServicesViewController.swift */,
+				F599E38225513ADA00B78AFC /* GoodsTableViewCell.swift */,
+				F599E35D2551398400B78AFC /* GoodsDetailsViewController.swift */,
+				F599E34E2551398300B78AFC /* GoodsViewController.swift */,
+				F599E38025513ADA00B78AFC /* ServicesTableViewCell.swift */,
+				F599E34C2551398300B78AFC /* ProductsViewController.swift */,
+				F599E3512551398300B78AFC /* ServicesDetailsViewController.swift */,
+				F599E3532551398300B78AFC /* ServicesViewController.swift */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		F599E38925513B1400B78AFC /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3492551398300B78AFC /* completeTransactionViewCell.swift */,
+				F599E3542551398300B78AFC /* CompleteTransactionViewController.swift */,
+				F599E3522551398300B78AFC /* allTransactionViewCell.swift */,
+				F599E35A2551398300B78AFC /* AllTransactionViewController.swift */,
+				F599E3612551398400B78AFC /* TransactionViewController.swift */,
+				F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */,
+				F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		F599E38A25513C1700B78AFC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F599E35F2551398400B78AFC /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F599E38B25513C2200B78AFC /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3582551398300B78AFC /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		F599E39925513D4C00B78AFC /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				F599E39A25513D4C00B78AFC /* LaunchScreen.storyboard */,
+				F599E38E25513D2500B78AFC /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		F599E3A125513ED000B78AFC /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3322551394700B78AFC /* Clients.swift */,
+				F599E3302551394700B78AFC /* clientsStruct.swift */,
+				F599E3332551394700B78AFC /* clientsStructManager.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		F599E3A225513EDE00B78AFC /* CloudKit */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3372551394700B78AFC /* CloudKitManager.swift */,
+			);
+			path = CloudKit;
+			sourceTree = "<group>";
+		};
+		F599E3A425513F2D00B78AFC /* UserEssentials */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3312551394700B78AFC /* CurrentUser.swift */,
+			);
+			path = UserEssentials;
+			sourceTree = "<group>";
+		};
+		F599E3A525513F4900B78AFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3382551394700B78AFC /* Products.swift */,
+				F599E3342551394700B78AFC /* goodsStruct.swift */,
+				F599E3352551394700B78AFC /* goodsStructManager.swift */,
+				F599E3392551394700B78AFC /* serviceStruct.swift */,
+				F599E32E2551394700B78AFC /* serviceStructManager.swift */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		F599E3A725513FAA00B78AFC /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3A825513FFD00B78AFC /* Alert.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F599E3AC2551408900B78AFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3AD2551408900B78AFC /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F599E3B32551624500B78AFC /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				F599E3B52551686100B78AFC /* Transactions.swift */,
+				F599E32F2551394700B78AFC /* DummyDataTransaction.swift */,
+				F599E3362551394700B78AFC /* DummyDataManager.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F599E3092551380E00B78AFC /* BusyBoss */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F599E3212551381000B78AFC /* Build configuration list for PBXNativeTarget "BusyBoss" */;
+			buildPhases = (
+				F599E3062551380E00B78AFC /* Sources */,
+				F599E3072551380E00B78AFC /* Frameworks */,
+				F599E3082551380E00B78AFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BusyBoss;
+			productName = BusyBoss;
+			productReference = F599E30A2551380E00B78AFC /* BusyBoss.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F599E3022551380E00B78AFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					F599E3092551380E00B78AFC = {
+						CreatedOnToolsVersion = 12.1;
+					};
+				};
+			};
+			buildConfigurationList = F599E3052551380E00B78AFC /* Build configuration list for PBXProject "BusyBoss" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F599E3012551380E00B78AFC;
+			productRefGroup = F599E30B2551380E00B78AFC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F599E3092551380E00B78AFC /* BusyBoss */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F599E3082551380E00B78AFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F599E39325513D2500B78AFC /* Products.storyboard in Resources */,
+				F599E39E25513D4C00B78AFC /* LaunchScreen.storyboard in Resources */,
+				F599E39425513D2500B78AFC /* Main.storyboard in Resources */,
+				F599E31A2551380F00B78AFC /* Assets.xcassets in Resources */,
+				F599E39725513D2500B78AFC /* Transactions.storyboard in Resources */,
+				F599E39625513D2500B78AFC /* Profile~.storyboard in Resources */,
+				F599E3B22551549E00B78AFC /* Login.storyboard in Resources */,
+				F599E39225513D2500B78AFC /* Clients.storyboard in Resources */,
+				F599E39525513D2500B78AFC /* Settings.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F599E3062551380E00B78AFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */,
+				F599E37D2551398400B78AFC /* TransactionViewController.swift in Sources */,
+				F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */,
+				F599E3422551394800B78AFC /* DummyDataManager.swift in Sources */,
+				F599E3A925513FFD00B78AFC /* Alert.swift in Sources */,
+				F599E36A2551398400B78AFC /* GoodsViewController.swift in Sources */,
+				F599E3B62551686100B78AFC /* Transactions.swift in Sources */,
+				F599E37A2551398400B78AFC /* ClientContactTableViewCell.swift in Sources */,
+				F599E3442551394800B78AFC /* Products.swift in Sources */,
+				F599E3702551398400B78AFC /* CompleteTransactionViewController.swift in Sources */,
+				F599E3642551398400B78AFC /* productListNewTransactionViewController.swift in Sources */,
+				F599E3732551398400B78AFC /* ClientsViewController.swift in Sources */,
+				F599E3762551398400B78AFC /* AllTransactionViewController.swift in Sources */,
+				F599E33F2551394800B78AFC /* clientsStructManager.swift in Sources */,
+				F599E3772551398400B78AFC /* OnGoingTransactionViewCell.swift in Sources */,
+				F599E3402551394800B78AFC /* goodsStruct.swift in Sources */,
+				F599E3672551398400B78AFC /* ProductListBarangViewController.swift in Sources */,
+				F599E3692551398400B78AFC /* InputClientsViewController.swift in Sources */,
+				F599E3742551398400B78AFC /* RegisterViewController.swift in Sources */,
+				F599E38425513ADA00B78AFC /* ClientsTableViewCell.swift in Sources */,
+				F599E38325513ADA00B78AFC /* ServicesTableViewCell.swift in Sources */,
+				F599E33E2551394800B78AFC /* Clients.swift in Sources */,
+				F599E36D2551398400B78AFC /* ServicesDetailsViewController.swift in Sources */,
+				F599E3682551398400B78AFC /* ProductsViewController.swift in Sources */,
+				F599E33A2551394800B78AFC /* serviceStructManager.swift in Sources */,
+				F599E3632551398400B78AFC /* ListProductBarangJasaNewTransactionViewController.swift in Sources */,
+				F599E38525513ADA00B78AFC /* GoodsTableViewCell.swift in Sources */,
+				F599E3792551398400B78AFC /* GoodsDetailsViewController.swift in Sources */,
+				F599E36E2551398400B78AFC /* allTransactionViewCell.swift in Sources */,
+				F599E3712551398400B78AFC /* InputServicesViewController.swift in Sources */,
+				F599E3752551398400B78AFC /* productListNewTransactionViewCell.swift in Sources */,
+				F599E37C2551398400B78AFC /* ClientsDetailsViewController.swift in Sources */,
+				F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */,
+				F599E3662551398400B78AFC /* ClientContactViewController.swift in Sources */,
+				F599E3452551394800B78AFC /* serviceStruct.swift in Sources */,
+				F599E37E2551398400B78AFC /* ProductListJasaViewCell.swift in Sources */,
+				F599E37B2551398400B78AFC /* LoginViewController.swift in Sources */,
+				F599E33B2551394800B78AFC /* DummyDataTransaction.swift in Sources */,
+				F599E3412551394800B78AFC /* goodsStructManager.swift in Sources */,
+				F599E33D2551394800B78AFC /* CurrentUser.swift in Sources */,
+				F599E3782551398400B78AFC /* ProductListJasaViewController.swift in Sources */,
+				F599E36F2551398400B78AFC /* ServicesViewController.swift in Sources */,
+				F599E33C2551394800B78AFC /* clientsStruct.swift in Sources */,
+				F599E3652551398400B78AFC /* completeTransactionViewCell.swift in Sources */,
+				F599E3432551394800B78AFC /* CloudKitManager.swift in Sources */,
+				F599E36C2551398400B78AFC /* ProductListBarangViewCell.swift in Sources */,
+				F599E36B2551398400B78AFC /* OnGoingTransactionViewController.swift in Sources */,
+				F599E3722551398400B78AFC /* InputGoodsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F599E39A25513D4C00B78AFC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F599E39B25513D4C00B78AFC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F599E31F2551381000B78AFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F599E3202551381000B78AFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F599E3222551381000B78AFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BusyBoss/BusyBoss.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HAPJV2V5DY;
+				INFOPLIST_FILE = BusyBoss/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.developeracademy.BusyBoss;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F599E3232551381000B78AFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BusyBoss/BusyBoss.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HAPJV2V5DY;
+				INFOPLIST_FILE = BusyBoss/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.developeracademy.BusyBoss;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F599E3052551380E00B78AFC /* Build configuration list for PBXProject "BusyBoss" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F599E31F2551381000B78AFC /* Debug */,
+				F599E3202551381000B78AFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F599E3212551381000B78AFC /* Build configuration list for PBXNativeTarget "BusyBoss" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F599E3222551381000B78AFC /* Debug */,
+				F599E3232551381000B78AFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F599E3162551380E00B78AFC /* BusyBoss.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F599E3172551380E00B78AFC /* BusyBoss.xcdatamodel */,
+			);
+			currentVersion = F599E3172551380E00B78AFC /* BusyBoss.xcdatamodel */;
+			path = BusyBoss.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F599E3022551380E00B78AFC /* Project object */;
+}
