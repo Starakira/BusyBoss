@@ -20,33 +20,30 @@ class TransactionViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func switchView( sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            onGoingTransaction.isHidden = false
-            completeTransaction.isHidden = true
-            allTransaction.isHidden = true
-        }
-        else if sender.selectedSegmentIndex == 1 {
-            onGoingTransaction.isHidden = true
-            completeTransaction.isHidden = false
-            allTransaction.isHidden = true
-        }
-        else if sender.selectedSegmentIndex == 2 {
-            onGoingTransaction.isHidden = true
-            completeTransaction.isHidden = true
-            allTransaction.isHidden = false
-        }
+    
+    @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
+        HideAll()
+                if sender.selectedSegmentIndex == 0 {
+                    onGoingTransaction.isHidden = false
+                    
+                }
+                else if sender.selectedSegmentIndex == 1 {
+                    onGoingTransaction.isHidden = true
+                    completeTransaction.isHidden = false
+                    allTransaction.isHidden = true
+                }
+                else if sender.selectedSegmentIndex == 2 {
+                    onGoingTransaction.isHidden = true
+                    completeTransaction.isHidden = true
+                    allTransaction.isHidden = false
+                }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func HideAll() {
+        onGoingTransaction.isHidden = true
+        completeTransaction.isHidden = true
+        allTransaction.isHidden = true
     }
-    */
-
+    
 }
+

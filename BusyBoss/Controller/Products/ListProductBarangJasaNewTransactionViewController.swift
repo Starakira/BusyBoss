@@ -18,17 +18,20 @@ class ListProductBarangJasaNewTransactionViewController: UIViewController {
         
     }
     
-    func switchView( sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            segmentedBarangList.isHidden = false
-            segmentedJasaList.isHidden = true
-        }
-        else if sender.selectedSegmentIndex == 1 {
-            segmentedBarangList.isHidden = true
-            segmentedJasaList.isHidden = false
-        }
-    
+    @IBAction func SegmentedAddProductList(_ sender: UISegmentedControl) {
+                if sender.selectedSegmentIndex == 0 {
+                    segmentedBarangList.isHidden = false
+                    segmentedJasaList.isHidden = true
+                }
+                else if sender.selectedSegmentIndex == 1 {
+                    segmentedBarangList.isHidden = true
+                    segmentedJasaList.isHidden = false
+                }
+            
     }
+    
+
+
 
 
 }
