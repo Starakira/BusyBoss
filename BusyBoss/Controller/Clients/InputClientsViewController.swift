@@ -51,8 +51,9 @@ class InputClientsViewController: UIViewController {
 extension InputClientsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerIsEdited")] as? UIImage{
-            addClientsImage.image = image
+            self.addClientsImage.image = image
         }
+        dismiss(animated: true, completion: nil)
     }
      func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
            picker.dismiss(animated: true, completion: nil)
