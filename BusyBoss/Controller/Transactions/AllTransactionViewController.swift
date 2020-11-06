@@ -40,5 +40,11 @@ class AllTransactionViewController: UIViewController, UITableViewDataSource, UIT
         return cell
 
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let DetailVC = storyboard?.instantiateViewController(identifier: "TransactionDetailsView")as!TransactionDetailsViewController
+        DetailVC.dummy = Dummy[indexPath.row]
+        self.navigationController?.pushViewController(DetailVC, animated: true)
+    }
 
 }
