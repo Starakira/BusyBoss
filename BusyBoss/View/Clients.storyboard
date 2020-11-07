@@ -118,9 +118,9 @@
         <!--Input Clients View Controller-->
         <scene sceneID="zh6-j4-TU2">
             <objects>
-                <viewController id="Kjo-oc-Q2M" customClass="InputClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Kjo-oc-Q2M" customClass="InputClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOf-9d-n6H">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRZ-pg-hKB">
@@ -128,10 +128,15 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Clients" id="owx-LY-VM5">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="OVN-nv-ZYO"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="OVN-nv-ZYO">
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="Kjo-oc-Q2M" id="8ox-h2-gk4"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="TnB-0G-JKd">
                                             <connections>
                                                 <action selector="doneButton:" destination="Kjo-oc-Q2M" id="sG9-vw-0pi"/>
+                                                <segue destination="Zqz-Le-FwG" kind="unwind" unwindAction="unwindToSegue:" id="OZ4-hf-tlj"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -200,6 +205,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wI9-nx-Ac9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Zqz-Le-FwG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1828.985507246377" y="1362.7232142857142"/>
         </scene>
@@ -292,7 +298,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="clientsComapnyAddress" destination="JXP-SO-zDS" id="epB-hd-sdE"/>
+                        <outlet property="clientsCompanyAddress" destination="JXP-SO-zDS" id="epB-hd-sdE"/>
                         <outlet property="clientsCompanyEmail" destination="vt6-Kg-QnU" id="SPC-vW-T83"/>
                         <outlet property="clientsCompanyName" destination="Br3-sk-Fr0" id="W2J-dK-9Tb"/>
                         <outlet property="clientsImage" destination="FXy-zw-Lfl" id="2MZ-tU-X04"/>
