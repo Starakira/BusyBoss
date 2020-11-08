@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60CD75AC255891F200CCFAC4 /* PDFcreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD75A9255891F200CCFAC4 /* PDFcreate.swift */; };
+		60CD75AD255891F200CCFAC4 /* PreviewDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD75AA255891F200CCFAC4 /* PreviewDataViewController.swift */; };
+		60CD75AE255891F200CCFAC4 /* TestPDFPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD75AB255891F200CCFAC4 /* TestPDFPreviewViewController.swift */; };
 		F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30D2551380E00B78AFC /* AppDelegate.swift */; };
 		F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30F2551380E00B78AFC /* SceneDelegate.swift */; };
 		F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F599E3162551380E00B78AFC /* BusyBoss.xcdatamodeld */; };
@@ -69,6 +72,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		60CD75A9255891F200CCFAC4 /* PDFcreate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFcreate.swift; sourceTree = "<group>"; };
+		60CD75AA255891F200CCFAC4 /* PreviewDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewDataViewController.swift; sourceTree = "<group>"; };
+		60CD75AB255891F200CCFAC4 /* TestPDFPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPDFPreviewViewController.swift; sourceTree = "<group>"; };
 		F599E30A2551380E00B78AFC /* BusyBoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F599E30D2551380E00B78AFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F599E30F2551380E00B78AFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +151,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60CD75A72558918D00CCFAC4 /* PDFPreview */ = {
+			isa = PBXGroup;
+			children = (
+				60CD75A9255891F200CCFAC4 /* PDFcreate.swift */,
+				60CD75AA255891F200CCFAC4 /* PreviewDataViewController.swift */,
+				60CD75AB255891F200CCFAC4 /* TestPDFPreviewViewController.swift */,
+			);
+			path = PDFPreview;
+			sourceTree = "<group>";
+		};
 		F599E3012551380E00B78AFC = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +224,7 @@
 		F599E3272551384E00B78AFC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				60CD75A72558918D00CCFAC4 /* PDFPreview */,
 				F599E38A25513C1700B78AFC /* Login */,
 				F599E38B25513C2200B78AFC /* Register */,
 				F599E38925513B1400B78AFC /* Transactions */,
@@ -437,6 +454,7 @@
 				F599E37D2551398400B78AFC /* TransactionViewController.swift in Sources */,
 				F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */,
 				F599E3422551394800B78AFC /* DummyDataManager.swift in Sources */,
+				60CD75AD255891F200CCFAC4 /* PreviewDataViewController.swift in Sources */,
 				F599E3A925513FFD00B78AFC /* Alert.swift in Sources */,
 				F5D5050B2552AB1700DFFD85 /* TransactionDetailsViewController.swift in Sources */,
 				F599E36A2551398400B78AFC /* GoodsViewController.swift in Sources */,
@@ -476,9 +494,11 @@
 				F599E33D2551394800B78AFC /* CurrentUser.swift in Sources */,
 				F599E3782551398400B78AFC /* ProductListJasaViewController.swift in Sources */,
 				F599E36F2551398400B78AFC /* ServicesViewController.swift in Sources */,
+				60CD75AE255891F200CCFAC4 /* TestPDFPreviewViewController.swift in Sources */,
 				F599E33C2551394800B78AFC /* clientsStruct.swift in Sources */,
 				F599E3652551398400B78AFC /* completeTransactionViewCell.swift in Sources */,
 				F599E3432551394800B78AFC /* CloudKitManager.swift in Sources */,
+				60CD75AC255891F200CCFAC4 /* PDFcreate.swift in Sources */,
 				F599E36C2551398400B78AFC /* ProductListBarangViewCell.swift in Sources */,
 				F599E36B2551398400B78AFC /* OnGoingTransactionViewController.swift in Sources */,
 				F599E3722551398400B78AFC /* InputGoodsViewController.swift in Sources */,
