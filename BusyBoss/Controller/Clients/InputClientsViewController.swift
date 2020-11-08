@@ -45,7 +45,7 @@ class InputClientsViewController: UIViewController {
                             companyAddress: clientAddress.text!)
         
         
-        CloudKitManager.shared().createClient(client: client) { (recordID, error) in
+        CloudKitManager.shared().clientCreate(client: client) { (recordID, error) in
             if let error = error {
                 Alert.showError(self, error)
             }

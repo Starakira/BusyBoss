@@ -53,15 +53,10 @@ class AllTransactionViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "allViewCell", for: indexPath)as!allTransactionViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "allViewCell", for: indexPath)as!TransactionViewCell
         let Data = Dummy[indexPath.row]
         print (Data)
-        cell.CodeTransactionLabel.text = String(Data.transactionCode)
-        cell.NameUserLabel.text = Data.transactionUser
-        cell.DescriptionTransactionLabel.text = Data.transactionDescription
-        cell.StatusTransactionLabel.text = Data.transactionStatus
-        cell.TotalJumlahLabel.text = String(Data.transactionTotalValue)
-        cell.GambarTransaction.image = Data.transactionImage
+        
         return cell
         
     }

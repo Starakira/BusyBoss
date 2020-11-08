@@ -7,6 +7,7 @@
 
 import Foundation
 import CloudKit
+import AuthenticationServices
 
 struct CloudKitManager {
     let privateDatabase = CKContainer(identifier: "iCloud.com.developeracademy.Busy-Boss").privateCloudDatabase
@@ -79,6 +80,28 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
+    func authenticateUserUsingSignInWithApple(user: User, credentials: ASAuthorizationAppleIDCredential, completionHandler: @escaping (_ user: User?,_ error: Error?) -> Void) {
+        
+        let predicateEmail = NSPredicate(format: "\(emailAddressKey) = %@", user.email)
+        let query = CKQuery(recordType: userRecordType, predicate: predicateEmail)
+        let operation = CKQueryOperation(query: query)
+        //operation.desiredKeys = [emailAddressKey, passwordKey]
+        
+        var user:User?
+        
+        operation.recordFetchedBlock = {record in
+            user = User(record: record)
+        }
+        
+        operation.queryCompletionBlock = {cursor, error in
+            DispatchQueue.main.async {
+                completionHandler(user ,error)
+            }
+        }
+        
+        publicDatabase.add(operation)
+    }
+    
     func addProduct(product: Product, completionHandler: @escaping () -> Void){
         
         let productRecord = CKRecord(recordType: "Product")
@@ -104,7 +127,7 @@ struct CloudKitManager {
     
     // MARK: - Client Functions
     
-    func showAllClients(completionHandler: @escaping (_ result: [Client], _ error: Error?) -> Void){
+    func clientsFetchAll(completionHandler: @escaping (_ result: [Client], _ error: Error?) -> Void){
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Client", predicate: predicate)
         let operation = CKQueryOperation(query: query)
@@ -124,7 +147,7 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
-    func createClient(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
+    func clientCreate(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         let clientRecord = CKRecord(recordType: "Client")
         
@@ -142,7 +165,7 @@ struct CloudKitManager {
         }
     }
     
-    func editClient(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
+    func clientEdit(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         let clientRecord = CKRecord(recordType: "Client", recordID: client.recordID!)
         
@@ -160,7 +183,7 @@ struct CloudKitManager {
         }
     }
     
-    func deleteClient(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID?, _ error: Error?) -> Void){
+    func clientDelete(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID?, _ error: Error?) -> Void){
         publicDatabase.delete(withRecordID: client.recordID!) { (recordID, error) in
             DispatchQueue.main.async {
                 completionHandler(recordID ,error);
@@ -169,7 +192,7 @@ struct CloudKitManager {
     }
     
     // MARK: - Transaction Functions
-    func addTransaction(transactionCode: String, transactionUser: String, transactionDescription: String, transactionStatus: String, transactionTotalValue: Double, transactionStockNumber: Int, transactionGoodName: String, transactionClientPhoneNumber: String, transactionClientAddress: String, transactionClientCompanyName: String, transactionServiceName: String, completionHandler: @escaping () -> Void){
+    func transactionCreate(transactionCode: String, transactionUser: String, transactionDescription: String, transactionStatus: String, transactionTotalValue: Double, transactionStockNumber: Int, transactionGoodName: String, transactionClientPhoneNumber: String, transactionClientAddress: String, transactionClientCompanyName: String, transactionServiceName: String, completionHandler: @escaping () -> Void){
         
         let transactionRecord = CKRecord(recordType: "Transaction")
         let userRecord = CKRecord(recordType: "User")
@@ -200,17 +223,20 @@ struct CloudKitManager {
         }
     }
     
-    func showAllTransactions(transactionCode: String, transactionUser: String, transactionDescription: String, transactionStatus: String, transactionTotalValue: Double, transactionStockNumber: Int, transactionGoodName: String, transactionClientPhoneNumber: String, transactionClientAddress: String, transactionClientCompanyName: String, transactionServiceName: String){
+    func transactionsFetchAll(completionHandler: @escaping (_ transactions: [Transaction], _ error: Error?) -> Void) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Transaction", predicate: predicate)
         let operation = CKQueryOperation(query: query)
         
+        var transactions:[Transaction] = []
+        
         operation.recordFetchedBlock = {record in
-            
+            let transaction =  Transaction(record: record)
+            transactions.append(transaction)
         }
         operation.queryCompletionBlock = {cursor, error in
             DispatchQueue.main.async {
-                
+                completionHandler(transactions, error)
             }
         }
         
