@@ -8,42 +8,80 @@
 import UIKit
 
 class TransactionViewController: UIViewController {
-
+    
     @IBOutlet weak var TransactionSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var onGoingTransaction: UIView!
-    @IBOutlet weak var completeTransaction: UIView!
-    @IBOutlet weak var allTransaction: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var transactionsAll: [Transaction]?
+    
+    var transactions: [Transaction] = []
 
-        // Do any additional setup after loading the view.
+    override func viewDidLoad() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        CloudKitManager.shared().transactionsFetchAll { (result, error) in
+            if let error = error {
+                Alert.showError(self, error)
+            }
+            else {
+                self.transactionsAll = result
+                self.refreshTableView(selectedSegmentIndex: self.TransactionSegmentedControl.selectedSegmentIndex)
+            }
+        }
     }
-    
     
     @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
-        HideAll()
-                if sender.selectedSegmentIndex == 0 {
-                    onGoingTransaction.isHidden = false
-                    
-                }
-                else if sender.selectedSegmentIndex == 1 {
-                    onGoingTransaction.isHidden = true
-                    completeTransaction.isHidden = false
-                    allTransaction.isHidden = true
-                }
-                else if sender.selectedSegmentIndex == 2 {
-                    onGoingTransaction.isHidden = true
-                    completeTransaction.isHidden = true
-                    allTransaction.isHidden = false
-                }
+        refreshTableView(selectedSegmentIndex: sender.selectedSegmentIndex)
     }
     
-    func HideAll() {
-        onGoingTransaction.isHidden = true
-        completeTransaction.isHidden = true
-        allTransaction.isHidden = true
+    func refreshTableView(selectedSegmentIndex: Int) {
+        if let transactionsAll = transactionsAll {
+            switch selectedSegmentIndex {
+            case 0: //Ongoing
+                transactions = transactionsAll.filter{ $0.status == TransactionStatus.Ongoing}
+            case 1: //Completed
+                transactions = transactionsAll.filter{ $0.status == TransactionStatus.Completed}
+            case 2:
+                transactions = transactionsAll.filter{ $0.status == TransactionStatus.Ongoing}
+            default:
+                return
+            }
+            
+            tableView.reloadData()
+        }
     }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? TransactionDetailsViewController {
+            
+        }
+        
+    }
 }
 
+extension TransactionViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+extension TransactionViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return transactions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let transaction = transactions[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell") as! TransactionViewCell
+        cell.labelStatus.text = transaction.status.rawValue
+        cell.labelDescription.text = transaction.description
+        cell.labelTotalPrice.text = "Rp. \(transaction.getTotalProductPrices()),-)"
+        cell.labelTransactionCode.text = "\(transaction.recordID.hashValue)"
+        cell.labelClientName.text = "\(transaction.client?.firstName ?? "") \(transaction.client?.lastName ?? "")"
+        return cell
+    }
+}

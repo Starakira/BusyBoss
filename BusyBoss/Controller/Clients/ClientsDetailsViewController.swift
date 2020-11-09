@@ -11,21 +11,20 @@ class ClientsDetailsViewController: UIViewController {
     @IBOutlet weak var clientsImage: UIImageView!
     @IBOutlet weak var clientsNameLabel: UILabel!
     @IBOutlet weak var clientsCompanyName: UILabel!
-    @IBOutlet weak var clientsComapnyAddress: UILabel!
+    @IBOutlet weak var clientsCompanyAddress: UILabel!
     @IBOutlet weak var clientsCompanyEmail: UILabel!
     @IBOutlet weak var clientsPhoneNo: UILabel!
-    var clients : clientsStruct?
+    var client : Client?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let cli = clients{
-            clientsNameLabel.text = cli.clientsFirstName + cli.clientsLastName
-            clientsImage.image = cli.clientsImage
-            clientsCompanyName.text = cli.clientsCompanyName
-            clientsComapnyAddress.text = cli.clientsCompanyAddress
-            clientsCompanyEmail.text = cli.clientsEmailAddress
-            clientsPhoneNo.text = cli.clientsPhoneNo
+        if let client = client{
+            clientsNameLabel.text = client.firstName + client.lastName
+            clientsImage.image = client.image
+            clientsCompanyName.text = client.companyName
+            clientsCompanyAddress.text = client.companyAddress
+            clientsPhoneNo.text = client.phoneNumber
         }
     }
     
