@@ -30,9 +30,6 @@ class TransactionDetailsViewController: UIViewController, UITableViewDataSource,
         Dummy = DummyManager.Dummy
         ProductListTransactionTableView.dataSource = self
         ProductListTransactionTableView.delegate = self
-
-
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
