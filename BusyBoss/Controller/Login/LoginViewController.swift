@@ -72,7 +72,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate{
         switch authorization.credential{
         
         case let credentials as ASAuthorizationAppleIDCredential:
-            let user = CurrentUser(credentials: credentials)
+            let user = User(credentials: credentials)
             performSegue(withIdentifier: "EntryIdentifier", sender: user)
             
         default: break

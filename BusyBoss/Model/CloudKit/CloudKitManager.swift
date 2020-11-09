@@ -244,6 +244,7 @@ struct CloudKitManager {
     }
     
     // MARK: - Product Functions
+    /*
     func showAllProduct(productName: String, productPrice: Double, productQuantity: Int) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Product", predicate: predicate)
@@ -268,6 +269,7 @@ struct CloudKitManager {
         }
         publicDatabase.add(operation)
     }
+    */
 
     /*
      func fetchID(completion: @escaping (String) -> Void){
