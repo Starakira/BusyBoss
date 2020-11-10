@@ -14,8 +14,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         //Check if email address and password exist in userdefaults
-        let emailAddress = UserDefaults.standard.string(forKey: CloudKitManager.shared().emailAddressKey)
-        let password = UserDefaults.standard.string(forKey: CloudKitManager.shared().passwordKey)
+        let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
+        let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
         if let email = emailAddress, let password = password {
             authenticate(emailAddress: email, password: password)
@@ -54,8 +54,8 @@ class LoginViewController: UIViewController {
                 Alert.showAlert(view: self, title: "Error", message: "Invalid Cridentials!")
             }
             else {
-                UserDefaults.standard.setValue(currentUser![CloudKitManager.shared().emailAddressKey], forKey: CloudKitManager.shared().emailAddressKey)
-                UserDefaults.standard.setValue(currentUser![CloudKitManager.shared().passwordKey], forKey: CloudKitManager.shared().passwordKey)
+                UserDefaults.standard.setValue(currentUser![User.keyEmail], forKey: User.keyEmail)
+                UserDefaults.standard.setValue(currentUser![User.keyPassword], forKey: User.keyPassword)
                 self.segueToMain()
             }
         }

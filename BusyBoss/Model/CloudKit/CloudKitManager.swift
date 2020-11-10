@@ -255,7 +255,7 @@ struct CloudKitManager {
             }
             else{
                 DispatchQueue.main.async {
-                    completionHandler(savedRecord, error);
+                    completionHandler(savedRecord?.recordID, error);
                 }
             }
         }
