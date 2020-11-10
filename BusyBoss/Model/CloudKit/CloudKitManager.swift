@@ -229,26 +229,25 @@ struct CloudKitManager {
     }
     
     // MARK: - Transaction Functions
-    func transactionCreate(transaction: Transaction, completionHandler: @escaping () -> Void){
+    func transactionCreate(transaction: Transaction, completionHandler: @escaping (_  recordID: CKRecord.ID?, _ error: Error?) -> Void){
         
         let transactionRecord = CKRecord(recordType: "Transaction")
-        let userRecord = CKRecord(recordType: "User")
-        let clientRecord = CKRecord(recordType: "Client")
-        let productRecord = CKRecord(recordType: "Product")
-        let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
-        let clientReference = CKRecord.Reference(record: clientRecord, action: CKRecord_Reference_Action.none)
+        let userReference = CKRecord.Reference(recordID: transaction.user.recordID!, action: CKRecord_Reference_Action.deleteSelf)
+        let clientReference = CKRecord.Reference(recordID: transaction.client!.recordID!, action: CKRecord_Reference_Action.none)
         
-        var productRecordIDs = [CKRecord.ID]()
+        var productRecordIDs:[CKRecord.ID] = []
         
-        for productReference in productRecord["Product"] as! [CKRecord.Reference]{
-            productRecordIDs.append(productReference.recordID)
+        for product in transaction.products ?? []{
+            productRecordIDs.append(product.recordID!)
         }
         
         transactionRecord.setValue(transaction.transactionNumber, forKey: Transaction.keyTransactionNumber)
         transactionRecord.setValue(transaction.description, forKey: Transaction.keyDescription)
-        transactionRecord.setValue(transaction.status, forKey: Transaction.keyStatus)
+        transactionRecord.setValue(transaction.status.rawValue, forKey: Transaction.keyStatus)
         transactionRecord.setValue(userReference, forKey: "userReference")
         transactionRecord.setValue(clientReference, forKey: "clientReference")
+        transactionRecord.setValue(productRecordIDs, forKey: "productReferenceList")
+        
         
         publicDatabase.save(transactionRecord) {(savedRecord, error) in
             if error != nil{
@@ -256,7 +255,7 @@ struct CloudKitManager {
             }
             else{
                 DispatchQueue.main.async {
-                    completionHandler();
+                    completionHandler(savedRecord, error);
                 }
             }
         }
