@@ -14,6 +14,7 @@ public struct Transaction {
     var user: User
     var description:String
     var status: TransactionStatus
+    var approval: TransactionApproval
     var products: [Product]?
     var client: Client?
     var discount: Double?
@@ -57,7 +58,18 @@ extension Transaction {
             status = TransactionStatus.Undefined
         }
         
-        self.init(recordID: recordID, transactionNumber: transactionNumber, user: user!, description: description, status: status, discount: discount, tax: tax)
+        var approval: TransactionApproval
+        
+        switch record["approval"] as? String ?? "" {
+        case TransactionApproval.Approved.rawValue:
+            approval = TransactionApproval.Approved
+        case TransactionApproval.Rejected.rawValue:
+            approval = TransactionApproval.Rejected
+        default:
+            approval = TransactionApproval.Undefined
+        }
+        
+        self.init(recordID: recordID, transactionNumber: transactionNumber, user: user!, description: description, status: status, approval: approval, discount: discount, tax: tax)
     }
     
 
@@ -67,5 +79,11 @@ public enum TransactionStatus : String {
     case Ongoing
     case Canceled
     case Completed
+    case Undefined
+}
+
+public enum TransactionApproval : String {
+    case Approved
+    case Rejected
     case Undefined
 }
