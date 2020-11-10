@@ -118,9 +118,9 @@
         <!--Input Clients View Controller-->
         <scene sceneID="zh6-j4-TU2">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Kjo-oc-Q2M" customClass="InputClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kjo-oc-Q2M" customClass="InputClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOf-9d-n6H">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRZ-pg-hKB">

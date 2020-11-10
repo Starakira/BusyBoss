@@ -14,22 +14,6 @@ struct CloudKitManager {
     let sharedDatabase = CKContainer(identifier: "iCloud.com.developeracademy.Busy-Boss").sharedCloudDatabase
     let publicDatabase = CKContainer(identifier: "iCloud.com.developeracademy.Busy-Boss").publicCloudDatabase
     
-    let userRecordType = "User"
-    
-    let emailAddressKey = "emailAddress"
-    let passwordKey = "password"
-    let firstNameKey = "firstName"
-    let lastNameKey = "lastName"
-    let phoneNoKey = "phoneNo"
-    
-    let productRecordType = "Product"
-    
-    let productNameKey = "productName"
-    let productPriceKey = "productPrice"
-    let productQuantityKey = "productQuantity"
-    
-    let clientRecordType = "Client"
-    
     private static var sharedDatabaseManager: CloudKitManager  = {
         let cloudkitManager = CloudKitManager()
         return cloudkitManager
@@ -40,28 +24,28 @@ struct CloudKitManager {
     }
     
     // MARK: - User Functions
-    func addUser(emailAddress: String, password: String, firstName: String, lastName: String, phoneNo:String, completionHandler: @escaping (_ error: Error?) -> Void){
+    func userCreate(user: User, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
-        let userRecord = CKRecord(recordType: userRecordType)
+        let userRecord = CKRecord(recordType: "User")
         
-        userRecord.setValue(firstName, forKey: firstNameKey)
-        userRecord.setValue(lastName, forKey: lastNameKey)
-        userRecord.setValue(emailAddress, forKey: emailAddressKey)
-        userRecord.setValue(password, forKey: passwordKey)
-        userRecord.setValue(phoneNo, forKey: phoneNoKey)
+        userRecord.setValue(user.firstName, forKey: User.keyFirstName)
+        userRecord.setValue(user.lastName, forKey: User.keyLastName)
+        userRecord.setValue(user.email, forKey: User.keyEmail)
+        userRecord.setValue(user.password, forKey: User.keyPassword)
+        userRecord.setValue(user.phoneNumber, forKey: User.keyPhoneNumber)
         
         publicDatabase.save(userRecord) {(savedRecord, error) in
             DispatchQueue.main.async {
-                completionHandler(error);
+                completionHandler(savedRecord?.recordID ,error);
             }
         }
     }
     
     func authenticateUser(emailAddress: String, password: String, completionHandler: @escaping (_ currentUser: CKRecord?, _ error: Error?) -> Void) {
-        let predicateEmail = NSPredicate(format: "\(emailAddressKey) = %@", emailAddress)
-        let predicatePassword = NSPredicate(format: "\(passwordKey) = %@", password)
+        let predicateEmail = NSPredicate(format: "\(User.keyEmail) = %@", emailAddress)
+        let predicatePassword = NSPredicate(format: "\(User.keyPassword) = %@", password)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEmail, predicatePassword])
-        let query = CKQuery(recordType: userRecordType, predicate: predicate)
+        let query = CKQuery(recordType: "User", predicate: predicate)
         let operation = CKQueryOperation(query: query)
         //operation.desiredKeys = [emailAddressKey, passwordKey]
         
@@ -80,37 +64,38 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
-    func authenticateUserUsingSignInWithApple(user: User, credentials: ASAuthorizationAppleIDCredential, completionHandler: @escaping (_ user: User?,_ error: Error?) -> Void) {
-        
-        let predicateEmail = NSPredicate(format: "\(emailAddressKey) = %@", user.email)
-        let query = CKQuery(recordType: userRecordType, predicate: predicateEmail)
-        let operation = CKQueryOperation(query: query)
-        //operation.desiredKeys = [emailAddressKey, passwordKey]
-        
-        var user:User?
-        
-        operation.recordFetchedBlock = {record in
-            user = User(record: record)
-        }
-        
-        operation.queryCompletionBlock = {cursor, error in
-            DispatchQueue.main.async {
-                completionHandler(user ,error)
-            }
-        }
-        
-        publicDatabase.add(operation)
-    }
+//    func authenticateUserUsingSignInWithApple(user: User, credentials: ASAuthorizationAppleIDCredential, completionHandler: @escaping (_ user: User?,_ error: Error?) -> Void) {
+//
+//        let predicateEmail = NSPredicate(format: "\(emailAddressKey) = %@", user.email)
+//        let query = CKQuery(recordType: userRecordType, predicate: predicateEmail)
+//        let operation = CKQueryOperation(query: query)
+//        //operation.desiredKeys = [emailAddressKey, passwordKey]
+//
+//        var user:User?
+//
+//        operation.recordFetchedBlock = {record in
+//            user = User(record: record)
+//        }
+//
+//        operation.queryCompletionBlock = {cursor, error in
+//            DispatchQueue.main.async {
+//                completionHandler(user ,error)
+//            }
+//        }
+//
+//        publicDatabase.add(operation)
+//    }
     
-    func addProduct(product: Product, completionHandler: @escaping () -> Void){
+    func productCreate(product: Product, completionHandler: @escaping () -> Void){
         
         let productRecord = CKRecord(recordType: "Product")
         let userRecord = CKRecord(recordType: "User")
         let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
         
-        productRecord.setValue(product.name, forKey: productNameKey)
-        productRecord.setValue(product.price, forKey: productPriceKey)
-        productRecord.setValue(product.quantity, forKey: productQuantityKey)
+        productRecord.setValue(product.name, forKey: Product.keyName)
+        productRecord.setValue(product.price, forKey: Product.keyPrice)
+        productRecord.setValue(product.quantity, forKey: Product.keyQuantity)
+        productRecord.setValue(product.type, forKey: Product.keyType)
         productRecord.setValue(userReference, forKey: "userReference")
         
         publicDatabase.save(productRecord) {(savedRecord, error) in
@@ -125,7 +110,77 @@ struct CloudKitManager {
         }
     }
     
+    func productsFetchAll(completionHandler: @escaping (_ result: [Product], _ error: Error?) -> Void){
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Product", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        
+        var products:[Product] = []
+        
+        operation.recordFetchedBlock = {record in
+            let newProduct = Product(record: record)
+            products.append(newProduct)
+        }
+        
+        operation.queryCompletionBlock = {cursor, error in
+            DispatchQueue.main.async {
+                completionHandler(products, error)
+            }
+        }
+        publicDatabase.add(operation)
+    }
+    
+    func productEdit(product: Product, completionHandler: @escaping () -> Void){
+        
+        let productRecord = CKRecord(recordType: "Product", recordID: product.recordID!)
+        
+        productRecord.setValue(product.name, forKey: Product.keyName)
+        productRecord.setValue(product.price, forKey: Product.keyPrice)
+        productRecord.setValue(product.quantity, forKey: Product.keyQuantity)
+        productRecord.setValue(product.type, forKey: Product.keyType)
+        
+        publicDatabase.save(productRecord) {(savedRecord, error) in
+            if error != nil{
+                print(error!.localizedDescription)
+            }
+            else{
+                DispatchQueue.main.async {
+                    completionHandler();
+                }
+            }
+        }
+    }
+    
+    func productDelete(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID?, _ error: Error?) -> Void){
+        publicDatabase.delete(withRecordID: product.recordID!) { (recordID, error) in
+            DispatchQueue.main.async {
+                completionHandler(recordID ,error);
+            }
+        }
+    }
+    
     // MARK: - Client Functions
+    
+    func clientCreate(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
+        
+        let clientRecord = CKRecord(recordType: "Client")
+        let userRecord = CKRecord(recordType: "User")
+        let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
+        
+        clientRecord.setValue(client.firstName, forKey: Client.keyFirstName)
+        clientRecord.setValue(client.lastName, forKey: Client.keyLastName)
+        clientRecord.setValue(client.emailAddress, forKey: Client.keyEmailAddress)
+        clientRecord.setValue(client.companyName, forKey: Client.keyCompanyName)
+        clientRecord.setValue(client.companyAddress, forKey: Client.keyCompanyAddress)
+        clientRecord.setValue(client.phoneNumber, forKey: Client.keyPhoneNumber)
+        clientRecord.setValue(userReference, forKey: "userReference")
+        
+        publicDatabase.save(clientRecord) {(savedRecord, error) in
+            DispatchQueue.main.async {
+                completionHandler(savedRecord?.recordID ,error);
+            }
+        }
+    }
     
     func clientsFetchAll(completionHandler: @escaping (_ result: [Client], _ error: Error?) -> Void){
         let predicate = NSPredicate(value: true)
@@ -147,24 +202,6 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
-    func clientCreate(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
-        
-        let clientRecord = CKRecord(recordType: "Client")
-        
-        clientRecord.setValue(client.firstName, forKey: Client.keyFirstName)
-        clientRecord.setValue(client.lastName, forKey: Client.keyLastName)
-        clientRecord.setValue(client.emailAddress, forKey: Client.keyEmailAddress)
-        clientRecord.setValue(client.companyName, forKey: Client.keyCompanyName)
-        clientRecord.setValue(client.companyAddress, forKey: Client.keyCompanyAddress)
-        clientRecord.setValue(client.phoneNumber, forKey: Client.keyPhoneNo)
-        
-        publicDatabase.save(clientRecord) {(savedRecord, error) in
-            DispatchQueue.main.async {
-                completionHandler(savedRecord?.recordID ,error);
-            }
-        }
-    }
-    
     func clientEdit(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         let clientRecord = CKRecord(recordType: "Client", recordID: client.recordID!)
@@ -174,7 +211,7 @@ struct CloudKitManager {
         clientRecord.setValue(client.emailAddress, forKey: Client.keyEmailAddress)
         clientRecord.setValue(client.companyName, forKey: Client.keyCompanyName)
         clientRecord.setValue(client.companyAddress, forKey: Client.keyCompanyAddress)
-        clientRecord.setValue(client.phoneNumber, forKey: Client.keyPhoneNo)
+        clientRecord.setValue(client.phoneNumber, forKey: Client.keyPhoneNumber)
         
         publicDatabase.save(clientRecord) {(savedRecord, error) in
             DispatchQueue.main.async {
@@ -192,24 +229,26 @@ struct CloudKitManager {
     }
     
     // MARK: - Transaction Functions
-    func transactionCreate(transactionCode: String, transactionUser: String, transactionDescription: String, transactionStatus: String, transactionTotalValue: Double, transactionStockNumber: Int, transactionGoodName: String, transactionClientPhoneNumber: String, transactionClientAddress: String, transactionClientCompanyName: String, transactionServiceName: String, completionHandler: @escaping () -> Void){
+    func transactionCreate(transaction: Transaction, completionHandler: @escaping () -> Void){
         
         let transactionRecord = CKRecord(recordType: "Transaction")
         let userRecord = CKRecord(recordType: "User")
+        let clientRecord = CKRecord(recordType: "Client")
+        let productRecord = CKRecord(recordType: "Product")
         let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
+        let clientReference = CKRecord.Reference(record: clientRecord, action: CKRecord_Reference_Action.none)
         
-        transactionRecord.setValue(transactionCode, forKey: "clientFirstNameKey")
-        transactionRecord.setValue(transactionUser, forKey: "clientLastNameKey")
-        transactionRecord.setValue(transactionDescription, forKey: "clientEmailAddressKey")
-        transactionRecord.setValue(transactionStatus, forKey: "clientCompanyNameKey")
-        transactionRecord.setValue(transactionTotalValue, forKey: "clientCompanyAddressKey")
-        transactionRecord.setValue(transactionGoodName, forKey: "clientPhoneNoKey")
-        transactionRecord.setValue(transactionClientPhoneNumber, forKey: "clientCompanyAddressKey")
-        transactionRecord.setValue(transactionClientAddress, forKey: "clientPhoneNoKey")
-        transactionRecord.setValue(transactionClientCompanyName, forKey: "clientCompanyAddressKey")
-        transactionRecord.setValue(transactionServiceName, forKey: "clientPhoneNoKey")
+        var productRecordIDs = [CKRecord.ID]()
         
+        for productReference in productRecord["Product"] as! [CKRecord.Reference]{
+            productRecordIDs.append(productReference.recordID)
+        }
+        
+        transactionRecord.setValue(transaction.transactionNumber, forKey: Transaction.keyTransactionNumber)
+        transactionRecord.setValue(transaction.description, forKey: Transaction.keyDescription)
+        transactionRecord.setValue(transaction.status, forKey: Transaction.keyStatus)
         transactionRecord.setValue(userReference, forKey: "userReference")
+        transactionRecord.setValue(clientReference, forKey: "clientReference")
         
         publicDatabase.save(transactionRecord) {(savedRecord, error) in
             if error != nil{

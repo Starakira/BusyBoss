@@ -41,13 +41,36 @@ class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func unwindToSegue(_ sender: UIStoryboardSegue) {
         guard let vc = sender.source as? InputClientsViewController else {
-            Alert.showAlert(view: self, title: "Error", message: "Failed to cast Source ViewController to InputClientsViewController")
+//            Alert.showAlert(view: self, title: "Error", message: "Failed to cast Source ViewController to InputClientsViewController")
+            print("Failed to cast Source ViewController to InputClientsViewController")
             return
         }
         
-        guard let client = vc.client else {
-            Alert.showAlert(view: self, title: "Error", message: "No Client Data present!")
+        guard var client = vc.client else {
+//            Alert.showAlert(view: self, title: "Error", message: "No Client Data present!")
+            print("No Client Data present!")
             return
+        }
+        
+        CloudKitManager.shared().clientCreate(client: client) { (recordID, error) in
+            if let error = error {
+//                Alert.showError(self, error)
+                print(error.localizedDescription)
+            }
+            else if recordID != nil {
+                print("ID not created!")
+//                Alert.showAlert(view: self, title: "ID not created!", message: "Database failed to create ID for new client!")
+            }
+            else {
+                print("Creating client successful")
+//                client = client
+                client.recordID = recordID
+                
+                /*
+                let vc = self.storyboard?.instantiateViewController(identifier: "clients") as! ClientsViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+                 */
+            }
         }
         
         clients.append(client)

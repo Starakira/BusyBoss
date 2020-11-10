@@ -10,11 +10,20 @@ import CloudKit
 
 public struct Transaction {
     var recordID: CKRecord.ID?
-    var user:User
+    var transactionNumber: String
+    var user: User
     var description:String
     var status: TransactionStatus
     var products: [Product]?
     var client: Client?
+    var discount: Double?
+    var tax: Double?
+    
+    static let keyTransactionNumber = ""
+    static let keyDescription = ""
+    static let keyStatus = ""
+    static let keyDiscount = 0.0
+    static let keyTax = 0.0
     
     func getTotalProductPrices() -> Double {
         var total: Double = 0
@@ -29,8 +38,11 @@ public struct Transaction {
 extension Transaction {
     init(record: CKRecord) {
         let recordID = record.recordID
+        let transactionNumber = ""
         let user = User.currentUser()
         let description = ""
+        let discount = 0.0
+        let tax = 0.0
         
         var status:TransactionStatus
         
@@ -45,7 +57,7 @@ extension Transaction {
             status = TransactionStatus.Undefined
         }
         
-        self.init(recordID: recordID, user: user!, description: description, status: status)
+        self.init(recordID: recordID, transactionNumber: transactionNumber, user: user!, description: description, status: status, discount: discount, tax: tax)
     }
     
 

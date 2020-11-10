@@ -11,7 +11,7 @@ import CloudKit
 class RegisterViewController: UIViewController {
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var phoneNoTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -20,21 +20,23 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButton(_ sender: Any) {
-        let firstName = firstNameTextField.text
-        let lastName = lastNameTextField.text
-        let emailAddress = emailAddressTextField.text
-        let password = passwordTextField.text
-        let phoneNo = phoneNoTextField.text
+        var user = User(recordID: CKRecord.ID(),
+            firstName: firstNameTextField.text!,
+                        lastName: lastNameTextField.text!,
+                        email: emailAddressTextField.text!,
+                        password: phoneNumberTextField.text!,
+                        phoneNumber: passwordTextField.text!)
         
         let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
         self.present(pendingAction, animated: true)
         
-        CloudKitManager.shared().addUser(emailAddress: emailAddress!, password: password!, firstName: firstName!, lastName: lastName!, phoneNo: phoneNo!){ error in
+        CloudKitManager.shared().userCreate(user: user){ recordID, error  in
             pendingAction.dismiss(animated: true) {
                 if let error = error {
-                    Alert.showError(self, error)
+                    Alert.showError(self, error )
                 }
                 else {
+                    user.recordID = recordID
                     self.dismiss(animated: true)
                 }
             }

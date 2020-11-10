@@ -23,20 +23,12 @@ class InputClientsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-   
-    // MARK: - Action
-    
-    @IBAction func doneButton(_ sender: Any) {
-        let client = Client(image: addClientsImage.image!,
+        let client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "shiba icon new"),
                             firstName: clientFirstName.text!,
                             lastName: clientLastName.text!,
                             emailAddress: clientEmailAddress.text!,
@@ -44,25 +36,27 @@ class InputClientsViewController: UIViewController {
                             companyName: clientCompanyName.text!,
                             companyAddress: clientAddress.text!)
         
+        print("Creating client...")
+        self.client = client
         
-        CloudKitManager.shared().clientCreate(client: client) { (recordID, error) in
-            if let error = error {
-                Alert.showError(self, error)
-            }
-            else if recordID != nil {
-                Alert.showAlert(view: self, title: "ID not created!", message: "Database failed to create ID for new client!")
-            }
-            else {
-                self.client = client
-                self.client?.recordID = recordID
-                
-                /*
-                let vc = self.storyboard?.instantiateViewController(identifier: "clients") as! ClientsViewController
-                self.navigationController?.pushViewController(vc, animated: true)
-                 */
-                self.dismiss(animated: true)
-            }
-        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    
+   
+    // MARK: - Action
+    
+    @IBAction func doneButton(_ sender: Any) {
+        let client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "shiba icon new"),
+                            firstName: clientFirstName.text!,
+                            lastName: clientLastName.text!,
+                            emailAddress: clientEmailAddress.text!,
+                            phoneNumber: clientPhoneNo.text!,
+                            companyName: clientCompanyName.text!,
+                            companyAddress: clientAddress.text!)
+        
+        print("Creating client...")
+        self.client = client
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {

@@ -10,12 +10,18 @@ import UIKit
 import CloudKit
 
 public struct Product {
-    var recordID: CKRecord.ID
+    var recordID: CKRecord.ID?
     var name: String
     var price: Double
     var quantity: Int
     var image: UIImage?
     var type: ProductType
+    
+    static let keyImage = "image"
+    static let keyName = "name"
+    static let keyPrice = "price"
+    static let keyQuantity = "quantity"
+    static let keyType = "type"
 }
 
 extension Product {
@@ -24,7 +30,7 @@ extension Product {
         let name = record["productName"] as? String ?? "Name not defined"
         let price = record["productPrice"] as? Double ?? 0
         let quantity = record["productQuantity"] as? Int ?? 0
-        let typeName = record["productType"] as? String ?? ProductType.undefined.rawValue
+        let typeName = record[Product.keyType] as? String ?? ProductType.undefined.rawValue
         
         var type: ProductType
         

@@ -19,13 +19,13 @@ public struct Client {
     var companyName:String
     var companyAddress:String
     
-    static let keyImage = "clientImage"
-    static let keyFirstName = "clientFirstName"
-    static let keyLastName = "clientLastName"
-    static let keyEmailAddress = "clientEmailAddress"
-    static let keyPhoneNo = "clientPhoneNo"
-    static let keyCompanyName = "clientCompanyName"
-    static let keyCompanyAddress = "clientCompanyAddress"
+    static let keyImage = "image"
+    static let keyFirstName = "firstName"
+    static let keyLastName = "lastName"
+    static let keyEmailAddress = "emailAddress"
+    static let keyPhoneNumber = "phoneNumber"
+    static let keyCompanyName = "companyName"
+    static let keyCompanyAddress = "companyAddress"
 }
 
 extension Client {
@@ -34,7 +34,7 @@ extension Client {
         let firstName = record[Client.keyFirstName] as? String ?? "No First Name"
         let lastName = record[Client.keyLastName] as? String ?? "No Last Name"
         let emailAddress = record[Client.keyEmailAddress] as? String ?? "No Email Address"
-        let phoneNumber = record[Client.keyPhoneNo] as? String ?? "No Phone  Number"
+        let phoneNumber = record[Client.keyPhoneNumber] as? String ?? "No Phone Number"
         let companyName = record[Client.keyCompanyName] as? String ?? "No Company"
         let companyAddress = record[Client.keyCompanyAddress] as? String ?? "No Company Address"
         let image = record[Client.keyImage] as? UIImage ?? #imageLiteral(resourceName: "shiba icon new")
