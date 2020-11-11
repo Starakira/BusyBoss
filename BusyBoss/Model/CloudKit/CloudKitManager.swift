@@ -182,7 +182,9 @@ struct CloudKitManager {
     }
     
     func clientsFetchAll(completionHandler: @escaping (_ result: [Client], _ error: Error?) -> Void){
-        let predicate = NSPredicate(value: true)
+        
+        let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.none)
+        let predicate = NSPredicate(format: "\(Client.keyUserReference) = %@", reference)
         let query = CKQuery(recordType: "Client", predicate: predicate)
         let operation = CKQueryOperation(query: query)
         

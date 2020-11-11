@@ -26,6 +26,7 @@ public struct Client {
     static let keyPhoneNumber = "phoneNumber"
     static let keyCompanyName = "companyName"
     static let keyCompanyAddress = "companyAddress"
+    static let keyUserReference = "userReference"
 }
 
 extension Client {
