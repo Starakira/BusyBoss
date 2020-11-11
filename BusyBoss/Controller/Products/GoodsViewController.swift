@@ -9,11 +9,14 @@ import UIKit
 
 class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-var goods : [goodsStruct]!
+    @IBOutlet weak var goodsTableView: UITableView!
+    var goods : [goodsStruct]!
     override func viewDidLoad() {
         super.viewDidLoad()
         let GSManager : goodsStructManager = goodsStructManager ()
         goods = GSManager.goods
+        goodsTableView.dataSource = self
+        goodsTableView.delegate = self
         // Do any additional setup after loading the view.
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

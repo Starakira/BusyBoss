@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfE-5a-ccm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfE-5a-ccm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -66,8 +65,8 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Bvh-4W-3J1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Products" id="HhP-c7-Pd8">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="2fl-Sx-6pw">
@@ -102,6 +101,7 @@
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="cfP-On-AxT">
                                             <connections>
                                                 <action selector="addItem:" destination="jLM-fS-vgu" id="pei-ba-nxi"/>
+                                                <segue destination="5fa-nX-6qI" kind="unwind" unwindAction="unwindToProductWithSender:" id="KTh-4a-y4e"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -111,7 +111,7 @@
                                 <rect key="frame" x="132" y="117" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7y6-ci-dcw">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7y6-ci-dcw">
                                 <rect key="frame" x="170" y="275" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Image"/>
@@ -151,10 +151,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="kOy-Dn-hon"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="cfP-On-AxT" id="5Gl-FH-1ov"/>
                         <outlet property="addProductImage" destination="Lrv-xI-Xtz" id="hIo-7E-gOy"/>
                         <outlet property="productDescription" destination="QmH-Ay-wbw" id="vbh-Yr-Gzq"/>
                         <outlet property="productNameField" destination="bGs-Hz-SCo" id="rbX-fZ-AKo"/>
@@ -164,6 +165,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZX-hQ-a8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="5fa-nX-6qI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1439" y="669"/>
         </scene>
@@ -252,22 +254,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="CAg-cu-bkV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="goodsDescription" destination="gVF-Kn-kRe" id="Igi-Jv-YrE"/>
                         <outlet property="goodsDetailsDescription" destination="gVF-Kn-kRe" id="nB9-mC-D6U"/>
                         <outlet property="goodsDetailsImage" destination="jxJ-11-Bkq" id="uTv-uu-L4p"/>
                         <outlet property="goodsDetailsLabel" destination="fTg-We-tOq" id="Bt5-lD-SXb"/>
                         <outlet property="goodsDetailsPrice" destination="vrX-5g-U6h" id="CTE-QZ-xE3"/>
                         <outlet property="goodsDetailsStock" destination="tHn-gO-WcN" id="shd-An-xnv"/>
                         <outlet property="goodsDetailsUnit" destination="fuG-WC-kxS" id="HBq-dN-Bui"/>
-                        <outlet property="goodsImage" destination="jxJ-11-Bkq" id="O0c-mi-At4"/>
-                        <outlet property="goodsLabel" destination="fTg-We-tOq" id="Wtf-Ah-Jqi"/>
-                        <outlet property="goodsPrice" destination="vrX-5g-U6h" id="kRy-hZ-rI2"/>
-                        <outlet property="goodsStock" destination="tHn-gO-WcN" id="XWb-j4-I3A"/>
-                        <outlet property="goodsUnit" destination="fuG-WC-kxS" id="veg-Np-7Pi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X2U-pZ-h5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -284,7 +280,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-iB-AoX">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="goodsCell" rowHeight="132" id="kDq-8Z-3Mp" customClass="GoodsTableViewCell" customModule="BusyBoss" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="132"/>
@@ -337,15 +333,18 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="X1x-X9-f5B"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="qzN-iB-AoX" secondAttribute="bottom" id="Awl-k8-JTJ"/>
                             <constraint firstItem="qzN-iB-AoX" firstAttribute="leading" secondItem="zSd-7P-sWO" secondAttribute="leading" id="LXd-nb-0us"/>
                             <constraint firstItem="qzN-iB-AoX" firstAttribute="top" secondItem="zSd-7P-sWO" secondAttribute="top" id="XTA-Tc-hgH"/>
                             <constraint firstAttribute="trailing" secondItem="qzN-iB-AoX" secondAttribute="trailing" id="w9X-17-38k"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="X1x-X9-f5B"/>
                     </view>
+                    <connections>
+                        <outlet property="goodsTableView" destination="qzN-iB-AoX" id="sIU-Ao-4St"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UW-kM-07x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -361,7 +360,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XmF-fc-IaH">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="servicesCell" rowHeight="74" id="vxq-0p-dwg" customClass="ServicesTableViewCell" customModule="BusyBoss" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="74"/>
@@ -394,15 +393,18 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="vYU-jF-b5v"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="XmF-fc-IaH" secondAttribute="trailing" id="3dQ-Jc-OC2"/>
                             <constraint firstItem="XmF-fc-IaH" firstAttribute="top" secondItem="WC7-zO-Ou1" secondAttribute="top" id="dAI-EZ-6sZ"/>
                             <constraint firstItem="XmF-fc-IaH" firstAttribute="leading" secondItem="WC7-zO-Ou1" secondAttribute="leading" id="hc9-6J-e2s"/>
                             <constraint firstAttribute="bottom" secondItem="XmF-fc-IaH" secondAttribute="bottom" id="p00-C5-Ijm"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="vYU-jF-b5v"/>
                     </view>
+                    <connections>
+                        <outlet property="sevicesTableView" destination="XmF-fc-IaH" id="2FR-jj-ACA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsR-op-ufM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -424,6 +426,7 @@
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="bxa-i1-m33">
                                             <connections>
                                                 <action selector="addButton:" destination="Si0-TW-trV" id="LBz-KM-uyq"/>
+                                                <segue destination="7JS-C5-hKs" kind="unwind" unwindAction="unwindToProductWithSender:" id="2LP-MS-q2U"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -448,16 +451,18 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="UTu-Jy-d1o"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="bxa-i1-m33" id="hOW-O5-0VO"/>
                         <outlet property="servicesDescription" destination="mXi-nf-wca" id="iZt-z3-Rxq"/>
                         <outlet property="servicesName" destination="FzP-YV-J8v" id="IvP-4U-I60"/>
                         <outlet property="servicesPrice" destination="DnE-Ru-hgn" id="wzG-jX-X08"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eNN-kZ-71N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="7JS-C5-hKs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1439" y="-108"/>
         </scene>
@@ -514,8 +519,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="bjV-X8-IiP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
                         <outlet property="serviceDescription" destination="bBk-cC-AML" id="US1-T9-orB"/>
@@ -528,9 +533,4 @@
             <point key="canvasLocation" x="-581" y="-108"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

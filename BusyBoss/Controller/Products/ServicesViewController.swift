@@ -9,12 +9,15 @@ import UIKit
 
 class ServicesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var services : [serviceStruct]!
+    @IBOutlet weak var sevicesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let SSManager : serviceStructManager = serviceStructManager ()
         services = SSManager.services
+        sevicesTableView.dataSource = self
+        sevicesTableView.delegate = self
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return services.count

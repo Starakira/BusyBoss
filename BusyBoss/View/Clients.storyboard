@@ -29,7 +29,7 @@
         <!--Clients-->
         <scene sceneID="4mg-KQ-H4c">
             <objects>
-                <viewController storyboardIdentifier="clients" id="5UW-FR-2RG" customClass="ClientsViewController" customModule="Busy_Boss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="clients" id="5UW-FR-2RG" customClass="ClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PWw-il-cs6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="clientsCell" rowHeight="115" id="BPt-Zm-pkz" customClass="ClientsTableViewCell" customModule="Busy_Boss" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="clientsCell" rowHeight="115" id="BPt-Zm-pkz" customClass="ClientsTableViewCell" customModule="BusyBoss" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BPt-Zm-pkz" id="MVn-jR-Gbg">
@@ -102,7 +102,7 @@
                     <navigationItem key="navigationItem" title="Clients" id="YOw-bq-Env">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="w0E-MW-4Yp">
                             <connections>
-                                <segue destination="Kjo-oc-Q2M" kind="presentation" id="Hxb-5F-VMN"/>
+                                <segue destination="Kjo-oc-Q2M" kind="presentation" id="1L1-S0-Nji"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -117,7 +117,7 @@
         <!--Input Clients View Controller-->
         <scene sceneID="zh6-j4-TU2">
             <objects>
-                <viewController id="Kjo-oc-Q2M" customClass="InputClientsViewController" customModule="Busy_Boss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="inputClient" id="Kjo-oc-Q2M" customClass="InputClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOf-9d-n6H">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,7 +130,7 @@
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="OVN-nv-ZYO"/>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="TnB-0G-JKd">
                                             <connections>
-                                                <action selector="doneButton:" destination="Kjo-oc-Q2M" id="sG9-vw-0pi"/>
+                                                <segue destination="sSM-e4-8Ne" kind="unwind" unwindAction="unwindToClientListWithSender:" id="3Qr-Hu-3oH"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -175,7 +175,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="add photo"/>
                                 <connections>
-                                    <action selector="addClientPhoto:" destination="Kjo-oc-Q2M" eventType="touchUpInside" id="MLj-XN-efo"/>
                                     <action selector="addImageClient:" destination="Kjo-oc-Q2M" eventType="touchUpInside" id="Gwi-GG-h6n"/>
                                 </connections>
                             </button>
@@ -189,6 +188,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ZcK-bC-F7F"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rnV-tF-6Zk"/>
                     <connections>
                         <outlet property="addClientsImage" destination="cRe-uj-ssf" id="DW4-IM-GQx"/>
                         <outlet property="clientAddress" destination="n1S-Sh-JcV" id="VVs-kC-AoK"/>
@@ -197,16 +197,18 @@
                         <outlet property="clientFirstName" destination="P1G-pj-Gt6" id="rle-Qy-o03"/>
                         <outlet property="clientLastName" destination="yLq-bJ-iZx" id="v6o-oh-XTq"/>
                         <outlet property="clientPhoneNo" destination="Ngk-c8-yVH" id="0Ph-Tg-L2Q"/>
+                        <outlet property="doneButton" destination="TnB-0G-JKd" id="geC-0K-P1S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wI9-nx-Ac9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="sSM-e4-8Ne" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1828.985507246377" y="1362.7232142857142"/>
         </scene>
         <!--Clients Details View Controller-->
         <scene sceneID="7AK-mO-esX">
             <objects>
-                <viewController storyboardIdentifier="clientsDetails" id="QNs-10-TNs" customClass="ClientsDetailsViewController" customModule="Busy_Boss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="clientsDetails" id="QNs-10-TNs" customClass="ClientsDetailsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="50P-GR-3su">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

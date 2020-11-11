@@ -11,7 +11,7 @@ public class goodsStructManager{
     init() {
        goods = [
         goodsStruct(
-            productName: "", productPrice: 69000, productImage: #imageLiteral(resourceName: "shiba icon new"), productStock: 69, productUnit: "pieces", description: "")
+            productName: "", productPrice: 69000, productImage: #imageLiteral(resourceName: "shiba icon new"), productStock: 69, productUnit: "pieces", description: "hai")
         
         ]
     }

@@ -39,6 +39,16 @@ class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewD
         vc.clients = clients[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func unwindToClientList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? InputClientsViewController {
+            let newClient = sourceViewController.client
+            clients.append(newClient!)
+            clientsTableView.reloadData()
+            
+        
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
