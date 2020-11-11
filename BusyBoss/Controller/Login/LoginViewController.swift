@@ -57,6 +57,9 @@ class LoginViewController: UIViewController {
                 UserDefaults.standard.setValue(currentUser![User.keyEmail], forKey: User.keyEmail)
                 UserDefaults.standard.setValue(currentUser![User.keyPassword], forKey: User.keyPassword)
                 self.segueToMain()
+                
+                let loggedUser = User(record: currentUser!)
+                User.setCurrentUser(user: loggedUser)
             }
         }
     }

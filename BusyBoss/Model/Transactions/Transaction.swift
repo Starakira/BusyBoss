@@ -12,7 +12,7 @@ public struct Transaction {
     var recordID: CKRecord.ID?
     var transactionNumber: String
     var user: User
-    var description:String
+    var description: String
     var status: TransactionStatus
     var approval: TransactionApproval
     var products: [Product]?

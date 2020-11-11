@@ -164,8 +164,7 @@ struct CloudKitManager {
     func clientCreate(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         let clientRecord = CKRecord(recordType: "Client")
-        let userRecord = CKRecord(recordType: "User")
-        let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
+        let userReference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.deleteSelf)
         
         clientRecord.setValue(client.firstName, forKey: Client.keyFirstName)
         clientRecord.setValue(client.lastName, forKey: Client.keyLastName)

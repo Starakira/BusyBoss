@@ -14,8 +14,24 @@ class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         clientsTableView.delegate = self
         clientsTableView.dataSource = self
+        
+        CloudKitManager.shared().clientsFetchAll {
+            (clients, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                print("Fetching client successful")
+                print(clients)
+                self.clients = clients
+                self.clientsTableView.reloadData()
+            }
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,7 +73,7 @@ class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                Alert.showError(self, error)
                 print(error.localizedDescription)
             }
-            else if recordID != nil {
+            else if recordID == nil {
                 print("ID not created!")
 //                Alert.showAlert(view: self, title: "ID not created!", message: "Database failed to create ID for new client!")
             }
@@ -74,6 +90,7 @@ class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         clients.append(client)
+        print(clients)
         clientsTableView.reloadData()
     }
     /*
