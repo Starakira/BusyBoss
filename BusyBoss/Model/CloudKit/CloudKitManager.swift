@@ -163,8 +163,13 @@ struct CloudKitManager {
     
     func clientCreate(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
-        let clientRecord = CKRecord(recordType: "Client")
+        var clientRecord = CKRecord(recordType: "Client")
         let userReference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.deleteSelf)
+        
+        //If Client already exist in database
+        if let clientRecordID = client.recordID {
+            clientRecord = CKRecord(recordType: "Client", recordID: clientRecordID)
+        }
         
         clientRecord.setValue(client.firstName, forKey: Client.keyFirstName)
         clientRecord.setValue(client.lastName, forKey: Client.keyLastName)
