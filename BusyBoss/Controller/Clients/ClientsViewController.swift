@@ -7,8 +7,10 @@
 
 import UIKit
 
-class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ClientsViewController: UIViewController {
     var clients : [Client] = []
+    var index = -1
+    
     @IBOutlet weak var clientsTableView: UITableView!
     
     override func viewDidLoad() {
@@ -30,14 +32,89 @@ class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.clientsTableView.reloadData()
             }
         }
-        
-        
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clients.count
+    @IBAction func unwindToSegue(_ sender: UIStoryboardSegue) {
+        guard let vc = sender.source as? InputClientsViewController else {
+            //            Alert.showAlert(view: self, title: "Error", message: "Failed to cast Source ViewController to InputClientsViewController")
+            print("Failed to cast Source ViewController to InputClientsViewController")
+            return
+        }
+        
+        guard var client = vc.client else {
+            //            Alert.showAlert(view: self, title: "Error", message: "No Client Data present!")
+            print("No Client Data present!")
+            return
+        }
+        
+        CloudKitManager.shared().clientCreate(client: client) { (recordID, error) in
+            if let error = error {
+                //                Alert.showError(self, error)
+                print(error.localizedDescription)
+                return
+            }
+            
+            //Create new Client
+            if self.index == -1 {
+                if recordID == nil {
+                    print("ID not created!")
+                    //                Alert.showAlert(view: self, title: "ID not created!", message: "Database failed to create ID for new client!")
+                }
+                else {
+                    print("Creating client successful")
+                    //                client = client
+                    client.recordID = recordID
+                    
+                    /*
+                     let vc = self.storyboard?.instantiateViewController(identifier: "clients") as! ClientsViewController
+                     self.navigationController?.pushViewController(vc, animated: true)
+                     */
+                    self.clients.append(client)
+                }
+            }
+            
+            //update existing client
+            else {
+                self.clients[self.index] = client
+            }
+        }
+        
+        clientsTableView.reloadData()
+        index = -1
     }
     
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        guard let inputClientViewController = segue.destination as? InputClientsViewController else {
+            print("Failed to cast view controller to InputClientsViewController")
+            return
+        }
+        
+        // Pass the selected object to the new view controller.
+        inputClientViewController.client = index != -1 ? clients[index] : nil
+    }
+    
+    
+}
+
+extension ClientsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /*
+         let vc = storyboard?.instantiateViewController(identifier: "clientsDetails") as! ClientsDetailsViewController
+         vc.client = clients[indexPath.row]
+         
+         self.navigationController?.pushViewController(vc, animated: true)
+         */
+        self.index = indexPath.row
+    }
+}
+
+extension ClientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clientsCell", for: indexPath)as!ClientsTableViewCell
         let client = clients[indexPath.row]
@@ -48,59 +125,8 @@ class ClientsViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.clientsPhoneNo.text = client.phoneNumber
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "clientsDetails") as! ClientsDetailsViewController
-        vc.client = clients[indexPath.row]
-        
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
     
-    @IBAction func unwindToSegue(_ sender: UIStoryboardSegue) {
-        guard let vc = sender.source as? InputClientsViewController else {
-//            Alert.showAlert(view: self, title: "Error", message: "Failed to cast Source ViewController to InputClientsViewController")
-            print("Failed to cast Source ViewController to InputClientsViewController")
-            return
-        }
-        
-        guard var client = vc.client else {
-//            Alert.showAlert(view: self, title: "Error", message: "No Client Data present!")
-            print("No Client Data present!")
-            return
-        }
-        
-        CloudKitManager.shared().clientCreate(client: client) { (recordID, error) in
-            if let error = error {
-//                Alert.showError(self, error)
-                print(error.localizedDescription)
-            }
-            else if recordID == nil {
-                print("ID not created!")
-//                Alert.showAlert(view: self, title: "ID not created!", message: "Database failed to create ID for new client!")
-            }
-            else {
-                print("Creating client successful")
-//                client = client
-                client.recordID = recordID
-                
-                /*
-                let vc = self.storyboard?.instantiateViewController(identifier: "clients") as! ClientsViewController
-                self.navigationController?.pushViewController(vc, animated: true)
-                 */
-            }
-        }
-        
-        clients.append(client)
-        print(clients)
-        clientsTableView.reloadData()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return clients.count
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
