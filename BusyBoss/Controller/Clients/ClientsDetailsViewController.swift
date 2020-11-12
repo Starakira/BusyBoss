@@ -26,6 +26,18 @@ class ClientsDetailsViewController: UIViewController {
             clientsCompanyAddress.text = client.companyAddress
             clientsPhoneNo.text = client.phoneNumber
         }
+        
+//        let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(self.editButtonFunction))
+//            navigationItem.rightBarButtonItem = editButton
+//            title = "Client Details"
+    }
+    
+    @objc func editButtonFunction() {
+        let vc = storyboard?.instantiateViewController(identifier: "inputClient") as! InputClientsViewController
+        
+        vc.client = client
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 
