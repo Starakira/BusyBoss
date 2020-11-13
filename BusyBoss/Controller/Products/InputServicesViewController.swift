@@ -13,7 +13,7 @@ class InputServicesViewController: UIViewController {
     @IBOutlet weak var servicesDescription: UITextField!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
-    var services : serviceStruct?
+    var service : serviceStruct?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,7 +27,7 @@ class InputServicesViewController: UIViewController {
         let servicePrice = Int(servicesPrice.text!)
         let newServices = serviceStruct(name: servicesName.text!, price: servicePrice!, description: servicesDescription.text!)
         print(newServices)
-        self.services = newServices
+        self.service = newServices
           
           
        }

@@ -100,7 +100,6 @@
                                     <navigationItem title="New Item" id="NJf-Zo-2r3">
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="cfP-On-AxT">
                                             <connections>
-                                                <action selector="addItem:" destination="jLM-fS-vgu" id="pei-ba-nxi"/>
                                                 <segue destination="5fa-nX-6qI" kind="unwind" unwindAction="unwindToProductWithSender:" id="KTh-4a-y4e"/>
                                             </connections>
                                         </barButtonItem>
@@ -117,7 +116,6 @@
                                 <state key="normal" title="Add Image"/>
                                 <connections>
                                     <action selector="addImage:" destination="jLM-fS-vgu" eventType="touchUpInside" id="UIK-M6-qJp"/>
-                                    <action selector="addImageButton:" destination="jLM-fS-vgu" eventType="touchUpInside" id="7g9-uI-ggS"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bGs-Hz-SCo">
@@ -425,7 +423,6 @@
                                     <navigationItem title="New Services" id="hH8-tr-OnL">
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="bxa-i1-m33">
                                             <connections>
-                                                <action selector="addButton:" destination="Si0-TW-trV" id="LBz-KM-uyq"/>
                                                 <segue destination="7JS-C5-hKs" kind="unwind" unwindAction="unwindToProductWithSender:" id="2LP-MS-q2U"/>
                                             </connections>
                                         </barButtonItem>

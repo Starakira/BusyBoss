@@ -13,10 +13,14 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var goodsView: UIView!
     var goods : [goodsStruct]!
     var services : [serviceStruct] = []
+    var goodsVC = GoodsViewController()
+    var servicesVC = ServicesViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let GSManager : goodsStructManager = goodsStructManager ()
         goods = GSManager.goods
+        
         // Do any additional setup after loading the view.
     }
     
@@ -72,11 +76,16 @@ class ProductsViewController: UIViewController {
          if let sourceViewController = sender.source as? InputGoodsViewController {
             let newGoods = sourceViewController.goods
             goods.append(newGoods!)
+            self.goodsVC.goodsTableView.reloadData()
         }
         if let sourceViewController = sender.source as? InputServicesViewController {
-            let newServices = sourceViewController.services
+            let newServices = sourceViewController.service
             services.append(newServices!)
+            self.servicesVC.sevicesTableView.reloadData()
             
         }
 }
+   // func loadServices(completion:@escaping(()-())) {
+        //
+    //}
 }

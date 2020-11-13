@@ -49,6 +49,7 @@ extension InputGoodsViewController: UIImagePickerControllerDelegate, UINavigatio
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{
             addProductImage.image = image
         }
+        picker.dismiss(animated: true, completion: nil)
     }
      func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
            picker.dismiss(animated: true, completion: nil)
