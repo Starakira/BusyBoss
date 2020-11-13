@@ -7,13 +7,14 @@
 
 import UIKit
 
-class TransactionViewCell: UITableViewCell {
-    
-    @IBOutlet weak var labelTransactionCode: UILabel!
-    @IBOutlet weak var labelClientName: UILabel!
-    @IBOutlet weak var labelDescription: UILabel!
-    @IBOutlet weak var labelStatus: UILabel!
-    @IBOutlet weak var labelTotalPrice: UILabel!
+class allTransactionViewCell: UITableViewCell {
+
+    @IBOutlet weak var CodeTransactionLabel: UILabel!
+    @IBOutlet weak var NameUserLabel: UILabel!
+    @IBOutlet weak var DescriptionTransactionLabel: UILabel!
+    @IBOutlet weak var StatusTransactionLabel: UILabel!
+    @IBOutlet weak var TotalJumlahLabel: UILabel!
+    @IBOutlet weak var GambarTransaction: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

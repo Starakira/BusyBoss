@@ -65,7 +65,6 @@
 		F599E3AE2551408900B78AFC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F599E3AD2551408900B78AFC /* CloudKit.framework */; };
 		F599E3B22551549E00B78AFC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39D25513D4C00B78AFC /* Login.storyboard */; };
 		F599E3B62551686100B78AFC /* Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3B52551686100B78AFC /* Transactions.swift */; };
-		F5D5050B2552AB1700DFFD85 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,7 +129,6 @@
 		F599E3AB2551407F00B78AFC /* BusyBoss.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BusyBoss.entitlements; sourceTree = "<group>"; };
 		F599E3AD2551408900B78AFC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F599E3B52551686100B78AFC /* Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transactions.swift; sourceTree = "<group>"; };
-		F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,7 +261,6 @@
 				F599E3612551398400B78AFC /* TransactionViewController.swift */,
 				F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */,
 				F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */,
-				F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -438,7 +435,6 @@
 				F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */,
 				F599E3422551394800B78AFC /* DummyDataManager.swift in Sources */,
 				F599E3A925513FFD00B78AFC /* Alert.swift in Sources */,
-				F5D5050B2552AB1700DFFD85 /* TransactionDetailsViewController.swift in Sources */,
 				F599E36A2551398400B78AFC /* GoodsViewController.swift in Sources */,
 				F599E3B62551686100B78AFC /* Transactions.swift in Sources */,
 				F599E37A2551398400B78AFC /* ClientContactTableViewCell.swift in Sources */,

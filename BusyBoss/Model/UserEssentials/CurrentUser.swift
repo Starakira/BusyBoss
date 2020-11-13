@@ -9,7 +9,7 @@
 import Foundation
 import AuthenticationServices
 
-struct User {
+struct CurrentUser {
     let id: String
     let firstName: String
     let lastName: String
@@ -24,7 +24,7 @@ struct User {
     
 }
 
-extension User: CustomDebugStringConvertible {
+extension CurrentUser: CustomDebugStringConvertible {
     var debugDescription: String {
         return """
         ID: \(id)

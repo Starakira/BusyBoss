@@ -12,7 +12,6 @@ class OnGoingTransactionViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var onGoingTransactionTableView: UITableView!
     var Dummy : [DummyDataTransaction]!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,13 +37,6 @@ class OnGoingTransactionViewController: UIViewController, UITableViewDataSource,
         cell.GambarTransaction.image = Data.transactionImage
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let DetailVC = storyboard?.instantiateViewController(identifier: "TransactionDetailsView")as!TransactionDetailsViewController
-        DetailVC.dummy = Dummy[indexPath.row]
-        self.navigationController?.pushViewController(DetailVC, animated: true)
-    }
-    
     
 
     /*
