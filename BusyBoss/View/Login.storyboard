@@ -191,7 +191,7 @@
                         <outlet property="firstNameTextField" destination="DnY-bk-B5k" id="gOb-yo-5za"/>
                         <outlet property="lastNameTextField" destination="j7I-3Z-jbb" id="Ubs-Yu-hQR"/>
                         <outlet property="passwordTextField" destination="MsV-4F-nUg" id="SUE-j8-yiZ"/>
-                        <outlet property="phoneNoTextField" destination="Hgy-hh-g6h" id="6fm-fP-AvD"/>
+                        <outlet property="phoneNumberTextField" destination="Hgy-hh-g6h" id="6fm-fP-AvD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIl-6q-dQi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

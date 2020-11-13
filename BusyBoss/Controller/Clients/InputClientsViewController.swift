@@ -9,7 +9,6 @@ import UIKit
 
 class InputClientsViewController: UIViewController {
     @IBOutlet weak var addClientsImage: UIImageView!
-    var clients : [clientsStruct]!
     @IBOutlet weak var clientFirstName: UITextField!
     @IBOutlet weak var clientLastName: UITextField!
     @IBOutlet weak var clientCompanyName: UITextField!
@@ -17,17 +16,69 @@ class InputClientsViewController: UIViewController {
     @IBOutlet weak var clientEmailAddress: UITextField!
     @IBOutlet weak var clientPhoneNo: UITextField!
     
+    var client: Client?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let CSManager : clientsStructManager = clientsStructManager()
-        clients = CSManager.clients
         // Do any additional setup after loading the view.
+        
+        //If client exist, then fill the fields
+        if let client = client {
+            clientFirstName.text = client.firstName
+            clientLastName.text = client.lastName
+            clientCompanyName.text = client.companyName
+            clientAddress.text = client.companyAddress
+            clientEmailAddress.text = client.emailAddress
+            clientPhoneNo.text = client.phoneNumber
+        }
     }
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if self.client == nil {
+            self.client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "shiba icon new"),
+                                firstName: clientFirstName.text!,
+                                lastName: clientLastName.text!,
+                                emailAddress: clientEmailAddress.text!,
+                                phoneNumber: clientPhoneNo.text!,
+                                companyName: clientCompanyName.text!,
+                                companyAddress: clientAddress.text!)
+        }
+        else {
+            self.client!.firstName = clientFirstName.text!
+            self.client!.lastName = clientLastName.text!
+            //Blm selesai
+        }
+        
+        print("Creating client...")
+        
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    
+   
+    // MARK: - Action
+    
     @IBAction func doneButton(_ sender: Any) {
-        clients.append(clientsStruct(clientsFirstName: clientFirstName.text!, clientsLastName: clientLastName.text!, clientsCompanyName: clientCompanyName.text!, clientsCompanyAddress: clientAddress.text!, clientsPhoneNo: clientPhoneNo.text!, clientsImage: addClientsImage.image!, clientsEmailAddress: clientEmailAddress.text!))
-            let vc = storyboard?.instantiateViewController(identifier: "clients") as! ClientsViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+        let client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "shiba icon new"),
+                            firstName: clientFirstName.text!,
+                            lastName: clientLastName.text!,
+                            emailAddress: clientEmailAddress.text!,
+                            phoneNumber: clientPhoneNo.text!,
+                            companyName: clientCompanyName.text!,
+                            companyAddress: clientAddress.text!)
+        
+        print("Creating client...")
+        self.client = client
     }
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    
     @IBAction func addImageClient(_ sender: Any) {
         let ivc = UIImagePickerController()
         ivc.sourceType = .photoLibrary
@@ -35,24 +86,14 @@ class InputClientsViewController: UIViewController {
         ivc.allowsEditing = true
         present(ivc, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 extension InputClientsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerIsEdited")] as? UIImage{
-            addClientsImage.image = image
+            self.addClientsImage.image = image
         }
+        dismiss(animated: true, completion: nil)
     }
      func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
            picker.dismiss(animated: true, completion: nil)

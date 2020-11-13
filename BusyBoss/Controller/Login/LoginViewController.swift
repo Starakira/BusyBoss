@@ -14,8 +14,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         //Check if email address and password exist in userdefaults
-        let emailAddress = UserDefaults.standard.string(forKey: CloudKitManager.shared().emailAddressKey)
-        let password = UserDefaults.standard.string(forKey: CloudKitManager.shared().passwordKey)
+        let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
+        let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
         if let email = emailAddress, let password = password {
             authenticate(emailAddress: email, password: password)
@@ -26,18 +26,18 @@ class LoginViewController: UIViewController {
         authenticate(emailAddress: emailLogin.text ?? "", password: passwordLogin.text ?? "")
     }
     
-    @IBAction func signInWithAppleButton(_ sender: Any) {
-        let provider = ASAuthorizationAppleIDProvider()
-        let request = provider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        
-        controller.delegate = self
-        controller.presentationContextProvider = self
-        
-        controller.performRequests()
-    }
+//    @IBAction func signInWithAppleButton(_ sender: Any) {
+//        let provider = ASAuthorizationAppleIDProvider()
+//        let request = provider.createRequest()
+//        request.requestedScopes = [.fullName, .email]
+//        
+//        let controller = ASAuthorizationController(authorizationRequests: [request])
+//        
+//        controller.delegate = self
+//        controller.presentationContextProvider = self
+//        
+//        controller.performRequests()
+//    }
     
     func segueToMain(){
         self.performSegue(withIdentifier: "MainIdentifier", sender: nil)
@@ -54,9 +54,12 @@ class LoginViewController: UIViewController {
                 Alert.showAlert(view: self, title: "Error", message: "Invalid Cridentials!")
             }
             else {
-                UserDefaults.standard.setValue(currentUser![CloudKitManager.shared().emailAddressKey], forKey: CloudKitManager.shared().emailAddressKey)
-                UserDefaults.standard.setValue(currentUser![CloudKitManager.shared().passwordKey], forKey: CloudKitManager.shared().passwordKey)
+                UserDefaults.standard.setValue(currentUser![User.keyEmail], forKey: User.keyEmail)
+                UserDefaults.standard.setValue(currentUser![User.keyPassword], forKey: User.keyPassword)
                 self.segueToMain()
+                
+                let loggedUser = User(record: currentUser!)
+                User.setCurrentUser(user: loggedUser)
             }
         }
     }
@@ -66,27 +69,27 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension LoginViewController: ASAuthorizationControllerDelegate{
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        
-        switch authorization.credential{
-        
-        case let credentials as ASAuthorizationAppleIDCredential:
-            let user = CurrentUser(credentials: credentials)
-            performSegue(withIdentifier: "EntryIdentifier", sender: user)
-            
-        default: break
-        }
-        
-    }
-    
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-    }
-}
+//extension LoginViewController: ASAuthorizationControllerDelegate{
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+//
+//        switch authorization.credential{
+//
+//        case let credentials as ASAuthorizationAppleIDCredential:
+//            let user = User(credentials: credentials)
+//            performSegue(withIdentifier: "EntryIdentifier", sender: user)
+//
+//        default: break
+//        }
+//
+//    }
+//
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+//    }
+//}
 
-extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        
-        return view.window!
-    }
-}
+//extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+//    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+//
+//        return view.window!
+//    }
+//}
