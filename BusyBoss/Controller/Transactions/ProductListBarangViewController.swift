@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductListBarangViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProductListBarangViewController: UIViewController {
     
     @IBOutlet weak var TableBarangProductList: UITableView!
     var Dummy : [DummyDataTransaction]!
@@ -22,6 +22,18 @@ class ProductListBarangViewController: UIViewController, UITableViewDataSource, 
         
     }
     
+    
+   
+
+}
+
+extension ProductListBarangViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "AddGoodDetailsSegue", sender: self)
+    }
+}
+
+extension ProductListBarangViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Dummy.count
     }
@@ -36,6 +48,4 @@ class ProductListBarangViewController: UIViewController, UITableViewDataSource, 
         cell.GambarBarang.image = Data.transactionImage
         return cell
     }
-   
-
 }

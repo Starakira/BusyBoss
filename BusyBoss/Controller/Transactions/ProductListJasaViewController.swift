@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductListJasaViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ProductListJasaViewController: UIViewController {
     
     @IBOutlet weak var TableJasaProductList: UITableView!
     var Dummy : [DummyDataTransaction]!
@@ -21,7 +21,15 @@ class ProductListJasaViewController: UIViewController, UITableViewDataSource, UI
         TableJasaProductList.delegate = self
         
     }
-    
+}
+
+extension ProductListJasaViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "AddServiceDetailsSegue", sender: self)
+    }
+}
+
+extension ProductListJasaViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Dummy.count
     }
@@ -34,5 +42,4 @@ class ProductListJasaViewController: UIViewController, UITableViewDataSource, UI
         cell.TotalHargaLabel.text = String( Data.transactionTotalValue)
         return cell
     }
-
 }

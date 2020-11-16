@@ -7,7 +7,20 @@
 
 import UIKit
 
-class productListNewTransactionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+protocol ClientsConform {
+    func clientListPassData(client: Client)
+}
+
+class ProductListNewTransactionViewController: UIViewController, ClientsConform {
+    func clientListPassData(client: Client) {
+        self.client = client
+        self.clientTextField.text = client.firstName + client.lastName
+    }
+    
+    @IBOutlet weak var clientTextField: UITextField!
+    
+    var client: Client?
+    var index = -1
     
     @IBOutlet weak var ProductListNewTransaction: UITableView!
     var Dummy : [DummyDataTransaction]!
@@ -22,20 +35,29 @@ class productListNewTransactionViewController: UIViewController, UITableViewData
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ClientContactViewController{
+            vc.clientsListDelegate = self
+        }
+    }
+}
+
+extension ProductListNewTransactionViewController: UITableViewDelegate{
+    
+}
+
+extension ProductListNewTransactionViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Dummy.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!productListNewTransactionViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!ProductListNewTransactionViewCell
         let Data = Dummy[indexPath.row]
-        print (Data)
         cell.NameProductNewTransaction.text = Data.transactionGoodName
         cell.StockNewTransaction.text = String(Data.transactionStockNumber)
         cell.JumlahHargaNewTransaction.text = String(Data.transactionTotalValue)
         cell.GambarProductNewTransaction.image = Data.transactionImage
         return cell
     }
-    
-
 }
