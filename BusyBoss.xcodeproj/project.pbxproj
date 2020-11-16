@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F50475FE256265B6004C70E0 /* AddGoodDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50475FD256265B6004C70E0 /* AddGoodDetailsViewController.swift */; };
+		F5047601256265CF004C70E0 /* AddServiceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5047600256265CF004C70E0 /* AddServiceDetailsViewController.swift */; };
 		F52FADC2255934A4002AF6C3 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADC1255934A4002AF6C3 /* Product.swift */; };
 		F52FADC6255934B2002AF6C3 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADC5255934B2002AF6C3 /* Transaction.swift */; };
 		F52FADCA255934C5002AF6C3 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADC9255934C5002AF6C3 /* Client.swift */; };
@@ -69,6 +71,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F50475FD256265B6004C70E0 /* AddGoodDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoodDetailsViewController.swift; sourceTree = "<group>"; };
+		F5047600256265CF004C70E0 /* AddServiceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddServiceDetailsViewController.swift; sourceTree = "<group>"; };
 		F52FADC1255934A4002AF6C3 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		F52FADC5255934B2002AF6C3 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		F52FADC9255934C5002AF6C3 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
@@ -255,15 +259,17 @@
 				F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */,
 				F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */,
 				F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */,
-				F599E3592551398300B78AFC /* ProductListNewTransactionViewCell.swift */,
 				F599E3482551398300B78AFC /* ProductListNewTransactionViewController.swift */,
-				F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */,
+				F599E3592551398300B78AFC /* ProductListNewTransactionViewCell.swift */,
 				F599E34B2551398300B78AFC /* ProductListBarangViewController.swift */,
-				F599E3622551398400B78AFC /* ProductListJasaViewCell.swift */,
+				F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */,
 				F599E35C2551398300B78AFC /* ProductListJasaViewController.swift */,
+				F599E3622551398400B78AFC /* ProductListJasaViewCell.swift */,
 				F599E3472551398300B78AFC /* ListProductBarangJasaNewTransactionViewController.swift */,
-				F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */,
 				F599E34A2551398300B78AFC /* ClientContactViewController.swift */,
+				F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */,
+				F50475FD256265B6004C70E0 /* AddGoodDetailsViewController.swift */,
+				F5047600256265CF004C70E0 /* AddServiceDetailsViewController.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				F599E3712551398400B78AFC /* InputServicesViewController.swift in Sources */,
 				F599E3752551398400B78AFC /* ProductListNewTransactionViewCell.swift in Sources */,
 				F599E37C2551398400B78AFC /* ClientsDetailsViewController.swift in Sources */,
+				F50475FE256265B6004C70E0 /* AddGoodDetailsViewController.swift in Sources */,
 				F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */,
 				F599E3662551398400B78AFC /* ClientContactViewController.swift in Sources */,
 				F599E3452551394800B78AFC /* serviceStruct.swift in Sources */,
@@ -481,6 +488,7 @@
 				F599E3432551394800B78AFC /* CloudKitManager.swift in Sources */,
 				F599E36C2551398400B78AFC /* ProductListBarangViewCell.swift in Sources */,
 				F599E36B2551398400B78AFC /* OnGoingTransactionViewController.swift in Sources */,
+				F5047601256265CF004C70E0 /* AddServiceDetailsViewController.swift in Sources */,
 				F599E3722551398400B78AFC /* InputGoodsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

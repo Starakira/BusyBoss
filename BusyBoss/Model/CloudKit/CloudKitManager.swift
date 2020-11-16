@@ -111,7 +111,8 @@ struct CloudKitManager {
     }
     
     func productsFetchAll(completionHandler: @escaping (_ result: [Product], _ error: Error?) -> Void){
-        let predicate = NSPredicate(value: true)
+        let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.none)
+        let predicate = NSPredicate(format: "\(Product.keyUserReference) = %@", reference)
         let query = CKQuery(recordType: "Product", predicate: predicate)
         let operation = CKQueryOperation(query: query)
         

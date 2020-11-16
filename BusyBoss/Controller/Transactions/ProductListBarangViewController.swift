@@ -9,22 +9,32 @@ import UIKit
 
 class ProductListBarangViewController: UIViewController {
     
+    var products : [Product] = []
+    var index = -1
+    
     @IBOutlet weak var TableBarangProductList: UITableView!
-    var Dummy : [DummyDataTransaction]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let DummyManager : DummyDataManager = DummyDataManager()
-        Dummy = DummyManager.Dummy
+        
+        print("View loaded")
+        
         TableBarangProductList.dataSource = self
         TableBarangProductList.delegate = self
         
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                print("Fetching client successful")
+                print("Products = \(products.count)")
+                self.products = products
+                self.TableBarangProductList.reloadData()
+            }
+        }
     }
-    
-    
-   
-
 }
 
 extension ProductListBarangViewController: UITableViewDelegate {
@@ -35,17 +45,16 @@ extension ProductListBarangViewController: UITableViewDelegate {
 
 extension ProductListBarangViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Dummy.count
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListBarangViewCell", for: indexPath)as!ProductListBarangViewCell
-        let Data = Dummy[indexPath.row]
-        print (Data)
-        cell.NamaBarangLabel.text = Data.transactionGoodName
-        cell.JumlahStockBarang.text = String(Data.transactionStockNumber)
-        cell.TotalHargaLabel.text = String(Data.transactionTotalValue)
-        cell.GambarBarang.image = Data.transactionImage
+        let product = products[indexPath.row]
+        cell.NamaBarangLabel.text = product.name
+        cell.JumlahStockBarang.text = String(product.quantity)
+        cell.TotalHargaLabel.text = String(product.price)
+        cell.GambarBarang.image = product.image
         return cell
     }
 }

@@ -22,6 +22,7 @@ public struct Product {
     static let keyPrice = "price"
     static let keyQuantity = "quantity"
     static let keyType = "type"
+    static let keyUserReference = "userReference"
 }
 
 extension Product {
