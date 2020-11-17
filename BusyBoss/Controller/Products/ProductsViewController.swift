@@ -54,15 +54,6 @@ class ProductsViewController: UIViewController {
         print("hi")
         
     }
-
-    // let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-       //let destVC = storyboard.instantiateViewController(withIdentifier: "destinationVC") as! MyViewController
-
-       //destVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-       //destVC.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-
-       //self.present(destVC, animated: true, completion: nil)
-
     /*
 // MARK: - Navigation
 
@@ -76,16 +67,16 @@ class ProductsViewController: UIViewController {
          if let sourceViewController = sender.source as? InputGoodsViewController {
             let newGoods = sourceViewController.goods
             goods.append(newGoods!)
-            self.goodsVC.goodsTableView.reloadData()
+            //goodsVC.goodsTableView.reloadData()
         }
         if let sourceViewController = sender.source as? InputServicesViewController {
             let newServices = sourceViewController.service
             services.append(newServices!)
-            self.servicesVC.sevicesTableView.reloadData()
-            
+            print(services)
+            //print(servicesVC.sevicesTableView.indexPathsForVisibleRows)
+            //servicesVC.sevicesTableView.reloadData()
         }
 }
-   // func loadServices(completion:@escaping(()-())) {
-        //
-    //}
+
+    
 }

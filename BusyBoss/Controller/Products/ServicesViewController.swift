@@ -18,6 +18,7 @@ class ServicesViewController: UIViewController, UITableViewDataSource, UITableVi
         services = SSManager.services
         sevicesTableView.dataSource = self
         sevicesTableView.delegate = self
+        sevicesTableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return services.count
