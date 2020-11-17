@@ -26,7 +26,7 @@ class CompleteTransactionViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "completeViewCell", for: indexPath)as!completeTransactionViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "completeViewCell", for: indexPath)as!CompleteTransactionViewCell
         let Data = Dummy[indexPath.row]
         print (Data)
         cell.CodeTransactionLabel.text = String(Data.transactionCode)

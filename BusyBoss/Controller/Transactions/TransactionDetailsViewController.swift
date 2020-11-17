@@ -37,7 +37,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!productListNewTransactionViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!ProductListNewTransactionViewCell
         let Data = Dummy[indexPath.row]
         print (Data)
         cell.NameProductNewTransaction.text = Data.transactionGoodName

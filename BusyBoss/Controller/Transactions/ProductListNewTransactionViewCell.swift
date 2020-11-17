@@ -7,7 +7,7 @@
 
 import UIKit
 
-class productListNewTransactionViewCell: UITableViewCell {
+class ProductListNewTransactionViewCell: UITableViewCell {
 
     @IBOutlet weak var GambarProductNewTransaction: UIImageView!
     @IBOutlet weak var NameProductNewTransaction: UILabel!

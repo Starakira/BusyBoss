@@ -27,7 +27,7 @@ class ClientsViewController: UIViewController {
             }
             else {
                 print("Fetching client successful")
-                print(clients)
+                print("Clients = \(clients.count)")
                 self.clients = clients
                 self.clientsTableView.reloadData()
             }
@@ -69,6 +69,8 @@ class ClientsViewController: UIViewController {
                      let vc = self.storyboard?.instantiateViewController(identifier: "clients") as! ClientsViewController
                      self.navigationController?.pushViewController(vc, animated: true)
                      */
+                    print("Clients 72 = \(self.clients.count)")
+                    
                     self.clients.append(client)
                 }
             }
@@ -77,10 +79,11 @@ class ClientsViewController: UIViewController {
             else {
                 self.clients[self.index] = client
             }
+            
+            self.clientsTableView.reloadData()
+            self.index = -1
+            print("Clients 84 = \(self.clients.count)")
         }
-        
-        clientsTableView.reloadData()
-        index = -1
     }
     
     
@@ -89,13 +92,16 @@ class ClientsViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        guard let inputClientViewController = segue.destination as? InputClientsViewController else {
-            print("Failed to cast view controller to InputClientsViewController")
-            return
+        if let clientDetailsViewController = segue.destination as? ClientsDetailsViewController {
+            print("Index \(index)")
+            // Pass the selected object to the new view controller.
+            clientDetailsViewController.client = clients[index]
+        } else if let inputClientViewController = segue.destination as? InputClientsViewController {
+            // Pass the selected object to the new view controller.
+            inputClientViewController.client = index != -1 ? clients[index] : nil
         }
         
-        // Pass the selected object to the new view controller.
-        inputClientViewController.client = index != -1 ? clients[index] : nil
+        index = -1
     }
     
     
@@ -104,12 +110,10 @@ class ClientsViewController: UIViewController {
 extension ClientsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*
-         let vc = storyboard?.instantiateViewController(identifier: "clientsDetails") as! ClientsDetailsViewController
-         vc.client = clients[indexPath.row]
-         
-         self.navigationController?.pushViewController(vc, animated: true)
-         */
+        self.index = indexPath.row
+        
+        performSegue(withIdentifier: "clientDetailsSegue", sender: self)
+        
         self.index = indexPath.row
     }
 }

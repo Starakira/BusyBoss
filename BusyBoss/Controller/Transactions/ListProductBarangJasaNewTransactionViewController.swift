@@ -14,23 +14,24 @@ class ListProductBarangJasaNewTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        segmentedClear(index: 0)
     }
     
     @IBAction func SegmentedAddProductList(_ sender: UISegmentedControl) {
-                if sender.selectedSegmentIndex == 0 {
-                    segmentedBarangList.isHidden = false
-                    segmentedJasaList.isHidden = true
-                }
-                else if sender.selectedSegmentIndex == 1 {
-                    segmentedBarangList.isHidden = true
-                    segmentedJasaList.isHidden = false
-                }
-            
+        segmentedClear(index: sender.selectedSegmentIndex)
     }
     
-
+    func segmentedClear(index: Int) {
+        if index == 0 {
+            segmentedBarangList.isHidden = false
+            segmentedJasaList.isHidden = true
+        }
+        else if index == 1 {
+            segmentedBarangList.isHidden = true
+            segmentedJasaList.isHidden = false
+        }
+    }
 
 
 

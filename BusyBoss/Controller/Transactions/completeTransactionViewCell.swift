@@ -7,7 +7,7 @@
 
 import UIKit
 
-class completeTransactionViewCell: UITableViewCell {
+class CompleteTransactionViewCell: UITableViewCell {
 
     
     @IBOutlet weak var CodeTransactionLabel: UILabel!
