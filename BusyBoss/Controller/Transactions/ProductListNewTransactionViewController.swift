@@ -11,33 +11,51 @@ protocol ClientsConform {
     func clientListPassData(client: Client)
 }
 
-class ProductListNewTransactionViewController: UIViewController, ClientsConform {
+protocol ProductsConform {
+    func productListPassData(product: Product)
+}
+
+class ProductListNewTransactionViewController: UIViewController, ClientsConform, ProductsConform {
+    
     func clientListPassData(client: Client) {
         self.client = client
         self.clientTextField.text = client.firstName + client.lastName
     }
     
+    func productListPassData(product: Product) {
+        self.products.append(product)
+        ProductListNewTransaction.reloadData()
+    }
+    
     @IBOutlet weak var clientTextField: UITextField!
     
-    var client: Client?
-    var index = -1
-    
     @IBOutlet weak var ProductListNewTransaction: UITableView!
-    var Dummy : [DummyDataTransaction]!
+    
+    var client: Client?
+    var clientIndex = -1
+    
+    var products: [Product] = []
+    var productIndex = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let DummyManager : DummyDataManager = DummyDataManager()
-        Dummy = DummyManager.Dummy
         ProductListNewTransaction.dataSource = self
         ProductListNewTransaction.delegate = self
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ClientContactViewController{
+        if let vc = segue.destination as? ClientContactViewController {
             vc.clientsListDelegate = self
+        }
+        
+        if let vc = segue.destination as? AddGoodDetailsViewController {
+            vc.productListDelegate = self
+        }
+        
+        if let vc = segue.destination as? AddServiceDetailsViewController {
+            vc.productListDelegate = self
         }
     }
 }
@@ -48,16 +66,16 @@ extension ProductListNewTransactionViewController: UITableViewDelegate{
 
 extension ProductListNewTransactionViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Dummy.count
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!ProductListNewTransactionViewCell
-        let Data = Dummy[indexPath.row]
-        cell.NameProductNewTransaction.text = Data.transactionGoodName
-        cell.StockNewTransaction.text = String(Data.transactionStockNumber)
-        cell.JumlahHargaNewTransaction.text = String(Data.transactionTotalValue)
-        cell.GambarProductNewTransaction.image = Data.transactionImage
+        let product = products[indexPath.row]
+        cell.NameProductNewTransaction.text = product.name
+        cell.StockNewTransaction.text = String(product.quantity)
+        cell.JumlahHargaNewTransaction.text = String(product.price)
+        cell.GambarProductNewTransaction.image = product.image
         return cell
     }
 }

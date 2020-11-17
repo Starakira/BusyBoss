@@ -28,18 +28,18 @@ public struct Product {
 extension Product {
     init(record: CKRecord) {
         let recordID = record.recordID
-        let name = record["productName"] as? String ?? "Name not defined"
-        let price = record["productPrice"] as? Double ?? 0
-        let quantity = record["productQuantity"] as? Int ?? 0
+        let name = record[Product.keyName] as? String ?? "Name not defined"
+        let price = record[Product.keyPrice] as? Double ?? 0
+        let quantity = record[Product.keyQuantity] as? Int ?? 0
         let typeName = record[Product.keyType] as? String ?? ProductType.undefined.rawValue
         
         var type: ProductType
         
-        switch typeName {
+        switch typeName.lowercased() {
         case ProductType.goods.rawValue:
             type = ProductType.goods
-        case ProductType.service.rawValue:
-            type = ProductType.service
+        case ProductType.services.rawValue:
+            type = ProductType.services
         default:
             type = ProductType.undefined
         }
@@ -50,6 +50,6 @@ extension Product {
 
 enum ProductType: String {
     case goods
-    case service
+    case services
     case undefined
 }

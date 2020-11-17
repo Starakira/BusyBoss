@@ -17,8 +17,6 @@ class ProductListBarangViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("View loaded")
-        
         TableBarangProductList.dataSource = self
         TableBarangProductList.delegate = self
         
@@ -28,17 +26,31 @@ class ProductListBarangViewController: UIViewController {
                 print(error.localizedDescription)
             }
             else {
-                print("Fetching client successful")
+                print("Fetching products successful")
                 print("Products = \(products.count)")
-                self.products = products
-                self.TableBarangProductList.reloadData()
+                
+                for product in products {
+                    print(product.type.rawValue)
+                    if product.type.rawValue == "goods"{
+                        self.products.append(product)
+                        self.TableBarangProductList.reloadData()
+                        print(self.products)
+                    }
+                }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AddGoodDetailsViewController{
+            vc.product = products[index]
         }
     }
 }
 
 extension ProductListBarangViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
         performSegue(withIdentifier: "AddGoodDetailsSegue", sender: self)
     }
 }
