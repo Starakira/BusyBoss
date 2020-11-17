@@ -12,15 +12,16 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var servicesView: UIView!
     @IBOutlet weak var goodsView: UIView!
     var goods : [goodsStruct]!
-    var services : [serviceStruct] = []
-    var goodsVC = GoodsViewController()
-    var servicesVC = ServicesViewController()
+    var services : [serviceStruct]!
+    var goodsVC :GoodsViewController?
+    var servicesVC : ServicesViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let GSManager : goodsStructManager = goodsStructManager ()
         goods = GSManager.goods
-        
+        let SSManager : serviceStructManager = serviceStructManager ()
+        services = SSManager.services
         // Do any additional setup after loading the view.
     }
     
@@ -54,6 +55,16 @@ class ProductsViewController: UIViewController {
         print("hi")
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? GoodsViewController{
+            goodsVC = vc
+        }
+        
+        if let vc = segue.destination as? ServicesViewController{
+            servicesVC = vc
+        }
+    }
     /*
 // MARK: - Navigation
 
@@ -67,14 +78,16 @@ class ProductsViewController: UIViewController {
          if let sourceViewController = sender.source as? InputGoodsViewController {
             let newGoods = sourceViewController.goods
             goods.append(newGoods!)
-            //goodsVC.goodsTableView.reloadData()
+            goodsVC?.goods = goods
+            goodsVC!.goodsTableView.reloadData()
         }
         if let sourceViewController = sender.source as? InputServicesViewController {
             let newServices = sourceViewController.service
             services.append(newServices!)
+            servicesVC?.services = services
             print(services)
             //print(servicesVC.sevicesTableView.indexPathsForVisibleRows)
-            //servicesVC.sevicesTableView.reloadData()
+            servicesVC!.sevicesTableView.reloadData()
         }
 }
 
