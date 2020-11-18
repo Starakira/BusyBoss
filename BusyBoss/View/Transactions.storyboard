@@ -193,6 +193,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0oY-cN-WX2">
+                                <rect key="frame" x="16" y="132" width="382" height="458"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUX-Nt-t04">
+                                        <rect key="frame" x="8" y="8" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9Y-Og-E0V">
                                 <rect key="frame" x="126" y="74" width="268" height="21"/>
                                 <constraints>
@@ -399,7 +410,7 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <state key="normal" title="Quotation"/>
                                 <connections>
-                                    <segue destination="UEG-B0-wa9" kind="show" id="vHG-8n-qKS"/>
+                                    <segue destination="UEG-B0-wa9" kind="show" identifier="previewSegue" id="vHG-8n-qKS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrF-RX-wer">
@@ -411,7 +422,7 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <state key="normal" title="Invoice"/>
                                 <connections>
-                                    <segue destination="JPZ-SA-8bZ" kind="show" id="CYx-7g-3AE"/>
+                                    <segue destination="JPZ-SA-8bZ" kind="show" identifier="previewSegue1" id="CYx-7g-3AE"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PXC-Ve-ueq">
@@ -434,7 +445,7 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <state key="normal" title="Receipt"/>
                                 <connections>
-                                    <segue destination="DAa-3a-fw9" kind="show" id="Smf-Z1-5Na"/>
+                                    <segue destination="DAa-3a-fw9" kind="show" identifier="previewSegue2" id="Smf-Z1-5Na"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFa-z4-qjv">
@@ -445,17 +456,6 @@
                                     <segue destination="ecr-8z-Oe2" kind="presentation" id="u90-uR-xDg"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0oY-cN-WX2">
-                                <rect key="frame" x="16" y="132" width="382" height="458"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUX-Nt-t04">
-                                        <rect key="frame" x="8" y="8" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nPD-e7-9DA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1575,31 +1575,6 @@
             </objects>
             <point key="canvasLocation" x="492.75362318840581" y="-313.39285714285711"/>
         </scene>
-        <!--Preview Quotation View Controller-->
-        <scene sceneID="Sdl-5Z-Fz9">
-            <objects>
-                <viewController id="G32-kt-KiN" customClass="PreviewQuotationViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jnv-6D-J14">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zW2-Uz-OUl" customClass="PDFView">
-                                <rect key="frame" x="20" y="44" width="374" height="500"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="tui-pT-uU7"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <connections>
-                        <outlet property="pdfView" destination="zW2-Uz-OUl" id="vd9-lh-P4G"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pzJ-jx-YQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2730.434782608696" y="1313.1696428571429"/>
-        </scene>
         <!--Product List Edit Transaction View Controller-->
         <scene sceneID="PfG-0F-Eer">
             <objects>
@@ -1999,7 +1974,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j6x-um-SOt">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j6x-um-SOt" customClass="PDFView">
                                 <rect key="frame" x="20" y="20" width="374" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2017,21 +1992,31 @@
             </objects>
             <point key="canvasLocation" x="-1943.4782608695655" y="1313.8392857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Preview Quotation View Controller-->
         <scene sceneID="rdg-uo-Dic">
             <objects>
-                <viewController id="UEG-B0-wa9" sceneMemberID="viewController">
+                <viewController id="UEG-B0-wa9" customClass="PreviewQuotationViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4d7-Ps-vKS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPM-ON-Ebz" customClass="PDFView">
+                                <rect key="frame" x="20" y="20" width="374" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="VcU-0U-XeJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="fHN-Zl-GKo"/>
+                    <connections>
+                        <outlet property="pdfView" destination="aPM-ON-Ebz" id="iz7-GJ-KyW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1LK-Hh-yvb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2729" y="1314"/>
+            <point key="canvasLocation" x="-2814" y="1313"/>
         </scene>
         <!--Preview Receipt View Controller-->
         <scene sceneID="yzS-6h-Gur">
@@ -2041,7 +2026,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I52-oU-Bbk">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I52-oU-Bbk" customClass="PDFView">
                                 <rect key="frame" x="20" y="20" width="374" height="500"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2057,7 +2042,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKa-wu-evm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1159.4202898550725" y="1313.8392857142856"/>
+            <point key="canvasLocation" x="-1158" y="1313"/>
         </scene>
     </scenes>
     <resources>
