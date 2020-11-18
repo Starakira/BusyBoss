@@ -58,7 +58,7 @@ class TransactionDetailsViewController: UIViewController, UITableViewDataSource,
     //        vc.Company = clientName.text!
     //        vc.logo = previewimage.image!
             
-    //        previewimage.image = UIImage(named: "Logo")
+            LogoPerusahaan.image = UIImage(named: "BussyBoss App Icon")
             
             if let title = TitleNameTransaction.text,
                let name = NameUserTransaction.text,
