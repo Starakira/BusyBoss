@@ -85,8 +85,6 @@ class ProductsViewController: UIViewController {
             let newServices = sourceViewController.service
             services.append(newServices!)
             servicesVC?.services = services
-            print(services)
-            //print(servicesVC.sevicesTableView.indexPathsForVisibleRows)
             servicesVC!.sevicesTableView.reloadData()
         }
 }
