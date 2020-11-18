@@ -18,10 +18,13 @@ class TransactionDetailsViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var DateTransaction: UILabel!
     @IBOutlet weak var ProductListTransactionTableView: UITableView!
     
+    @IBOutlet weak var LogoPerusahaan: UIImageView!
     
     var Dummy : [DummyDataTransaction]!
 
     var dummy : DummyDataTransaction?
+    
+    public var documentData: Data?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,109 @@ class TransactionDetailsViewController: UIViewController, UITableViewDataSource,
         cell.GambarProductNewTransaction.image = Data.transactionImage
         return cell
     }
+    
+    //show PDF
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.identifier == "previewSegue" {
+            guard let vc = segue.destination as? PreviewQuotationViewController else { return }
+    //        vc.ClientName = Titledocument.text!
+    //        vc.Company = clientName.text!
+    //        vc.logo = previewimage.image!
+            
+    //        previewimage.image = UIImage(named: "Logo")
+            
+            if let title = TitleNameTransaction.text,
+               let name = NameUserTransaction.text,
+               let total = JumlahTotalHargaTransaction.text,
+               let discount = JumlahDiscountHargaTransaction.text,
+               let tax = JumlahTaxTransaction.text,
+               let grandtotal = JumlahGrandTotalTransaction.text,
+               let gambar = LogoPerusahaan.image,
+               let valid = DateTransaction.text
+
+               {
+            
+                let pdfCreator = CreateQuotationPDF(
+                    title: title,
+                    name: name,
+                    total: total,
+                    tax: tax,
+                    discount: discount,
+                    validdate: valid,
+                    grandtotal: grandtotal,
+                    logo: gambar
+
+                    
+            )
+            vc.documentData = pdfCreator.createFlyer()
+            
+          }
+          }
+            
+        
+            if segue.identifier == "previewSegue1" {
+              guard let vc = segue.destination as? PreviewInvoiceViewController else { return }
+              
+              if let title = TitleNameTransaction.text,
+                 let name = NameUserTransaction.text,
+                 let total = JumlahTotalHargaTransaction.text,
+                 let discount = JumlahDiscountHargaTransaction.text,
+                 let tax = JumlahTaxTransaction.text,
+                 let grandtotal = JumlahGrandTotalTransaction.text,
+                 let gambar = LogoPerusahaan.image,
+                 let valid = DateTransaction.text
+                
+    //          let gambar = previewimage.image,
+    //          let jenisdokumen = jenisdokumen.text
+                 {
+              
+                let pdfCreator = CreateInvoicePDF(
+                    title: title,
+                    name: name,
+                    total: total,
+                    tax: tax,
+                    discount: discount,
+                    validdate: valid,
+                    grandtotal: grandtotal,
+                    logo: gambar
+
+              )
+              vc.documentData = pdfCreator.createFlyer()
+            }
+            }
+            
+            if segue.identifier == "previewSegue2" {
+              guard let vc = segue.destination as? PreviewReceiptViewController else { return }
+              
+              if let title = TitleNameTransaction.text,
+                 let name = NameUserTransaction.text,
+                 let total = JumlahTotalHargaTransaction.text,
+                 let discount = JumlahDiscountHargaTransaction.text,
+                 let tax = JumlahTaxTransaction.text,
+                 let grandtotal = JumlahGrandTotalTransaction.text,
+                 let gambar = LogoPerusahaan.image,
+                 let valid = DateTransaction.text
+              
+    //          let gambar = previewimage.image,
+    //          let jenisdokumen = jenisdokumen.text
+                 {
+              
+                let pdfCreator = CreateReceiptPDF(
+                    title: title,
+                    name: name,
+                    total: total,
+                    tax: tax,
+                    discount: discount,
+                    validdate: valid,
+                    grandtotal: grandtotal,
+                    logo: gambar
+                )
+              vc.documentData = pdfCreator.createFlyer()
+            }
+            }
+        }
+
+
     
 
 }

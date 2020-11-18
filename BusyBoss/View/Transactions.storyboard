@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -445,6 +445,17 @@
                                     <segue destination="ecr-8z-Oe2" kind="presentation" id="u90-uR-xDg"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0oY-cN-WX2">
+                                <rect key="frame" x="16" y="132" width="382" height="458"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUX-Nt-t04">
+                                        <rect key="frame" x="8" y="8" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nPD-e7-9DA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -516,6 +527,7 @@
                         <outlet property="JumlahGrandTotalTransaction" destination="BVl-q4-Wqu" id="J98-s2-JVH"/>
                         <outlet property="JumlahTaxTransaction" destination="YuF-q7-H4p" id="ZjA-RQ-Ifp"/>
                         <outlet property="JumlahTotalHargaTransaction" destination="hcv-dg-kcs" id="XM7-nc-fv5"/>
+                        <outlet property="LogoPerusahaan" destination="DUX-Nt-t04" id="Lsp-Ps-5rr"/>
                         <outlet property="NameUserTransaction" destination="Mkx-Su-lf4" id="a6T-dF-aez"/>
                         <outlet property="ProductListTransactionTableView" destination="kXF-dw-ZdX" id="dLa-BD-mGs"/>
                         <outlet property="TitleNameTransaction" destination="S9Y-Og-E0V" id="E8C-ro-f9G"/>
@@ -523,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obf-XS-4DW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1923" y="293"/>
+            <point key="canvasLocation" x="-1923.1884057971015" y="292.63392857142856"/>
         </scene>
         <!--Product List New Transaction View Controller-->
         <scene sceneID="WgA-SL-O0L">
@@ -1563,20 +1575,30 @@
             </objects>
             <point key="canvasLocation" x="492.75362318840581" y="-313.39285714285711"/>
         </scene>
-        <!--View Controller-->
+        <!--Preview Quotation View Controller-->
         <scene sceneID="Sdl-5Z-Fz9">
             <objects>
-                <viewController id="G32-kt-KiN" sceneMemberID="viewController">
+                <viewController id="G32-kt-KiN" customClass="PreviewQuotationViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jnv-6D-J14">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zW2-Uz-OUl" customClass="PDFView">
+                                <rect key="frame" x="20" y="44" width="374" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="tui-pT-uU7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="pdfView" destination="zW2-Uz-OUl" id="vd9-lh-P4G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pzJ-jx-YQE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2729" y="1314"/>
+            <point key="canvasLocation" x="-2730.434782608696" y="1313.1696428571429"/>
         </scene>
         <!--Product List Edit Transaction View Controller-->
         <scene sceneID="PfG-0F-Eer">
@@ -1969,21 +1991,31 @@
             </objects>
             <point key="canvasLocation" x="-383" y="849"/>
         </scene>
-        <!--View Controller-->
+        <!--Preview Invoice View Controller-->
         <scene sceneID="IEe-xV-tF2">
             <objects>
-                <viewController id="JPZ-SA-8bZ" sceneMemberID="viewController">
+                <viewController id="JPZ-SA-8bZ" customClass="PreviewInvoiceViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mi3-0C-dee">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j6x-um-SOt">
+                                <rect key="frame" x="20" y="20" width="374" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="H0t-46-xbV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="eBD-wR-WHF"/>
+                    <connections>
+                        <outlet property="pdfView" destination="j6x-um-SOt" id="t7f-TT-cXw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0F-1H-Wjh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1943" y="1314"/>
+            <point key="canvasLocation" x="-1943.4782608695655" y="1313.8392857142856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="rdg-uo-Dic">
@@ -2001,21 +2033,31 @@
             </objects>
             <point key="canvasLocation" x="-2729" y="1314"/>
         </scene>
-        <!--View Controller-->
+        <!--Preview Receipt View Controller-->
         <scene sceneID="yzS-6h-Gur">
             <objects>
-                <viewController id="DAa-3a-fw9" sceneMemberID="viewController">
+                <viewController id="DAa-3a-fw9" customClass="PreviewReceiptViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dky-KI-q7t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I52-oU-Bbk">
+                                <rect key="frame" x="20" y="20" width="374" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="JQr-V0-mf8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="uMh-HA-WCY"/>
+                    <connections>
+                        <outlet property="pdfView" destination="I52-oU-Bbk" id="LQa-m7-XYs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKa-wu-evm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1159" y="1314"/>
+            <point key="canvasLocation" x="-1159.4202898550725" y="1313.8392857142856"/>
         </scene>
     </scenes>
     <resources>
