@@ -7,42 +7,57 @@
 
 import UIKit
 
-class ServicesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var services : [serviceStruct]!
+class ServicesViewController: UIViewController {
+    
+    @IBOutlet weak var servicesTableView: UITableView!
+    
+    var products : [Product] = []
+    var index = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let SSManager : serviceStructManager = serviceStructManager ()
-        services = SSManager.services
+        
+        servicesTableView.delegate = self
+        servicesTableView.dataSource = self
+        
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                print("Fetching products successful")
+                print("Products = \(products.count)")
+                
+                for product in products {
+                    print(product.type.rawValue)
+                    if product.type.rawValue == "services"{
+                        self.products.append(product)
+                        self.servicesTableView.reloadData()
+                        print(self.products)
+                    }
+                }
+            }
+        }
     }
+}
+
+extension ServicesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+extension ServicesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return services.count
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "servicesCell", for: indexPath)as!ServicesTableViewCell
-               let ser = services[indexPath.row]
-               cell.servicesLabel.text = ser.name
-               cell.servicesPrice.text = String(ser.price)
+               let product = products[indexPath.row]
+               cell.servicesLabel.text = product.name
+               cell.servicesPrice.text = String(product.price)
                return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "servicesDetails") as! ServicesDetailsViewController
-        vc.services = services[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

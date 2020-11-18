@@ -15,7 +15,7 @@ class AddServiceDetailsViewController: UIViewController {
     
     var product: Product?
     
-    var productListDelegate: ProductsConform?
+    var productListDelegate: ProductServicesDismiss?
     
     var productQuantity: Int = 0
     
@@ -38,7 +38,7 @@ class AddServiceDetailsViewController: UIViewController {
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
-        productListDelegate?.productListPassData(product: product!)
+        productListDelegate?.performDismissal(checkProduct: product!)
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     

@@ -16,15 +16,18 @@ public struct Transaction {
     var status: TransactionStatus
     var approval: TransactionApproval
     var products: [Product]?
+    var productReferences: [CKRecord.Reference]?
     var client: Client?
+    var validityDate: Date
     var discount: Double?
     var tax: Double?
     
-    static let keyTransactionNumber = ""
-    static let keyDescription = ""
-    static let keyStatus = ""
-    static let keyDiscount = 0.0
-    static let keyTax = 0.0
+    static let keyTransactionNumber = "transactionNumber"
+    static let keyDescription = "description"
+    static let keyStatus = "status"
+    static let keyDiscount = "discount"
+    static let keyTax = "tax"
+    static let keyValidityDate = "validityDate"
     
     func getTotalProductPrices() -> Double {
         var total: Double = 0
@@ -42,8 +45,15 @@ extension Transaction {
         let transactionNumber = ""
         let user = User.currentUser()
         let description = ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let validityDate = dateFormatter.date(from: "00/00/0000")
+        
         let discount = 0.0
         let tax = 0.0
+        
+        let productReferences = record["productReference"] as? [CKRecord.Reference] ?? []
         
         var status:TransactionStatus
         
@@ -69,10 +79,8 @@ extension Transaction {
             approval = TransactionApproval.Undefined
         }
         
-        self.init(recordID: recordID, transactionNumber: transactionNumber, user: user!, description: description, status: status, approval: approval, discount: discount, tax: tax)
+        self.init(recordID: recordID, transactionNumber: transactionNumber, user: user!, description: description, status: status, approval: approval, productReferences: productReferences, validityDate: validityDate!, discount: discount, tax: tax)
     }
-    
-
 }
 
 public enum TransactionStatus : String {

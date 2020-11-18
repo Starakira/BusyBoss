@@ -648,34 +648,33 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahDiscount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nle-4Q-8FJ">
-                                        <rect key="frame" x="251" y="11" width="123" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kGq-nE-EJn">
                                         <rect key="frame" x="103" y="6" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="6h6-1a-6RP"/>
                                             <constraint firstAttribute="width" constant="49" id="eR6-Vp-yY7"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="discountSwitchAction:" destination="mgx-Ww-VKt" eventType="valueChanged" id="jny-CU-6NF"/>
+                                        </connections>
                                     </switch>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wR-ll-blK">
+                                        <rect key="frame" x="200" y="5" width="174" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Nle-4Q-8FJ" firstAttribute="leading" secondItem="kGq-nE-EJn" secondAttribute="trailing" constant="99" id="6EO-dD-5fm"/>
                                     <constraint firstItem="kGq-nE-EJn" firstAttribute="top" secondItem="jK2-bO-0O7" secondAttribute="top" constant="6" id="8Rz-Wi-4Wj"/>
                                     <constraint firstAttribute="bottom" secondItem="kGq-nE-EJn" secondAttribute="bottom" constant="7" id="Fk8-2I-z6D"/>
                                     <constraint firstItem="pUb-Oe-jUf" firstAttribute="top" secondItem="jK2-bO-0O7" secondAttribute="top" constant="12" id="RI6-UN-QSB"/>
                                     <constraint firstAttribute="bottom" secondItem="pUb-Oe-jUf" secondAttribute="bottom" constant="11" id="UF7-Az-eJf"/>
-                                    <constraint firstItem="Nle-4Q-8FJ" firstAttribute="top" secondItem="jK2-bO-0O7" secondAttribute="top" constant="11" id="aOO-Fg-SRs"/>
                                     <constraint firstItem="kGq-nE-EJn" firstAttribute="leading" secondItem="pUb-Oe-jUf" secondAttribute="trailing" constant="27" id="nvB-oy-Zv6"/>
-                                    <constraint firstAttribute="trailing" secondItem="Nle-4Q-8FJ" secondAttribute="trailing" constant="8" id="rOz-fA-w9d"/>
                                     <constraint firstAttribute="width" constant="382" id="tc7-M4-jqI"/>
                                     <constraint firstAttribute="height" constant="44" id="ujz-Ho-LZO"/>
                                     <constraint firstItem="pUb-Oe-jUf" firstAttribute="leading" secondItem="jK2-bO-0O7" secondAttribute="leading" constant="8" id="wzC-55-bKh"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nle-4Q-8FJ" secondAttribute="bottom" constant="12" id="zut-Td-xrQ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuY-EZ-YlY">
@@ -703,6 +702,9 @@
                                             <constraint firstAttribute="width" constant="49" id="9DA-R3-VgJ"/>
                                             <constraint firstAttribute="height" constant="31" id="Dus-gn-vsZ"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="taxSwitchAction:" destination="mgx-Ww-VKt" eventType="valueChanged" id="heK-dz-Xn6"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -751,13 +753,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxS-ou-9JE">
-                                        <rect key="frame" x="338" y="11" width="36" height="21"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="dd/mm/yyyy" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ASn-VT-YOP">
+                                        <rect key="frame" x="200" y="0.0" width="174" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -892,8 +893,15 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ProductListNewTransaction" destination="Z8Q-JR-3ri" id="r5g-s7-o1F"/>
                         <outlet property="clientTextField" destination="ylh-n2-5Vb" id="czy-kC-DQy"/>
+                        <outlet property="discountTextField" destination="9wR-ll-blK" id="vRl-6a-ho7"/>
+                        <outlet property="disountSwitch" destination="kGq-nE-EJn" id="OYs-9x-rx9"/>
+                        <outlet property="productListNewTransaction" destination="Z8Q-JR-3ri" id="r5g-s7-o1F"/>
+                        <outlet property="taxSwitch" destination="Y5L-4H-tcf" id="6uM-lt-U0d"/>
+                        <outlet property="totalProductPriceLabel" destination="4mn-Fu-Cvk" id="d6S-Qx-F00"/>
+                        <outlet property="totalTaxLabel" destination="kyE-2O-R3O" id="A78-cy-8rc"/>
+                        <outlet property="totalTransactionValueLabel" destination="Hat-fO-bKB" id="GLW-UV-XlV"/>
+                        <outlet property="validityDateTextField" destination="ASn-VT-YOP" id="FrD-6t-4da"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rf5-fC-BMl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1220,7 +1228,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="TableBarangProductList" destination="oxz-EL-I3f" id="Z5Y-0l-EQE"/>
+                        <outlet property="goodsProductListTableView" destination="oxz-EL-I3f" id="Z5Y-0l-EQE"/>
                         <segue destination="zah-Tg-Z5F" kind="show" identifier="AddGoodDetailsSegue" id="kIa-2W-DCx"/>
                     </connections>
                 </viewController>
@@ -1427,7 +1435,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="TableJasaProductList" destination="25T-eU-BR8" id="8G6-rw-KFM"/>
+                        <outlet property="servicesProductListTableView" destination="25T-eU-BR8" id="8G6-rw-KFM"/>
                         <segue destination="jzM-L3-jkh" kind="show" identifier="AddServiceDetailsSegue" id="Lgc-pT-E1t"/>
                     </connections>
                 </viewController>

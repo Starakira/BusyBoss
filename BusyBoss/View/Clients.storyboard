@@ -298,7 +298,7 @@
                                                 <state key="normal" title="Cancel"/>
                                             </button>
                                             <connections>
-                                                <action selector="cancelButtonAction:" destination="QNs-10-TNs" id="1Mi-eE-ovi"/>
+                                                <action selector="cancelButtonAction:" destination="QNs-10-TNs" id="lhq-oe-q0Y"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="KvM-B8-4Le">

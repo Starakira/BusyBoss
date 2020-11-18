@@ -24,39 +24,123 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     
     func productListPassData(product: Product) {
         self.products.append(product)
-        ProductListNewTransaction.reloadData()
+        productListNewTransaction.reloadData()
     }
     
     @IBOutlet weak var clientTextField: UITextField!
     
-    @IBOutlet weak var ProductListNewTransaction: UITableView!
+    @IBOutlet weak var productListNewTransaction: UITableView!
+    
+    @IBOutlet weak var disountSwitch: UISwitch!
+    
+    @IBOutlet weak var taxSwitch: UISwitch!
+    
+    @IBOutlet weak var discountTextField: UITextField!
+    
+    @IBOutlet weak var validityDateTextField: UITextField!
+    
+    @IBOutlet weak var totalProductPriceLabel: UILabel!
+    
+    @IBOutlet weak var totalTaxLabel: UILabel!
+    
+    @IBOutlet weak var totalTransactionValueLabel: UILabel!
     
     var client: Client?
     var clientIndex = -1
     
     var products: [Product] = []
     var productIndex = -1
-
+    
+    var totalProductPrice = 1000000000.0
+    var discount = 0.0
+    var tax = 0.0
+    var totalPrice = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ProductListNewTransaction.dataSource = self
-        ProductListNewTransaction.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        totalProductPriceLabel.text = String(totalProductPrice)
+        
+        discountTextField.isHidden = true
+        
+        totalTaxLabel.isHidden = true
+        
+        getTotalPrice()
+        
+        discountTextField.delegate = self
+        
+        productListNewTransaction.dataSource = self
+        productListNewTransaction.delegate = self
+    }
+    
+    @IBAction func discountSwitchAction(_ sender: Any) {
+        if disountSwitch.isOn {
+            discountTextField.isHidden = false
+        } else {
+            discountTextField.isHidden = true
+            
+            discount = 0.0
+            getTotalPrice()
+        }
+    }
+    
+    @IBAction func taxSwitchAction(_ sender: Any) {
+        if taxSwitch.isOn {
+            totalTaxLabel.isHidden = false
+            tax = totalProductPrice-(totalProductPrice*0.1)
+            totalTaxLabel.text = String(tax)
+            
+            getTotalPrice()
+        } else {
+            totalTaxLabel.isHidden = true
+            tax = 0.0
+            
+            getTotalPrice()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ClientContactViewController {
             vc.clientsListDelegate = self
+        } else if let vc = segue.destination as? ListProductBarangJasaNewTransactionViewController {
+            vc.myDelegate = self
         }
-        
-        if let vc = segue.destination as? AddGoodDetailsViewController {
-            vc.productListDelegate = self
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
         }
-        
-        if let vc = segue.destination as? AddServiceDetailsViewController {
-            vc.productListDelegate = self
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
+    }
+    
+    func getTotalPrice(){
+        totalPrice = totalProductPrice - discount - tax
+        totalTransactionValueLabel.text = String(totalPrice)
+    }
+}
+
+extension ProductListNewTransactionViewController: UITextFieldDelegate{
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == discountTextField {
+            discount = Double(textField.text ?? "0.0") ?? 0.0
+            
+            getTotalPrice()
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }
 

@@ -16,7 +16,7 @@ class AddGoodDetailsViewController: UIViewController {
     
     var product: Product?
     
-    var productListDelegate: ProductsConform?
+    var productListDelegate: ProductGoodsDismiss?
     
     var productQuantity: Int = 0
     
@@ -43,8 +43,10 @@ class AddGoodDetailsViewController: UIViewController {
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
-        productListDelegate?.productListPassData(product: product!)
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+        productListDelegate?.performDismissal(checkProduct: product!)
+        //self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {

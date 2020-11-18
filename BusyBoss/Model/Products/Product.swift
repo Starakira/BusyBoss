@@ -14,6 +14,7 @@ public struct Product {
     var name: String
     var price: Double
     var quantity: Int
+    var transactionQuantity: Int?
     var image: UIImage?
     var type: ProductType
     
