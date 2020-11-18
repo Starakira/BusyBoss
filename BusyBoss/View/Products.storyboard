@@ -321,39 +321,52 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="132"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YsP-QW-Jr4">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YsP-QW-Jr4">
                                                     <rect key="frame" x="11" y="11" width="110" height="110"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="YsP-QW-Jr4" secondAttribute="height" multiplier="1:1" id="az9-bx-oqa"/>
+                                                        <constraint firstAttribute="width" constant="110" id="evZ-uV-Cek"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jersey Leeds United" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFL-jR-OOc">
-                                                    <rect key="frame" x="128" y="25" width="205" height="27"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jersey Leeds United" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFL-jR-OOc">
+                                                    <rect key="frame" x="128" y="25" width="259" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="stock:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5S5-5c-Xgw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="stock:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5S5-5c-Xgw">
                                                     <rect key="frame" x="129" y="63" width="38" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rp. 6,900,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAS-B6-LVB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 6,900,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAS-B6-LVB">
                                                     <rect key="frame" x="127" y="83" width="109" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="69 pieces" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x03-Dz-TiJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="69 pieces" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x03-Dz-TiJ">
                                                     <rect key="frame" x="181" y="63" width="64" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="YsP-QW-Jr4" secondAttribute="bottom" constant="11" id="1uV-Ys-fBn"/>
+                                                <constraint firstItem="VFL-jR-OOc" firstAttribute="top" secondItem="H4v-X0-R0I" secondAttribute="topMargin" constant="14" id="2V1-2X-vcT"/>
+                                                <constraint firstItem="YsP-QW-Jr4" firstAttribute="top" secondItem="H4v-X0-R0I" secondAttribute="top" constant="11" id="3EK-Tg-8gN"/>
+                                                <constraint firstItem="5S5-5c-Xgw" firstAttribute="top" secondItem="VFL-jR-OOc" secondAttribute="bottom" constant="11" id="6JU-2U-7Le"/>
+                                                <constraint firstItem="pAS-B6-LVB" firstAttribute="top" secondItem="5S5-5c-Xgw" secondAttribute="bottom" constant="3" id="6k8-v2-SZm"/>
+                                                <constraint firstItem="5S5-5c-Xgw" firstAttribute="leading" secondItem="YsP-QW-Jr4" secondAttribute="trailing" constant="8" id="Bnk-ex-1Nc"/>
+                                                <constraint firstItem="YsP-QW-Jr4" firstAttribute="leading" secondItem="H4v-X0-R0I" secondAttribute="leading" constant="11" id="DYr-gA-sYW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VFL-jR-OOc" secondAttribute="trailing" constant="7" id="TBk-co-unk"/>
+                                                <constraint firstItem="VFL-jR-OOc" firstAttribute="leading" secondItem="YsP-QW-Jr4" secondAttribute="trailing" constant="7" id="hq8-A3-08s"/>
+                                                <constraint firstItem="x03-Dz-TiJ" firstAttribute="centerY" secondItem="5S5-5c-Xgw" secondAttribute="centerY" id="i55-Or-zne"/>
+                                                <constraint firstItem="pAS-B6-LVB" firstAttribute="leading" secondItem="YsP-QW-Jr4" secondAttribute="trailing" constant="6" id="q99-Dy-v44"/>
+                                                <constraint firstItem="x03-Dz-TiJ" firstAttribute="leading" secondItem="5S5-5c-Xgw" secondAttribute="trailing" constant="14" id="qoo-b9-H40"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="goodsImage" destination="YsP-QW-Jr4" id="ldx-K8-z64"/>
@@ -401,21 +414,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sablon Jersey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boz-ce-H84">
-                                                    <rect key="frame" x="20" y="11" width="142" height="27"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sablon Jersey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boz-ce-H84">
+                                                    <rect key="frame" x="20" y="11" width="374" height="27"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="27" id="NDe-xt-o4U"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rp. 69,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-9S-iN1">
-                                                    <rect key="frame" x="20" y="42" width="85" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp. 69,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-9S-iN1">
+                                                    <rect key="frame" x="20" y="42" width="374" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="kXV-fY-mpk"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="boz-ce-H84" firstAttribute="top" secondItem="7Nd-89-ud2" secondAttribute="topMargin" id="595-S1-TOt"/>
+                                                <constraint firstItem="cdL-9S-iN1" firstAttribute="bottom" secondItem="7Nd-89-ud2" secondAttribute="bottomMargin" id="DSp-pL-fiP"/>
+                                                <constraint firstItem="cdL-9S-iN1" firstAttribute="top" secondItem="boz-ce-H84" secondAttribute="bottom" constant="4" id="DX7-A5-0ti"/>
+                                                <constraint firstItem="boz-ce-H84" firstAttribute="leading" secondItem="7Nd-89-ud2" secondAttribute="leadingMargin" id="ImW-Og-GDQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cdL-9S-iN1" secondAttribute="trailing" id="bwm-E9-2SE"/>
+                                                <constraint firstItem="cdL-9S-iN1" firstAttribute="leading" secondItem="7Nd-89-ud2" secondAttribute="leadingMargin" id="iR3-DF-qEv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="boz-ce-H84" secondAttribute="trailing" id="qsx-Pe-FkP"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="servicesLabel" destination="boz-ce-H84" id="17g-dJ-we3"/>
