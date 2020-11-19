@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InputClientsViewController: UIViewController {
+class InputClientViewController: UIViewController {
     @IBOutlet weak var addClientsImage: UIImageView!
     @IBOutlet weak var clientFirstName: UITextField!
     @IBOutlet weak var clientLastName: UITextField!
@@ -22,15 +22,6 @@ class InputClientsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //If client exist, then fill the fields
-        if let client = client {
-            clientFirstName.text = client.firstName
-            clientLastName.text = client.lastName
-            clientCompanyName.text = client.companyName
-            clientAddress.text = client.companyAddress
-            clientEmailAddress.text = client.emailAddress
-            clientPhoneNo.text = client.phoneNumber
-        }
     }
 
     // MARK: - Navigation
@@ -47,16 +38,8 @@ class InputClientsViewController: UIViewController {
                                 companyName: clientCompanyName.text!,
                                 companyAddress: clientAddress.text!)
         }
-        else {
-            self.client!.firstName = clientFirstName.text!
-            self.client!.lastName = clientLastName.text!
-            //Blm selesai
-        }
         
         print("Creating client...")
-        
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
    
@@ -88,7 +71,7 @@ class InputClientsViewController: UIViewController {
     }
 
 }
-extension InputClientsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension InputClientViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{
             self.addClientsImage.image = image

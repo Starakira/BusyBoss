@@ -35,7 +35,7 @@ class ClientsViewController: UIViewController {
     }
     
     @IBAction func unwindToSegue(_ sender: UIStoryboardSegue) {
-        guard let vc = sender.source as? InputClientsViewController else {
+        guard let vc = sender.source as? InputClientViewController else {
             //            Alert.showAlert(view: self, title: "Error", message: "Failed to cast Source ViewController to InputClientsViewController")
             print("Failed to cast Source ViewController to InputClientsViewController")
             return
@@ -96,7 +96,7 @@ class ClientsViewController: UIViewController {
             print("Index \(index)")
             // Pass the selected object to the new view controller.
             clientDetailsViewController.client = clients[index]
-        } else if let inputClientViewController = segue.destination as? InputClientsViewController {
+        } else if let inputClientViewController = segue.destination as? InputClientViewController {
             // Pass the selected object to the new view controller.
             inputClientViewController.client = index != -1 ? clients[index] : nil
         }

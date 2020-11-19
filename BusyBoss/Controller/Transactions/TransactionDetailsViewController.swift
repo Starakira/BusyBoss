@@ -7,16 +7,7 @@
 
 import UIKit
 
-class TransactionDetailsViewController: UIViewController, TransactionConform {
-    func transactionSave(transaction: DummyTransaction) {
-        transactionDummyData = transaction
-        
-        for product in transactionDummyData?.products ?? [] {
-            products?.append(product)
-        }
-        
-        ProductListTransactionTableView.reloadData()
-    }
+class TransactionDetailsViewController: UIViewController{
     
     @IBOutlet weak var TitleNameTransaction: UILabel!
     @IBOutlet weak var NameUserTransaction: UILabel!
@@ -48,16 +39,15 @@ class TransactionDetailsViewController: UIViewController, TransactionConform {
         
         TitleNameTransaction.text = transactionDummyData?.transactionNumber
         NameUserTransaction.text = (transactionDummyData?.client?.firstName ?? "") + (transactionDummyData?.client?.lastName ?? "")
+        JumlahTotalHargaTransaction.text = String(transactionDummyData?.transactionTotalPrice ?? 0.0)
         JumlahDiscountHargaTransaction.text = String(transactionDummyData?.discount ?? 0.0)
         JumlahTaxTransaction.text = String(transactionDummyData?.tax ?? 0.0)
-        JumlahTotalHargaTransaction.text = String(transactionDummyData?.transactionTotalPrice ?? 0.0)
+        JumlahGrandTotalTransaction.text = String(transactionDummyData?.transactionTotalPrice ?? 0.0)
         DateTransaction.text = String(dateFormatter.string(from: transactionDummyData?.validityDate ?? Date()))
         
         ProductListTransactionTableView.dataSource = self
         ProductListTransactionTableView.delegate = self
     }
-    
-    
 }
 
 extension TransactionDetailsViewController: UITableViewDelegate{
