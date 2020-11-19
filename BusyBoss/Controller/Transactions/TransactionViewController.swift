@@ -11,22 +11,20 @@ protocol TransactionConform {
     func transactionSave(transaction: DummyTransaction)
 }
 
-class TransactionViewController: UIViewController, TransactionConform {
-    func transactionSave(transaction: DummyTransaction) {
-        print("Products = \(String(describing: transaction.products))")
-        transactionDummyData.append(transaction)
-        transactionsAll?.append(transaction)
-        tableView.reloadData()
-    }
-    
+class TransactionViewController: UIViewController {
     @IBOutlet weak var TransactionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var transactionDummyData: [DummyTransaction] = []
+    var transactionDataSource: [DummyTransaction] = []
 
-    var transactionsAll: [DummyTransaction]?
+    var transactionsAll: [DummyTransaction]? = []
     
     var transactionIndex = -1
+    
+    var dummyProducts = [
+        Product(name: "Shoes", price: 20000, quantity: 5, transactionQuantity: 2, image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), type: ProductType.goods),
+        Product(name: "Shirt", price: 15000, quantity: 10, transactionQuantity: 3, image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), type: ProductType.goods),
+        Product(name: "Sablon", price: 30000, quantity: 20, transactionQuantity: 5, image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), type: ProductType.services),]
 
     override func viewDidLoad() {
         tableView.delegate = self
@@ -53,14 +51,11 @@ class TransactionViewController: UIViewController, TransactionConform {
         if let transactionsAll = transactionsAll {
             switch selectedSegmentIndex {
             case 0: //Ongoing
-                print("Ongoing")
-                transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Ongoing}
+                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.Ongoing}
             case 1: //Completed
-                print("Completed")
-                transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Completed}
+                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.Completed}
             case 2:
-                print("Canceled")
-                transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Canceled}
+                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.Canceled}
             default:
                 return
             }
@@ -75,9 +70,16 @@ class TransactionViewController: UIViewController, TransactionConform {
         if let viewController = segue.destination as? ProductListNewTransactionViewController {
             viewController.transactionDelegate = self
         } else if let viewController = segue.destination as? TransactionDetailsViewController {
-            viewController.transactionDummyData = transactionDummyData[transactionIndex]
-            viewController.products = transactionDummyData[transactionIndex].products
+            viewController.transactionDummyData = transactionDataSource[transactionIndex]
+            viewController.products = transactionDataSource[transactionIndex].products
         }
+    }
+}
+
+extension TransactionViewController : TransactionConform{
+    func transactionSave(transaction: DummyTransaction) {
+        transactionsAll?.append(transaction)
+        refreshTableView(selectedSegmentIndex: TransactionSegmentedControl.selectedSegmentIndex)
     }
 }
 
@@ -90,11 +92,11 @@ extension TransactionViewController : UITableViewDelegate {
 
 extension TransactionViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactionDummyData.count
+        return transactionDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let transaction = transactionDummyData[indexPath.row]
+        let transaction = transactionDataSource[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell") as! TransactionViewCell
         cell.labelStatus.text = transaction.status.rawValue
