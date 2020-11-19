@@ -205,7 +205,6 @@ struct CloudKitManager {
             clientRecord = CKRecord(recordType: "Client", recordID: clientRecordID)
         }
         
-        clientRecord.setValue(client.image, forKey: Client.keyImage)
         clientRecord.setValue(client.firstName, forKey: Client.keyFirstName)
         clientRecord.setValue(client.lastName, forKey: Client.keyLastName)
         clientRecord.setValue(client.emailAddress, forKey: Client.keyEmailAddress)
