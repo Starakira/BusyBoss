@@ -539,7 +539,11 @@
                                 <items>
                                     <navigationItem title="New Transaction" id="esz-70-AaT">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="vAe-FF-hu0"/>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="kIh-OJ-xga"/>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="kIh-OJ-xga">
+                                            <connections>
+                                                <action selector="newTransactionSaveButtonAction:" destination="mgx-Ww-VKt" id="Jq7-TD-fYl"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -690,8 +694,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahTax" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyE-2O-R3O">
-                                        <rect key="frame" x="296" y="11" width="80" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="JumlahTax" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyE-2O-R3O">
+                                        <rect key="frame" x="196" y="11" width="180" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -718,7 +722,7 @@
                                     <constraint firstAttribute="width" constant="382" id="QVC-ev-d1n"/>
                                     <constraint firstAttribute="bottom" secondItem="Y5L-4H-tcf" secondAttribute="bottom" constant="6" id="WhD-Nb-ONd"/>
                                     <constraint firstItem="OMA-O2-PFM" firstAttribute="leading" secondItem="vuY-EZ-YlY" secondAttribute="leading" constant="8" id="XeX-ch-9Mc"/>
-                                    <constraint firstItem="kyE-2O-R3O" firstAttribute="leading" secondItem="Y5L-4H-tcf" secondAttribute="trailing" constant="143" id="flP-cv-JUT"/>
+                                    <constraint firstItem="kyE-2O-R3O" firstAttribute="leading" secondItem="Y5L-4H-tcf" secondAttribute="trailing" constant="45" id="flP-cv-JUT"/>
                                     <constraint firstItem="Y5L-4H-tcf" firstAttribute="leading" secondItem="OMA-O2-PFM" secondAttribute="trailing" constant="32" id="oDV-8y-cwj"/>
                                     <constraint firstAttribute="bottom" secondItem="kyE-2O-R3O" secondAttribute="bottom" constant="12" id="vn3-V3-lHJ"/>
                                 </constraints>
@@ -733,8 +737,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahGrandTotal" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-fO-bKB">
-                                <rect key="frame" x="255" y="714" width="139" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="JumlahGrandTotal" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-fO-bKB">
+                                <rect key="frame" x="215" y="714" width="179" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="hf4-A4-E8X"/>
                                     <constraint firstAttribute="height" constant="21" id="xb0-lk-2LJ"/>
@@ -766,10 +770,10 @@
                                     <constraint firstAttribute="width" constant="382" id="yxs-Al-qsb"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahTotal" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mn-Fu-Cvk">
-                                <rect key="frame" x="307" y="557" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahTotal" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mn-Fu-Cvk">
+                                <rect key="frame" x="215" y="557" width="183" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="X42-Nl-9Uk"/>
+                                    <constraint firstAttribute="width" constant="183" id="X42-Nl-9Uk"/>
                                     <constraint firstAttribute="height" constant="21" id="xhN-XX-RgV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -848,7 +852,7 @@
                             <constraint firstItem="vuY-EZ-YlY" firstAttribute="leading" secondItem="JQ8-xo-0oK" secondAttribute="leading" constant="16" id="2pw-xf-Xhs"/>
                             <constraint firstItem="iXD-Ch-t3M" firstAttribute="top" secondItem="JQ8-xo-0oK" secondAttribute="top" constant="75" id="3de-BV-pHb"/>
                             <constraint firstItem="JQ8-xo-0oK" firstAttribute="bottom" secondItem="53B-Tp-G4a" secondAttribute="bottom" constant="606" id="43G-al-RLp"/>
-                            <constraint firstItem="4mn-Fu-Cvk" firstAttribute="leading" secondItem="gY6-6d-jeS" secondAttribute="trailing" constant="250" id="4Qu-XZ-fQU"/>
+                            <constraint firstItem="4mn-Fu-Cvk" firstAttribute="leading" secondItem="gY6-6d-jeS" secondAttribute="trailing" constant="158" id="4Qu-XZ-fQU"/>
                             <constraint firstItem="MPO-pk-Jrf" firstAttribute="leading" secondItem="JQ8-xo-0oK" secondAttribute="leading" constant="16" id="973-cb-cec"/>
                             <constraint firstItem="4mn-Fu-Cvk" firstAttribute="top" secondItem="YhQ-bl-dxD" secondAttribute="bottom" constant="8" symbolic="YES" id="9G7-md-CFl"/>
                             <constraint firstItem="Hat-fO-bKB" firstAttribute="top" secondItem="vuY-EZ-YlY" secondAttribute="bottom" constant="13" id="9OG-66-eZM"/>

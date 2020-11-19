@@ -45,16 +45,36 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     
     @IBOutlet weak var totalTransactionValueLabel: UILabel!
     
+    var transaction: DummyTransaction?
+    
+    var transactionNumber = 0
+    
     var client: Client?
     var clientIndex = -1
     
     var products: [Product] = []
     var productIndex = -1
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var totalProductPrice = 1000000000.0
     var discount = 0.0
     var tax = 0.0
     var totalPrice = 0.0
+    
+    let dateFormatter : DateFormatter = {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "dd/MM/yyyy"
+        return dateFormat
+    }()
+    
+    var validityDate : Date?
+    
+    var transactionDelegate: TransactionConform?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +82,7 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        totalProductPriceLabel.text = String(totalProductPrice)
+        totalProductPriceLabel.text = "Rp " + decimalFormatter.string(for: totalProductPrice)!
         
         discountTextField.isHidden = true
         
@@ -70,7 +90,11 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
         
         getTotalPrice()
         
+        validityDate = Date()
+        validityDateTextField.text = dateFormatter.string(from: validityDate ?? Date())
+        
         discountTextField.delegate = self
+        validityDateTextField.delegate = self
         
         productListNewTransaction.dataSource = self
         productListNewTransaction.delegate = self
@@ -90,8 +114,8 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     @IBAction func taxSwitchAction(_ sender: Any) {
         if taxSwitch.isOn {
             totalTaxLabel.isHidden = false
-            tax = totalProductPrice-(totalProductPrice*0.1)
-            totalTaxLabel.text = String(tax)
+            tax = totalProductPrice*0.1
+            totalTaxLabel.text = "Rp " + decimalFormatter.string(for: tax)!
             
             getTotalPrice()
         } else {
@@ -100,6 +124,13 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
             
             getTotalPrice()
         }
+    }
+    
+    @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
+        transaction = DummyTransaction(transactionNumber: "00\(transactionNumber+1)", description: "description", status: TransactionStatus.Undefined, approval: TransactionApproval.Undefined, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount , tax: tax , transactionTotalPrice: totalPrice)
+        
+        self.dismiss(animated: true, completion: nil)
+        transactionDelegate?.transactionSave(transaction: transaction!)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,7 +157,7 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     
     func getTotalPrice(){
         totalPrice = totalProductPrice - discount - tax
-        totalTransactionValueLabel.text = String(totalPrice)
+        totalTransactionValueLabel.text = "Rp " + decimalFormatter.string(for: totalPrice)!
     }
 }
 
@@ -136,6 +167,9 @@ extension ProductListNewTransactionViewController: UITextFieldDelegate{
             discount = Double(textField.text ?? "0.0") ?? 0.0
             
             getTotalPrice()
+        } else if textField == validityDateTextField {
+            validityDate = dateFormatter.date(from: textField.text ?? "00/00/0000")
+            print("Date is" +  dateFormatter.string(from: validityDate ?? Date()))
         }
     }
     
