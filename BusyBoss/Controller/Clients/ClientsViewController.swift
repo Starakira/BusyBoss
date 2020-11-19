@@ -122,6 +122,7 @@ extension ClientsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clientsCell", for: indexPath)as!ClientsTableViewCell
         let client = clients[indexPath.row]
+        
         cell.clientsLabel.text = client.firstName + client.lastName
         cell.clientsImage.image = client.image
         cell.clientsCompanyName.text = client.companyName

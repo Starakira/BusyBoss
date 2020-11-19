@@ -30,6 +30,7 @@ class TransactionViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        transactionsAll = []
 //        CloudKitManager.shared().transactionsFetchAll { (result, error) in
 //            if let error = error {
 //                Alert.showError(self, error)
@@ -43,6 +44,7 @@ class TransactionViewController: UIViewController {
     
     @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
         refreshTableView(selectedSegmentIndex: sender.selectedSegmentIndex)
+        print("Segmented is Called!")
     }
     
     func refreshTableView(selectedSegmentIndex: Int) {

@@ -54,6 +54,16 @@ class InputClientViewController: UIViewController {
                             companyName: clientCompanyName.text!,
                             companyAddress: clientAddress.text!)
         
+        CloudKitManager.shared().clientCreate(client: client) {
+            (record, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                
+            }
+            
+        }
+        
         print("Creating client...")
         self.client = client
     }
