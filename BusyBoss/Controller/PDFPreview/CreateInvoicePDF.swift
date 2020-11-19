@@ -60,51 +60,133 @@ class CreateInvoicePDF: NSObject {
         let normalattributes = [ NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
         let boldattributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
         let validattributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)]
+        var produk = ["Kacang2Kelinci","Kuaci Sambalado"]
+        var unit = ["Pieces","Pieces"]
+        var data2 = ["5","5"]
+        var price = ["100.000","100.000"]
+        var amount = ["500.000","500.000"]
+        var number = ["1","2"]
+
         
+        var a = 0
+        var b = 0
+        var c = 0
+        var d = 0
+        var e = 0
+        var f = 0
+
+        for Product in produk{
+            let tambah = a + 20
+            let Numbertext = Product
+            Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
+            a = tambah
+            
+        }
+        
+        for index in number{
+            let tambah = b + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
+            b = tambah
+        }
+        
+        for index in unit{
+            let tambah = c + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 235, y: 360 + tambah), withAttributes :normalattributes)
+            c = tambah
+        }
+        
+        for index in data2{
+            let tambah = d + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
+            d = tambah
+        }
+        
+        for index in price{
+            let tambah = e + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 400, y: 360 + tambah), withAttributes :normalattributes)
+            e = tambah
+        }
+        
+        for index in amount{
+            let tambah = f + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 500, y: 360 + tambah), withAttributes :normalattributes)
+            f = tambah
+        }
         
         
         //setting tulisan pasti
 //        let text = "QOUTATION"
 //        text.draw(at: CGPoint(x: 20, y: 40), withAttributes: attributes)
         
+
+        
         let Numbertext = "Number : "
         Numbertext.draw(at: CGPoint(x: 20, y: 75), withAttributes :normalattributes)
         
-        let data = "TO                            :"
+        let data = "To"
         data.draw(at: CGPoint(x: 20, y: 180), withAttributes : normalattributes)
         
-        let CompanyName = "Company Name      :"
-        CompanyName.draw(at: CGPoint(x: 20, y: 195), withAttributes : normalattributes)
+        let titikdua1 = ":"
+        titikdua1.draw(at: CGPoint(x: 140, y: 180), withAttributes : normalattributes)
         
-        let Address = "Address                   :"
-        Address.draw(at: CGPoint(x: 20, y: 210), withAttributes : normalattributes)
+        let CompanyName = "Company Name"
+        CompanyName.draw(at: CGPoint(x: 20, y: 200), withAttributes : normalattributes)
         
-        let PhoneNumber = "Phone Number        :"
-        PhoneNumber.draw(at: CGPoint(x: 20, y: 225), withAttributes : normalattributes)
+        let titikdua2 = ":"
+        titikdua2.draw(at: CGPoint(x: 140, y: 200), withAttributes : normalattributes)
         
-        let Email = "Email                        :"
-        Email.draw(at: CGPoint(x: 20, y: 240), withAttributes : normalattributes)
+        let Address = "Address"
+        Address.draw(at: CGPoint(x: 20, y: 220), withAttributes : normalattributes)
         
-        let TransactionTitle = "Transaction Title    :"
-        TransactionTitle.draw(at: CGPoint(x: 20, y: 265), withAttributes : boldattributes)
+        let titikdua3 = ":"
+        titikdua3.draw(at: CGPoint(x: 140, y: 220), withAttributes : normalattributes)
         
-        let Pages = "Pages                        :"
-        Pages.draw(at: CGPoint(x: 20, y: 280), withAttributes : boldattributes)
+        let PhoneNumber = "Phone Number"
+        PhoneNumber.draw(at: CGPoint(x: 20, y: 240), withAttributes : normalattributes)
+        
+        let titikdua4 = ":"
+        titikdua4.draw(at: CGPoint(x: 140, y: 240), withAttributes : normalattributes)
+        
+        let Email = "Email"
+        Email.draw(at: CGPoint(x: 20, y: 260), withAttributes : normalattributes)
+        
+        let titikdua5 = ":"
+        titikdua5.draw(at: CGPoint(x: 140, y: 260), withAttributes : normalattributes)
+        
+        let TransactionTitle = "Transaction Title"
+        TransactionTitle.draw(at: CGPoint(x: 20, y: 280), withAttributes : boldattributes)
+        
+        let titikdua6 = ":"
+        titikdua6.draw(at: CGPoint(x: 140, y: 280), withAttributes : normalattributes)
+        
+        let Pages = "Pages"
+        Pages.draw(at: CGPoint(x: 20, y: 300), withAttributes : boldattributes)
+        
+        let titikdua7 = ":"
+        titikdua7.draw(at: CGPoint(x: 140, y: 300), withAttributes : normalattributes)
+        
+        let JumlahPages = "1 Pages"
+        JumlahPages.draw(at: CGPoint(x: 150, y: 300), withAttributes : boldattributes)
         
         
         
         // setting tampilan table
         let Nomor = "NO"
-        Nomor.draw(at: CGPoint(x: 30, y: 330), withAttributes : boldattributes)
+        Nomor.draw(at: CGPoint(x: 30, y: 340), withAttributes : boldattributes)
         
         let ProductName = "Product Name"
-        ProductName.draw(at: CGPoint(x: 90, y: 330), withAttributes : boldattributes)
+        ProductName.draw(at: CGPoint(x: 90, y: 340), withAttributes : boldattributes)
         
         let Unit = "Unit"
-        Unit.draw(at: CGPoint(x: 240, y: 330), withAttributes : boldattributes)
+        Unit.draw(at: CGPoint(x: 240, y: 340), withAttributes : boldattributes)
         
         let Qty = "Qty"
-        Qty.draw(at: CGPoint(x: 320, y: 330), withAttributes : boldattributes)
+        Qty.draw(at: CGPoint(x: 320, y: 340), withAttributes : boldattributes)
         
         let UnitPrice = "Unit Price"
         UnitPrice.draw(at: CGPoint(x: 390, y: 330), withAttributes : boldattributes)
@@ -119,42 +201,35 @@ class CreateInvoicePDF: NSObject {
         IDR2.draw(at: CGPoint(x: 507, y: 350), withAttributes : boldattributes)
         
         let Total = "Total"
-        Total.draw(at: CGPoint(x: 400, y: 475), withAttributes : boldattributes)
+        Total.draw(at: CGPoint(x: 400, y: 460), withAttributes : boldattributes)
         
         let Discount = "Discount"
-        Discount.draw(at: CGPoint(x: 400, y: 490), withAttributes : boldattributes)
+        Discount.draw(at: CGPoint(x: 400, y: 480), withAttributes : boldattributes)
         
         let PPN = "PPN 10%"
-        PPN.draw(at: CGPoint(x: 400, y: 505), withAttributes : boldattributes)
+        PPN.draw(at: CGPoint(x: 400, y: 500), withAttributes : boldattributes)
         
         let GrandTotal = "Grand Total"
         GrandTotal.draw(at: CGPoint(x: 400, y: 520), withAttributes : boldattributes)
         
         // setting terms
-        let valid = "Please make your payment before : "
-        valid.draw(at: CGPoint(x: 20, y: 560),withAttributes : validattributes)
+        let valid = "Please make your payment before :"
+        valid.draw(at: CGPoint(x: 20, y: 540),withAttributes : validattributes)
         
         let Terms = "Terms and Condition :"
-        Terms.draw(at: CGPoint(x: 20, y: 580), withAttributes : normalattributes)
+        Terms.draw(at: CGPoint(x: 20, y: 565), withAttributes : normalattributes)
         
-        //setting tanda tangan
-//        let please = "Please confirm acceptance of this quotation"
-//        please.draw(at: CGPoint(x: 300, y: 640), withAttributes : normalattributes)
-//
-//        let please2 = "by clicking here. (ini untuk apps clips)"
-//        please2.draw(at: CGPoint(x: 300, y: 655), withAttributes : normalattributes)
+
         
         let Sincerely = "Sincerely,"
-        Sincerely.draw(at: CGPoint(x: 20, y: 665), withAttributes : boldattributes)
+        Sincerely.draw(at: CGPoint(x: 20, y: 660), withAttributes : boldattributes)
         
-//        let Signature = "Signature    :"
-//        Signature.draw(at: CGPoint(x: 300, y: 725), withAttributes : normalattributes)
-//
-//        let Name = "Name    :"
-//        Name.draw(at: CGPoint(x: 300, y: 740), withAttributes : normalattributes)
-//
-//        let Position = "Signature    :"
-//        Position.draw(at: CGPoint(x: 300, y: 755), withAttributes : normalattributes)
+        let Owner = "John Doe"
+        Owner.draw(at: CGPoint(x: 20, y: 740), withAttributes : normalattributes)
+        
+        let jabatan = "Director"
+        jabatan.draw(at: CGPoint(x: 300, y: 760), withAttributes : normalattributes)
+        
         
         //add data ke PDF
         

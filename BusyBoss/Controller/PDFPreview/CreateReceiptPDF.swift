@@ -60,6 +60,63 @@ class CreateReceiptPDF: NSObject {
         let boldattributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
         let validattributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)]
         
+        var produk = ["Kacang2Kelinci","Kuaci Sambalado"]
+        var unit = ["Pieces","Pieces"]
+        var data2 = ["5","5"]
+        var price = ["100.000","100.000"]
+        var amount = ["500.000","500.000"]
+        var number = ["1","2"]
+
+        
+        var a = 0
+        var b = 0
+        var c = 0
+        var d = 0
+        var e = 0
+        var f = 0
+
+        for Product in produk{
+            let tambah = a + 20
+            let Numbertext = Product
+            Numbertext.draw(at: CGPoint(x: 90, y: 480 + tambah), withAttributes :normalattributes)
+            a = tambah
+            
+        }
+        
+        for index in number{
+            let tambah = b + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 35, y: 480 + tambah), withAttributes :normalattributes)
+            b = tambah
+        }
+        
+        for index in unit{
+            let tambah = c + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 235, y: 480 + tambah), withAttributes :normalattributes)
+            c = tambah
+        }
+        
+        for index in data2{
+            let tambah = d + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 325, y: 480 + tambah), withAttributes :normalattributes)
+            d = tambah
+        }
+        
+        for index in price{
+            let tambah = e + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 400, y: 480 + tambah), withAttributes :normalattributes)
+            e = tambah
+        }
+        
+        for index in amount{
+            let tambah = f + 20
+            let Numbertext = index
+            Numbertext.draw(at: CGPoint(x: 500, y: 480 + tambah), withAttributes :normalattributes)
+            f = tambah
+        }
         
         
         //setting tulisan pasti
@@ -69,35 +126,60 @@ class CreateReceiptPDF: NSObject {
         let Numbertext = "Number : "
         Numbertext.draw(at: CGPoint(x: 20, y: 75), withAttributes :normalattributes)
         
-        let data = "TO                            :"
+        let data = "To"
         data.draw(at: CGPoint(x: 20, y: 180), withAttributes : normalattributes)
         
-        let CompanyName = "Company Name      :"
-        CompanyName.draw(at: CGPoint(x: 20, y: 195), withAttributes : normalattributes)
+        let titik1 = ":"
+        titik1.draw(at: CGPoint(x: 140, y: 180), withAttributes : normalattributes)
         
-        let Address = "Address                   :"
-        Address.draw(at: CGPoint(x: 20, y: 210), withAttributes : normalattributes)
+        let CompanyName = "Company Name"
+        CompanyName.draw(at: CGPoint(x: 20, y: 200), withAttributes : normalattributes)
         
-        let PhoneNumber = "Phone Number        :"
-        PhoneNumber.draw(at: CGPoint(x: 20, y: 225), withAttributes : normalattributes)
+        let titik2 = ":"
+        titik2.draw(at: CGPoint(x: 140, y: 200), withAttributes : normalattributes)
         
-        let Email = "Email                        :"
-        Email.draw(at: CGPoint(x: 20, y: 240), withAttributes : normalattributes)
+        let Address = "Address"
+        Address.draw(at: CGPoint(x: 20, y: 220), withAttributes : normalattributes)
+        
+        let titik3 = ":"
+        titik3.draw(at: CGPoint(x: 140, y: 220), withAttributes : normalattributes)
+        
+        let PhoneNumber = "Phone Number"
+        PhoneNumber.draw(at: CGPoint(x: 20, y: 240), withAttributes : normalattributes)
+        
+        let titik4 = ":"
+        titik4.draw(at: CGPoint(x: 140, y: 240), withAttributes : normalattributes)
+        
+        let Email = "Email"
+        Email.draw(at: CGPoint(x: 20, y: 260), withAttributes : normalattributes)
+        
+        let titik5 = ":"
+        titik5.draw(at: CGPoint(x: 140, y: 260), withAttributes : normalattributes)
         
         let Amount1 = "Amount"
-        Amount1.draw(at: CGPoint(x: 450, y: 250), withAttributes : boldattributes)
+        Amount1.draw(at: CGPoint(x: 450, y: 280), withAttributes : boldattributes)
         
-        let TransactionTitle = "Transaction Title    :"
-        TransactionTitle.draw(at: CGPoint(x: 20, y: 265), withAttributes : boldattributes)
         
-        let Pages = "Pages                        :"
-        Pages.draw(at: CGPoint(x: 20, y: 280), withAttributes : boldattributes)
+        let TransactionTitle = "Transaction Title"
+        TransactionTitle.draw(at: CGPoint(x: 20, y: 300), withAttributes : boldattributes)
+        
+        let titik7 = ":"
+        titik7.draw(at: CGPoint(x: 140, y: 300), withAttributes : normalattributes)
+        
+        let Pages = "Pages"
+        Pages.draw(at: CGPoint(x: 20, y: 320), withAttributes : boldattributes)
+        
+        let titik8 = ":"
+        titik8.draw(at: CGPoint(x: 140, y: 320), withAttributes : normalattributes)
+        
+        let halaman = "1 Page"
+        halaman.draw(at: CGPoint(x: 150, y: 320), withAttributes : normalattributes)
         
         let thanks = "We would like to confirm we have received your payment"
-        thanks.draw(at: CGPoint(x: 20, y: 320), withAttributes : normalattributes2)
+        thanks.draw(at: CGPoint(x: 20, y: 340), withAttributes : normalattributes2)
         
         let Amount2 = "Amount"
-        Amount2.draw(at: CGPoint(x: 20, y: 350), withAttributes : normalattributes2)
+        Amount2.draw(at: CGPoint(x: 20, y: 340), withAttributes : normalattributes2)
         
         let Say = "Say"
         Say.draw(at: CGPoint(x: 20, y: 380), withAttributes : normalattributes2)
@@ -110,28 +192,28 @@ class CreateReceiptPDF: NSObject {
         
         // setting tampilan table
         let Nomor = "NO"
-        Nomor.draw(at: CGPoint(x: 30, y: 450), withAttributes : boldattributes)
+        Nomor.draw(at: CGPoint(x: 30, y: 460), withAttributes : boldattributes)
         
         let ProductName = "Product Name"
-        ProductName.draw(at: CGPoint(x: 90, y: 450), withAttributes : boldattributes)
+        ProductName.draw(at: CGPoint(x: 90, y: 460), withAttributes : boldattributes)
         
         let Unit = "Unit"
-        Unit.draw(at: CGPoint(x: 240, y: 450), withAttributes : boldattributes)
+        Unit.draw(at: CGPoint(x: 240, y: 460), withAttributes : boldattributes)
         
         let Qty = "Qty"
-        Qty.draw(at: CGPoint(x: 320, y: 450), withAttributes : boldattributes)
+        Qty.draw(at: CGPoint(x: 320, y: 460), withAttributes : boldattributes)
         
         let UnitPrice = "Unit Price"
         UnitPrice.draw(at: CGPoint(x: 390, y: 450), withAttributes : boldattributes)
         
         let IDR1 = "(IDR)"
-        IDR1.draw(at: CGPoint(x: 407, y: 465), withAttributes : boldattributes)
+        IDR1.draw(at: CGPoint(x: 407, y: 470), withAttributes : boldattributes)
         
         let Amount = "Amount"
         Amount.draw(at: CGPoint(x: 500, y: 450), withAttributes : boldattributes)
         
         let IDR2 = "(IDR)"
-        IDR2.draw(at: CGPoint(x: 507, y: 465), withAttributes : boldattributes)
+        IDR2.draw(at: CGPoint(x: 507, y: 470), withAttributes : boldattributes)
         
         let Total = "Total"
         Total.draw(at: CGPoint(x: 400, y: 580), withAttributes : boldattributes)
@@ -144,7 +226,6 @@ class CreateReceiptPDF: NSObject {
         
         let GrandTotal = "Grand Total"
         GrandTotal.draw(at: CGPoint(x: 400, y: 625), withAttributes : boldattributes)
-        
         
         
         
