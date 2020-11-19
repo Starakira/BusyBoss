@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -539,7 +539,11 @@
                                 <items>
                                     <navigationItem title="New Transaction" id="esz-70-AaT">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="vAe-FF-hu0"/>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="kIh-OJ-xga"/>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="kIh-OJ-xga">
+                                            <connections>
+                                                <action selector="newTransactionSaveButtonAction:" destination="mgx-Ww-VKt" id="Jq7-TD-fYl"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -648,34 +652,33 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahDiscount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nle-4Q-8FJ">
-                                        <rect key="frame" x="251" y="11" width="123" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kGq-nE-EJn">
                                         <rect key="frame" x="103" y="6" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="6h6-1a-6RP"/>
                                             <constraint firstAttribute="width" constant="49" id="eR6-Vp-yY7"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="discountSwitchAction:" destination="mgx-Ww-VKt" eventType="valueChanged" id="jny-CU-6NF"/>
+                                        </connections>
                                     </switch>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wR-ll-blK">
+                                        <rect key="frame" x="200" y="5" width="174" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="Nle-4Q-8FJ" firstAttribute="leading" secondItem="kGq-nE-EJn" secondAttribute="trailing" constant="99" id="6EO-dD-5fm"/>
                                     <constraint firstItem="kGq-nE-EJn" firstAttribute="top" secondItem="jK2-bO-0O7" secondAttribute="top" constant="6" id="8Rz-Wi-4Wj"/>
                                     <constraint firstAttribute="bottom" secondItem="kGq-nE-EJn" secondAttribute="bottom" constant="7" id="Fk8-2I-z6D"/>
                                     <constraint firstItem="pUb-Oe-jUf" firstAttribute="top" secondItem="jK2-bO-0O7" secondAttribute="top" constant="12" id="RI6-UN-QSB"/>
                                     <constraint firstAttribute="bottom" secondItem="pUb-Oe-jUf" secondAttribute="bottom" constant="11" id="UF7-Az-eJf"/>
-                                    <constraint firstItem="Nle-4Q-8FJ" firstAttribute="top" secondItem="jK2-bO-0O7" secondAttribute="top" constant="11" id="aOO-Fg-SRs"/>
                                     <constraint firstItem="kGq-nE-EJn" firstAttribute="leading" secondItem="pUb-Oe-jUf" secondAttribute="trailing" constant="27" id="nvB-oy-Zv6"/>
-                                    <constraint firstAttribute="trailing" secondItem="Nle-4Q-8FJ" secondAttribute="trailing" constant="8" id="rOz-fA-w9d"/>
                                     <constraint firstAttribute="width" constant="382" id="tc7-M4-jqI"/>
                                     <constraint firstAttribute="height" constant="44" id="ujz-Ho-LZO"/>
                                     <constraint firstItem="pUb-Oe-jUf" firstAttribute="leading" secondItem="jK2-bO-0O7" secondAttribute="leading" constant="8" id="wzC-55-bKh"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nle-4Q-8FJ" secondAttribute="bottom" constant="12" id="zut-Td-xrQ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vuY-EZ-YlY">
@@ -691,8 +694,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahTax" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyE-2O-R3O">
-                                        <rect key="frame" x="296" y="11" width="80" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="JumlahTax" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyE-2O-R3O">
+                                        <rect key="frame" x="196" y="11" width="180" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -703,6 +706,9 @@
                                             <constraint firstAttribute="width" constant="49" id="9DA-R3-VgJ"/>
                                             <constraint firstAttribute="height" constant="31" id="Dus-gn-vsZ"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="taxSwitchAction:" destination="mgx-Ww-VKt" eventType="valueChanged" id="heK-dz-Xn6"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -716,7 +722,7 @@
                                     <constraint firstAttribute="width" constant="382" id="QVC-ev-d1n"/>
                                     <constraint firstAttribute="bottom" secondItem="Y5L-4H-tcf" secondAttribute="bottom" constant="6" id="WhD-Nb-ONd"/>
                                     <constraint firstItem="OMA-O2-PFM" firstAttribute="leading" secondItem="vuY-EZ-YlY" secondAttribute="leading" constant="8" id="XeX-ch-9Mc"/>
-                                    <constraint firstItem="kyE-2O-R3O" firstAttribute="leading" secondItem="Y5L-4H-tcf" secondAttribute="trailing" constant="143" id="flP-cv-JUT"/>
+                                    <constraint firstItem="kyE-2O-R3O" firstAttribute="leading" secondItem="Y5L-4H-tcf" secondAttribute="trailing" constant="45" id="flP-cv-JUT"/>
                                     <constraint firstItem="Y5L-4H-tcf" firstAttribute="leading" secondItem="OMA-O2-PFM" secondAttribute="trailing" constant="32" id="oDV-8y-cwj"/>
                                     <constraint firstAttribute="bottom" secondItem="kyE-2O-R3O" secondAttribute="bottom" constant="12" id="vn3-V3-lHJ"/>
                                 </constraints>
@@ -731,8 +737,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahGrandTotal" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-fO-bKB">
-                                <rect key="frame" x="255" y="714" width="139" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="JumlahGrandTotal" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-fO-bKB">
+                                <rect key="frame" x="215" y="714" width="179" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="139" id="hf4-A4-E8X"/>
                                     <constraint firstAttribute="height" constant="21" id="xb0-lk-2LJ"/>
@@ -751,13 +757,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxS-ou-9JE">
-                                        <rect key="frame" x="338" y="11" width="36" height="21"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="dd/mm/yyyy" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ASn-VT-YOP">
+                                        <rect key="frame" x="200" y="0.0" width="174" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -765,10 +770,10 @@
                                     <constraint firstAttribute="width" constant="382" id="yxs-Al-qsb"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahTotal" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mn-Fu-Cvk">
-                                <rect key="frame" x="307" y="557" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JumlahTotal" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mn-Fu-Cvk">
+                                <rect key="frame" x="215" y="557" width="183" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="91" id="X42-Nl-9Uk"/>
+                                    <constraint firstAttribute="width" constant="183" id="X42-Nl-9Uk"/>
                                     <constraint firstAttribute="height" constant="21" id="xhN-XX-RgV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -847,7 +852,7 @@
                             <constraint firstItem="vuY-EZ-YlY" firstAttribute="leading" secondItem="JQ8-xo-0oK" secondAttribute="leading" constant="16" id="2pw-xf-Xhs"/>
                             <constraint firstItem="iXD-Ch-t3M" firstAttribute="top" secondItem="JQ8-xo-0oK" secondAttribute="top" constant="75" id="3de-BV-pHb"/>
                             <constraint firstItem="JQ8-xo-0oK" firstAttribute="bottom" secondItem="53B-Tp-G4a" secondAttribute="bottom" constant="606" id="43G-al-RLp"/>
-                            <constraint firstItem="4mn-Fu-Cvk" firstAttribute="leading" secondItem="gY6-6d-jeS" secondAttribute="trailing" constant="250" id="4Qu-XZ-fQU"/>
+                            <constraint firstItem="4mn-Fu-Cvk" firstAttribute="leading" secondItem="gY6-6d-jeS" secondAttribute="trailing" constant="158" id="4Qu-XZ-fQU"/>
                             <constraint firstItem="MPO-pk-Jrf" firstAttribute="leading" secondItem="JQ8-xo-0oK" secondAttribute="leading" constant="16" id="973-cb-cec"/>
                             <constraint firstItem="4mn-Fu-Cvk" firstAttribute="top" secondItem="YhQ-bl-dxD" secondAttribute="bottom" constant="8" symbolic="YES" id="9G7-md-CFl"/>
                             <constraint firstItem="Hat-fO-bKB" firstAttribute="top" secondItem="vuY-EZ-YlY" secondAttribute="bottom" constant="13" id="9OG-66-eZM"/>
@@ -892,8 +897,15 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ProductListNewTransaction" destination="Z8Q-JR-3ri" id="r5g-s7-o1F"/>
                         <outlet property="clientTextField" destination="ylh-n2-5Vb" id="czy-kC-DQy"/>
+                        <outlet property="discountTextField" destination="9wR-ll-blK" id="vRl-6a-ho7"/>
+                        <outlet property="disountSwitch" destination="kGq-nE-EJn" id="OYs-9x-rx9"/>
+                        <outlet property="productListNewTransaction" destination="Z8Q-JR-3ri" id="r5g-s7-o1F"/>
+                        <outlet property="taxSwitch" destination="Y5L-4H-tcf" id="6uM-lt-U0d"/>
+                        <outlet property="totalProductPriceLabel" destination="4mn-Fu-Cvk" id="d6S-Qx-F00"/>
+                        <outlet property="totalTaxLabel" destination="kyE-2O-R3O" id="A78-cy-8rc"/>
+                        <outlet property="totalTransactionValueLabel" destination="Hat-fO-bKB" id="GLW-UV-XlV"/>
+                        <outlet property="validityDateTextField" destination="ASn-VT-YOP" id="FrD-6t-4da"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rf5-fC-BMl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1220,7 +1232,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="TableBarangProductList" destination="oxz-EL-I3f" id="Z5Y-0l-EQE"/>
+                        <outlet property="goodsProductListTableView" destination="oxz-EL-I3f" id="Z5Y-0l-EQE"/>
                         <segue destination="zah-Tg-Z5F" kind="show" identifier="AddGoodDetailsSegue" id="kIa-2W-DCx"/>
                     </connections>
                 </viewController>
@@ -1228,10 +1240,10 @@
             </objects>
             <point key="canvasLocation" x="-383" y="224"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Good Details View Controller-->
         <scene sceneID="EjB-BS-EXX">
             <objects>
-                <viewController id="zah-Tg-Z5F" sceneMemberID="viewController">
+                <viewController id="zah-Tg-Z5F" customClass="AddGoodDetailsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Ui-cn-zl5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="636"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1289,6 +1301,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYU-Rb-5xL">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
                                         <state key="normal" image="minus.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="minusQuantityButtonAction:" destination="zah-Tg-Z5F" eventType="touchUpInside" id="QzG-Vu-U7g"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKY-Qi-jBx">
                                         <rect key="frame" x="33" y="0.0" width="10.5" height="22"/>
@@ -1299,6 +1314,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imA-GG-21s">
                                         <rect key="frame" x="56.5" y="0.0" width="20" height="22"/>
                                         <state key="normal" image="plus.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="plusQuantityButtonAction:" destination="zah-Tg-Z5F" eventType="touchUpInside" id="IFE-P9-MEp"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1311,7 +1329,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Barang" id="Dtu-oC-AlC">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Ubh-ad-I2X"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Ubh-ad-I2X">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="zah-Tg-Z5F" id="MY3-9f-BnA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="P93-ET-o0X">
+                                            <connections>
+                                                <action selector="saveButtonAction:" destination="zah-Tg-Z5F" id="fXC-9R-ZsD"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1341,6 +1368,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bEh-UT-cmN"/>
+                    <connections>
+                        <outlet property="productNameLabel" destination="xfK-WB-cJv" id="Pa6-FW-iTL"/>
+                        <outlet property="productPriceLabel" destination="j0i-K0-aqD" id="Bop-ob-uFW"/>
+                        <outlet property="productQuantityLabel" destination="vKY-Qi-jBx" id="VMx-G6-p4e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U01-Qo-3Yp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1407,7 +1439,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="TableJasaProductList" destination="25T-eU-BR8" id="8G6-rw-KFM"/>
+                        <outlet property="servicesProductListTableView" destination="25T-eU-BR8" id="8G6-rw-KFM"/>
                         <segue destination="jzM-L3-jkh" kind="show" identifier="AddServiceDetailsSegue" id="Lgc-pT-E1t"/>
                     </connections>
                 </viewController>
@@ -1415,10 +1447,10 @@
             </objects>
             <point key="canvasLocation" x="-384" y="-312"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Service Details View Controller-->
         <scene sceneID="S8L-hA-GD3">
             <objects>
-                <viewController id="jzM-L3-jkh" sceneMemberID="viewController">
+                <viewController id="jzM-L3-jkh" customClass="AddServiceDetailsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jxb-rM-OC2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="636"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1428,7 +1460,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Jasa" id="lZo-aH-pEy">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="FLX-v4-uAy"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="FLX-v4-uAy">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="jzM-L3-jkh" id="NWO-V4-eNq"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="NFE-xs-5si">
+                                            <connections>
+                                                <action selector="saveButtonAction:" destination="jzM-L3-jkh" id="XBJ-gH-DZJ"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1478,6 +1519,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxv-oI-pVp">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
                                         <state key="normal" image="minus.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="minusQuantityButtonAction:" destination="jzM-L3-jkh" eventType="touchUpInside" id="R1t-up-Vf2"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6u-QH-8Xc">
                                         <rect key="frame" x="33" y="0.0" width="10.5" height="22"/>
@@ -1488,6 +1532,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSb-6N-350">
                                         <rect key="frame" x="56.5" y="0.0" width="20" height="22"/>
                                         <state key="normal" image="plus.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="plusQuantityButtonAction:" destination="jzM-L3-jkh" eventType="touchUpInside" id="mn4-9G-iOh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -1518,6 +1565,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7Gh-gW-zDd"/>
+                    <connections>
+                        <outlet property="productNameLabel" destination="OE8-PG-BSX" id="8Hw-Pv-pBJ"/>
+                        <outlet property="productPriceLabel" destination="ooy-VZ-XQo" id="3Sd-OK-15z"/>
+                        <outlet property="productQuantityLabel" destination="J6u-QH-8Xc" id="6IV-Cd-dVF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5X-Za-DIX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

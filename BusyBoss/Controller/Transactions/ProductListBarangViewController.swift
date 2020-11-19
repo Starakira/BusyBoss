@@ -7,20 +7,33 @@
 
 import UIKit
 
-class ProductListBarangViewController: UIViewController {
+protocol ProductGoodsDismiss {
+    func performDismissal (checkProduct: Product)
+}
+
+class ProductListBarangViewController: UIViewController, ProductGoodsDismiss {
+    func performDismissal(checkProduct: Product) {
+        dismiss(animated: true, completion: nil)
+        self.checkProduct = checkProduct
+        if self.checkProduct != nil {
+            passProductDelegate?.productListPassData(product: self.checkProduct!)
+            
+        }
+    }
+    var checkProduct: Product?
     
     var products : [Product] = []
     var index = -1
     
-    @IBOutlet weak var TableBarangProductList: UITableView!
+    var passProductDelegate: ProductsConform?
+    
+    @IBOutlet weak var goodsProductListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("View loaded")
-        
-        TableBarangProductList.dataSource = self
-        TableBarangProductList.delegate = self
+        goodsProductListTableView.dataSource = self
+        goodsProductListTableView.delegate = self
         
         CloudKitManager.shared().productsFetchAll {
             (products, error) in
@@ -28,17 +41,32 @@ class ProductListBarangViewController: UIViewController {
                 print(error.localizedDescription)
             }
             else {
-                print("Fetching client successful")
+                print("Fetching products successful")
                 print("Products = \(products.count)")
-                self.products = products
-                self.TableBarangProductList.reloadData()
+                
+                for product in products {
+                    print(product.type.rawValue)
+                    if product.type.rawValue == "goods"{
+                        self.products.append(product)
+                        self.goodsProductListTableView.reloadData()
+                        print(self.products)
+                    }
+                }
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AddGoodDetailsViewController{
+            vc.product = products[index]
+            vc.productListDelegate = self
         }
     }
 }
 
 extension ProductListBarangViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        index = indexPath.row
         performSegue(withIdentifier: "AddGoodDetailsSegue", sender: self)
     }
 }

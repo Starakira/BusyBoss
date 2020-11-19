@@ -45,7 +45,6 @@ class AllTransactionViewController: UIViewController, UITableViewDataSource, UIT
         
         allTransactionTableView.dataSource = self
         allTransactionTableView.delegate = self
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,7 +57,6 @@ class AllTransactionViewController: UIViewController, UITableViewDataSource, UIT
         print (Data)
         
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

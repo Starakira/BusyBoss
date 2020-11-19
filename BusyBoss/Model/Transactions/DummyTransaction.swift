@@ -1,49 +1,32 @@
 //
-//  Transaction.swift
+//  DummyTransaction.swift
 //  BusyBoss
 //
-//  Created by Yafet Sutanto on 06/11/20.
+//  Created by Muhammad Bangun Agung on 19/11/20.
 //
 
 import Foundation
 import CloudKit
 
-public struct Transaction {
-    var recordID: CKRecord.ID?
+struct DummyTransaction {
+    
     var transactionNumber: String
-    var user: User
     var description: String
     var status: TransactionStatus
     var approval: TransactionApproval
     var products: [Product]?
-    var productReferences: [CKRecord.Reference]?
     var client: Client?
     var validityDate: Date
     var discount: Double?
     var tax: Double?
-    
-    static let keyTransactionNumber = "transactionNumber"
-    static let keyDescription = "description"
-    static let keyStatus = "status"
-    static let keyDiscount = "discount"
-    static let keyTax = "tax"
-    static let keyValidityDate = "validityDate"
-    
-    func getTotalProductPrices() -> Double {
-        var total: Double = 0
-        
-        for product in products ?? []{
-            total += product.price
-        }
-        return total
-    }
+    var transactionTotalPrice: Double
 }
 
-extension Transaction {
-    init(record: CKRecord) {
-        let recordID = record.recordID
+extension DummyTransaction {
+    static let shared = DummyTransaction(transactionNumber: "", description: "", status: TransactionStatus.Undefined, approval: TransactionApproval.Undefined, products: [], client: Client.init(recordID: CKRecord.ID(), image: #imageLiteral(resourceName: "shiba icon new"), firstName: "", lastName: "", emailAddress: "", phoneNumber: "", companyName: "", companyAddress: ""), validityDate: Date(), discount: 0.0, tax: 0.0, transactionTotalPrice: 0.0)
+    
+    private init(transaction: DummyTransaction) {
         let transactionNumber = ""
-        let user = User.currentUser()
         let description = ""
         
         let dateFormatter = DateFormatter()
@@ -53,11 +36,9 @@ extension Transaction {
         let discount = 0.0
         let tax = 0.0
         
-        let productReferences = record["productReference"] as? [CKRecord.Reference] ?? []
+        var status: TransactionStatus
         
-        var status:TransactionStatus
-        
-        switch record["status"] as? String ?? "" {
+        switch transaction.status.rawValue {
         case TransactionStatus.Ongoing.rawValue:
             status = TransactionStatus.Ongoing
         case TransactionStatus.Canceled.rawValue:
@@ -70,7 +51,7 @@ extension Transaction {
         
         var approval: TransactionApproval
         
-        switch record["approval"] as? String ?? "" {
+        switch transaction.approval.rawValue {
         case TransactionApproval.Approved.rawValue:
             approval = TransactionApproval.Approved
         case TransactionApproval.Rejected.rawValue:
@@ -79,18 +60,20 @@ extension Transaction {
             approval = TransactionApproval.Undefined
         }
         
-        self.init(recordID: recordID, transactionNumber: transactionNumber, user: user!, description: description, status: status, approval: approval, productReferences: productReferences, validityDate: validityDate!, discount: discount, tax: tax)
+        let transactionTotalPrice = 0.0
+        
+        self.init(transactionNumber: transactionNumber, description: description, status: status, approval: approval, validityDate: validityDate!, discount: discount, tax: tax, transactionTotalPrice: transactionTotalPrice)
     }
 }
 
-public enum TransactionStatus : String {
+public enum DummyTransactionStatus : String {
     case Ongoing
     case Canceled
     case Completed
     case Undefined
 }
 
-public enum TransactionApproval : String {
+public enum DummyTransactionApproval : String {
     case Approved
     case Rejected
     case Undefined

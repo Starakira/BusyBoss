@@ -14,29 +14,33 @@ class ProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        segmentedClear(index: 0)
     }
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
+        segmentedClear(index: sender.selectedSegmentIndex)
+    }
+    
+    func segmentedClear(index: Int) {
+        if index == 0 {
             goodsView.isHidden = false
             servicesView.isHidden = true
         }
-        else if sender.selectedSegmentIndex == 1{
+        else if index == 1 {
             goodsView.isHidden = true
             servicesView.isHidden = false
         }
     }
     
     @IBAction func addProducts(_ sender: Any) {
-     let alert = UIAlertController(title: "Title", message: "お願いします", preferredStyle: .actionSheet)
+     let alert = UIAlertController(title: "Title", message: "Goods or Service", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Goods", style: .default, handler: { (_) in
             self.performSegue(withIdentifier: "inputGoods", sender: self)
                }))
         alert.addAction(UIAlertAction(title: "Service", style: .default, handler: { (_) in
             self.performSegue(withIdentifier: "inputServices", sender: self)
                }))
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     }
     
 

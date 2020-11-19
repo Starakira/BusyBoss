@@ -251,10 +251,12 @@ struct CloudKitManager {
         transactionRecord.setValue(transaction.transactionNumber, forKey: Transaction.keyTransactionNumber)
         transactionRecord.setValue(transaction.description, forKey: Transaction.keyDescription)
         transactionRecord.setValue(transaction.status.rawValue, forKey: Transaction.keyStatus)
+        transactionRecord.setValue(transaction.discount, forKey: Transaction.keyDiscount)
+        transactionRecord.setValue(transaction.tax, forKey: Transaction.keyTax)
+        transactionRecord.setValue(transaction.validityDate, forKey: Transaction.keyValidityDate)
         transactionRecord.setValue(userReference, forKey: "userReference")
         transactionRecord.setValue(clientReference, forKey: "clientReference")
         transactionRecord.setValue(productRecordIDs, forKey: "productReferenceList")
-        
         
         publicDatabase.save(transactionRecord) {(savedRecord, error) in
             if error != nil{

@@ -8,14 +8,51 @@
 import UIKit
 
 class AddGoodDetailsViewController: UIViewController {
-
+    
+    @IBOutlet weak var productNameLabel: UILabel!
+    @IBOutlet weak var productPriceLabel: UILabel!
+    @IBOutlet weak var productQuantityLabel: UILabel!
+    @IBOutlet weak var productImageLabel: UIImageView!
+    
+    var product: Product?
+    
+    var productListDelegate: ProductGoodsDismiss?
+    
+    var productQuantity: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        productNameLabel.text = product?.name
+        productPriceLabel.text = String(product?.price ?? 0.0)
+        productQuantityLabel.text = String(productQuantity)
     }
     
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    
+    @IBAction func plusQuantityButtonAction(_ sender: Any) {
+        productQuantity += 1
+        productQuantityLabel.text = String(productQuantity)
+    }
+    
+    @IBAction func minusQuantityButtonAction(_ sender: Any) {
+        productQuantity -= 1
+        productQuantityLabel.text = String(productQuantity)
+    }
+    
+    @IBAction func saveButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+        productListDelegate?.performDismissal(checkProduct: product!)
+        //self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
