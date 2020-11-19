@@ -49,7 +49,6 @@
 		F599E38425513ADA00B78AFC /* ClientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */; };
 		F599E38525513ADA00B78AFC /* GoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E38225513ADA00B78AFC /* GoodsTableViewCell.swift */; };
 		F599E39225513D2500B78AFC /* Clients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38C25513D2500B78AFC /* Clients.storyboard */; };
-		F599E39325513D2500B78AFC /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38D25513D2500B78AFC /* Products.storyboard */; };
 		F599E39425513D2500B78AFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38E25513D2500B78AFC /* Main.storyboard */; };
 		F599E39525513D2500B78AFC /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38F25513D2500B78AFC /* Settings.storyboard */; };
 		F599E39625513D2500B78AFC /* Profile~.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39025513D2500B78AFC /* Profile~.storyboard */; };
@@ -108,7 +107,6 @@
 		F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsTableViewCell.swift; sourceTree = "<group>"; };
 		F599E38225513ADA00B78AFC /* GoodsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsTableViewCell.swift; sourceTree = "<group>"; };
 		F599E38C25513D2500B78AFC /* Clients.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clients.storyboard; sourceTree = "<group>"; };
-		F599E38D25513D2500B78AFC /* Products.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
 		F599E38E25513D2500B78AFC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F599E38F25513D2500B78AFC /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		F599E39025513D2500B78AFC /* Profile~.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Profile~.storyboard"; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				F599E39925513D4C00B78AFC /* Base.lproj */,
 				F599E39D25513D4C00B78AFC /* Login.storyboard */,
 				F599E38C25513D2500B78AFC /* Clients.storyboard */,
-				F599E38D25513D2500B78AFC /* Products.storyboard */,
 				F599E39025513D2500B78AFC /* Profile~.storyboard */,
 				F599E38F25513D2500B78AFC /* Settings.storyboard */,
 				F599E39125513D2500B78AFC /* Transactions.storyboard */,
@@ -399,7 +396,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F599E39325513D2500B78AFC /* Products.storyboard in Resources */,
 				F599E39E25513D4C00B78AFC /* LaunchScreen.storyboard in Resources */,
 				F599E39425513D2500B78AFC /* Main.storyboard in Resources */,
 				F599E31A2551380F00B78AFC /* Assets.xcassets in Resources */,
