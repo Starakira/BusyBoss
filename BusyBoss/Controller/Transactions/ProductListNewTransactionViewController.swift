@@ -35,6 +35,8 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     
     @IBOutlet weak var taxSwitch: UISwitch!
     
+    @IBOutlet weak var transactionNumberTextField: UITextField!
+    
     @IBOutlet weak var discountTextField: UITextField!
     
     @IBOutlet weak var validityDateTextField: UITextField!
@@ -47,7 +49,7 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     
     var transaction: DummyTransaction?
     
-    var transactionNumber = 0
+    var transactionNumber = ""
     
     var client: Client?
     var clientIndex = -1
@@ -127,7 +129,7 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     }
     
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
-        transaction = DummyTransaction(transactionNumber: "00\(transactionNumber+1)", description: "description", status: TransactionStatus.Undefined, approval: TransactionApproval.Undefined, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount , tax: tax , transactionTotalPrice: totalPrice)
+        transaction = DummyTransaction(transactionNumber: transactionNumber, description: "description", status: TransactionStatus.Ongoing, approval: TransactionApproval.Undefined, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount , tax: tax , transactionTotalPrice: totalPrice)
         
         self.dismiss(animated: true, completion: nil)
         transactionDelegate?.transactionSave(transaction: transaction!)
@@ -163,7 +165,9 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
 
 extension ProductListNewTransactionViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == discountTextField {
+        if textField == transactionNumberTextField {
+            transactionNumber = transactionNumberTextField.text ?? ""
+        } else if textField == discountTextField {
             discount = Double(textField.text ?? "0.0") ?? 0.0
             
             getTotalPrice()

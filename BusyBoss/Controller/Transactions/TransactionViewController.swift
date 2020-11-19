@@ -13,6 +13,7 @@ protocol TransactionConform {
 
 class TransactionViewController: UIViewController, TransactionConform {
     func transactionSave(transaction: DummyTransaction) {
+        print("Products = \(String(describing: transaction.products))")
         transactionDummyData.append(transaction)
         tableView.reloadData()
     }
@@ -23,8 +24,8 @@ class TransactionViewController: UIViewController, TransactionConform {
     var transactionDummyData: [DummyTransaction] = []
 
     var transactionsAll: [DummyTransaction]?
-//
-//    var transactions: [Transaction] = []
+    
+    var transactionIndex = -1
 
     override func viewDidLoad() {
         tableView.delegate = self
@@ -53,7 +54,7 @@ class TransactionViewController: UIViewController, TransactionConform {
             case 1: //Completed
                 transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Completed}
             case 2:
-                transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Ongoing}
+                transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Canceled}
             default:
                 return
             }
@@ -67,18 +68,17 @@ class TransactionViewController: UIViewController, TransactionConform {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? ProductListNewTransactionViewController {
             viewController.transactionDelegate = self
+        } else if let viewController = segue.destination as? TransactionDetailsViewController {
+            viewController.transactionDummyData = transactionDummyData[transactionIndex]
+            viewController.products = transactionDummyData[transactionIndex].products
         }
-        
-        if let viewController = segue.destination as? TransactionDetailsViewController {
-            
-        }
-        
     }
 }
 
 extension TransactionViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        transactionIndex = indexPath.row
+        performSegue(withIdentifier: "transactionDetailsSegue", sender: self)
     }
 }
 
@@ -94,7 +94,7 @@ extension TransactionViewController : UITableViewDataSource {
         cell.labelStatus.text = transaction.status.rawValue
         cell.labelDescription.text = transaction.description
         cell.labelTotalPrice.text = "Rp. \(transaction.transactionTotalPrice),-)"
-        cell.labelTransactionCode.text = "001"
+        cell.labelTransactionCode.text = transaction.transactionNumber
         cell.labelClientName.text = "\(transaction.client?.firstName ?? "") \(transaction.client?.lastName ?? "")"
         return cell
     }

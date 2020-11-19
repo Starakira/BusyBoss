@@ -34,14 +34,11 @@
 		F599E3682551398400B78AFC /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34C2551398300B78AFC /* ProductsViewController.swift */; };
 		F599E3692551398400B78AFC /* InputClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34D2551398300B78AFC /* InputClientsViewController.swift */; };
 		F599E36A2551398400B78AFC /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34E2551398300B78AFC /* GoodsViewController.swift */; };
-		F599E36B2551398400B78AFC /* OnGoingTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */; };
 		F599E36C2551398400B78AFC /* ProductListBarangViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */; };
 		F599E36F2551398400B78AFC /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3532551398300B78AFC /* ServicesViewController.swift */; };
 		F599E3732551398400B78AFC /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3572551398300B78AFC /* ClientsViewController.swift */; };
 		F599E3742551398400B78AFC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3582551398300B78AFC /* RegisterViewController.swift */; };
 		F599E3752551398400B78AFC /* ProductListNewTransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3592551398300B78AFC /* ProductListNewTransactionViewCell.swift */; };
-		F599E3762551398400B78AFC /* AllTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35A2551398300B78AFC /* AllTransactionViewController.swift */; };
-		F599E3772551398400B78AFC /* OnGoingTransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */; };
 		F599E3782551398400B78AFC /* ProductListJasaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35C2551398300B78AFC /* ProductListJasaViewController.swift */; };
 		F599E37A2551398400B78AFC /* ClientContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */; };
 		F599E37B2551398400B78AFC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E35F2551398400B78AFC /* LoginViewController.swift */; };
@@ -95,14 +92,11 @@
 		F599E34C2551398300B78AFC /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		F599E34D2551398300B78AFC /* InputClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputClientsViewController.swift; sourceTree = "<group>"; };
 		F599E34E2551398300B78AFC /* GoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
-		F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnGoingTransactionViewController.swift; sourceTree = "<group>"; };
 		F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListBarangViewCell.swift; sourceTree = "<group>"; };
 		F599E3532551398300B78AFC /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
 		F599E3572551398300B78AFC /* ClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsViewController.swift; sourceTree = "<group>"; };
 		F599E3582551398300B78AFC /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		F599E3592551398300B78AFC /* ProductListNewTransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListNewTransactionViewCell.swift; sourceTree = "<group>"; };
-		F599E35A2551398300B78AFC /* AllTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTransactionViewController.swift; sourceTree = "<group>"; };
-		F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnGoingTransactionViewCell.swift; sourceTree = "<group>"; };
 		F599E35C2551398300B78AFC /* ProductListJasaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListJasaViewController.swift; sourceTree = "<group>"; };
 		F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientContactTableViewCell.swift; sourceTree = "<group>"; };
 		F599E35F2551398400B78AFC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -237,11 +231,8 @@
 		F599E38925513B1400B78AFC /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
-				F52FADD125593505002AF6C3 /* TransactionViewCell.swift */,
-				F599E35A2551398300B78AFC /* AllTransactionViewController.swift */,
 				F599E3612551398400B78AFC /* TransactionViewController.swift */,
-				F599E35B2551398300B78AFC /* OnGoingTransactionViewCell.swift */,
-				F599E34F2551398300B78AFC /* OnGoingTransactionViewController.swift */,
+				F52FADD125593505002AF6C3 /* TransactionViewCell.swift */,
 				F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */,
 				F599E3482551398300B78AFC /* ProductListNewTransactionViewController.swift */,
 				F599E3592551398300B78AFC /* ProductListNewTransactionViewCell.swift */,
@@ -436,10 +427,8 @@
 				F599E37A2551398400B78AFC /* ClientContactTableViewCell.swift in Sources */,
 				F599E3642551398400B78AFC /* ProductListNewTransactionViewController.swift in Sources */,
 				F599E3732551398400B78AFC /* ClientsViewController.swift in Sources */,
-				F599E3762551398400B78AFC /* AllTransactionViewController.swift in Sources */,
 				F52FADC6255934B2002AF6C3 /* Transaction.swift in Sources */,
 				F599E33F2551394800B78AFC /* clientsStructManager.swift in Sources */,
-				F599E3772551398400B78AFC /* OnGoingTransactionViewCell.swift in Sources */,
 				F599E3402551394800B78AFC /* goodsStruct.swift in Sources */,
 				F599E3672551398400B78AFC /* ProductListBarangViewController.swift in Sources */,
 				F599E3692551398400B78AFC /* InputClientsViewController.swift in Sources */,
@@ -468,7 +457,6 @@
 				F599E33C2551394800B78AFC /* clientsStruct.swift in Sources */,
 				F599E3432551394800B78AFC /* CloudKitManager.swift in Sources */,
 				F599E36C2551398400B78AFC /* ProductListBarangViewCell.swift in Sources */,
-				F599E36B2551398400B78AFC /* OnGoingTransactionViewController.swift in Sources */,
 				F5047601256265CF004C70E0 /* AddServiceDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
