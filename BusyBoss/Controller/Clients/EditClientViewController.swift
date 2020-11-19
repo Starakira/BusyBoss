@@ -33,7 +33,10 @@ class EditClientViewController: UIViewController {
         }
     }
     
-
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

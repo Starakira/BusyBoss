@@ -24,6 +24,7 @@ class ClientsDetailsViewController: UIViewController {
             clientsImage.image = client.image
             clientsCompanyName.text = client.companyName
             clientsCompanyAddress.text = client.companyAddress
+            clientsCompanyEmail.text = client.emailAddress
             clientsPhoneNo.text = client.phoneNumber
         }
         

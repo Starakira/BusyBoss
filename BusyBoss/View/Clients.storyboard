@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bId-Xe-gOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bId-Xe-gOo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -171,7 +171,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRZ-pg-hKB">
-                                <rect key="frame" x="0.0" y="0.0" width="336" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <items>
                                     <navigationItem title="Clients" id="owx-LY-VM5">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="OVN-nv-ZYO">
@@ -499,20 +499,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J30-aH-rhd">
-                                <rect key="frame" x="0.0" y="0.0" width="336" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <items>
                                     <navigationItem title="Clients" id="egC-ma-MEN">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Xcd-8E-gXX">
                                             <connections>
-                                                <action selector="cancelButtonTapped:" destination="nuU-dl-xdf" id="bUf-y1-yJv"/>
+                                                <action selector="cancelButtonAction:" destination="nuU-dl-xdf" id="hHn-hH-VRE"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="yuF-23-7uB">
-                                            <connections>
-                                                <action selector="doneButton:" destination="nuU-dl-xdf" id="d8C-TX-QTp"/>
-                                                <segue destination="Iyx-OS-r7I" kind="unwind" unwindAction="unwindToSegue:" id="kEn-wS-bP5"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="yuF-23-7uB"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -640,7 +635,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceQ-hR-Ukg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Iyx-OS-r7I" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1062.3188405797102" y="2175.6696428571427"/>
         </scene>
@@ -651,7 +645,7 @@
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <namedColor name="font Color set">
-            <color red="0.0" green="0.18431372549019609" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
