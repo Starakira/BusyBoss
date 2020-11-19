@@ -5,7 +5,7 @@
 import UIKit
 import CloudKit
 import AuthenticationServices
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var emailLogin: UITextField!
     @IBOutlet weak var passwordLogin: UITextField!
@@ -20,6 +20,13 @@ class LoginViewController: UIViewController {
         if let email = emailAddress, let password = password {
             authenticate(emailAddress: email, password: password)
         }
+        emailLogin.delegate = self
+        passwordLogin.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @IBAction func loginButton(_ sender: Any) {
@@ -38,6 +45,7 @@ class LoginViewController: UIViewController {
 //        
 //        controller.performRequests()
 //    }
+    
     
     func segueToMain(){
         self.performSegue(withIdentifier: "MainIdentifier", sender: nil)
