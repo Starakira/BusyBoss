@@ -51,6 +51,7 @@ class ClientsViewController: UIViewController {
             if let error = error {
                 //                Alert.showError(self, error)
                 print(error.localizedDescription)
+                Alert.showAlert(view: self, title: "Error creating client", message: "Error")
                 return
             }
             

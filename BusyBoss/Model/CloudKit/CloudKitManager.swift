@@ -85,40 +85,7 @@ struct CloudKitManager {
 //
 //        publicDatabase.add(operation)
 //    }
-    func fetchRecord(record: CKRecord){
-        
-    }
-    
-    func loadImage(fileImage: CKAsset?, completion: @escaping (_ photo: UIImage?) -> ()) {
-        // 1.
-        DispatchQueue.global(qos: .utility).async {
-            var image: UIImage?
-            // 5.
-            defer {
-                DispatchQueue.main.async {
-                    completion(image)
-                }
-            }
-            // 2.
-            guard
-                let getFileImage = fileImage,
-                let fileURL = getFileImage.fileURL
-            else {
-                return
-            }
-            let imageData: Data
-            do {
-                // 3.
-                imageData = try Data(contentsOf: fileURL)
-            } catch {
-                return
-            }
-            // 4.
-            image = UIImage(data: imageData)
-        }
-    }
 
-    
     func productCreate(product: Product, completionHandler: @escaping () -> Void){
         
         let productRecord = CKRecord(recordType: "Product")
@@ -213,6 +180,17 @@ struct CloudKitManager {
         clientRecord.setValue(client.phoneNumber, forKey: Client.keyPhoneNumber)
         clientRecord.setValue(userReference, forKey: "userReference")
         
+        if let clientImage = client.image {
+            let data = clientImage.pngData();
+            let url = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString+".dat")!
+            do {
+                try data!.write(to: url)
+            } catch let e as NSError {
+                print("Error! \(e.localizedDescription)");
+            }
+            clientRecord.setValue(CKAsset(fileURL: url), forKey: Client.keyImage)
+        }
+        
         publicDatabase.save(clientRecord) {(savedRecord, error) in
             DispatchQueue.main.async {
                 completionHandler(savedRecord?.recordID ,error);
@@ -253,11 +231,26 @@ struct CloudKitManager {
         clientRecord.setValue(client.companyAddress, forKey: Client.keyCompanyAddress)
         clientRecord.setValue(client.phoneNumber, forKey: Client.keyPhoneNumber)
         
-        publicDatabase.save(clientRecord) {(savedRecord, error) in
+        if let clientImage = client.image {
+            let data = clientImage.pngData();
+            let url = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString+".dat")!
+            do {
+                try data!.write(to: url)
+            } catch let e as NSError {
+                print("Error! \(e.localizedDescription)");
+            }
+            clientRecord.setValue(CKAsset(fileURL: url), forKey: Client.keyImage)
+        }
+        
+        let modifyOperation = CKModifyRecordsOperation(recordsToSave: [clientRecord])
+        
+        modifyOperation.modifyRecordsCompletionBlock = { editedRecord, editedRecordID, error in
             DispatchQueue.main.async {
-                completionHandler(savedRecord?.recordID ,error);
+                completionHandler(editedRecordID?.first, error)
             }
         }
+        
+        publicDatabase.add(modifyOperation)
     }
     
     func clientDelete(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID?, _ error: Error?) -> Void){

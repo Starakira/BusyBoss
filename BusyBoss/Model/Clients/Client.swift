@@ -38,8 +38,21 @@ extension Client {
         let phoneNumber = record[Client.keyPhoneNumber] as? String ?? "No Phone Number"
         let companyName = record[Client.keyCompanyName] as? String ?? "No Company"
         let companyAddress = record[Client.keyCompanyAddress] as? String ?? "No Company Address"
-        let image = record[Client.keyImage] as? UIImage ?? #imageLiteral(resourceName: "shiba icon new")
+        let image = Client.getImage(file: record[Client.keyImage] as? CKAsset)
+        
         
         self.init(recordID: recordID, image: image, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, companyName: companyName, companyAddress: companyAddress)
     }
+    
+static private func getImage(file: CKAsset?) -> UIImage? {
+        if let file = file {
+            if let data = NSData(contentsOf: file.fileURL!) {
+                return UIImage(data: data as Data)
+            }
+        }
+        return #imageLiteral(resourceName: "shiba icon new")
+    }
 }
+
+
+
