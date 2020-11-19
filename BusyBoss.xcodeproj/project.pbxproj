@@ -32,7 +32,7 @@
 		F599E3662551398400B78AFC /* ClientContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34A2551398300B78AFC /* ClientContactViewController.swift */; };
 		F599E3672551398400B78AFC /* ProductListBarangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34B2551398300B78AFC /* ProductListBarangViewController.swift */; };
 		F599E3682551398400B78AFC /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34C2551398300B78AFC /* ProductsViewController.swift */; };
-		F599E3692551398400B78AFC /* InputClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34D2551398300B78AFC /* InputClientsViewController.swift */; };
+		F599E3692551398400B78AFC /* InputClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34D2551398300B78AFC /* InputClientViewController.swift */; };
 		F599E36A2551398400B78AFC /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E34E2551398300B78AFC /* GoodsViewController.swift */; };
 		F599E36C2551398400B78AFC /* ProductListBarangViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */; };
 		F599E36F2551398400B78AFC /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3532551398300B78AFC /* ServicesViewController.swift */; };
@@ -60,6 +60,7 @@
 		F599E3B22551549E00B78AFC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39D25513D4C00B78AFC /* Login.storyboard */; };
 		F5D5050B2552AB1700DFFD85 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */; };
 		F5FAE48C2566112C00B57260 /* DummyTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAE48B2566112C00B57260 /* DummyTransaction.swift */; };
+		F5FAE49A256648A100B57260 /* EditClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAE499256648A100B57260 /* EditClientViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +91,7 @@
 		F599E34A2551398300B78AFC /* ClientContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientContactViewController.swift; sourceTree = "<group>"; };
 		F599E34B2551398300B78AFC /* ProductListBarangViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListBarangViewController.swift; sourceTree = "<group>"; };
 		F599E34C2551398300B78AFC /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
-		F599E34D2551398300B78AFC /* InputClientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputClientsViewController.swift; sourceTree = "<group>"; };
+		F599E34D2551398300B78AFC /* InputClientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputClientViewController.swift; sourceTree = "<group>"; };
 		F599E34E2551398300B78AFC /* GoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
 		F599E3502551398300B78AFC /* ProductListBarangViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListBarangViewCell.swift; sourceTree = "<group>"; };
 		F599E3532551398300B78AFC /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		F599E3AD2551408900B78AFC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
 		F5FAE48B2566112C00B57260 /* DummyTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTransaction.swift; sourceTree = "<group>"; };
+		F5FAE499256648A100B57260 /* EditClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,10 +210,11 @@
 		F599E38725513AE500B78AFC /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				F599E34D2551398300B78AFC /* InputClientsViewController.swift */,
+				F599E3572551398300B78AFC /* ClientsViewController.swift */,
 				F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */,
 				F599E3602551398400B78AFC /* ClientsDetailsViewController.swift */,
-				F599E3572551398300B78AFC /* ClientsViewController.swift */,
+				F599E34D2551398300B78AFC /* InputClientViewController.swift */,
+				F5FAE499256648A100B57260 /* EditClientViewController.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				F5D5050B2552AB1700DFFD85 /* TransactionDetailsViewController.swift in Sources */,
 				F599E36A2551398400B78AFC /* GoodsViewController.swift in Sources */,
 				F52FADC2255934A4002AF6C3 /* Product.swift in Sources */,
+				F5FAE49A256648A100B57260 /* EditClientViewController.swift in Sources */,
 				F599E37A2551398400B78AFC /* ClientContactTableViewCell.swift in Sources */,
 				F599E3642551398400B78AFC /* ProductListNewTransactionViewController.swift in Sources */,
 				F599E3732551398400B78AFC /* ClientsViewController.swift in Sources */,
@@ -431,7 +435,7 @@
 				F599E33F2551394800B78AFC /* clientsStructManager.swift in Sources */,
 				F599E3402551394800B78AFC /* goodsStruct.swift in Sources */,
 				F599E3672551398400B78AFC /* ProductListBarangViewController.swift in Sources */,
-				F599E3692551398400B78AFC /* InputClientsViewController.swift in Sources */,
+				F599E3692551398400B78AFC /* InputClientViewController.swift in Sources */,
 				F599E3742551398400B78AFC /* RegisterViewController.swift in Sources */,
 				F599E38425513ADA00B78AFC /* ClientsTableViewCell.swift in Sources */,
 				F599E38325513ADA00B78AFC /* ServicesTableViewCell.swift in Sources */,

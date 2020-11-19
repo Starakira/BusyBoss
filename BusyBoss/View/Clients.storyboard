@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bId-Xe-gOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bId-Xe-gOo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -180,10 +180,10 @@
             </objects>
             <point key="canvasLocation" x="-2726.0869565217395" y="1362.7232142857142"/>
         </scene>
-        <!--Input Clients View Controller-->
+        <!--Input Client View Controller-->
         <scene sceneID="zh6-j4-TU2">
             <objects>
-                <viewController id="Kjo-oc-Q2M" customClass="InputClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kjo-oc-Q2M" customClass="InputClientViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NOf-9d-n6H">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -468,10 +468,10 @@
             </objects>
             <point key="canvasLocation" x="-2726.0869565217395" y="2175.6696428571427"/>
         </scene>
-        <!--Input Clients View Controller-->
+        <!--Edit Client View Controller-->
         <scene sceneID="76p-MG-1i1">
             <objects>
-                <viewController id="nuU-dl-xdf" customClass="InputClientsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nuU-dl-xdf" customClass="EditClientViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e2g-hw-loz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -582,7 +582,7 @@
                         <outlet property="addClientsImage" destination="QTj-hO-bje" id="hIC-WT-Y2N"/>
                         <outlet property="clientAddress" destination="ioP-un-Zzh" id="3kL-Sc-xNH"/>
                         <outlet property="clientCompanyName" destination="Jel-RW-LWK" id="1BM-oz-9qc"/>
-                        <outlet property="clientEmailAddress" destination="izr-uc-NRY" id="7Lk-EQ-QpQ"/>
+                        <outlet property="clientEmailAddress" destination="izr-uc-NRY" id="MkG-SS-mDk"/>
                         <outlet property="clientFirstName" destination="9za-gl-8Dq" id="WR8-tf-YMo"/>
                         <outlet property="clientLastName" destination="WvL-XT-iCq" id="2UE-cd-JC1"/>
                         <outlet property="clientPhoneNo" destination="wpe-jJ-XuY" id="O5G-mn-yuu"/>
