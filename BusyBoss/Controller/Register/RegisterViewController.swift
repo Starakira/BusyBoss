@@ -17,6 +17,12 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        emailAddressTextField.delegate = self
+        passwordTextField.delegate = self
+        phoneNumberTextField.delegate = self
     }
     
     @IBAction func registerButton(_ sender: Any) {
@@ -24,8 +30,8 @@ class RegisterViewController: UIViewController {
             firstName: firstNameTextField.text!,
                         lastName: lastNameTextField.text!,
                         email: emailAddressTextField.text!,
-                        password: phoneNumberTextField.text!,
-                        phoneNumber: passwordTextField.text!)
+                        password: passwordTextField.text!,
+                        phoneNumber: phoneNumberTextField.text!)
         
         let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
         self.present(pendingAction, animated: true)
@@ -42,5 +48,12 @@ class RegisterViewController: UIViewController {
             }
             
         }
+    }
+}
+
+extension RegisterViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

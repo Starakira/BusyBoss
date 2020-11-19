@@ -18,8 +18,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
         if let email = emailAddress, let password = password {
-            authenticate(emailAddress: email, password: password)
+//            authenticate(emailAddress: email, password: password)
         }
+        
         emailLogin.delegate = self
         passwordLogin.delegate = self
     }
@@ -70,10 +71,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 User.setCurrentUser(user: loggedUser)
             }
         }
-    }
-    
-    func logout() {
-        
     }
 }
 
