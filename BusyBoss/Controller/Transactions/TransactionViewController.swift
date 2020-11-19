@@ -15,6 +15,7 @@ class TransactionViewController: UIViewController, TransactionConform {
     func transactionSave(transaction: DummyTransaction) {
         print("Products = \(String(describing: transaction.products))")
         transactionDummyData.append(transaction)
+        transactionsAll?.append(transaction)
         tableView.reloadData()
     }
     
@@ -31,6 +32,7 @@ class TransactionViewController: UIViewController, TransactionConform {
         tableView.delegate = self
         tableView.dataSource = self
         
+        transactionsAll = []
 //        CloudKitManager.shared().transactionsFetchAll { (result, error) in
 //            if let error = error {
 //                Alert.showError(self, error)
@@ -44,16 +46,20 @@ class TransactionViewController: UIViewController, TransactionConform {
     
     @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
         refreshTableView(selectedSegmentIndex: sender.selectedSegmentIndex)
+        print("Segmented is Called!")
     }
     
     func refreshTableView(selectedSegmentIndex: Int) {
         if let transactionsAll = transactionsAll {
             switch selectedSegmentIndex {
             case 0: //Ongoing
+                print("Ongoing")
                 transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Ongoing}
             case 1: //Completed
+                print("Completed")
                 transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Completed}
             case 2:
+                print("Canceled")
                 transactionDummyData = transactionsAll.filter{ $0.status == TransactionStatus.Canceled}
             default:
                 return

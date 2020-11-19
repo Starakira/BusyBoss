@@ -85,6 +85,39 @@ struct CloudKitManager {
 //
 //        publicDatabase.add(operation)
 //    }
+    func fetchRecord(record: CKRecord){
+        
+    }
+    
+    func loadImage(fileImage: CKAsset?, completion: @escaping (_ photo: UIImage?) -> ()) {
+        // 1.
+        DispatchQueue.global(qos: .utility).async {
+            var image: UIImage?
+            // 5.
+            defer {
+                DispatchQueue.main.async {
+                    completion(image)
+                }
+            }
+            // 2.
+            guard
+                let getFileImage = fileImage,
+                let fileURL = getFileImage.fileURL
+            else {
+                return
+            }
+            let imageData: Data
+            do {
+                // 3.
+                imageData = try Data(contentsOf: fileURL)
+            } catch {
+                return
+            }
+            // 4.
+            image = UIImage(data: imageData)
+        }
+    }
+
     
     func productCreate(product: Product, completionHandler: @escaping () -> Void){
         
@@ -172,6 +205,7 @@ struct CloudKitManager {
             clientRecord = CKRecord(recordType: "Client", recordID: clientRecordID)
         }
         
+        clientRecord.setValue(client.image, forKey: Client.keyImage)
         clientRecord.setValue(client.firstName, forKey: Client.keyFirstName)
         clientRecord.setValue(client.lastName, forKey: Client.keyLastName)
         clientRecord.setValue(client.emailAddress, forKey: Client.keyEmailAddress)
