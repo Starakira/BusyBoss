@@ -17,7 +17,5 @@ public class DummyDataManager {
         Dummy = []
         Dummy.append(Dummy1)
         Dummy.append(Dummy2)
-        }
-        
-    
     }
+}

@@ -11,7 +11,7 @@ class ListProductBarangJasaNewTransactionViewController: UIViewController {
     @IBOutlet weak var ListBarangJasa: UISegmentedControl!
     @IBOutlet weak var segmentedBarangList: UIView!
     @IBOutlet weak var segmentedJasaList: UIView!
-    
+    var myDelegate:ProductsConform?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +32,11 @@ class ListProductBarangJasaNewTransactionViewController: UIViewController {
             segmentedJasaList.isHidden = false
         }
     }
-
-
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ProductListBarangViewController{
+            vc.passProductDelegate = myDelegate
+        } else if let vc = segue.destination as? ProductListJasaViewController{
+            vc.passProductDelegate = myDelegate
+        }
+    }
 }

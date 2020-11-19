@@ -32,15 +32,18 @@ class ClientsDetailsViewController: UIViewController {
 //            title = "Client Details"
     }
     
-    @objc func editButtonFunction() {
-        let vc = storyboard?.instantiateViewController(identifier: "inputClient") as! InputClientsViewController
-        
-        vc.client = client
-        
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+//    @objc func editButtonFunction() {
+//        let vc = storyboard?.instantiateViewController(identifier: "inputClient") as! InputClientsViewController
+//        
+//        vc.client = client
+//        
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
     
 
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

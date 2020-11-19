@@ -7,18 +7,33 @@
 
 import UIKit
 
-class ProductListBarangViewController: UIViewController {
+protocol ProductGoodsDismiss {
+    func performDismissal (checkProduct: Product)
+}
+
+class ProductListBarangViewController: UIViewController, ProductGoodsDismiss {
+    func performDismissal(checkProduct: Product) {
+        dismiss(animated: true, completion: nil)
+        self.checkProduct = checkProduct
+        if self.checkProduct != nil {
+            passProductDelegate?.productListPassData(product: self.checkProduct!)
+            
+        }
+    }
+    var checkProduct: Product?
     
     var products : [Product] = []
     var index = -1
     
-    @IBOutlet weak var TableBarangProductList: UITableView!
+    var passProductDelegate: ProductsConform?
+    
+    @IBOutlet weak var goodsProductListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TableBarangProductList.dataSource = self
-        TableBarangProductList.delegate = self
+        goodsProductListTableView.dataSource = self
+        goodsProductListTableView.delegate = self
         
         CloudKitManager.shared().productsFetchAll {
             (products, error) in
@@ -33,7 +48,7 @@ class ProductListBarangViewController: UIViewController {
                     print(product.type.rawValue)
                     if product.type.rawValue == "goods"{
                         self.products.append(product)
-                        self.TableBarangProductList.reloadData()
+                        self.goodsProductListTableView.reloadData()
                         print(self.products)
                     }
                 }
@@ -44,6 +59,7 @@ class ProductListBarangViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? AddGoodDetailsViewController{
             vc.product = products[index]
+            vc.productListDelegate = self
         }
     }
 }
