@@ -42,3 +42,10 @@ class InputServicesViewController: UIViewController {
     */
 
 }
+
+extension InputServicesViewController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+}
