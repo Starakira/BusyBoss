@@ -8,11 +8,22 @@
 
 import Foundation
 import UIKit
+import CloudKit
 
 class Alert {
     
     static func showError(_ view: UIViewController,_ error: Error, completion: (() -> Void)? = nil) {
         let errorAlert = UIAlertController.init(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Dismiss", style: .cancel) { _ in
+            errorAlert.dismiss(animated: true, completion: completion)
+        }
+        errorAlert.addAction(alertAction)
+        view.present(errorAlert, animated: true)
+    }
+    
+    static func showCloudKitError(_ view: UIViewController,_ error: Error, completion: (() -> Void)? = nil) {
+        let errorMessage = CloudKitError.getUserFriendlyDescription(error: error)
+        let errorAlert = UIAlertController.init(title: "Error", message: errorMessage, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Dismiss", style: .cancel) { _ in
             errorAlert.dismiss(animated: true, completion: completion)
         }
