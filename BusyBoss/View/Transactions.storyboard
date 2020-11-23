@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -425,7 +425,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="New Transaction" id="esz-70-AaT">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="vAe-FF-hu0"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="vAe-FF-hu0">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="mgx-Ww-VKt" id="lji-4n-g13"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="kIh-OJ-xga">
                                             <connections>
                                                 <action selector="newTransactionSaveButtonAction:" destination="mgx-Ww-VKt" id="Jq7-TD-fYl"/>
@@ -817,7 +821,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Clients" id="YWF-Fy-X0W">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="MYX-2C-K2v"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="MYX-2C-K2v">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="gFp-KP-Zah" id="X7C-i4-sMZ"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1707,7 +1715,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                                 <items>
                                     <navigationItem title="Edit Transaction" id="1Fk-ol-BZx">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="7kf-5s-RDR"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="7kf-5s-RDR">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="ecr-8z-Oe2" id="sf1-6o-sDX"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="wOr-pO-pHI"/>
                                     </navigationItem>
                                 </items>
@@ -1824,6 +1836,10 @@
                             <constraint firstItem="6VG-qt-VtU" firstAttribute="trailing" secondItem="yG6-Dk-Tbh" secondAttribute="trailing" constant="20" id="yXC-4k-gba"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="transactionClientTextField" destination="viC-vZ-AOM" id="Auj-Uy-1Vj"/>
+                        <outlet property="transactionNumberTextField" destination="HXe-To-Oxh" id="39a-0k-mZb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOY-E1-cLR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

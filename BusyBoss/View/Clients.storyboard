@@ -156,7 +156,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clientsTableView" destination="uCp-HT-6Wa" id="c0H-B3-YUI"/>
-                        <segue destination="QNs-10-TNs" kind="presentation" identifier="clientDetailsSegue" id="MDR-nL-5sW"/>
+                        <segue destination="QNs-10-TNs" kind="show" identifier="clientDetailsSegue" id="Xrn-Td-dCN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ylE-o1-d8y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -477,7 +477,13 @@
                             <constraint firstItem="eDi-ue-usf" firstAttribute="width" secondItem="50P-GR-3su" secondAttribute="width" id="xjD-TU-vsj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="TgU-zg-roq"/>
+                    <navigationItem key="navigationItem" id="TgU-zg-roq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="KvM-B8-4Le">
+                            <connections>
+                                <segue destination="nuU-dl-xdf" kind="presentation" id="WqP-4A-oCR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="clientsCompanyAddress" destination="JXP-SO-zDS" id="epB-hd-sdE"/>
                         <outlet property="clientsCompanyEmail" destination="vt6-Kg-QnU" id="SPC-vW-T83"/>
@@ -508,7 +514,11 @@
                                                 <action selector="cancelButtonAction:" destination="nuU-dl-xdf" id="hHn-hH-VRE"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="yuF-23-7uB"/>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="yuF-23-7uB">
+                                            <connections>
+                                                <action selector="doneButtonAction:" destination="nuU-dl-xdf" id="7yW-zx-46b"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -526,9 +536,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="T8o-8J-gYU"/>
                                 </constraints>
-                                <state key="normal" title="add photo"/>
+                                <state key="normal" title="Change Photo"/>
                                 <connections>
-                                    <action selector="addImageClient:" destination="nuU-dl-xdf" eventType="touchUpInside" id="KWb-kK-9Xk"/>
+                                    <action selector="changePhotoAction:" destination="nuU-dl-xdf" eventType="touchUpInside" id="HYb-in-9EX"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myP-eT-m0P">

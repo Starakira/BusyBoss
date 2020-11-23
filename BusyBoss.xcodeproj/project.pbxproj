@@ -62,6 +62,7 @@
 		F5D3077225666252001BF94A /* InputGoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D3076225666251001BF94A /* InputGoodsViewController.swift */; };
 		F5D3077325666252001BF94A /* GoodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D3076325666251001BF94A /* GoodsViewController.swift */; };
 		F5D5050B2552AB1700DFFD85 /* TransactionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */; };
+		F5EC0A022566CA6F00D169A1 /* ProductListEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EC0A012566CA6F00D169A1 /* ProductListEditViewController.swift */; };
 		F5FAE48C2566112C00B57260 /* DummyTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAE48B2566112C00B57260 /* DummyTransaction.swift */; };
 		F5FAE49A256648A100B57260 /* EditClientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FAE499256648A100B57260 /* EditClientViewController.swift */; };
 /* End PBXBuildFile section */
@@ -125,6 +126,7 @@
 		F5D3076225666251001BF94A /* InputGoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputGoodsViewController.swift; sourceTree = "<group>"; };
 		F5D3076325666251001BF94A /* GoodsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsViewController.swift; sourceTree = "<group>"; };
 		F5D5050A2552AB1700DFFD85 /* TransactionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsViewController.swift; sourceTree = "<group>"; };
+		F5EC0A012566CA6F00D169A1 /* ProductListEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListEditViewController.swift; sourceTree = "<group>"; };
 		F5FAE48B2566112C00B57260 /* DummyTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTransaction.swift; sourceTree = "<group>"; };
 		F5FAE499256648A100B57260 /* EditClientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClientViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -257,6 +259,7 @@
 				F5047600256265CF004C70E0 /* AddServiceDetailsViewController.swift */,
 				F599E34A2551398300B78AFC /* ClientContactViewController.swift */,
 				F599E35E2551398400B78AFC /* ClientContactTableViewCell.swift */,
+				F5EC0A012566CA6F00D169A1 /* ProductListEditViewController.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				F5FAE48C2566112C00B57260 /* DummyTransaction.swift in Sources */,
 				F599E37E2551398400B78AFC /* ProductListJasaViewCell.swift in Sources */,
 				F599E37B2551398400B78AFC /* LoginViewController.swift in Sources */,
+				F5EC0A022566CA6F00D169A1 /* ProductListEditViewController.swift in Sources */,
 				F599E33B2551394800B78AFC /* DummyDataTransaction.swift in Sources */,
 				F599E3412551394800B78AFC /* goodsStructManager.swift in Sources */,
 				F599E3782551398400B78AFC /* ProductListJasaViewController.swift in Sources */,
