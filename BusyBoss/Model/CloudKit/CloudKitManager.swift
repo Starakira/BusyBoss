@@ -181,14 +181,8 @@ struct CloudKitManager {
         clientRecord.setValue(userReference, forKey: "userReference")
         
         if let clientImage = client.image {
-            let data = clientImage.pngData();
-            let url = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString+".dat")!
-            do {
-                try data!.write(to: url)
-            } catch let e as NSError {
-                print("Error! \(e.localizedDescription)");
-            }
-            clientRecord.setValue(CKAsset(fileURL: url), forKey: Client.keyImage)
+            let asset = ImageManager.convertToCKAsset(image: clientImage)
+            clientRecord.setValue(asset, forKey: Client.keyImage)
         }
         
         publicDatabase.save(clientRecord) {(savedRecord, error) in

@@ -13,6 +13,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailLogin.delegate = self
+        passwordLogin.delegate = self
+        
         //Check if email address and password exist in userdefaults
         let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
@@ -20,9 +23,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         if let email = emailAddress, let password = password {
             authenticate(emailAddress: email, password: password)
         }
-        
-        emailLogin.delegate = self
-        passwordLogin.delegate = self
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -63,12 +63,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
                 Alert.showAlert(view: self, title: "Error", message: "Invalid Cridentials!")
             }
             else {
-                UserDefaults.standard.setValue(currentUser![User.keyEmail], forKey: User.keyEmail)
-                UserDefaults.standard.setValue(currentUser![User.keyPassword], forKey: User.keyPassword)
-                self.segueToMain()
-                
                 let loggedUser = User(record: currentUser!)
                 User.setCurrentUser(user: loggedUser)
+                self.segueToMain()
             }
         }
     }

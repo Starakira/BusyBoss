@@ -26,27 +26,29 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButton(_ sender: Any) {
-        var user = User(recordID: CKRecord.ID(),
+        var user = User(
             firstName: firstNameTextField.text!,
-                        lastName: lastNameTextField.text!,
-                        email: emailAddressTextField.text!,
-                        password: passwordTextField.text!,
-                        phoneNumber: phoneNumberTextField.text!)
+            lastName: lastNameTextField.text!,
+            email: emailAddressTextField.text!,
+            password: passwordTextField.text!,
+            phoneNumber: phoneNumberTextField.text!)
         
         let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
-        self.present(pendingAction, animated: true)
         
-        CloudKitManager.shared().userCreate(user: user){ recordID, error  in
-            pendingAction.dismiss(animated: true) {
-                if let error = error {
-                    Alert.showError(self, error )
-                }
-                else {
-                    user.recordID = recordID
-                    self.dismiss(animated: true)
+        self.present(pendingAction, animated: true) {
+            CloudKitManager.shared().userCreate(user: user){ recordID, error  in
+                pendingAction.dismiss(animated: true) {
+        
+                    if let error = error {
+                        Alert.showCloudKitError(self, error)
+                    
+                    }
+                    else {
+                        user.recordID = recordID
+                        self.dismiss(animated: true)
+                    }
                 }
             }
-            
         }
     }
 }
