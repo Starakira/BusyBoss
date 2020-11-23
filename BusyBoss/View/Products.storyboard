@@ -36,13 +36,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cK-Kp-KsC">
-                                <rect key="frame" x="0.0" y="207" width="453" height="598"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="598"/>
                                 <connections>
                                     <segue destination="8b7-Db-aUc" kind="embed" id="K98-jK-9dR"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsV-cs-foK">
-                                <rect key="frame" x="0.0" y="207" width="453" height="598"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="598"/>
                                 <connections>
                                     <segue destination="ah1-xa-dOW" kind="embed" id="dut-0c-C7e"/>
                                 </connections>
@@ -107,7 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ev8-gC-Jpc">
-                                <rect key="frame" x="0.0" y="-2" width="453" height="44"/>
+                                <rect key="frame" x="0.0" y="-2" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="New Item" id="NJf-Zo-2r3">
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="cfP-On-AxT">
@@ -235,7 +235,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWl-y0-sgv">
-                                <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Item Detail" id="Ads-PS-QWl">
                                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="E13-vi-Me1"/>
@@ -394,7 +394,7 @@
             <objects>
                 <viewController id="8b7-Db-aUc" customClass="GoodsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zSd-7P-sWO">
-                        <rect key="frame" x="0.0" y="0.0" width="453" height="598"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="598"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-iB-AoX">
@@ -464,6 +464,7 @@
                                                 <constraint firstItem="VFL-jR-OOc" firstAttribute="top" secondItem="H4v-X0-R0I" secondAttribute="topMargin" constant="14" id="dAu-Rz-KBR"/>
                                                 <constraint firstItem="5S5-5c-Xgw" firstAttribute="top" secondItem="VFL-jR-OOc" secondAttribute="bottom" constant="11" id="g1q-xk-1dx"/>
                                                 <constraint firstItem="x03-Dz-TiJ" firstAttribute="top" secondItem="VFL-jR-OOc" secondAttribute="bottom" constant="11" id="ioy-ar-IZ3"/>
+                                                <constraint firstAttribute="bottom" secondItem="YsP-QW-Jr4" secondAttribute="bottom" constant="11" id="joZ-59-Wgh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="VFL-jR-OOc" secondAttribute="trailing" constant="7" id="mWG-aA-5Of"/>
                                                 <constraint firstItem="x03-Dz-TiJ" firstAttribute="leading" secondItem="5S5-5c-Xgw" secondAttribute="trailing" constant="4" id="ufP-bl-4tD"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pAS-B6-LVB" secondAttribute="trailing" constant="20" id="ydS-4A-3s9"/>
@@ -496,7 +497,7 @@
             <objects>
                 <viewController id="ah1-xa-dOW" customClass="ServicesViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WC7-zO-Ou1">
-                        <rect key="frame" x="0.0" y="0.0" width="453" height="598"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="598"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XmF-fc-IaH">
@@ -567,7 +568,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlV-ss-Yab">
-                                <rect key="frame" x="0.0" y="0.0" width="453" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="New Services" id="hH8-tr-OnL">
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="bxa-i1-m33">
@@ -653,7 +654,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuZ-zy-6AU">
-                                <rect key="frame" x="0.0" y="-9" width="453" height="44"/>
+                                <rect key="frame" x="0.0" y="-9" width="414" height="44"/>
                                 <items>
                                     <navigationItem id="xos-4A-qD0">
                                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="B1u-WG-P5o"/>
