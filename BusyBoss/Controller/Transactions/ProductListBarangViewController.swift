@@ -80,7 +80,7 @@ extension ProductListBarangViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListBarangViewCell", for: indexPath)as!ProductListBarangViewCell
         let product = products[indexPath.row]
         cell.NamaBarangLabel.text = product.name
-        cell.JumlahStockBarang.text = String(product.quantity)
+        cell.JumlahStockBarang.text = String(product.stock ?? 0)
         cell.TotalHargaLabel.text = String(product.price)
         cell.GambarBarang.image = product.image
         return cell

@@ -33,11 +33,17 @@ class RegisterViewController: UIViewController {
             password: passwordTextField.text!,
             phoneNumber: phoneNumberTextField.text!)
         
-        switch ifTextFieldEmpty(textField: firstNameTextField) || ifTextFieldEmpty(textField: lastNameTextField) || ifTextFieldEmpty(textField: emailAddressTextField) || ifTextFieldEmpty(textField: passwordTextField) || ifTextFieldEmpty(textField: phoneNumberTextField)
-        {
-        case true:
-            Alert.showAlert(view: self, title: "Text Field Empty", message: "Please fill out the required fields!")
-        default:
+        if firstNameTextField.isEmpty {
+            Alert.showAlert(view: self, title: "First Name Empty", message: "Please fill out your first name!")
+        } else if lastNameTextField.isEmpty {
+            Alert.showAlert(view: self, title: "Last Name Empty", message: "Please fill out your last name!")
+        } else if emailAddressTextField.isEmpty {
+            Alert.showAlert(view: self, title: "Email Address Empty", message: "Please fill out your email address!")
+        } else if phoneNumberTextField.isEmpty {
+            Alert.showAlert(view: self, title: "Phone Number Empty", message: "Please fill out your phone number!")
+        } else if passwordTextField.isEmpty {
+            Alert.showAlert(view: self, title: "Password Empty", message: "Please fill out your password!")
+        } else {
             let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
             
             self.present(pendingAction, animated: true) {
@@ -72,5 +78,16 @@ extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+    }
+    
+}
+
+extension UITextField {
+
+    var isEmpty: Bool {
+        if let text = UITextField().text, !text.isEmpty {
+             return false
+        }
+        return true
     }
 }

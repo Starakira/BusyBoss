@@ -10,16 +10,18 @@ import UIKit
 class ServicesDetailsViewController: UIViewController {
     @IBOutlet weak var serviceName: UILabel!
     @IBOutlet weak var serviceDescription: UILabel!
-    var services : serviceStruct?
     @IBOutlet weak var servicePrice: UILabel!
+    
+    var product: Product?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let ser = services {
-                   servicePrice.text = String(ser.price)
-                   serviceName.text = ser.name
-                   serviceDescription.text = ser.description
-               }
+        if let product = product {
+            serviceName.text = product.name
+            servicePrice.text = String(product.price)
+            serviceDescription.text = product.description
+        }
     }
     
 

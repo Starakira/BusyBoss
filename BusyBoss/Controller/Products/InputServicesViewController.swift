@@ -13,7 +13,7 @@ class InputServicesViewController: UIViewController {
     @IBOutlet weak var servicesDescription: UITextField!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
-    var service : serviceStruct?
+    var product: Product?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,10 +24,28 @@ class InputServicesViewController: UIViewController {
                
                return
            }
-        let servicePrice = Int(servicesPrice.text!)
-        let newServices = serviceStruct(name: servicesName.text!, price: servicePrice!, description: servicesDescription.text!)
-        print(newServices)
-        self.service = newServices
+        var product = Product(name: servicesName.text ?? "No name",
+                               description: servicesDescription.text ?? "No description",
+                               price: Double(servicesPrice.text ?? "0.0") ?? 0.0,
+                               type: ProductType.services)
+        
+        CloudKitManager.shared().productCreate(product: product) {
+            (recordID, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                Alert.showAlert(view: self, title: "Error creating product", message: "Error")
+                return
+            }
+                if recordID == nil {
+                    print("ID not created!")
+                }
+                else {
+                    print("Creating client successful")
+                    product.recordID = recordID
+                    
+                    self.product = product
+                }
+        }
           
           
        }

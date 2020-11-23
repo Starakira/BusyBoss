@@ -22,9 +22,9 @@ class TransactionViewController: UIViewController {
     var transactionIndex = -1
     
     var dummyProducts = [
-        Product(name: "Shoes", price: 20000, quantity: 5, transactionQuantity: 2, image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), type: ProductType.goods),
-        Product(name: "Shirt", price: 15000, quantity: 10, transactionQuantity: 3, image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), type: ProductType.goods),
-        Product(name: "Sablon", price: 30000, quantity: 20, transactionQuantity: 5, image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), type: ProductType.services),]
+        Product(image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), name: "Shoes", description: "", price: 20000, stock: 5, unit: "", transactionQuantity: 2, type: ProductType.goods),
+        Product(image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), name: "Shirt", description: "", price: 15000, stock: 10, unit: "", transactionQuantity: 3, type: ProductType.goods),
+        Product(image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), name: "Sablon", description: "", price: 30000, stock: 20, unit: "", transactionQuantity: 5, type: ProductType.services),]
 
     override func viewDidLoad() {
         tableView.delegate = self

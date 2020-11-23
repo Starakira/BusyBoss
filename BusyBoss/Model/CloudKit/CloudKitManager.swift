@@ -86,26 +86,32 @@ struct CloudKitManager {
 //        publicDatabase.add(operation)
 //    }
 
-    func productCreate(product: Product, completionHandler: @escaping () -> Void){
+    func productCreate(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
-        let productRecord = CKRecord(recordType: "Product")
+        var productRecord = CKRecord(recordType: "Product")
         let userRecord = CKRecord(recordType: "User")
         let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
         
+        if let productRecordID = product.recordID {
+            productRecord = CKRecord(recordType: "Product", recordID: productRecordID)
+        }
+        
         productRecord.setValue(product.name, forKey: Product.keyName)
+        productRecord.setValue(product.description, forKey: Product.keyDescription)
         productRecord.setValue(product.price, forKey: Product.keyPrice)
-        productRecord.setValue(product.quantity, forKey: Product.keyQuantity)
-        productRecord.setValue(product.type, forKey: Product.keyType)
+        productRecord.setValue(product.stock, forKey: Product.keyStock)
+        productRecord.setValue(product.unit, forKey: Product.keyUnit)
+        productRecord.setValue(product.type.rawValue, forKey: Product.keyType)
         productRecord.setValue(userReference, forKey: "userReference")
         
+        if let productImage = product.image {
+            let asset = ImageManager.convertToCKAsset(image: productImage)
+            productRecord.setValue(asset, forKey: Product.keyImage)
+        }
+        
         publicDatabase.save(productRecord) {(savedRecord, error) in
-            if error != nil{
-                print(error!.localizedDescription)
-            }
-            else{
-                DispatchQueue.main.async {
-                    completionHandler();
-                }
+            DispatchQueue.main.async {
+                completionHandler(savedRecord?.recordID, error)
             }
         }
     }
@@ -137,7 +143,7 @@ struct CloudKitManager {
         
         productRecord.setValue(product.name, forKey: Product.keyName)
         productRecord.setValue(product.price, forKey: Product.keyPrice)
-        productRecord.setValue(product.quantity, forKey: Product.keyQuantity)
+        productRecord.setValue(product.stock, forKey: Product.keyStock)
         productRecord.setValue(product.type, forKey: Product.keyType)
         
         publicDatabase.save(productRecord) {(savedRecord, error) in
@@ -155,7 +161,7 @@ struct CloudKitManager {
     func productDelete(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID?, _ error: Error?) -> Void){
         publicDatabase.delete(withRecordID: product.recordID!) { (recordID, error) in
             DispatchQueue.main.async {
-                completionHandler(recordID ,error);
+                completionHandler(recordID, error);
             }
         }
     }

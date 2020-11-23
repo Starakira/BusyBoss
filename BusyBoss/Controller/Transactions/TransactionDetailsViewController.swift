@@ -63,7 +63,7 @@ extension TransactionDetailsViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!ProductListNewTransactionViewCell
         let product = products?[indexPath.row]
         cell.NameProductNewTransaction.text = product?.name
-        cell.StockNewTransaction.text = String(product?.quantity ?? 0)
+        cell.StockNewTransaction.text = String(product?.stock ?? 0)
         cell.JumlahHargaNewTransaction.text = String(product?.price ?? 0)
         cell.GambarProductNewTransaction.image = product?.image
         return cell

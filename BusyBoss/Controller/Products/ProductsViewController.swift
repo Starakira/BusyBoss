@@ -11,17 +11,24 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var servicesView: UIView!
     @IBOutlet weak var goodsView: UIView!
-    var goods : [goodsStruct]!
-    var services : [serviceStruct]!
-    var goodsVC :GoodsViewController?
+    var products: [Product] = []
+    var goodsVC : GoodsViewController?
     var servicesVC : ServicesViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let GSManager : goodsStructManager = goodsStructManager ()
-        goods = GSManager.goods
-        let SSManager : serviceStructManager = serviceStructManager ()
-        services = SSManager.services
+        
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                print("Fetching client successful")
+                print("Clients = \(products.count)")
+                self.products = products
+            }
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -76,15 +83,15 @@ class ProductsViewController: UIViewController {
     */
     @IBAction func unwindToProduct(sender: UIStoryboardSegue) {
          if let sourceViewController = sender.source as? InputGoodsViewController {
-            let newGoods = sourceViewController.goods
-            goods.append(newGoods!)
-            goodsVC?.goods = goods
+            let newGoods = sourceViewController.product
+            products.append(newGoods!)
+            goodsVC?.products = products
             goodsVC!.goodsTableView.reloadData()
         }
         if let sourceViewController = sender.source as? InputServicesViewController {
-            let newServices = sourceViewController.service
-            services.append(newServices!)
-            servicesVC?.services = services
+            let newServices = sourceViewController.product
+            products.append(newServices!)
+            servicesVC?.products = products
             servicesVC!.sevicesTableView.reloadData()
         }
 }

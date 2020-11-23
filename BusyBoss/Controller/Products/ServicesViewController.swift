@@ -8,32 +8,33 @@
 import UIKit
 
 class ServicesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    var services : [serviceStruct]!
+    
     @IBOutlet weak var sevicesTableView: UITableView!
+    
+    var products : [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let SSManager : serviceStructManager = serviceStructManager ()
-        services = SSManager.services
+        
         sevicesTableView.dataSource = self
         sevicesTableView.delegate = self
         sevicesTableView.reloadData()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return services.count
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "servicesCell", for: indexPath)as!ServicesTableViewCell
-               let ser = services[indexPath.row]
-               cell.servicesLabel.text = ser.name
-               cell.servicesPrice.text = String(ser.price)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "servicesCell", for: indexPath)as!ServicesTableViewCell
+               let product = products[indexPath.row]
+        cell.servicesLabel.text = product.name
+        cell.servicesPrice.text = String(product.price)
                return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(identifier: "servicesDetails") as! ServicesDetailsViewController
-        vc.services = services[indexPath.row]
+        vc.product = products[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 

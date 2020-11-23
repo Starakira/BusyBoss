@@ -7,46 +7,40 @@
 
 import UIKit
 
-class GoodsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class GoodsViewController: UIViewController {
 
     @IBOutlet weak var goodsTableView: UITableView!
-    var goods : [goodsStruct]!
+    var products : [Product] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let GSManager : goodsStructManager = goodsStructManager ()
-        goods = GSManager.goods
+        
         goodsTableView.dataSource = self
         goodsTableView.delegate = self
-        // Do any additional setup after loading the view.
+        
     }
+}
+
+extension GoodsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: "goodsDetails") as! GoodsDetailsViewController
+        vc.product = products[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension GoodsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goods.count
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "goodsCell", for: indexPath)as!GoodsTableViewCell
-        let g = goods[indexPath.row]
-        cell.goodsLabel.text = g.productName
-        cell.goodsImage.image = g.productImage
-        cell.goodsPrice.text = String(g.productPrice)
-        cell.goodsStock.text = String(g.productStock) + g.productUnit
+        let product = products[indexPath.row]
+        cell.goodsLabel.text = product.name
+        cell.goodsImage.image = product.image
+        cell.goodsPrice.text = String(product.price)
+        cell.goodsStock.text = String(product.stock ?? 0) + " " + (product.unit ?? "0")
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "goodsDetails") as! GoodsDetailsViewController
-        vc.goods = goods[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

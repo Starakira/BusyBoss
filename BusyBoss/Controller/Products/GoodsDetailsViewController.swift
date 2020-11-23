@@ -8,7 +8,7 @@
 import UIKit
 
 class GoodsDetailsViewController: UIViewController {
-    var goods : goodsStruct?
+    
     @IBOutlet weak var goodsDetailsImage: UIImageView!
     @IBOutlet weak var goodsDetailsLabel: UILabel!
     @IBOutlet weak var goodsDetailsPrice: UILabel!
@@ -16,16 +16,18 @@ class GoodsDetailsViewController: UIViewController {
     @IBOutlet weak var goodsDetailsUnit: UILabel!
     @IBOutlet weak var goodsDetailsDescription: UILabel!
     
+    var product: Product?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let g = goods {
-            goodsDetailsLabel.text = g.productName
-            goodsDetailsImage.image = g.productImage
-            goodsDetailsPrice.text = String(g.productPrice)
-            goodsDetailsStock.text = String(g.productStock)
-            goodsDetailsUnit.text = g.productUnit
-            goodsDetailsDescription.text = g.description
+        if let product = product {
+            goodsDetailsLabel.text = product.name
+            goodsDetailsImage.image = product.image
+            goodsDetailsPrice.text = String(product.price)
+            goodsDetailsStock.text = String(product.stock ?? 0)
+            goodsDetailsUnit.text = product.unit
+            goodsDetailsDescription.text = product.description
         }
     }
     

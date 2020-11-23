@@ -14,8 +14,10 @@ class InputGoodsViewController: UIViewController {
     @IBOutlet weak var productStockFields: UITextField!
     @IBOutlet weak var productUnitFields: UITextField!
     @IBOutlet weak var productDescription: UITextField!
-    var goods : goodsStruct!
+    
     @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    var product: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +36,31 @@ class InputGoodsViewController: UIViewController {
             
             return
         }
-        let productPrice = Int(productPriceFields.text!)
-        let productStock = Int(productStockFields.text!)
-        let newGoods = goodsStruct(productName: productNameField.text!, productPrice: productPrice!, productImage: addProductImage.image!, productStock: productStock!, productUnit: productUnitFields.text!, description: productDescription.text!)
-       
-       self.goods = newGoods
+        var product = Product(image: addProductImage.image,
+                               name: productNameField.text ?? "No name",
+                               description: productDescription.text ?? "No description",
+                               price: Double(productPriceFields.text ?? "0.0") ?? 0.0,
+                               stock: Int(productStockFields.text ?? "0") ?? 0,
+                               unit: productUnitFields.text ?? "Undefined",
+                               type: ProductType.goods)
+        
+        CloudKitManager.shared().productCreate(product: product) {
+            (recordID, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                Alert.showAlert(view: self, title: "Error creating product", message: "Error")
+                return
+            }
+                if recordID == nil {
+                    print("ID not created!")
+                }
+                else {
+                    print("Creating client successful")
+                    product.recordID = recordID
+                    
+                    self.product = product
+                }
+        }
     }
 }
 
