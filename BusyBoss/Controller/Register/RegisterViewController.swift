@@ -33,22 +33,37 @@ class RegisterViewController: UIViewController {
             password: passwordTextField.text!,
             phoneNumber: phoneNumberTextField.text!)
         
-        let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
-        
-        self.present(pendingAction, animated: true) {
-            CloudKitManager.shared().userCreate(user: user){ recordID, error  in
-                pendingAction.dismiss(animated: true) {
-        
-                    if let error = error {
-                        Alert.showCloudKitError(self, error)
-                    
-                    }
-                    else {
-                        user.recordID = recordID
-                        self.dismiss(animated: true)
+        switch ifTextFieldEmpty(textField: firstNameTextField) || ifTextFieldEmpty(textField: lastNameTextField) || ifTextFieldEmpty(textField: emailAddressTextField) || ifTextFieldEmpty(textField: passwordTextField) || ifTextFieldEmpty(textField: phoneNumberTextField)
+        {
+        case true:
+            Alert.showAlert(view: self, title: "Text Field Empty", message: "Please fill out the required fields!")
+        default:
+            let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
+            
+            self.present(pendingAction, animated: true) {
+                CloudKitManager.shared().userCreate(user: user){ recordID, error  in
+                    pendingAction.dismiss(animated: true) {
+            
+                        if let error = error {
+                            Alert.showCloudKitError(self, error)
+                        
+                        }
+                        else {
+                            user.recordID = recordID
+                            self.dismiss(animated: true)
+                        }
                     }
                 }
             }
+        }
+    }
+    
+    func ifTextFieldEmpty(textField: UITextField) -> Bool{
+        if !textField.hasText {
+            textField.text = "Please fill out this \(textField))"
+            return true
+        } else {
+            return false
         }
     }
 }
