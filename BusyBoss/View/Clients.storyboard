@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bId-Xe-gOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bId-Xe-gOo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -108,6 +108,7 @@
                                                 <constraint firstItem="vqd-NZ-Lta" firstAttribute="leading" secondItem="MVn-jR-Gbg" secondAttribute="leadingMargin" id="8Te-Ap-lgh"/>
                                                 <constraint firstItem="lxE-I3-OiZ" firstAttribute="leading" secondItem="wBJ-PP-Te3" secondAttribute="trailing" constant="5" id="AfY-DJ-BdG"/>
                                                 <constraint firstItem="vqd-NZ-Lta" firstAttribute="top" secondItem="MVn-jR-Gbg" secondAttribute="topMargin" id="Avd-yu-fwD"/>
+                                                <constraint firstItem="vqd-NZ-Lta" firstAttribute="bottom" secondItem="MVn-jR-Gbg" secondAttribute="bottomMargin" id="HwT-ft-Btg"/>
                                                 <constraint firstItem="w8u-qL-4V0" firstAttribute="trailing" secondItem="MVn-jR-Gbg" secondAttribute="trailingMargin" id="JIP-nk-gax"/>
                                                 <constraint firstItem="iCg-9V-A9d" firstAttribute="centerX" secondItem="fmN-m6-XkN" secondAttribute="centerX" id="KkJ-Hw-dru"/>
                                                 <constraint firstItem="lxE-I3-OiZ" firstAttribute="centerY" secondItem="wBJ-PP-Te3" secondAttribute="centerY" id="O8E-77-hc1"/>
