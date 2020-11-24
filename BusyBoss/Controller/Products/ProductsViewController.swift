@@ -44,20 +44,20 @@ class ProductsViewController: UIViewController {
     }
     
     @IBAction func addProducts(_ sender: Any) {
-     let alert = UIAlertController(title: "", message: "お願いします", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "グッズ", style: .default, handler: { (_) in
+     let alert = UIAlertController(title: "Choose Product Type", message: "Please choose your product type", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Goods", style: .default, handler: { (_) in
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "inputGoods") as! InputGoodsViewController
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             self.present(vc, animated: true, completion: nil)
                }))
-        alert.addAction(UIAlertAction(title: "サービス", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "Services", style: .default, handler: { (_) in
              let vc = self.storyboard?.instantiateViewController(withIdentifier: "inputServices") as! InputServicesViewController
                        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                        vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                        self.present(vc, animated: true, completion: nil)
                }))
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
         print("hi")
         

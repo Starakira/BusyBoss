@@ -34,7 +34,7 @@ struct User {
         self.user = user
         
         UserDefaults.standard.setValue(user.email, forKey: User.keyEmail)
-        UserDefaults.standard.setValue(user.password, forKey: User.keyEmail)
+        UserDefaults.standard.setValue(user.password, forKey: User.keyPassword)
     }
     
     static func deleteCurrentUser() {
