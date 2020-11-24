@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tlI-HE-hEx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -40,7 +40,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yqD-Zy-5kD">
-                                <rect key="frame" x="35.5" y="156" width="343" height="32"/>
+                                <rect key="frame" x="35.5" y="152" width="343" height="32"/>
                                 <segments>
                                     <segment title="Ongoing"/>
                                     <segment title="Complete"/>
@@ -51,7 +51,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vri-Qb-TJi">
-                                <rect key="frame" x="20" y="195" width="374" height="667"/>
+                                <rect key="frame" x="20" y="191" width="374" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="108" id="eja-sZ-h0r" customClass="TransactionViewCell" customModule="BusyBoss" customModuleProvider="target">
@@ -154,7 +154,7 @@
                             <constraint firstItem="yqD-Zy-5kD" firstAttribute="width" secondItem="bDM-2v-J7y" secondAttribute="width" multiplier="0.828502" id="5TU-Gy-tKm"/>
                             <constraint firstItem="yqD-Zy-5kD" firstAttribute="centerX" secondItem="16M-cP-Vji" secondAttribute="centerX" id="BdR-GX-KNd"/>
                             <constraint firstItem="5Ff-4F-luI" firstAttribute="top" secondItem="16M-cP-Vji" secondAttribute="top" id="CP5-ca-MOk"/>
-                            <constraint firstItem="yqD-Zy-5kD" firstAttribute="top" secondItem="16M-cP-Vji" secondAttribute="top" constant="68" id="G2h-gV-SWk"/>
+                            <constraint firstItem="yqD-Zy-5kD" firstAttribute="top" secondItem="5Ff-4F-luI" secondAttribute="bottom" constant="8" id="G2h-gV-SWk"/>
                             <constraint firstItem="vri-Qb-TJi" firstAttribute="bottom" secondItem="16M-cP-Vji" secondAttribute="bottom" id="Mgs-8w-uKX"/>
                             <constraint firstItem="5Ff-4F-luI" firstAttribute="width" secondItem="bDM-2v-J7y" secondAttribute="width" id="WG3-9T-ekj"/>
                             <constraint firstItem="5Ff-4F-luI" firstAttribute="centerX" secondItem="16M-cP-Vji" secondAttribute="centerX" id="c7N-9Y-8fC"/>
@@ -1503,23 +1503,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="UDP-ur-NNF">
-                                <rect key="frame" x="20" y="245" width="76.5" height="22"/>
+                                <rect key="frame" x="20" y="245" width="76" height="22"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xxv-oI-pVp">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="xxv-oI-pVp" secondAttribute="height" multiplier="10:11" id="LWl-7c-yy3"/>
+                                            <constraint firstAttribute="height" constant="22" id="WZp-mo-25q"/>
+                                        </constraints>
                                         <state key="normal" image="minus.circle" catalog="system"/>
                                         <connections>
                                             <action selector="minusQuantityButtonAction:" destination="jzM-L3-jkh" eventType="touchUpInside" id="R1t-up-Vf2"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6u-QH-8Xc">
-                                        <rect key="frame" x="33" y="0.0" width="10.5" height="22"/>
+                                        <rect key="frame" x="33" y="0.0" width="10" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="DlN-Oi-SD0"/>
+                                            <constraint firstAttribute="width" secondItem="J6u-QH-8Xc" secondAttribute="height" multiplier="5:11" id="Ue8-Sl-ra2"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SSb-6N-350">
-                                        <rect key="frame" x="56.5" y="0.0" width="20" height="22"/>
+                                        <rect key="frame" x="56" y="0.0" width="20" height="22"/>
                                         <state key="normal" image="plus.circle" catalog="system"/>
                                         <connections>
                                             <action selector="plusQuantityButtonAction:" destination="jzM-L3-jkh" eventType="touchUpInside" id="mn4-9G-iOh"/>
@@ -1528,6 +1536,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="B8i-Dg-TZA"/>
+                                    <constraint firstItem="SSb-6N-350" firstAttribute="height" secondItem="xxv-oI-pVp" secondAttribute="height" id="S6J-sc-rTk"/>
+                                    <constraint firstItem="SSb-6N-350" firstAttribute="width" secondItem="xxv-oI-pVp" secondAttribute="width" id="SHc-Q1-hW1"/>
                                 </constraints>
                             </stackView>
                         </subviews>
