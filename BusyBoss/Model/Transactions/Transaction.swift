@@ -28,6 +28,9 @@ public struct Transaction {
     static let keyDiscount = "discount"
     static let keyTax = "tax"
     static let keyValidityDate = "validityDate"
+    static let keyUserReference = "userReference"
+    static let keyClientReference = "clientReference"
+    static let keyProductReferences = "productReferenceList"
     
     func getTotalProductPrices() -> Double {
         var total: Double = 0

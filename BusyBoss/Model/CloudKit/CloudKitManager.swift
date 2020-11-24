@@ -64,107 +64,27 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
-//    func authenticateUserUsingSignInWithApple(user: User, credentials: ASAuthorizationAppleIDCredential, completionHandler: @escaping (_ user: User?,_ error: Error?) -> Void) {
-//
-//        let predicateEmail = NSPredicate(format: "\(emailAddressKey) = %@", user.email)
-//        let query = CKQuery(recordType: userRecordType, predicate: predicateEmail)
-//        let operation = CKQueryOperation(query: query)
-//        //operation.desiredKeys = [emailAddressKey, passwordKey]
-//
-//        var user:User?
-//
-//        operation.recordFetchedBlock = {record in
-//            user = User(record: record)
-//        }
-//
-//        operation.queryCompletionBlock = {cursor, error in
-//            DispatchQueue.main.async {
-//                completionHandler(user ,error)
-//            }
-//        }
-//
-//        publicDatabase.add(operation)
-//    }
-
-    func productCreate(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
-        
-        var productRecord = CKRecord(recordType: "Product")
-        let userRecord = CKRecord(recordType: "User")
-        let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
-        
-        if let productRecordID = product.recordID {
-            productRecord = CKRecord(recordType: "Product", recordID: productRecordID)
-        }
-        
-        productRecord.setValue(product.name, forKey: Product.keyName)
-        productRecord.setValue(product.description, forKey: Product.keyDescription)
-        productRecord.setValue(product.price, forKey: Product.keyPrice)
-        productRecord.setValue(product.stock, forKey: Product.keyStock)
-        productRecord.setValue(product.unit, forKey: Product.keyUnit)
-        productRecord.setValue(product.type.rawValue, forKey: Product.keyType)
-        productRecord.setValue(userReference, forKey: "userReference")
-        
-        if let productImage = product.image {
-            let asset = ImageManager.convertToCKAsset(image: productImage)
-            productRecord.setValue(asset, forKey: Product.keyImage)
-        }
-        
-        publicDatabase.save(productRecord) {(savedRecord, error) in
-            DispatchQueue.main.async {
-                completionHandler(savedRecord?.recordID, error)
-            }
-        }
-    }
-    
-    func productsFetchAll(completionHandler: @escaping (_ result: [Product], _ error: Error?) -> Void){
-        let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.none)
-        let predicate = NSPredicate(format: "\(Product.keyUserReference) = %@", reference)
-        let query = CKQuery(recordType: "Product", predicate: predicate)
-        let operation = CKQueryOperation(query: query)
-        
-        var products:[Product] = []
-        
-        operation.recordFetchedBlock = {record in
-            let newProduct = Product(record: record)
-            products.append(newProduct)
-        }
-        
-        operation.queryCompletionBlock = {cursor, error in
-            DispatchQueue.main.async {
-                completionHandler(products, error)
-            }
-        }
-        publicDatabase.add(operation)
-    }
-    
-    func productEdit(product: Product, completionHandler: @escaping () -> Void){
-        
-        let productRecord = CKRecord(recordType: "Product", recordID: product.recordID!)
-        
-        productRecord.setValue(product.name, forKey: Product.keyName)
-        productRecord.setValue(product.price, forKey: Product.keyPrice)
-        productRecord.setValue(product.stock, forKey: Product.keyStock)
-        productRecord.setValue(product.type, forKey: Product.keyType)
-        
-        publicDatabase.save(productRecord) {(savedRecord, error) in
-            if error != nil{
-                print(error!.localizedDescription)
-            }
-            else{
-                DispatchQueue.main.async {
-                    completionHandler();
-                }
-            }
-        }
-    }
-    
-    func productDelete(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID?, _ error: Error?) -> Void){
-        publicDatabase.delete(withRecordID: product.recordID!) { (recordID, error) in
-            DispatchQueue.main.async {
-                completionHandler(recordID, error);
-            }
-        }
-    }
+    //    func authenticateUserUsingSignInWithApple(user: User, credentials: ASAuthorizationAppleIDCredential, completionHandler: @escaping (_ user: User?,_ error: Error?) -> Void) {
+    //
+    //        let predicateEmail = NSPredicate(format: "\(emailAddressKey) = %@", user.email)
+    //        let query = CKQuery(recordType: userRecordType, predicate: predicateEmail)
+    //        let operation = CKQueryOperation(query: query)
+    //        //operation.desiredKeys = [emailAddressKey, passwordKey]
+    //
+    //        var user:User?
+    //
+    //        operation.recordFetchedBlock = {record in
+    //            user = User(record: record)
+    //        }
+    //
+    //        operation.queryCompletionBlock = {cursor, error in
+    //            DispatchQueue.main.async {
+    //                completionHandler(user ,error)
+    //            }
+    //        }
+    //
+    //        publicDatabase.add(operation)
+    //    }
     
     // MARK: - Client Functions
     
@@ -280,19 +200,44 @@ struct CloudKitManager {
         transactionRecord.setValue(transaction.discount, forKey: Transaction.keyDiscount)
         transactionRecord.setValue(transaction.tax, forKey: Transaction.keyTax)
         transactionRecord.setValue(transaction.validityDate, forKey: Transaction.keyValidityDate)
-        transactionRecord.setValue(userReference, forKey: "userReference")
-        transactionRecord.setValue(clientReference, forKey: "clientReference")
-        transactionRecord.setValue(productRecordIDs, forKey: "productReferenceList")
+        transactionRecord.setValue(userReference, forKey: Transaction.keyUserReference)
+        transactionRecord.setValue(clientReference, forKey: Transaction.keyClientReference)
+        transactionRecord.setValue(productRecordIDs, forKey: Transaction.keyProductReferences)
         
         publicDatabase.save(transactionRecord) {(savedRecord, error) in
-            if error != nil{
-                print(error!.localizedDescription)
+            DispatchQueue.main.async {
+                completionHandler(savedRecord?.recordID, error);
             }
-            else{
-                DispatchQueue.main.async {
-                    completionHandler(savedRecord?.recordID, error);
+        }
+    }
+    
+    func transactionRecordProducts(transaction: Transaction, completionHandler: @escaping (_ error: Error?) -> Void){
+        var cloudkitError:Error?
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "transactionProductQuantityQueue")
+        
+        for product in transaction.products ?? []{
+            
+            group.enter()
+            queue.async (group: group){
+                let productQuantityPerTransaction = CKRecord(recordType: "Quantity");
+                productQuantityPerTransaction.setValue(transaction.recordID!, forKey: "transactionID")
+                productQuantityPerTransaction.setValue(product.recordID!, forKey: "productID")
+                productQuantityPerTransaction.setValue(product.transactionQuantity ?? 0, forKey: "quantity")
+                
+                publicDatabase.save(productQuantityPerTransaction) { (savedRecord, error) in
+                    group.leave()
+                    cloudkitError = error;
                 }
             }
+            if cloudkitError != nil {
+                break;
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completionHandler(cloudkitError);
         }
     }
     
@@ -316,63 +261,210 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
-    // MARK: - Product Functions
-    /*
-    func showAllProduct(productName: String, productPrice: Double, productQuantity: Int) {
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "Product", predicate: predicate)
-        let operation = CKQueryOperation(query: query)
-        operation.desiredKeys = [productNameKey, productPriceKey, productQuantityKey]
+    //Fetch only the total price of one transaction. Use this for Transaction Table View Cell
+    func transactionFetchTotalPrice(transaction: Transaction, completionHandler: @escaping (_ totalPrice: Float, _ error: Error?) -> Void) {
+        var total: Float = 0
+        var cloudkitError:Error?
         
-        productsName.removeAll()
-        productsPrice.removeAll()
-        productsQuantity.removeAll()
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "transactionFetchTotalPrice")
+        
+        for productReference in transaction.productReferences ?? [] {
+            group.enter()
+            queue.async (group: group){
+                //Fetch only the price of individual product
+                var price:Float = 0
+                
+                let predicate = NSPredicate(format: "recordID = %@", productReference.recordID)
+                let query = CKQuery(recordType: "Product", predicate: predicate)
+                let operation = CKQueryOperation(query: query)
+                operation.desiredKeys = [Product.keyPrice]
+                
+                operation.recordFetchedBlock = { record in
+                    price = record[Product.keyPrice] as? Float ?? 0
+                }
+                
+                operation.queryCompletionBlock = {cursor, error in
+                    cloudkitError = error
+                    if (error == nil) {
+                        group.enter()
+                        queue.async (group: group){
+                            //Fetch only the quantity of each product present in one transaction
+                            transactionFetchProductQuantity(transactionID: transaction.recordID!, productID: productReference.recordID) { (quantity, error) in
+                                cloudkitError = error
+                                total += (price * Float(quantity))
+                                group.leave()
+                            }
+                        }
+                    }
+                    group.leave()
+                }
+            }
+            
+            if cloudkitError != nil {
+                break;
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completionHandler(total, cloudkitError)
+        }
+    }
+    
+    func transactionFetchProductQuantity(transactionID: CKRecord.ID, productID: CKRecord.ID, completionHandler: @escaping (_ totalQuantity: Int, _ error: Error?) -> Void) {
+        var total: Int = 0
+        
+        let predicateTransactionID = NSPredicate(format: "transactionID = %@", transactionID)
+        let predicateProductID = NSPredicate(format: "productID = %@", productID)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateTransactionID, predicateProductID])
+        let query = CKQuery(recordType: "Quantity", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
         
         operation.recordFetchedBlock = { record in
-            productsName.append(record[self.productNameKey]!)
-            productsQuantity.append(record[self.productPriceKey]!)
-            productsPrice.append(record[self.productPriceKey]!)
+            total = record["quantity"] as? Int ?? 0
         }
+        
+        operation.queryCompletionBlock = {cursor, error in
+            completionHandler(total, error)
+        }
+    }
+    
+    func transactionFetchAllProducts(transaction: Transaction, completionHandler: @escaping (_ products: [Product]?, _ error: Error?) -> Void) {
+        var products: [Product] = []
+        var cloudkitError:Error?
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "transactionFetchAllProducts")
+        
+        for productReference in  transaction.productReferences ?? []{
+            group.enter()
+            queue.async (group: group){
+                var product: Product?
+                
+                productFetchOnce(productID: productReference.recordID) { (result, error) in
+                    product = result
+                    cloudkitError = error
+                    if (error == nil) {
+                        transactionFetchProductQuantity(transactionID: transaction.recordID!, productID: product!.recordID!) { (quantity, error) in
+                            product!.transactionQuantity = quantity
+                            cloudkitError = error
+                            
+                            products.append(product!)
+                            group.leave()
+                        }
+                    }
+                    else {
+                        group.leave()
+                    }
+                }
+            }
+            if cloudkitError != nil {
+                break;
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completionHandler(products, cloudkitError)
+        }
+    }
+    
+    // MARK: - Product Functions
+    func productCreate(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
+        
+        var productRecord = CKRecord(recordType: "Product")
+        let userRecord = CKRecord(recordType: "User")
+        let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
+        
+        if let productRecordID = product.recordID {
+            productRecord = CKRecord(recordType: "Product", recordID: productRecordID)
+        }
+        
+        productRecord.setValue(product.name, forKey: Product.keyName)
+        productRecord.setValue(product.description, forKey: Product.keyDescription)
+        productRecord.setValue(product.price, forKey: Product.keyPrice)
+        productRecord.setValue(product.stock, forKey: Product.keyStock)
+        productRecord.setValue(product.unit, forKey: Product.keyUnit)
+        productRecord.setValue(product.type.rawValue, forKey: Product.keyType)
+        productRecord.setValue(userReference, forKey: "userReference")
+        
+        if let productImage = product.image {
+            let asset = ImageManager.convertToCKAsset(image: productImage)
+            productRecord.setValue(asset, forKey: Product.keyImage)
+        }
+        
+        publicDatabase.save(productRecord) {(savedRecord, error) in
+            DispatchQueue.main.async {
+                completionHandler(savedRecord?.recordID, error)
+            }
+        }
+    }
+    
+    func productsFetchAll(completionHandler: @escaping (_ result: [Product], _ error: Error?) -> Void){
+        let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.none)
+        let predicate = NSPredicate(format: "\(Product.keyUserReference) = %@", reference)
+        let query = CKQuery(recordType: "Product", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        
+        var products:[Product] = []
+        
+        operation.recordFetchedBlock = {record in
+            let newProduct = Product(record: record)
+            products.append(newProduct)
+        }
+        
         operation.queryCompletionBlock = {cursor, error in
             DispatchQueue.main.async {
-                print(productsName)
-                print(productsQuantity)
-                print(productsPrice)
+                completionHandler(products, error)
             }
         }
         publicDatabase.add(operation)
     }
-    */
-
-    /*
-     func fetchID(completion: @escaping (String) -> Void){
-     
-     let query = CKQuery(recordType: "id", predicate: NSPredicate(value: true))//specify record
-     
-     let operation = CKQueryOperation(query: query)
-     operation.desiredKeys = [emailAddress, "password"]
-     
-     var result: CKRecord?
-     
-     var user: User?
-     
-     operation.recordFetchedBlock  = { record in
-     result = record
-     user = User(name: record.recordID.recordName)
-     }
-     
-     operation.queryCompletionBlock = { (cursor, error) in
-     if (error != nil) {
-     completion(result?.value(forKey: "emailAdress") as? String ?? "No Name")
-     self.delegate?.OnUserFetched(user: user!)
-     }
-     else{
-     print("error")
-     }
-     }
-     
-     publicDatabase.add(operation)
-     
-     }
-     */
+    
+    func productFetchOnce(productID: CKRecord.ID ,completionHandler: @escaping (_ product: Product?, _ error: Error?) -> Void){
+        let predicate = NSPredicate(format: "recordID = %@", productID)
+        let query = CKQuery(recordType: "Product", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        
+        var product:Product?
+        
+        operation.recordFetchedBlock = {record in
+            product = Product(record: record)
+        }
+        
+        operation.queryCompletionBlock = {cursor, error in
+            DispatchQueue.main.async {
+                completionHandler(product, error)
+            }
+        }
+        publicDatabase.add(operation)
+    }
+    
+    func productEdit(product: Product, completionHandler: @escaping () -> Void){
+        
+        let productRecord = CKRecord(recordType: "Product", recordID: product.recordID!)
+        
+        productRecord.setValue(product.name, forKey: Product.keyName)
+        productRecord.setValue(product.price, forKey: Product.keyPrice)
+        productRecord.setValue(product.stock, forKey: Product.keyStock)
+        productRecord.setValue(product.type, forKey: Product.keyType)
+        
+        publicDatabase.save(productRecord) {(savedRecord, error) in
+            if error != nil{
+                print(error!.localizedDescription)
+            }
+            else{
+                DispatchQueue.main.async {
+                    completionHandler();
+                }
+            }
+        }
+    }
+    
+    func productDelete(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID?, _ error: Error?) -> Void){
+        publicDatabase.delete(withRecordID: product.recordID!) { (recordID, error) in
+            DispatchQueue.main.async {
+                completionHandler(recordID, error);
+            }
+        }
+    }
 }
