@@ -40,7 +40,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yqD-Zy-5kD">
-                                <rect key="frame" x="35.5" y="156" width="343" height="32"/>
+                                <rect key="frame" x="35.5" y="148" width="343" height="32"/>
                                 <segments>
                                     <segment title="Ongoing"/>
                                     <segment title="Complete"/>
@@ -51,7 +51,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vri-Qb-TJi">
-                                <rect key="frame" x="20" y="195" width="374" height="667"/>
+                                <rect key="frame" x="20" y="187" width="374" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="108" id="eja-sZ-h0r" customClass="TransactionViewCell" customModule="BusyBoss" customModuleProvider="target">
@@ -127,6 +127,7 @@
                                                 <constraint firstItem="rqK-rN-hTh" firstAttribute="top" secondItem="vGc-OC-cj4" secondAttribute="bottom" constant="12" id="PjG-wc-g0n"/>
                                                 <constraint firstItem="X5n-qm-gRW" firstAttribute="top" secondItem="wpC-yr-qr8" secondAttribute="topMargin" id="QV8-zZ-5Dm"/>
                                                 <constraint firstItem="iuj-c9-EzY" firstAttribute="leading" secondItem="obB-OQ-4dg" secondAttribute="trailing" constant="8" symbolic="YES" id="WAW-or-8w7"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="obB-OQ-4dg" secondAttribute="bottom" constant="14" id="dNP-4K-AV3"/>
                                                 <constraint firstItem="obB-OQ-4dg" firstAttribute="top" secondItem="wpC-yr-qr8" secondAttribute="topMargin" constant="15" id="f8W-Sz-GfZ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="tpO-0Q-wfp" secondAttribute="trailing" id="pQ3-pu-NTz"/>
                                                 <constraint firstItem="vGc-OC-cj4" firstAttribute="top" secondItem="wpC-yr-qr8" secondAttribute="topMargin" id="tYZ-eJ-jJo"/>
@@ -153,7 +154,7 @@
                             <constraint firstItem="yqD-Zy-5kD" firstAttribute="width" secondItem="bDM-2v-J7y" secondAttribute="width" multiplier="0.828502" id="5TU-Gy-tKm"/>
                             <constraint firstItem="yqD-Zy-5kD" firstAttribute="centerX" secondItem="16M-cP-Vji" secondAttribute="centerX" id="BdR-GX-KNd"/>
                             <constraint firstItem="5Ff-4F-luI" firstAttribute="top" secondItem="16M-cP-Vji" secondAttribute="top" id="CP5-ca-MOk"/>
-                            <constraint firstItem="yqD-Zy-5kD" firstAttribute="top" secondItem="16M-cP-Vji" secondAttribute="top" constant="68" id="G2h-gV-SWk"/>
+                            <constraint firstItem="yqD-Zy-5kD" firstAttribute="top" secondItem="5Ff-4F-luI" secondAttribute="bottom" constant="4" id="G2h-gV-SWk"/>
                             <constraint firstItem="vri-Qb-TJi" firstAttribute="bottom" secondItem="16M-cP-Vji" secondAttribute="bottom" id="Mgs-8w-uKX"/>
                             <constraint firstItem="5Ff-4F-luI" firstAttribute="width" secondItem="bDM-2v-J7y" secondAttribute="width" id="WG3-9T-ekj"/>
                             <constraint firstItem="5Ff-4F-luI" firstAttribute="centerX" secondItem="16M-cP-Vji" secondAttribute="centerX" id="c7N-9Y-8fC"/>
@@ -1280,23 +1281,31 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="66e-Zc-ThB">
-                                <rect key="frame" x="20" y="404" width="90.5" height="22"/>
+                                <rect key="frame" x="20" y="404" width="76" height="22"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYU-Rb-5xL">
-                                        <rect key="frame" x="0.0" y="0.0" width="34" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nYU-Rb-5xL">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="nYU-Rb-5xL" secondAttribute="height" multiplier="10:11" id="a8m-E0-J24"/>
+                                            <constraint firstAttribute="height" constant="22" id="tRk-YZ-hSi"/>
+                                        </constraints>
                                         <state key="normal" image="minus.circle" catalog="system"/>
                                         <connections>
                                             <action selector="minusQuantityButtonAction:" destination="zah-Tg-Z5F" eventType="touchUpInside" id="QzG-Vu-U7g"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKY-Qi-jBx">
-                                        <rect key="frame" x="47" y="0.0" width="10.5" height="22"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKY-Qi-jBx">
+                                        <rect key="frame" x="33" y="0.0" width="10" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vKY-Qi-jBx" secondAttribute="height" multiplier="5:11" id="Na8-Z2-kOI"/>
+                                            <constraint firstAttribute="height" constant="22" id="hH2-cX-gkY"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imA-GG-21s">
-                                        <rect key="frame" x="70.5" y="0.0" width="20" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imA-GG-21s">
+                                        <rect key="frame" x="56" y="0.0" width="20" height="22"/>
                                         <state key="normal" image="plus.circle" catalog="system"/>
                                         <connections>
                                             <action selector="plusQuantityButtonAction:" destination="zah-Tg-Z5F" eventType="touchUpInside" id="IFE-P9-MEp"/>
@@ -1305,6 +1314,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="K7U-3D-JpA"/>
+                                    <constraint firstItem="imA-GG-21s" firstAttribute="height" secondItem="nYU-Rb-5xL" secondAttribute="height" id="cc9-jd-0Qi"/>
+                                    <constraint firstItem="imA-GG-21s" firstAttribute="width" secondItem="nYU-Rb-5xL" secondAttribute="width" id="zGd-6C-L8O"/>
                                 </constraints>
                             </stackView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PbW-jN-r08">
@@ -1357,7 +1368,6 @@
                             <constraint firstItem="66e-Zc-ThB" firstAttribute="top" secondItem="gMp-bB-T10" secondAttribute="bottom" constant="8" symbolic="YES" id="uYn-5X-qaI"/>
                             <constraint firstItem="VGk-MR-4Hn" firstAttribute="trailing" secondItem="j0i-K0-aqD" secondAttribute="trailing" constant="20" id="ugM-32-tIR"/>
                             <constraint firstItem="j0i-K0-aqD" firstAttribute="top" secondItem="qAW-fO-abq" secondAttribute="bottom" constant="8" symbolic="YES" id="vAu-PG-vJn"/>
-                            <constraint firstItem="VGk-MR-4Hn" firstAttribute="trailing" secondItem="66e-Zc-ThB" secondAttribute="trailing" constant="303.5" id="xd5-xm-B94"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bEh-UT-cmN"/>
@@ -1411,6 +1421,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ch8-a3-wls" secondAttribute="bottom" constant="1" id="AKe-h9-med"/>
                                                 <constraint firstItem="C8z-6N-T2h" firstAttribute="top" secondItem="rW6-0H-vj9" secondAttribute="topMargin" id="MRp-nE-rD4"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="C8z-6N-T2h" secondAttribute="trailing" constant="20" id="Oo2-s5-M6W"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ch8-a3-wls" secondAttribute="trailing" constant="20" id="aKO-9u-3Oj"/>
