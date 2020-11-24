@@ -18,26 +18,19 @@ class ProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CloudKitManager.shared().productsFetchAll {
-            (products, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            else {
-                print("Fetching client successful")
-                print("Clients = \(products.count)")
-                self.products = products
-            }
-        }
-        // Do any additional setup after loading the view.
+        segmentedClear(index: 0)
     }
     
     @IBAction func switchView(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
+        segmentedClear(index: sender.selectedSegmentIndex)
+    }
+    
+    func segmentedClear(index: Int) {
+        if index == 0 {
             goodsView.isHidden = false
             servicesView.isHidden = true
         }
-        else if sender.selectedSegmentIndex == 1{
+        else if index == 1{
             goodsView.isHidden = true
             servicesView.isHidden = false
         }
@@ -83,16 +76,62 @@ class ProductsViewController: UIViewController {
     */
     @IBAction func unwindToProduct(sender: UIStoryboardSegue) {
          if let sourceViewController = sender.source as? InputGoodsViewController {
-            let newGoods = sourceViewController.product
-            products.append(newGoods!)
-            goodsVC?.products = products
-            goodsVC!.goodsTableView.reloadData()
+            var newGoods = sourceViewController.product
+            
+            let pendingAction = Alert.displayPendingAlert(title: "Saving newGoods")
+            self.present(pendingAction, animated: true, completion: nil)
+            
+            CloudKitManager.shared().productCreate(product: newGoods!) {
+                (recordID, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    Alert.showAlert(view: self, title: "Error creating product", message: "Error")
+                    return
+                }
+                    if recordID == nil {
+                        print("ID not created!")
+                    }
+                    else {
+                        print("Creating product successful")
+                        newGoods!.recordID = recordID
+                        
+                        self.products.append(newGoods!)
+                        self.goodsVC?.products.append(contentsOf: self.products)
+                        self.goodsVC!.goodsTableView.reloadData()
+                        
+                        pendingAction.dismiss(animated: true, completion: nil)
+                    }
+            }
+            
+            
         }
         if let sourceViewController = sender.source as? InputServicesViewController {
-            let newServices = sourceViewController.product
-            products.append(newServices!)
-            servicesVC?.products = products
-            servicesVC!.sevicesTableView.reloadData()
+            var newServices = sourceViewController.product
+            
+            let pendingAction = Alert.displayPendingAlert(title: "Saving newServices")
+            self.present(pendingAction, animated: true, completion: nil)
+            
+            CloudKitManager.shared().productCreate(product: newServices!) {
+                (recordID, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    Alert.showAlert(view: self, title: "Error creating product", message: "Error")
+                    return
+                }
+                    if recordID == nil {
+                        print("ID not created!")
+                    }
+                    else {
+                        print("Creating product successful")
+                        newServices!.recordID = recordID
+                        
+                        self.products.append(newServices!)
+                        self.servicesVC?.products.append(contentsOf: self.products)
+                        self.servicesVC!.servicesTableView.reloadData()
+                        
+                        pendingAction.dismiss(animated: true, completion: nil)
+                    }
+            }
         }
 }
 

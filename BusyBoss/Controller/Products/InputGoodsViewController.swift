@@ -22,7 +22,6 @@ class InputGoodsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        // Do any additional setup after loading the view.
-        
     }
    
     @IBAction func addImage(_ sender: UIButton) {
@@ -32,20 +31,20 @@ class InputGoodsViewController: UIViewController {
                ivc.allowsEditing = true
                present(ivc, animated: true)
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if self.product == nil {
-            self.product = Product(image: addProductImage.image,
-                                   name: productNameField.text ?? "No name",
-                                   description: productDescription.text ?? "No description",
-                                   price: Double(productPriceFields.text ?? "0.0") ?? 0.0,
-                                   stock: Int(productStockFields.text ?? "0") ?? 0,
-                                   unit: productUnitFields.text ?? "Undefined",
-                                   type: ProductType.goods)
+        guard let button = sender as? UIBarButtonItem, button === addButton else {
+            
+            return
         }
+        let product = Product(image: addProductImage.image,
+                               name: productNameField.text ?? "No name",
+                               description: productDescription.text ?? "No description",
+                               price: Double(productPriceFields.text ?? "0.0") ?? 0.0,
+                               stock: Int(productStockFields.text ?? "0") ?? 0,
+                               unit: productUnitFields.text ?? "Undefined",
+                               type: ProductType.goods)
         
-        print("Creating product...")
+        self.product = product
     }
 }
 

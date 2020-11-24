@@ -372,8 +372,7 @@ struct CloudKitManager {
     func productCreate(product: Product, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         var productRecord = CKRecord(recordType: "Product")
-        let userRecord = CKRecord(recordType: "User")
-        let userReference = CKRecord.Reference(record: userRecord, action: CKRecord_Reference_Action.deleteSelf)
+        let userReference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.deleteSelf)
         
         if let productRecordID = product.recordID {
             productRecord = CKRecord(recordType: "Product", recordID: productRecordID)
@@ -400,7 +399,7 @@ struct CloudKitManager {
     }
     
     func productsFetchAll(completionHandler: @escaping (_ result: [Product], _ error: Error?) -> Void){
-        let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.none)
+        let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.deleteSelf)
         let predicate = NSPredicate(format: "\(Product.keyUserReference) = %@", reference)
         let query = CKQuery(recordType: "Product", predicate: predicate)
         let operation = CKQueryOperation(query: query)

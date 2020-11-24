@@ -9,7 +9,7 @@ import UIKit
 
 class ServicesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var sevicesTableView: UITableView!
+    @IBOutlet weak var servicesTableView: UITableView!
     
     var products : [Product] = []
     
@@ -17,9 +17,28 @@ class ServicesViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        sevicesTableView.dataSource = self
-        sevicesTableView.delegate = self
-        sevicesTableView.reloadData()
+        servicesTableView.dataSource = self
+        servicesTableView.delegate = self
+        
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                print("Fetching products successful")
+                print("Products = \(products.count)")
+                
+                for product in products {
+                    print(product.type.rawValue)
+                    if product.type.rawValue == "services"{
+                        self.products.append(product)
+                        self.servicesTableView.reloadData()
+                        print(self.products)
+                    }
+                }
+            }
+        }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count

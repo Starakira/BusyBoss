@@ -17,48 +17,30 @@ class InputServicesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           guard let button = sender as? UIBarButtonItem, button === addButton else {
-               
-               return
-           }
-        var product = Product(name: servicesName.text ?? "No name",
-                               description: servicesDescription.text ?? "No description",
-                               price: Double(servicesPrice.text ?? "0.0") ?? 0.0,
-                               type: ProductType.services)
-        
-        CloudKitManager.shared().productCreate(product: product) {
-            (recordID, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                Alert.showAlert(view: self, title: "Error creating product", message: "Error")
-                return
-            }
-                if recordID == nil {
-                    print("ID not created!")
-                }
-                else {
-                    print("Creating client successful")
-                    product.recordID = recordID
-                    
-                    self.product = product
-                }
+        guard let button = sender as? UIBarButtonItem, button === addButton else {
+            
+            return
         }
-          
-          
-       }
+        let product = Product(name: servicesName.text ?? "No name",
+                              description: servicesDescription.text ?? "No description",
+                              price: Double(servicesPrice.text ?? "0.0") ?? 0.0,
+                              type: ProductType.services)
+        
+        self.product = product
+    }
     
     /*    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension InputServicesViewController: UITextFieldDelegate{

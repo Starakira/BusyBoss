@@ -15,9 +15,32 @@ class GoodsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(products)
+        
         goodsTableView.dataSource = self
         goodsTableView.delegate = self
         
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            else {
+                print("Fetching products successful")
+                print("Products = \(products.count)")
+                
+                for product in products {
+                    print(product.type.rawValue)
+                    if product.type.rawValue == "goods"{
+                        self.products.append(product)
+                        self.goodsTableView.reloadData()
+                        print(self.products)
+                    }
+                }
+            }
+        }
+        
+        print(products)
     }
 }
 

@@ -32,6 +32,7 @@ class ListProductBarangJasaNewTransactionViewController: UIViewController {
             segmentedJasaList.isHidden = false
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ProductListBarangViewController{
             vc.passProductDelegate = myDelegate
