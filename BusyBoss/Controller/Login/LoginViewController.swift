@@ -53,19 +53,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     func authenticate(emailAddress: String, password: String){
-        CloudKitManager.shared().authenticateUser(emailAddress: emailAddress, password: password) { currentUser, error in
-            
-            if let error = error {
-                Alert.showError(self, error)
-                return
-            }
-            else if currentUser == nil {
-                Alert.showAlert(view: self, title: "Error", message: "Invalid Cridentials!")
-            }
-            else {
-                let loggedUser = User(record: currentUser!)
-                User.setCurrentUser(user: loggedUser)
-                self.segueToMain()
+        let pendingAction = Alert.displayPendingAlert(title: "Logging You In...")
+        self.present(pendingAction, animated: true) {
+            CloudKitManager.shared().authenticateUser(emailAddress: emailAddress, password: password) { currentUser, error in
+                if let error = error {
+                    pendingAction.dismiss(animated: true) {
+                        Alert.showError(self, error)
+                    }
+                    return
+                }
+                else if currentUser == nil {
+                    pendingAction.dismiss(animated: true) {
+                        Alert.showAlert(view: self, title: "Error", message: "Invalid Cridentials!")
+                    }
+                }
+                else {
+                    let loggedUser = User(record: currentUser!)
+                    User.setCurrentUser(user: loggedUser)
+                    pendingAction.dismiss(animated: true) {
+                        self.segueToMain()
+                    }
+                }
             }
         }
     }

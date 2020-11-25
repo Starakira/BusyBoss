@@ -18,8 +18,10 @@ class CloudKitError {
             return "Internet not avaliable. Please check your internet connection.\nError Code: \(nsError.code.rawValue)"
         case CKError.Code.permissionFailure:
             return "Access to database denied.\nError Code: \(nsError.code.rawValue)"
+        case CKError.Code.networkFailure:
+            return "Cannot save to database due to request timeout.\nError Code: \(nsError.code.rawValue)"
         default:
-            return "The operation could not be completed.\nError Code: \(nsError.code.rawValue)"
+            return "The operation could not be completed.\nError Code: \(nsError.code)"
         }
     }
 }

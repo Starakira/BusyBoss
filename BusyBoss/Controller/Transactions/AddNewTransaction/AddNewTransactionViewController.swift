@@ -131,26 +131,30 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
         transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.Ongoing, approval: TransactionApproval.Pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalPrice)
         
-        CloudKitManager.shared().transactionCreate(transaction: transaction!) {
-            (recordID, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                print("Transaction error!")
-                Alert.showAlert(view: self, title: "Error creating transaction", message: "Error")
-                return
-            }
-            if recordID == nil {
-                print("ID not created!")
-            }
-            else {
-                self.transaction?.recordID = recordID
-                
-                self.dismiss(animated: true)
-                self.transactionDelegate?.transactionSave(transaction: self.transaction!)
-                
-                print("Creating transaction successful")
+        let pendingAction = Alert.displayPendingAlert(title: "Saving new transaction to Database...")
+        self.present(pendingAction, animated: true) {
+            CloudKitManager.shared().transactionCreate(transaction: self.transaction!) {
+                (recordID, error) in
+                if let error = error {
+                    pendingAction.dismiss(animated: true) {
+                        Alert.showAlert(view: self, title: "Error creating transaction", message: CloudKitError.getUserFriendlyDescription(error: error))
+                    }
+                    
+                    return
+                }
+                if recordID == nil {
+                    print("ID not created!")
+                }
+                else {
+                    self.transaction?.recordID = recordID
+                    self.transactionDelegate?.transactionSave(transaction: self.transaction!)
+                    pendingAction.dismiss(animated: true) {
+                        self.dismiss(animated: true)
+                    }
+                }
             }
         }
+
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
