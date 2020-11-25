@@ -81,10 +81,10 @@ extension Transaction {
         case TransactionApproval.Rejected.rawValue:
             approval = TransactionApproval.Rejected
         default:
-            approval = TransactionApproval.Undefined
+            approval = TransactionApproval.Pending
         }
         
-        self.init(recordID: recordID, transactionNumber: transactionNumber, description: description, status: status, approval: approval, productReferences: productReferences, validityDate: validityDate!, discount: discount, tax: tax, value: value)
+        self.init(recordID: recordID, transactionNumber: transactionNumber, description: description, status: status, approval: approval, productReferences: productReferences, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: value)
     }
 }
 
@@ -98,5 +98,5 @@ public enum TransactionStatus : String {
 public enum TransactionApproval : String {
     case Approved
     case Rejected
-    case Undefined
+    case Pending
 }

@@ -129,12 +129,13 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
     }
     
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
-        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.Ongoing, approval: TransactionApproval.Undefined, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalPrice)
+        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.Ongoing, approval: TransactionApproval.Pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalPrice)
         
         CloudKitManager.shared().transactionCreate(transaction: transaction!) {
             (recordID, error) in
             if let error = error {
                 print(error.localizedDescription)
+                print("Transaction error!")
                 Alert.showAlert(view: self, title: "Error creating transaction", message: "Error")
                 return
             }
@@ -142,14 +143,14 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
                 print("ID not created!")
             }
             else {
+                self.transaction?.recordID = recordID
+                
                 self.dismiss(animated: true)
                 self.transactionDelegate?.transactionSave(transaction: self.transaction!)
                 
                 print("Creating transaction successful")
             }
         }
-        
-        
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {

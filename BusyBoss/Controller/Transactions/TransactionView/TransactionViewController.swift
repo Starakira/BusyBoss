@@ -26,15 +26,19 @@ class TransactionViewController: UIViewController {
         tableView.dataSource = self
         
         transactionsAll = []
-//        CloudKitManager.shared().transactionsFetchAll { (result, error) in
-//            if let error = error {
-//                Alert.showError(self, error)
-//            }
-//            else {
-//                self.transactionsAll = result
-//                self.refreshTableView(selectedSegmentIndex: self.TransactionSegmentedControl.selectedSegmentIndex)
-//            }
-//        }
+        
+        CloudKitManager.shared().transactionsFetchAll() {
+            (transactions, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.transactionDataSource.append(contentsOf: transactions)
+                
+                print("This is transaction \(self.transactionDataSource)")
+                
+                self.tableView.reloadData()
+            }
+        }
     }
     
     @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
