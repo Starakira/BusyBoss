@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddServiceDetailsViewController: UIViewController {
+class AddTransactionProductServicesDetailsViewController: UIViewController {
 
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!

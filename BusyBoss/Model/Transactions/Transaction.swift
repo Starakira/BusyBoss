@@ -11,7 +11,6 @@ import CloudKit
 public struct Transaction {
     var recordID: CKRecord.ID?
     var transactionNumber: String
-    var user: User
     var description: String
     var status: TransactionStatus
     var approval: TransactionApproval
@@ -21,6 +20,7 @@ public struct Transaction {
     var validityDate: Date
     var discount: Double?
     var tax: Double?
+    var value: Double?
     
     static let keyTransactionNumber = "transactionNumber"
     static let keyDescription = "description"
@@ -31,6 +31,7 @@ public struct Transaction {
     static let keyUserReference = "userReference"
     static let keyClientReference = "clientReference"
     static let keyProductReferences = "productReferenceList"
+    static let keyValue = "value"
     
     func getTotalProductPrices() -> Double {
         var total: Double = 0
@@ -46,7 +47,6 @@ extension Transaction {
     init(record: CKRecord) {
         let recordID = record.recordID
         let transactionNumber = ""
-        let user = User.currentUser()
         let description = ""
         
         let dateFormatter = DateFormatter()
@@ -55,6 +55,8 @@ extension Transaction {
         
         let discount = 0.0
         let tax = 0.0
+        
+        let value = 0.0
         
         let productReferences = record["productReference"] as? [CKRecord.Reference] ?? []
         
@@ -82,7 +84,7 @@ extension Transaction {
             approval = TransactionApproval.Undefined
         }
         
-        self.init(recordID: recordID, transactionNumber: transactionNumber, user: user!, description: description, status: status, approval: approval, productReferences: productReferences, validityDate: validityDate!, discount: discount, tax: tax)
+        self.init(recordID: recordID, transactionNumber: transactionNumber, description: description, status: status, approval: approval, productReferences: productReferences, validityDate: validityDate!, discount: discount, tax: tax, value: value)
     }
 }
 

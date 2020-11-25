@@ -185,7 +185,7 @@ struct CloudKitManager {
     func transactionCreate(transaction: Transaction, completionHandler: @escaping (_  recordID: CKRecord.ID?, _ error: Error?) -> Void){
         
         let transactionRecord = CKRecord(recordType: "Transaction")
-        let userReference = CKRecord.Reference(recordID: transaction.user.recordID!, action: CKRecord_Reference_Action.deleteSelf)
+        let userReference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.deleteSelf)
         let clientReference = CKRecord.Reference(recordID: transaction.client!.recordID!, action: CKRecord_Reference_Action.none)
         
         var productRecordIDs:[CKRecord.ID] = []
@@ -194,15 +194,25 @@ struct CloudKitManager {
             productRecordIDs.append(product.recordID!)
         }
         
+        var productReferences: [CKRecord.Reference] = []
+        
+        for productRecord in productRecordIDs {
+            let productReference = CKRecord.Reference(recordID: productRecord, action: CKRecord_Reference_Action.none)
+            productReferences.append(productReference)
+        }
+        
         transactionRecord.setValue(transaction.transactionNumber, forKey: Transaction.keyTransactionNumber)
         transactionRecord.setValue(transaction.description, forKey: Transaction.keyDescription)
         transactionRecord.setValue(transaction.status.rawValue, forKey: Transaction.keyStatus)
+        transactionRecord.setValue(transaction.validityDate, forKey: Transaction.keyValidityDate)
         transactionRecord.setValue(transaction.discount, forKey: Transaction.keyDiscount)
         transactionRecord.setValue(transaction.tax, forKey: Transaction.keyTax)
-        transactionRecord.setValue(transaction.validityDate, forKey: Transaction.keyValidityDate)
+        transactionRecord.setValue(transaction.value, forKey: Transaction.keyValue)
+        
         transactionRecord.setValue(userReference, forKey: Transaction.keyUserReference)
         transactionRecord.setValue(clientReference, forKey: Transaction.keyClientReference)
-        transactionRecord.setValue(productRecordIDs, forKey: Transaction.keyProductReferences)
+        transactionRecord.setValue(productReferences, forKey: Transaction.keyProductReferences)
+        
         
         publicDatabase.save(transactionRecord) {(savedRecord, error) in
             DispatchQueue.main.async {
@@ -222,8 +232,24 @@ struct CloudKitManager {
             group.enter()
             queue.async (group: group){
                 let productQuantityPerTransaction = CKRecord(recordType: "Quantity");
-                productQuantityPerTransaction.setValue(transaction.recordID!, forKey: "transactionID")
-                productQuantityPerTransaction.setValue(product.recordID!, forKey: "productID")
+                
+                let transactionReference = CKRecord.Reference(recordID: transaction.recordID!, action: CKRecord_Reference_Action.deleteSelf)
+                
+                var productRecordIDs: [CKRecord.ID] = []
+                
+                for product in transaction.products ?? []{
+                    productRecordIDs.append(product.recordID!)
+                }
+                
+                var productReferences: [CKRecord.Reference] = []
+                
+                for productRecord in productRecordIDs {
+                    let productReference = CKRecord.Reference(recordID: productRecord, action: CKRecord_Reference_Action.none)
+                    productReferences.append(productReference)
+                }
+                
+                productQuantityPerTransaction.setValue(transactionReference, forKey: "transactionReference")
+                productQuantityPerTransaction.setValue(productReferences, forKey: "productReferences")
                 productQuantityPerTransaction.setValue(product.transactionQuantity ?? 0, forKey: "quantity")
                 
                 publicDatabase.save(productQuantityPerTransaction) { (savedRecord, error) in

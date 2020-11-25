@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClientContactViewController: UIViewController {
+class AddNewTransactionClientViewController: UIViewController {
     @IBOutlet weak var ContactClientListTableView: UITableView!
 
     var clients : [Client] = []
@@ -46,7 +46,7 @@ class ClientContactViewController: UIViewController {
 }
 
 
-extension ClientContactViewController: UITableViewDelegate{
+extension AddNewTransactionClientViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedClient = clients[indexPath.row]
         
@@ -55,13 +55,13 @@ extension ClientContactViewController: UITableViewDelegate{
     }
 }
 
-extension ClientContactViewController: UITableViewDataSource{
+extension AddNewTransactionClientViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return clients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ClientContactViewCell", for: indexPath)as!ClientContactTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ClientContactViewCell", for: indexPath)as!AddNewTransactionClientTableViewCell
         let client = clients[indexPath.row]
         cell.NameContactClient.text = client.firstName + client.lastName
         cell.NameCompanyClient.text = client.companyName

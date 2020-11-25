@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddGoodDetailsViewController: UIViewController {
+class AddTransactionProductGoodsDetailsViewContoller: UIViewController {
     
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!

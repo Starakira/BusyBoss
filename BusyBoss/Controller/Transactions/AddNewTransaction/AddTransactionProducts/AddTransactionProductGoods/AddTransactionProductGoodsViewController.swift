@@ -11,13 +11,12 @@ protocol ProductGoodsDismiss {
     func performDismissal (checkProduct: Product)
 }
 
-class ProductListBarangViewController: UIViewController, ProductGoodsDismiss {
+class AddTransactionProductGoodsViewController: UIViewController, ProductGoodsDismiss {
     func performDismissal(checkProduct: Product) {
         dismiss(animated: true, completion: nil)
         self.checkProduct = checkProduct
         if self.checkProduct != nil {
             passProductDelegate?.productListPassData(product: self.checkProduct!)
-            
         }
     }
     var checkProduct: Product?
@@ -57,27 +56,27 @@ class ProductListBarangViewController: UIViewController, ProductGoodsDismiss {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AddGoodDetailsViewController{
+        if let vc = segue.destination as? AddTransactionProductGoodsDetailsViewContoller{
             vc.product = products[index]
             vc.productListDelegate = self
         }
     }
 }
 
-extension ProductListBarangViewController: UITableViewDelegate {
+extension AddTransactionProductGoodsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         performSegue(withIdentifier: "AddGoodDetailsSegue", sender: self)
     }
 }
 
-extension ProductListBarangViewController: UITableViewDataSource {
+extension AddTransactionProductGoodsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListBarangViewCell", for: indexPath)as!ProductListBarangViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListBarangViewCell", for: indexPath)as!AddTransactionProductGoodsTableViewCell
         let product = products[indexPath.row]
         cell.NamaBarangLabel.text = product.name
         cell.JumlahStockBarang.text = String(product.stock ?? 0)

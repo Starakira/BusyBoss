@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ClientContactTableViewCell: UITableViewCell {
+class AddNewTransactionClientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var NameContactClient: UILabel!
     @IBOutlet weak var NameCompanyClient: UILabel!

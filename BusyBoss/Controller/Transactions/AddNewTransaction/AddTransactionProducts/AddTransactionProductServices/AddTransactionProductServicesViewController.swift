@@ -11,7 +11,7 @@ protocol ProductServicesDismiss {
 
 import UIKit
 
-class ProductListJasaViewController: UIViewController, ProductServicesDismiss {
+class AddTransactionProductServicesViewController: UIViewController, ProductServicesDismiss {
     func performDismissal(checkProduct: Product) {
         dismiss(animated: true, completion: nil)
         self.checkProduct = checkProduct
@@ -57,27 +57,27 @@ class ProductListJasaViewController: UIViewController, ProductServicesDismiss {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AddServiceDetailsViewController{
+        if let vc = segue.destination as? AddTransactionProductServicesDetailsViewController{
             vc.product = products[index]
             vc.productListDelegate = self
         }
     }
 }
 
-extension ProductListJasaViewController: UITableViewDelegate {
+extension AddTransactionProductServicesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         performSegue(withIdentifier: "AddServiceDetailsSegue", sender: self)
     }
 }
 
-extension ProductListJasaViewController: UITableViewDataSource {
+extension AddTransactionProductServicesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListJasaViewCell", for: indexPath)as!ProductListJasaViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListJasaViewCell", for: indexPath)as!AddNewTransactionProductServicesTableViewCell
         let product = products[indexPath.row]
         cell.NameJasaLabel.text = product.name
         cell.TotalHargaLabel.text = String(product.price)

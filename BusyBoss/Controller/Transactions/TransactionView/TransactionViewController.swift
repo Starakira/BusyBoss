@@ -8,23 +8,18 @@
 import UIKit
 
 protocol TransactionConform {
-    func transactionSave(transaction: DummyTransaction)
+    func transactionSave(transaction: Transaction)
 }
 
 class TransactionViewController: UIViewController {
     @IBOutlet weak var TransactionSegmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var transactionDataSource: [DummyTransaction] = []
+    var transactionDataSource: [Transaction] = []
 
-    var transactionsAll: [DummyTransaction]? = []
+    var transactionsAll: [Transaction]? = []
     
     var transactionIndex = -1
-    
-    var dummyProducts = [
-        Product(image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), name: "Shoes", description: "", price: 20000, stock: 5, unit: "", transactionQuantity: 2, type: ProductType.goods),
-        Product(image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), name: "Shirt", description: "", price: 15000, stock: 10, unit: "", transactionQuantity: 3, type: ProductType.goods),
-        Product(image: #imageLiteral(resourceName: "Foruminity_Logo_Icon"), name: "Sablon", description: "", price: 30000, stock: 20, unit: "", transactionQuantity: 5, type: ProductType.services),]
 
     override func viewDidLoad() {
         tableView.delegate = self
@@ -67,7 +62,7 @@ class TransactionViewController: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? ProductListNewTransactionViewController {
+        if let viewController = segue.destination as? AddNewTransactionViewController {
             viewController.transactionDelegate = self
         } else if let viewController = segue.destination as? TransactionDetailsViewController {
             viewController.transactionDummyData = transactionDataSource[transactionIndex]
@@ -77,7 +72,7 @@ class TransactionViewController: UIViewController {
 }
 
 extension TransactionViewController : TransactionConform{
-    func transactionSave(transaction: DummyTransaction) {
+    func transactionSave(transaction: Transaction) {
         transactionsAll?.append(transaction)
         refreshTableView(selectedSegmentIndex: TransactionSegmentedControl.selectedSegmentIndex)
     }
@@ -101,7 +96,7 @@ extension TransactionViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell") as! TransactionViewCell
         cell.labelStatus.text = transaction.status.rawValue
         cell.labelDescription.text = transaction.description
-        cell.labelTotalPrice.text = "Rp. \(transaction.transactionTotalPrice),-)"
+        cell.labelTotalPrice.text = "Rp. \(String(describing: transaction.value)),-)"
         cell.labelTransactionCode.text = transaction.transactionNumber
         cell.labelClientName.text = "\(transaction.client?.firstName ?? "") \(transaction.client?.lastName ?? "")"
         return cell

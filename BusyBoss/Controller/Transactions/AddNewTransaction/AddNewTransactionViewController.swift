@@ -15,7 +15,7 @@ protocol ProductsConform {
     func productListPassData(product: Product)
 }
 
-class ProductListNewTransactionViewController: UIViewController, ClientsConform, ProductsConform {
+class AddNewTransactionViewController: UIViewController, ClientsConform, ProductsConform {
     
     func clientListPassData(client: Client) {
         self.client = client
@@ -47,7 +47,7 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     
     @IBOutlet weak var totalTransactionValueLabel: UILabel!
     
-    var transaction: DummyTransaction?
+    var transaction: Transaction?
     
     var transactionNumber = ""
     
@@ -129,20 +129,37 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     }
     
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
-        transaction = DummyTransaction(transactionNumber: transactionNumber, description: "description", status: TransactionStatus.Ongoing, approval: TransactionApproval.Undefined, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount , tax: tax , transactionTotalPrice: totalPrice)
+        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.Ongoing, approval: TransactionApproval.Undefined, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalPrice)
         
-        self.dismiss(animated: true, completion: nil)
-        transactionDelegate?.transactionSave(transaction: transaction!)
+        CloudKitManager.shared().transactionCreate(transaction: transaction!) {
+            (recordID, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                Alert.showAlert(view: self, title: "Error creating transaction", message: "Error")
+                return
+            }
+            if recordID == nil {
+                print("ID not created!")
+            }
+            else {
+                self.dismiss(animated: true)
+                self.transactionDelegate?.transactionSave(transaction: self.transaction!)
+                
+                print("Creating transaction successful")
+            }
+        }
+        
+        
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ClientContactViewController {
+        if let vc = segue.destination as? AddNewTransactionClientViewController {
             vc.clientsListDelegate = self
-        } else if let vc = segue.destination as? ListProductBarangJasaNewTransactionViewController {
+        } else if let vc = segue.destination as? AddTransactionProductsViewController {
             vc.myDelegate = self
         }
     }
@@ -167,7 +184,7 @@ class ProductListNewTransactionViewController: UIViewController, ClientsConform,
     }
 }
 
-extension ProductListNewTransactionViewController: UITextFieldDelegate{
+extension AddNewTransactionViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == transactionNumberTextField {
             transactionNumber = transactionNumberTextField.text ?? ""
@@ -186,17 +203,17 @@ extension ProductListNewTransactionViewController: UITextFieldDelegate{
     }
 }
 
-extension ProductListNewTransactionViewController: UITableViewDelegate{
+extension AddNewTransactionViewController: UITableViewDelegate{
     
 }
 
-extension ProductListNewTransactionViewController: UITableViewDataSource{
+extension AddNewTransactionViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!ProductListNewTransactionViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         let product = products[indexPath.row]
         cell.NameProductNewTransaction.text = product.name
         cell.StockNewTransaction.text = String(product.stock ?? 0)

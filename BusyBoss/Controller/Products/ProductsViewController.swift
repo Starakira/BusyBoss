@@ -37,19 +37,19 @@ class ProductsViewController: UIViewController {
     }
     
     @IBAction func addProducts(_ sender: Any) {
-     let alert = UIAlertController(title: "Choose Product Type", message: "Please choose your product type", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Choose Product Type", message: "Please choose your product type", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Goods", style: .default, handler: { (_) in
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "inputGoods") as! InputGoodsViewController
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             self.present(vc, animated: true, completion: nil)
-               }))
+        }))
         alert.addAction(UIAlertAction(title: "Services", style: .default, handler: { (_) in
-             let vc = self.storyboard?.instantiateViewController(withIdentifier: "inputServices") as! InputServicesViewController
-                       vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                       vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                       self.present(vc, animated: true, completion: nil)
-               }))
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "inputServices") as! InputServicesViewController
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            self.present(vc, animated: true, completion: nil)
+        }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
         print("hi")
@@ -66,16 +66,16 @@ class ProductsViewController: UIViewController {
         }
     }
     /*
-// MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
     @IBAction func unwindToProduct(sender: UIStoryboardSegue) {
-         if let sourceViewController = sender.source as? InputGoodsViewController {
+        if let sourceViewController = sender.source as? InputGoodsViewController {
             var newGoods = sourceViewController.product
             
             let pendingAction = Alert.displayPendingAlert(title: "Saving newGoods")
@@ -88,23 +88,22 @@ class ProductsViewController: UIViewController {
                     Alert.showAlert(view: self, title: "Error creating product", message: "Error")
                     return
                 }
-                    if recordID == nil {
-                        print("ID not created!")
-                    }
-                    else {
-                        print("Creating product successful")
-                        newGoods!.recordID = recordID
-                        
-                        self.products.append(newGoods!)
-                        self.goodsVC?.products.append(contentsOf: self.products)
-                        self.goodsVC!.goodsTableView.reloadData()
-                        
-                        pendingAction.dismiss(animated: true, completion: nil)
-                    }
+                if recordID == nil {
+                    print("ID not created!")
+                }
+                else {
+                    print("Creating product successful")
+                    newGoods!.recordID = recordID
+                    
+                    self.products.append(newGoods!)
+                    self.goodsVC?.products.append(contentsOf: self.products)
+                    self.goodsVC!.goodsTableView.reloadData()
+                    
+                    pendingAction.dismiss(animated: true, completion: nil)
+                }
             }
-            
-            
         }
+        
         if let sourceViewController = sender.source as? InputServicesViewController {
             var newServices = sourceViewController.product
             
@@ -118,22 +117,21 @@ class ProductsViewController: UIViewController {
                     Alert.showAlert(view: self, title: "Error creating product", message: "Error")
                     return
                 }
-                    if recordID == nil {
-                        print("ID not created!")
-                    }
-                    else {
-                        print("Creating product successful")
-                        newServices!.recordID = recordID
-                        
-                        self.products.append(newServices!)
-                        self.servicesVC?.products.append(contentsOf: self.products)
-                        self.servicesVC!.servicesTableView.reloadData()
-                        
-                        pendingAction.dismiss(animated: true, completion: nil)
-                    }
+                
+                if recordID == nil {
+                    print("ID not created!")
+                }
+                else {
+                    print("Creating product successful")
+                    newServices!.recordID = recordID
+                    
+                    self.products.append(newServices!)
+                    self.servicesVC?.products.append(contentsOf: self.products)
+                    self.servicesVC!.servicesTableView.reloadData()
+                    
+                    pendingAction.dismiss(animated: true, completion: nil)
+                }
             }
         }
-}
-
-    
+    }
 }
