@@ -240,7 +240,7 @@ struct CloudKitManager {
         }
     }
     
-    func transactionRecordProducts(transaction: Transaction, completionHandler: @escaping (_ error: Error?) -> Void){
+    func transactionAddRecordProducts(transaction: Transaction, completionHandler: @escaping (_ error: Error?) -> Void){
         var cloudkitError:Error?
         
         let group = DispatchGroup()
@@ -254,21 +254,10 @@ struct CloudKitManager {
                 
                 let transactionReference = CKRecord.Reference(recordID: transaction.recordID!, action: CKRecord_Reference_Action.deleteSelf)
                 
-                var productRecordIDs: [CKRecord.ID] = []
-                
-                for product in transaction.products ?? []{
-                    productRecordIDs.append(product.recordID!)
-                }
-                
-                var productReferences: [CKRecord.Reference] = []
-                
-                for productRecord in productRecordIDs {
-                    let productReference = CKRecord.Reference(recordID: productRecord, action: CKRecord_Reference_Action.none)
-                    productReferences.append(productReference)
-                }
+                let productReference = CKRecord.Reference(recordID: product.recordID!, action: CKRecord_Reference_Action.none)
                 
                 productQuantityPerTransaction.setValue(transactionReference, forKey: "transactionReference")
-                productQuantityPerTransaction.setValue(productReferences, forKey: "productReferences")
+                productQuantityPerTransaction.setValue(productReference, forKey: "productReference")
                 productQuantityPerTransaction.setValue(product.transactionQuantity ?? 0, forKey: "quantity")
                 
                 publicDatabase.save(productQuantityPerTransaction) { (savedRecord, error) in
@@ -276,6 +265,7 @@ struct CloudKitManager {
                     cloudkitError = error;
                 }
             }
+            
             if cloudkitError != nil {
                 break;
             }
