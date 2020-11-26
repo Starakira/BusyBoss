@@ -147,10 +147,13 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
                 }
                 else {
                     self.transaction?.recordID = recordID
-                    self.transactionDelegate?.transactionSave(transaction: self.transaction!)
-                    pendingAction.dismiss(animated: true) {
-                        self.dismiss(animated: true)
+                    CloudKitManager.shared().transactionAddRecordProducts(transaction: self.transaction!) { (error) in
+                        self.transactionDelegate?.transactionSave(transaction: self.transaction!)
+                        pendingAction.dismiss(animated: true) {
+                            self.dismiss(animated: true)
+                        }
                     }
+                    
                 }
             }
         }
