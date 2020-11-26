@@ -25,20 +25,22 @@ class TransactionViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        transactionsAll = []
-        
         CloudKitManager.shared().transactionsFetchAll() {
             (transactions, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.transactionDataSource.append(contentsOf: transactions)
+                print("Appending: \(transactions)")
+                
+                self.transactionDataSource = transactions
                 
                 print("This is transaction \(self.transactionDataSource)")
                 
                 self.tableView.reloadData()
             }
         }
+        
+        transactionsAll = []
     }
     
     @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
@@ -50,11 +52,11 @@ class TransactionViewController: UIViewController {
         if let transactionsAll = transactionsAll {
             switch selectedSegmentIndex {
             case 0: //Ongoing
-                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.Ongoing}
+                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.ongoing}
             case 1: //Completed
-                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.Completed}
+                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.completed}
             case 2:
-                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.Canceled}
+                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.canceled}
             default:
                 return
             }
@@ -100,7 +102,7 @@ extension TransactionViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell") as! TransactionViewCell
         cell.labelStatus.text = transaction.status.rawValue
         cell.labelDescription.text = transaction.description
-        cell.labelTotalPrice.text = "Rp. \(String(describing: transaction.value)),-)"
+        cell.labelTotalPrice.text = "Rp. \(String(describing: transaction.value))"
         cell.labelTransactionCode.text = transaction.transactionNumber
         cell.labelClientName.text = "\(transaction.client?.firstName ?? "") \(transaction.client?.lastName ?? "")"
         return cell

@@ -267,23 +267,24 @@ struct CloudKitManager {
         }
     }
     
-    func transactionsFetchAll(completionHandler: @escaping (_ transactions: [Transaction], _ error: Error?) -> Void) {
-        let predicate = NSPredicate(value: true)
+    func transactionsFetchAll(completionHandler: @escaping (_ result: [Transaction], _ error: Error?) -> Void) {
+        let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.none)
+        let predicate = NSPredicate(format: "\(Transaction.keyUserReference) = %@", reference)
         let query = CKQuery(recordType: "Transaction", predicate: predicate)
         let operation = CKQueryOperation(query: query)
         
-        var transactions:[Transaction] = []
+        var transactions: [Transaction] = []
         
         operation.recordFetchedBlock = {record in
-            let transaction =  Transaction(record: record)
-            transactions.append(transaction)
+            let newTransaction = Transaction(record: record)
+            transactions.append(newTransaction)
         }
+        
         operation.queryCompletionBlock = {cursor, error in
             DispatchQueue.main.async {
                 completionHandler(transactions, error)
             }
         }
-        
         publicDatabase.add(operation)
     }
     

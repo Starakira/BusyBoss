@@ -129,7 +129,7 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
     }
     
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
-        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.Ongoing, approval: TransactionApproval.Pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalPrice)
+        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.ongoing, approval: TransactionApproval.pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalPrice)
         
         let pendingAction = Alert.displayPendingAlert(title: "Saving new transaction to Database...")
         self.present(pendingAction, animated: true) {
