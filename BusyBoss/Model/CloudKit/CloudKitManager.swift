@@ -140,25 +140,6 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
-    func clientFetchOnce(productID: CKRecord.ID ,completionHandler: @escaping (_ product: Product?, _ error: Error?) -> Void){
-        let predicate = NSPredicate(format: "recordID = %@", productID)
-        let query = CKQuery(recordType: "Product", predicate: predicate)
-        let operation = CKQueryOperation(query: query)
-        
-        var product:Product?
-        
-        operation.recordFetchedBlock = {record in
-            product = Product(record: record)
-        }
-        
-        operation.queryCompletionBlock = {cursor, error in
-            DispatchQueue.main.async {
-                completionHandler(product, error)
-            }
-        }
-        publicDatabase.add(operation)
-    }
-    
     func clientEdit(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         let clientRecord = CKRecord(recordType: "Client", recordID: client.recordID!)
@@ -281,6 +262,8 @@ struct CloudKitManager {
         let predicate = NSPredicate(format: "\(Transaction.keyUserReference) = %@", reference)
         let query = CKQuery(recordType: "Transaction", predicate: predicate)
         
+        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
         let operation = CKQueryOperation(query: query)
         
         var transactions: [Transaction] = []
@@ -364,6 +347,8 @@ struct CloudKitManager {
         operation.queryCompletionBlock = {cursor, error in
             completionHandler(total, error)
         }
+        
+        publicDatabase.add(operation)
     }
     
     func transactionFetchClientName(clientID: CKRecord.ID, completionHandler: @escaping (_ clientName: String, _ error: Error?) -> Void){

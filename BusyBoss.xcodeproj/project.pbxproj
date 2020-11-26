@@ -13,7 +13,7 @@
 		F52FADC6255934B2002AF6C3 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADC5255934B2002AF6C3 /* Transaction.swift */; };
 		F52FADCA255934C5002AF6C3 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADC9255934C5002AF6C3 /* Client.swift */; };
 		F52FADCE255934DF002AF6C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADCD255934DF002AF6C3 /* User.swift */; };
-		F52FADD225593505002AF6C3 /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADD125593505002AF6C3 /* TransactionViewCell.swift */; };
+		F52FADD225593505002AF6C3 /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52FADD125593505002AF6C3 /* TransactionTableViewCell.swift */; };
 		F53D12F1256BA90200E00B43 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D12EF256BA90200E00B43 /* ImageManager.swift */; };
 		F53D12F2256BA90200E00B43 /* CloudKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53D12F0256BA90200E00B43 /* CloudKitError.swift */; };
 		F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30D2551380E00B78AFC /* AppDelegate.swift */; };
@@ -75,7 +75,7 @@
 		F52FADC5255934B2002AF6C3 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		F52FADC9255934C5002AF6C3 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		F52FADCD255934DF002AF6C3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F52FADD125593505002AF6C3 /* TransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
+		F52FADD125593505002AF6C3 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		F53D12EF256BA90200E00B43 /* ImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		F53D12F0256BA90200E00B43 /* CloudKitError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitError.swift; sourceTree = "<group>"; };
 		F599E30A2551380E00B78AFC /* BusyBoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				F599E3612551398400B78AFC /* TransactionViewController.swift */,
-				F52FADD125593505002AF6C3 /* TransactionViewCell.swift */,
+				F52FADD125593505002AF6C3 /* TransactionTableViewCell.swift */,
 			);
 			path = TransactionView;
 			sourceTree = "<group>";
@@ -506,7 +506,7 @@
 			files = (
 				F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */,
 				F5D3076825666252001BF94A /* ServicesDetailsViewController.swift in Sources */,
-				F52FADD225593505002AF6C3 /* TransactionViewCell.swift in Sources */,
+				F52FADD225593505002AF6C3 /* TransactionTableViewCell.swift in Sources */,
 				F599E37D2551398400B78AFC /* TransactionViewController.swift in Sources */,
 				F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */,
 				F599E3422551394800B78AFC /* DummyDataManager.swift in Sources */,

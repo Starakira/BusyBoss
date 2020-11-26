@@ -20,32 +20,29 @@ class TransactionViewController: UIViewController {
     var transactionsAll: [Transaction]? = []
     
     var transactionIndex = -1
+    
+    var client: Client?
 
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
+        
+        self.transactionsAll = []
         
         CloudKitManager.shared().transactionsFetchAll() {
             (transactions, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                print("Appending: \(transactions)")
-                
                 self.transactionDataSource = transactions
-                
-                print("This is transaction \(self.transactionDataSource)")
-                
+                self.transactionsAll = transactions
                 self.tableView.reloadData()
             }
         }
-        
-        transactionsAll = []
     }
     
     @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
         refreshTableView(selectedSegmentIndex: sender.selectedSegmentIndex)
-        print("Segmented is Called!")
     }
     
     func refreshTableView(selectedSegmentIndex: Int) {
@@ -56,7 +53,7 @@ class TransactionViewController: UIViewController {
             case 1: //Completed
                 transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.completed}
             case 2:
-                transactionDataSource = transactionsAll.filter{ $0.status == TransactionStatus.canceled}
+                transactionDataSource = transactionsAll
             default:
                 return
             }
@@ -71,7 +68,7 @@ class TransactionViewController: UIViewController {
         if let viewController = segue.destination as? AddNewTransactionViewController {
             viewController.transactionDelegate = self
         } else if let viewController = segue.destination as? TransactionDetailsViewController {
-            viewController.transactionDummyData = transactionDataSource[transactionIndex]
+            viewController.transaction = transactionDataSource[transactionIndex]
             viewController.products = transactionDataSource[transactionIndex].products
         }
     }
@@ -99,12 +96,17 @@ extension TransactionViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let transaction = transactionDataSource[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell") as! TransactionViewCell
-        cell.labelStatus.text = transaction.status.rawValue
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell") as! TransactionTableViewCell
+        
+        cell.labelStatus.text = transaction.status.rawValue.capitalized
+        cell.labelStatus.backgroundColor = .yellow
+        cell.labelStatus.textAlignment = .center
         cell.labelDescription.text = transaction.description
         cell.labelTotalPrice.text = "Rp. \(String(describing: transaction.value))"
         cell.labelTransactionCode.text = transaction.transactionNumber
-        cell.labelClientName.text = "\(transaction.client?.firstName ?? "") \(transaction.client?.lastName ?? "")"
+        
+        cell.setClientName(transaction: transaction)
+        
         return cell
     }
 }

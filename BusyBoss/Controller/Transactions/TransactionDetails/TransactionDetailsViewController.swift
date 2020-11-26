@@ -18,7 +18,7 @@ class TransactionDetailsViewController: UIViewController{
     @IBOutlet weak var DateTransaction: UILabel!
     @IBOutlet weak var ProductListTransactionTableView: UITableView!
     
-    var transactionDummyData : Transaction?
+    var transaction : Transaction?
 
     var products : [Product]?
     
@@ -37,13 +37,25 @@ class TransactionDetailsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TitleNameTransaction.text = transactionDummyData?.transactionNumber
-        NameUserTransaction.text = (transactionDummyData?.client?.firstName ?? "") + (transactionDummyData?.client?.lastName ?? "")
-        JumlahTotalHargaTransaction.text = String(transactionDummyData?.value ?? 0.0)
-        JumlahDiscountHargaTransaction.text = String(transactionDummyData?.discount ?? 0.0)
-        JumlahTaxTransaction.text = String(transactionDummyData?.tax ?? 0.0)
-        JumlahGrandTotalTransaction.text = String(transactionDummyData?.value ?? 0.0)
-        DateTransaction.text = String(dateFormatter.string(from: transactionDummyData?.validityDate ?? Date()))
+        CloudKitManager.shared().transactionFetchAllProducts(transaction: transaction!) {
+            (products, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Products : \(products)")
+                
+                self.products = products
+                self.ProductListTransactionTableView.reloadData()
+            }
+        }
+        
+        TitleNameTransaction.text = transaction?.transactionNumber
+//        NameUserTransaction.text = (transactionDummyData?.clientReference?.firstName ?? "") + (transactionDummyData?.clientReference?.lastName ?? "")
+        JumlahTotalHargaTransaction.text = String(transaction?.value ?? 0.0)
+        JumlahDiscountHargaTransaction.text = String(transaction?.discount ?? 0.0)
+        JumlahTaxTransaction.text = String(transaction?.tax ?? 0.0)
+        JumlahGrandTotalTransaction.text = String(transaction?.value ?? 0.0)
+        DateTransaction.text = String(dateFormatter.string(from: transaction?.validityDate ?? Date()))
         
         ProductListTransactionTableView.dataSource = self
         ProductListTransactionTableView.delegate = self
@@ -63,7 +75,7 @@ extension TransactionDetailsViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         let product = products?[indexPath.row]
         cell.NameProductNewTransaction.text = product?.name
-        cell.StockNewTransaction.text = String(product?.stock ?? 0)
+        cell.transactionProductQuantityLabel.text = String(product?.stock ?? 0)
         cell.JumlahHargaNewTransaction.text = String(product?.price ?? 0)
         cell.GambarProductNewTransaction.image = product?.image
         return cell

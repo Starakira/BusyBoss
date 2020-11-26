@@ -17,6 +17,7 @@ public struct Transaction {
     var products: [Product]?
     var productReferences: [CKRecord.Reference]?
     var client: Client?
+    var clientReference: CKRecord.Reference?
     var validityDate: Date
     var discount: Double?
     var tax: Double?
@@ -60,6 +61,7 @@ extension Transaction {
         let value = record[Transaction.keyValue] as? Double ?? 0.0
         
         let productReferences = record["productReferenceList"] as? [CKRecord.Reference] ?? []
+        let clientReference = record["clientReference"] as? CKRecord.Reference
         
         let statusName = record[Transaction.keyStatus] as? String ?? TransactionStatus.ongoing.rawValue
         let approvalName = record[Transaction.keyApproval] as? String ?? TransactionApproval.pending.rawValue
@@ -88,7 +90,7 @@ extension Transaction {
             approval = TransactionApproval.pending
         }
         
-        self.init(recordID: recordID, transactionNumber: transactionNumber, description: description, status: status, approval: approval, productReferences: productReferences, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: value)
+        self.init(recordID: recordID, transactionNumber: transactionNumber, description: description, status: status, approval: approval, productReferences: productReferences, clientReference: clientReference, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: value)
     }
 }
 

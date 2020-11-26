@@ -154,7 +154,6 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
                 }
             }
         }
-
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
@@ -221,7 +220,7 @@ extension AddNewTransactionViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         let product = products[indexPath.row]
         cell.NameProductNewTransaction.text = product.name
-        cell.StockNewTransaction.text = String(product.stock ?? 0)
+        cell.transactionProductQuantityLabel.text = String(product.transactionQuantity ?? 0)
         cell.JumlahHargaNewTransaction.text = String(product.price)
         cell.GambarProductNewTransaction.image = product.image
         return cell

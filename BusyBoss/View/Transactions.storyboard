@@ -58,7 +58,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="108" id="eja-sZ-h0r" customClass="TransactionViewCell" customModule="BusyBoss" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="108" id="eja-sZ-h0r" customClass="TransactionTableViewCell" customModule="BusyBoss" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="108"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eja-sZ-h0r" id="wpC-yr-qr8">
@@ -273,7 +273,7 @@
                                             <outlet property="GambarProductNewTransaction" destination="jSq-6o-Mav" id="9yj-pl-Ro0"/>
                                             <outlet property="JumlahHargaNewTransaction" destination="YNU-e7-pNj" id="8DX-MA-4CG"/>
                                             <outlet property="NameProductNewTransaction" destination="lqg-hZ-zoN" id="Wqb-ew-3sT"/>
-                                            <outlet property="StockNewTransaction" destination="BL0-dR-ujB" id="OOh-Nt-Nm2"/>
+                                            <outlet property="transactionProductQuantityLabel" destination="BL0-dR-ujB" id="OOh-Nt-Nm2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -582,7 +582,7 @@
                                             <outlet property="GambarProductNewTransaction" destination="ObH-XF-XOL" id="BM7-J0-Yqv"/>
                                             <outlet property="JumlahHargaNewTransaction" destination="DYa-Dn-7p3" id="tyB-JK-Ewh"/>
                                             <outlet property="NameProductNewTransaction" destination="vnu-Me-E4b" id="QlO-72-VZe"/>
-                                            <outlet property="StockNewTransaction" destination="URf-cv-HRp" id="lrp-Ux-lM1"/>
+                                            <outlet property="transactionProductQuantityLabel" destination="URf-cv-HRp" id="lrp-Ux-lM1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
