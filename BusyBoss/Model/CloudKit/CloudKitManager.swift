@@ -140,6 +140,25 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
+    func clientFetchOnce(productID: CKRecord.ID ,completionHandler: @escaping (_ product: Product?, _ error: Error?) -> Void){
+        let predicate = NSPredicate(format: "recordID = %@", productID)
+        let query = CKQuery(recordType: "Product", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        
+        var product:Product?
+        
+        operation.recordFetchedBlock = {record in
+            product = Product(record: record)
+        }
+        
+        operation.queryCompletionBlock = {cursor, error in
+            DispatchQueue.main.async {
+                completionHandler(product, error)
+            }
+        }
+        publicDatabase.add(operation)
+    }
+    
     func clientEdit(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         let clientRecord = CKRecord(recordType: "Client", recordID: client.recordID!)
@@ -271,6 +290,7 @@ struct CloudKitManager {
         let reference = CKRecord.Reference(recordID: (User.currentUser()?.recordID)!, action: CKRecord_Reference_Action.none)
         let predicate = NSPredicate(format: "\(Transaction.keyUserReference) = %@", reference)
         let query = CKQuery(recordType: "Transaction", predicate: predicate)
+        
         let operation = CKQueryOperation(query: query)
         
         var transactions: [Transaction] = []
@@ -341,8 +361,8 @@ struct CloudKitManager {
     func transactionFetchProductQuantity(transactionID: CKRecord.ID, productID: CKRecord.ID, completionHandler: @escaping (_ totalQuantity: Int, _ error: Error?) -> Void) {
         var total: Int = 0
         
-        let predicateTransactionID = NSPredicate(format: "transactionID = %@", transactionID)
-        let predicateProductID = NSPredicate(format: "productID = %@", productID)
+        let predicateTransactionID = NSPredicate(format: "recordID = %@", transactionID)
+        let predicateProductID = NSPredicate(format: "recordID = %@", productID)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateTransactionID, predicateProductID])
         let query = CKQuery(recordType: "Quantity", predicate: predicate)
         let operation = CKQueryOperation(query: query)
@@ -354,6 +374,28 @@ struct CloudKitManager {
         operation.queryCompletionBlock = {cursor, error in
             completionHandler(total, error)
         }
+    }
+    
+    func transactionFetchClientName(clientID: CKRecord.ID, completionHandler: @escaping (_ clientName: String, _ error: Error?) -> Void){
+        var clientName: String = ""
+        
+        let predicate = NSPredicate(format: "recordID = %@", clientID)
+        let query = CKQuery(recordType: "Client", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        
+        operation.desiredKeys = [Client.keyFirstName, Client.keyLastName]
+        
+        operation.recordFetchedBlock = { record in
+            clientName = (record["firstName"] as? String ?? "") + (record["lastName"] as? String ?? "")
+        }
+        
+        operation.queryCompletionBlock = {cursor, error in
+            DispatchQueue.main.async {
+                completionHandler(clientName, error)
+            }
+        }
+        
+        publicDatabase.add(operation)
     }
     
     func transactionFetchAllProducts(transaction: Transaction, completionHandler: @escaping (_ products: [Product]?, _ error: Error?) -> Void) {
