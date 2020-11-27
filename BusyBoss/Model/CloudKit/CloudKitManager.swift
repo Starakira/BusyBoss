@@ -226,7 +226,13 @@ struct CloudKitManager {
         
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "transactionProductQuantityQueue")
+        print("TransactionAddRecordProducts START")
         
+        for product in transaction.products ?? []{
+            print("Products = \(product.name)")
+            print("Transaction Quantity = \(product.transactionQuantity)")
+        }
+        print("TransactionAddRecordProducts END")
         for product in transaction.products ?? []{
             
             group.enter()
@@ -239,7 +245,7 @@ struct CloudKitManager {
                 
                 productQuantityPerTransaction.setValue(transactionReference, forKey: "transactionReference")
                 productQuantityPerTransaction.setValue(productReference, forKey: "productReference")
-                productQuantityPerTransaction.setValue(product.transactionQuantity ?? 0, forKey: "quantity")
+                productQuantityPerTransaction.setValue(product.transactionQuantity! , forKey: "quantity")
                 
                 publicDatabase.save(productQuantityPerTransaction) { (savedRecord, error) in
                     group.leave()

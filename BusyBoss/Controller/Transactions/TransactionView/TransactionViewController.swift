@@ -34,7 +34,7 @@ class TransactionViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                self.transactionDataSource = transactions
+                self.transactionDataSource.append(contentsOf: transactions)
                 self.transactionsAll = transactions
                 self.tableView.reloadData()
             }

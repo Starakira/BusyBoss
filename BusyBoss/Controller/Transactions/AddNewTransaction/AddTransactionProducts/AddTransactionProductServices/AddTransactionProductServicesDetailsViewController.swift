@@ -38,6 +38,7 @@ class AddTransactionProductServicesDetailsViewController: UIViewController {
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
+        product?.transactionQuantity = productQuantity
         productListDelegate?.performDismissal(checkProduct: product!)
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }

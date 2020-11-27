@@ -42,7 +42,6 @@ class TransactionDetailsViewController: UIViewController{
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                print("Products : \(products)")
                 
                 self.products = products
                 self.ProductListTransactionTableView.reloadData()
@@ -75,7 +74,7 @@ extension TransactionDetailsViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         let product = products?[indexPath.row]
         cell.NameProductNewTransaction.text = product?.name
-        cell.transactionProductQuantityLabel.text = String(product?.stock ?? 0)
+        cell.transactionProductQuantityLabel.text = String(product?.transactionQuantity ?? 0)
         cell.JumlahHargaNewTransaction.text = String(product?.price ?? 0)
         cell.GambarProductNewTransaction.image = product?.image
         return cell
