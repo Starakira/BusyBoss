@@ -27,7 +27,15 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     func setClientName(transaction: Transaction) {
-        if let clientRecordID = transaction.clientReference?.recordID {
+        if let clientFirstName = transaction.client?.firstName {
+            self.labelClientName.text = clientFirstName
+        }
+        
+        if let clientLastName = transaction.client?.firstName {
+            self.labelClientName.text = "\(String(self.labelClientName.text ?? "")) \(clientLastName)"
+        }
+        
+        else if let clientRecordID = transaction.clientReference?.recordID {
             CloudKitManager.shared().transactionFetchClientName(clientID: clientRecordID){
                 (clientName, error) in
                 if let error = error {

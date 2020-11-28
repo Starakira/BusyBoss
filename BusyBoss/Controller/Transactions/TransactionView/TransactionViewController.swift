@@ -76,7 +76,9 @@ class TransactionViewController: UIViewController {
 
 extension TransactionViewController : TransactionConform{
     func transactionSave(transaction: Transaction) {
+        print("Transaction insert Delegate : \(transaction)")
         transactionsAll?.append(transaction)
+        
         refreshTableView(selectedSegmentIndex: TransactionSegmentedControl.selectedSegmentIndex)
     }
 }

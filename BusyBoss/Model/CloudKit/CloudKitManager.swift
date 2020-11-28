@@ -140,6 +140,25 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
+    func clientFetchOnce(clientID: CKRecord.ID ,completionHandler: @escaping (_ client: Client?, _ error: Error?) -> Void){
+        let predicate = NSPredicate(format: "recordID = %@", clientID)
+        let query = CKQuery(recordType: "Client", predicate: predicate)
+        let operation = CKQueryOperation(query: query)
+        
+        var client: Client?
+        
+        operation.recordFetchedBlock = {record in
+            client = Client(record: record)
+        }
+        
+        operation.queryCompletionBlock = {cursor, error in
+            DispatchQueue.main.async {
+                completionHandler(client, error)
+            }
+        }
+        publicDatabase.add(operation)
+    }
+    
     func clientEdit(client: Client, completionHandler: @escaping (_ recordID: CKRecord.ID? ,_ error: Error?) -> Void){
         
         let clientRecord = CKRecord(recordType: "Client", recordID: client.recordID!)
@@ -226,13 +245,7 @@ struct CloudKitManager {
         
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "transactionProductQuantityQueue")
-        print("TransactionAddRecordProducts START")
         
-        for product in transaction.products ?? []{
-            print("Products = \(product.name)")
-            print("Transaction Quantity = \(product.transactionQuantity)")
-        }
-        print("TransactionAddRecordProducts END")
         for product in transaction.products ?? []{
             
             group.enter()
@@ -245,7 +258,7 @@ struct CloudKitManager {
                 
                 productQuantityPerTransaction.setValue(transactionReference, forKey: "transactionReference")
                 productQuantityPerTransaction.setValue(productReference, forKey: "productReference")
-                productQuantityPerTransaction.setValue(product.transactionQuantity! , forKey: "quantity")
+                productQuantityPerTransaction.setValue(product.transactionQuantity ?? 0 , forKey: "quantity")
                 
                 publicDatabase.save(productQuantityPerTransaction) { (savedRecord, error) in
                     group.leave()

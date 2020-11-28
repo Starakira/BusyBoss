@@ -24,6 +24,11 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
     
     func productListPassData(product: Product) {
         self.products.append(product)
+        totalProductPrice += product.price * Double(product.transactionQuantity ?? 0)
+        totalProductsPriceLabel.text = "Rp " + decimalFormatter.string(for: totalProductPrice)!
+        
+        getTotalValue()
+        
         productListNewTransaction.reloadData()
     }
     
@@ -37,11 +42,13 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
     
     @IBOutlet weak var transactionNumberTextField: UITextField!
     
+    @IBOutlet weak var descriptionTextField: UITextField!
+    
     @IBOutlet weak var discountTextField: UITextField!
     
     @IBOutlet weak var validityDateTextField: UITextField!
     
-    @IBOutlet weak var totalProductPriceLabel: UILabel!
+    @IBOutlet weak var totalProductsPriceLabel: UILabel!
     
     @IBOutlet weak var totalTaxLabel: UILabel!
     
@@ -50,6 +57,8 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
     var transaction: Transaction?
     
     var transactionNumber = ""
+    
+    var transactionDescription = ""
     
     var client: Client?
     var clientIndex = -1
@@ -63,10 +72,10 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
         return formatter
     }()
     
-    var totalProductPrice = 1000000000.0
+    var totalProductPrice = 0.0
     var discount = 0.0
     var tax = 0.0
-    var totalPrice = 0.0
+    var totalValue = 0.0
     
     let dateFormatter : DateFormatter = {
         let dateFormat = DateFormatter()
@@ -84,16 +93,19 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        totalProductPriceLabel.text = "Rp " + decimalFormatter.string(for: totalProductPrice)!
+        totalProductsPriceLabel.text = "Rp " + decimalFormatter.string(for: totalProductPrice)!
         
         discountTextField.isHidden = true
         
         totalTaxLabel.isHidden = true
         
-        getTotalPrice()
+        getTotalValue()
         
         validityDate = Date()
         validityDateTextField.text = dateFormatter.string(from: validityDate ?? Date())
+        
+        transactionNumberTextField.delegate = self
+        descriptionTextField.delegate = self
         
         discountTextField.delegate = self
         validityDateTextField.delegate = self
@@ -109,7 +121,7 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
             discountTextField.isHidden = true
             
             discount = 0.0
-            getTotalPrice()
+            getTotalValue()
         }
     }
     
@@ -119,18 +131,19 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
             tax = totalProductPrice*0.1
             totalTaxLabel.text = "Rp " + decimalFormatter.string(for: tax)!
             
-            getTotalPrice()
+            getTotalValue()
         } else {
             totalTaxLabel.isHidden = true
             tax = 0.0
             
-            getTotalPrice()
+            getTotalValue()
         }
     }
     
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
-        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.ongoing, approval: TransactionApproval.pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalPrice)
         
+        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.ongoing, approval: TransactionApproval.pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalValue)
+        print("Transaction will save to database: \(transaction)")
         let pendingAction = Alert.displayPendingAlert(title: "Saving new transaction to Database...")
         self.present(pendingAction, animated: true) {
             CloudKitManager.shared().transactionCreate(transaction: self.transaction!) {
@@ -146,14 +159,16 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
                     print("ID not created!")
                 }
                 else {
+                    print("Transaction will assign recordID : \(self.transaction)")
                     self.transaction?.recordID = recordID
+                    print("Transaction did assign recordID : \(self.transaction)")
                     CloudKitManager.shared().transactionAddRecordProducts(transaction: self.transaction!) { (error) in
                         self.transactionDelegate?.transactionSave(transaction: self.transaction!)
+                        print("Transaction save : \(self.transaction)")
                         pendingAction.dismiss(animated: true) {
                             self.dismiss(animated: true)
                         }
                     }
-                    
                 }
             }
         }
@@ -185,9 +200,14 @@ class AddNewTransactionViewController: UIViewController, ClientsConform, Product
         }
     }
     
-    func getTotalPrice(){
-        totalPrice = totalProductPrice - discount - tax
-        totalTransactionValueLabel.text = "Rp " + decimalFormatter.string(for: totalPrice)!
+    func getTotalProductPrice() {
+        
+    }
+    
+    func getTotalValue(){
+        
+        totalValue = totalProductPrice - discount - tax
+        totalTransactionValueLabel.text = "Rp " + decimalFormatter.string(for: totalValue)!
     }
 }
 
@@ -195,10 +215,13 @@ extension AddNewTransactionViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == transactionNumberTextField {
             transactionNumber = transactionNumberTextField.text ?? ""
-        } else if textField == discountTextField {
+            print("Transaction Number : \(transactionNumber)")
+        } else if textField == descriptionTextField {
+            transactionDescription = descriptionTextField.text ?? ""
+        }
+        else if textField == discountTextField {
             discount = Double(textField.text ?? "0.0") ?? 0.0
-            
-            getTotalPrice()
+            getTotalValue()
         } else if textField == validityDateTextField {
             validityDate = dateFormatter.date(from: textField.text ?? "00/00/0000")
             print("Date is" +  dateFormatter.string(from: validityDate ?? Date()))
@@ -225,6 +248,7 @@ extension AddNewTransactionViewController: UITableViewDataSource{
         cell.NameProductNewTransaction.text = product.name
         cell.transactionProductQuantityLabel.text = String(product.transactionQuantity ?? 0)
         cell.JumlahHargaNewTransaction.text = String(product.price)
+        
         cell.GambarProductNewTransaction.image = product.image
         return cell
     }

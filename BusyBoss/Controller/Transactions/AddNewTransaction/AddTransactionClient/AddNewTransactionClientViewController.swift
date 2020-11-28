@@ -12,10 +12,6 @@ class AddNewTransactionClientViewController: UIViewController {
 
     var clients : [Client] = []
     var index = -1
-    
-    let logoBuilding = #imageLiteral(resourceName: "shiba icon new")
-    let logoAddress = #imageLiteral(resourceName: "shiba icon new")
-    let logoPhone = #imageLiteral(resourceName: "shiba icon new")
 
     var clientsListDelegate: ClientsConform?
     
@@ -68,9 +64,6 @@ extension AddNewTransactionClientViewController: UITableViewDataSource{
         cell.AddressCompanyClient.text = client.companyAddress
         cell.NumberTelephoneCompany.text = client.phoneNumber
         cell.LogoCompanyClient.image = client.image
-        cell.LogoBuildingCompany.image = logoBuilding
-        cell.LogoAddress.image = logoAddress
-        cell.LogoPhone.image = logoPhone
         return cell
     }
 }

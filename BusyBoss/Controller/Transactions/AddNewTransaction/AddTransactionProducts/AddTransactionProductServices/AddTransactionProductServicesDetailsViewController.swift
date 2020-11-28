@@ -11,34 +11,19 @@ class AddTransactionProductServicesDetailsViewController: UIViewController {
 
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
-    @IBOutlet weak var productQuantityLabel: UILabel!
     
     var product: Product?
     
     var productListDelegate: ProductServicesDismiss?
-    
-    var productQuantity: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         productNameLabel.text = product?.name
         productPriceLabel.text = String(product?.price ?? 0.0)
-        productQuantityLabel.text = String(productQuantity)
-    }
-    
-    @IBAction func plusQuantityButtonAction(_ sender: Any) {
-        productQuantity += 1
-        productQuantityLabel.text = String(productQuantity)
-    }
-    
-    @IBAction func minusQuantityButtonAction(_ sender: Any) {
-        productQuantity -= 1
-        productQuantityLabel.text = String(productQuantity)
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
-        product?.transactionQuantity = productQuantity
         productListDelegate?.performDismissal(checkProduct: product!)
         self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }

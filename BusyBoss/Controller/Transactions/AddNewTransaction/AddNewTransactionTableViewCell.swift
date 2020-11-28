@@ -24,5 +24,17 @@ class AddNewTransactionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func setProductQuantity(transaction: Transaction, product: Product?) {
+        CloudKitManager.shared().transactionFetchProductQuantity(transactionID: transaction.recordID!, productID: (product?.recordID)!) {
+            (quantity, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                DispatchQueue.main.async {
+                    self.transactionProductQuantityLabel.text = String(quantity)
+                }
+            }
+        }
+    }
 }
