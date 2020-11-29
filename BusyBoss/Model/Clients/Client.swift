@@ -38,8 +38,12 @@ extension Client {
         let phoneNumber = record[Client.keyPhoneNumber] as? String ?? "No Phone Number"
         let companyName = record[Client.keyCompanyName] as? String ?? "No Company"
         let companyAddress = record[Client.keyCompanyAddress] as? String ?? "No Company Address"
-        let image = record[Client.keyImage] as? UIImage ?? #imageLiteral(resourceName: "shiba icon new")
+        let image = ImageManager.convertToUIImage(file: record[Client.keyImage] as? CKAsset) ?? #imageLiteral(resourceName: "BusyBoss_Logo")
+        
         
         self.init(recordID: recordID, image: image, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, companyName: companyName, companyAddress: companyAddress)
     }
 }
+
+
+

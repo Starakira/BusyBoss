@@ -8,6 +8,7 @@
 import UIKit
 
 class ClientsDetailsViewController: UIViewController {
+    
     @IBOutlet weak var clientsImage: UIImageView!
     @IBOutlet weak var clientsNameLabel: UILabel!
     @IBOutlet weak var clientsCompanyName: UILabel!
@@ -15,6 +16,8 @@ class ClientsDetailsViewController: UIViewController {
     @IBOutlet weak var clientsCompanyEmail: UILabel!
     @IBOutlet weak var clientsPhoneNo: UILabel!
     var client : Client?
+    
+    var clientDetailsDelegate: ClientsConform?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,34 +27,34 @@ class ClientsDetailsViewController: UIViewController {
             clientsImage.image = client.image
             clientsCompanyName.text = client.companyName
             clientsCompanyAddress.text = client.companyAddress
+            clientsCompanyEmail.text = client.emailAddress
             clientsPhoneNo.text = client.phoneNumber
         }
-        
-//        let editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(self.editButtonFunction))
-//            navigationItem.rightBarButtonItem = editButton
-//            title = "Client Details"
     }
     
-//    @objc func editButtonFunction() {
-//        let vc = storyboard?.instantiateViewController(identifier: "inputClient") as! InputClientsViewController
-//        
-//        vc.client = client
-//        
-//        self.navigationController?.pushViewController(vc, animated: true)
-//    }
-    
-
-    @IBAction func cancelButtonAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    override func viewWillDisappear(_ animated: Bool) {
+        clientDetailsDelegate?.clientListPassData(client: client!)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let editClientViewController = segue.destination as? EditClientViewController {
+            // Pass the selected object to the new view controller.
+            editClientViewController.client = client
+            
+            editClientViewController.editClientDelegate = self
+        }
     }
-    */
+}
 
+extension ClientsDetailsViewController: ClientsConform {
+    func clientListPassData(client: Client) {
+        self.client = client
+        clientsNameLabel.text = client.firstName + client.lastName
+        clientsImage.image = client.image
+        clientsCompanyName.text = client.companyName
+        clientsCompanyAddress.text = client.companyAddress
+        clientsCompanyEmail.text = client.emailAddress
+        clientsPhoneNo.text = client.phoneNumber
+    }
 }

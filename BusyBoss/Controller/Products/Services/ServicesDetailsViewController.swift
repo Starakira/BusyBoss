@@ -10,16 +10,24 @@ import UIKit
 class ServicesDetailsViewController: UIViewController {
     @IBOutlet weak var serviceName: UILabel!
     @IBOutlet weak var serviceDescription: UILabel!
-    var services : serviceStruct?
     @IBOutlet weak var servicePrice: UILabel!
+    
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
+    var product: Product?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        if let ser = services {
-                   servicePrice.text = String(ser.price)
-                   serviceName.text = ser.name
-                   serviceDescription.text = ser.description
-               }
+        if let product = product {
+            serviceName.text = product.name
+            servicePrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
+            serviceDescription.text = product.description
+        }
     }
     
 

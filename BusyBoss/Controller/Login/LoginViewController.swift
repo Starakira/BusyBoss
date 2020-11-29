@@ -13,16 +13,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailLogin.delegate = self
+        passwordLogin.delegate = self
+        
         //Check if email address and password exist in userdefaults
         let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
         if let email = emailAddress, let password = password {
-//            authenticate(emailAddress: email, password: password)
+            authenticate(emailAddress: email, password: password)
         }
-        
-        emailLogin.delegate = self
-        passwordLogin.delegate = self
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -53,22 +53,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     func authenticate(emailAddress: String, password: String){
-        CloudKitManager.shared().authenticateUser(emailAddress: emailAddress, password: password) { currentUser, error in
-            
-            if let error = error {
-                Alert.showError(self, error)
-                return
-            }
-            else if currentUser == nil {
-                Alert.showAlert(view: self, title: "Error", message: "Invalid Cridentials!")
-            }
-            else {
-                UserDefaults.standard.setValue(currentUser![User.keyEmail], forKey: User.keyEmail)
-                UserDefaults.standard.setValue(currentUser![User.keyPassword], forKey: User.keyPassword)
-                self.segueToMain()
-                
-                let loggedUser = User(record: currentUser!)
-                User.setCurrentUser(user: loggedUser)
+        let pendingAction = Alert.displayPendingAlert(title: "Logging You In...")
+        self.present(pendingAction, animated: true) {
+            CloudKitManager.shared().authenticateUser(emailAddress: emailAddress, password: password) { currentUser, error in
+                if let error = error {
+                    pendingAction.dismiss(animated: true) {
+                        Alert.showError(self, error)
+                    }
+                    return
+                }
+                else if currentUser == nil {
+                    pendingAction.dismiss(animated: true) {
+                        Alert.showAlert(view: self, title: "Error", message: "Invalid Cridentials!")
+                    }
+                }
+                else {
+                    let loggedUser = User(record: currentUser!)
+                    User.setCurrentUser(user: loggedUser)
+                    pendingAction.dismiss(animated: true) {
+                        self.segueToMain()
+                    }
+                }
             }
         }
     }

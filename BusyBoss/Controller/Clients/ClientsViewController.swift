@@ -8,6 +8,7 @@
 import UIKit
 
 class ClientsViewController: UIViewController {
+    
     var clients : [Client] = []
     var index = -1
     
@@ -15,74 +16,78 @@ class ClientsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        clientsTableView.tableFooterView = UIView()
         
         clientsTableView.delegate = self
         clientsTableView.dataSource = self
         
-        CloudKitManager.shared().clientsFetchAll {
-            (clients, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            else {
-                print("Fetching client successful")
-                print("Clients = \(clients.count)")
-                self.clients = clients
-                self.clientsTableView.reloadData()
+        let pendingAction = Alert.displayPendingAlert(title: "Loading clients...")
+        
+        self.present(pendingAction, animated: true){
+            CloudKitManager.shared().clientsFetchAll {
+                (clients, error) in
+                if let error = error {
+                    pendingAction.dismiss(animated: true){
+                        Alert.showCloudKitError(self, error)
+                    }
+                }
+                else {
+                    pendingAction.dismiss(animated: true){
+                        self.clients = clients
+                        self.clientsTableView.reloadData()
+                    }
+                }
             }
         }
+        
+        
     }
     
     @IBAction func unwindToSegue(_ sender: UIStoryboardSegue) {
         guard let vc = sender.source as? InputClientViewController else {
-            //            Alert.showAlert(view: self, title: "Error", message: "Failed to cast Source ViewController to InputClientsViewController")
             print("Failed to cast Source ViewController to InputClientsViewController")
             return
         }
         
         guard var client = vc.client else {
-            //            Alert.showAlert(view: self, title: "Error", message: "No Client Data present!")
             print("No Client Data present!")
             return
         }
         
-        CloudKitManager.shared().clientCreate(client: client) { (recordID, error) in
-            if let error = error {
-                //                Alert.showError(self, error)
-                print(error.localizedDescription)
-                return
-            }
-            
-            //Create new Client
-            if self.index == -1 {
-                if recordID == nil {
-                    print("ID not created!")
-                    //                Alert.showAlert(view: self, title: "ID not created!", message: "Database failed to create ID for new client!")
+        let pendingAction = Alert.displayPendingAlert(title: "Creating client...")
+        
+        vc.present(pendingAction, animated: true){
+            CloudKitManager.shared().clientCreate(client: client) { (recordID, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    Alert.showAlert(view: self, title: "Error creating client", message: "Error")
+                    return
                 }
-                else {
-                    print("Creating client successful")
-                    //                client = client
-                    client.recordID = recordID
+                
+                pendingAction.dismiss(animated: true){
+                    //Create new Client
+                    if self.index == -1 {
+                        if recordID == nil {
+                            print("ID not created!")
+                        }
+                        else {
+                            print("Creating client successful")
+                            client.recordID = recordID
+                            
+                            self.clients.append(client)
+                        }
+                    }
                     
-                    /*
-                     let vc = self.storyboard?.instantiateViewController(identifier: "clients") as! ClientsViewController
-                     self.navigationController?.pushViewController(vc, animated: true)
-                     */
-                    print("Clients 72 = \(self.clients.count)")
+                    //update existing client
+                    else {
+                        self.clients[self.index] = client
+                    }
                     
-                    self.clients.append(client)
+                    self.clientsTableView.reloadData()
+                    self.index = -1
                 }
             }
-            
-            //update existing client
-            else {
-                self.clients[self.index] = client
-            }
-            
-            self.clientsTableView.reloadData()
-            self.index = -1
-            print("Clients 84 = \(self.clients.count)")
         }
     }
     
@@ -96,6 +101,8 @@ class ClientsViewController: UIViewController {
             print("Index \(index)")
             // Pass the selected object to the new view controller.
             clientDetailsViewController.client = clients[index]
+            
+            clientDetailsViewController.clientDetailsDelegate = self
         } else if let inputClientViewController = segue.destination as? InputClientViewController {
             // Pass the selected object to the new view controller.
             inputClientViewController.client = index != -1 ? clients[index] : nil
@@ -103,8 +110,13 @@ class ClientsViewController: UIViewController {
         
         index = -1
     }
-    
-    
+}
+
+extension ClientsViewController: ClientsConform {
+    func clientListPassData(client: Client) {
+        self.clients[index] = client
+        clientsTableView.reloadData()
+    }
 }
 
 extension ClientsViewController: UITableViewDelegate {

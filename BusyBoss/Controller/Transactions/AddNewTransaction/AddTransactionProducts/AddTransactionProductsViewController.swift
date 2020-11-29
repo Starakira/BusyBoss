@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListProductBarangJasaNewTransactionViewController: UIViewController {
+class AddTransactionProductsViewController: UIViewController {
     @IBOutlet weak var ListBarangJasa: UISegmentedControl!
     @IBOutlet weak var segmentedBarangList: UIView!
     @IBOutlet weak var segmentedJasaList: UIView!
@@ -32,11 +32,16 @@ class ListProductBarangJasaNewTransactionViewController: UIViewController {
             segmentedJasaList.isHidden = false
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ProductListBarangViewController{
+        if let vc = segue.destination as? AddTransactionProductGoodsViewController{
             vc.passProductDelegate = myDelegate
-        } else if let vc = segue.destination as? ProductListJasaViewController{
+        } else if let vc = segue.destination as? AddTransactionProductServicesViewController{
             vc.passProductDelegate = myDelegate
         }
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        self.dismiss(animated: true)
     }
 }

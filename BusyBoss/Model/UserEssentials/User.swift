@@ -32,6 +32,15 @@ struct User {
     
     static func setCurrentUser(user: User) {
         self.user = user
+        
+        UserDefaults.standard.setValue(user.email, forKey: User.keyEmail)
+        UserDefaults.standard.setValue(user.password, forKey: User.keyPassword)
+    }
+    
+    static func deleteCurrentUser() {
+        user =  nil
+        UserDefaults.standard.removeObject(forKey: User.keyEmail)
+        UserDefaults.standard.removeObject(forKey: User.keyPassword)
     }
 }
 

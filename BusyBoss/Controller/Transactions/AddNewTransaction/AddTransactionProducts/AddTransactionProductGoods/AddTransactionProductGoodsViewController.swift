@@ -11,15 +11,14 @@ protocol ProductGoodsDismiss {
     func performDismissal (checkProduct: Product)
 }
 
-class ProductListBarangViewController: UIViewController, ProductGoodsDismiss {
-    func performDismissal(checkProduct: Product) {
-        dismiss(animated: true, completion: nil)
-        self.checkProduct = checkProduct
-        if self.checkProduct != nil {
-            passProductDelegate?.productListPassData(product: self.checkProduct!)
-            
-        }
-    }
+class AddTransactionProductGoodsViewController: UIViewController {
+    
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var checkProduct: Product?
     
     var products : [Product] = []
@@ -41,15 +40,10 @@ class ProductListBarangViewController: UIViewController, ProductGoodsDismiss {
                 print(error.localizedDescription)
             }
             else {
-                print("Fetching products successful")
-                print("Products = \(products.count)")
-                
                 for product in products {
-                    print(product.type.rawValue)
                     if product.type.rawValue == "goods"{
                         self.products.append(product)
                         self.goodsProductListTableView.reloadData()
-                        print(self.products)
                     }
                 }
             }
@@ -57,31 +51,50 @@ class ProductListBarangViewController: UIViewController, ProductGoodsDismiss {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AddGoodDetailsViewController{
+        if let vc = segue.destination as? AddTransactionProductGoodsDetailsViewContoller{
             vc.product = products[index]
             vc.productListDelegate = self
         }
     }
 }
 
-extension ProductListBarangViewController: UITableViewDelegate {
+extension AddTransactionProductGoodsViewController: ProductGoodsDismiss {
+    func performDismissal(checkProduct: Product) {
+        
+        self.checkProduct = checkProduct
+        if self.checkProduct != nil {
+            passProductDelegate?.productListPassData(product: self.checkProduct!)
+        }
+        
+        dismiss(animated: true)
+    }
+}
+
+extension AddTransactionProductGoodsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         performSegue(withIdentifier: "AddGoodDetailsSegue", sender: self)
     }
 }
 
-extension ProductListBarangViewController: UITableViewDataSource {
+extension AddTransactionProductGoodsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if products.count == 0 {
+            tableView.setEmptyView(title: "It's empty!", message: "You can add new product \n from the \"Products\" tab")
+        }
+        else {
+            tableView.restore()
+        }
+        
         return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListBarangViewCell", for: indexPath)as!ProductListBarangViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListBarangViewCell", for: indexPath)as!AddTransactionProductGoodsTableViewCell
         let product = products[indexPath.row]
         cell.NamaBarangLabel.text = product.name
-        cell.JumlahStockBarang.text = String(product.quantity)
-        cell.TotalHargaLabel.text = String(product.price)
+        cell.JumlahStockBarang.text = String(product.stock ?? 0)
+        cell.TotalHargaLabel.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
         cell.GambarBarang.image = product.image
         return cell
     }

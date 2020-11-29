@@ -14,8 +14,10 @@ class InputGoodsViewController: UIViewController {
     @IBOutlet weak var productStockFields: UITextField!
     @IBOutlet weak var productUnitFields: UITextField!
     @IBOutlet weak var productDescription: UITextField!
-    var goods : goodsStruct!
+    
     @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    var product: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +36,25 @@ class InputGoodsViewController: UIViewController {
             
             return
         }
-        let productPrice = Int(productPriceFields.text!)
-        let productStock = Int(productStockFields.text!)
-        let newGoods = goodsStruct(productName: productNameField.text!, productPrice: productPrice!, productImage: addProductImage.image!, productStock: productStock!, productUnit: productUnitFields.text!, description: productDescription.text!)
-       
-       self.goods = newGoods
+        let product = Product(image: addProductImage.image,
+                               name: productNameField.text ?? "No name",
+                               description: productDescription.text ?? "No description",
+                               price: Double(productPriceFields.text ?? "0.0") ?? 0.0,
+                               stock: Int(productStockFields.text ?? "0") ?? 0,
+                               unit: productUnitFields.text ?? "Undefined",
+                               type: ProductType.goods)
+        
+        self.product = product
     }
-
-
-
 }
+
+extension InputGoodsViewController: UITextFieldDelegate{
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
+}
+
 extension InputGoodsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage{

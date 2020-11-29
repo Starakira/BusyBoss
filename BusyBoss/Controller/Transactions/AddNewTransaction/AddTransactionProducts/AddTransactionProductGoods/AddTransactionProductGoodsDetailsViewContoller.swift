@@ -1,5 +1,5 @@
 //
-//  AddServiceDetailsViewController.swift
+//  AddGoodDetailsViewController.swift
 //  BusyBoss
 //
 //  Created by Muhammad Bangun Agung on 16/11/20.
@@ -7,24 +7,36 @@
 
 import UIKit
 
-class AddServiceDetailsViewController: UIViewController {
-
+class AddTransactionProductGoodsDetailsViewContoller: UIViewController {
+    
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productQuantityLabel: UILabel!
+    @IBOutlet weak var productImageLabel: UIImageView!
+    
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
     
     var product: Product?
     
-    var productListDelegate: ProductServicesDismiss?
+    var productListDelegate: ProductGoodsDismiss?
     
     var productQuantity: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        productImageLabel.image = product?.image
         productNameLabel.text = product?.name
-        productPriceLabel.text = String(product?.price ?? 0.0)
+        productPriceLabel.text = "Rp \(decimalFormatter.string(for: product?.price) ?? "0")"
         productQuantityLabel.text = String(productQuantity)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
     @IBAction func plusQuantityButtonAction(_ sender: Any) {
@@ -38,8 +50,11 @@ class AddServiceDetailsViewController: UIViewController {
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
+        product?.transactionQuantity = productQuantity
+        self.dismiss(animated: true, completion: nil)
         productListDelegate?.performDismissal(checkProduct: product!)
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        //self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
