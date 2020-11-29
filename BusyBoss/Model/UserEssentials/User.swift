@@ -17,6 +17,7 @@ struct User {
     let email: String
     let password: String
     let phoneNumber: String
+    let image: UIImage
     
     private static var user: User?
     
@@ -25,6 +26,7 @@ struct User {
     static let keyEmail = "emailAddress"
     static let keyPassword = "password"
     static let keyPhoneNumber = "phoneNumber"
+    static let keyImage = "image"
     
     static func currentUser() -> User? {
         return user
@@ -60,8 +62,9 @@ extension User {
         let email = record[User.keyEmail] as? String ?? "No Email"
         let password = record[User.keyPassword] as? String ?? "No Password"
         let phoneNumber = record[User.keyPhoneNumber] as? String ?? "No Phone Number"
+        let image = ImageManager.convertToUIImage(file: record[User.keyImage] as? CKAsset) ?? #imageLiteral(resourceName: "BusyBoss_Logo")
         
-        self.init(recordID: recordID, firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
+        self.init(recordID: recordID, firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber, image: image)
     }
 }
 
@@ -73,6 +76,7 @@ extension User: CustomDebugStringConvertible {
         Email: \(email)
         Password: \(password)
         Phone Number: \(phoneNumber)
+        Image: \(image)
         """
     }
 }

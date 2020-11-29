@@ -64,6 +64,26 @@ struct CloudKitManager {
         publicDatabase.add(operation)
     }
     
+    func userEdit(user: User, completionHandler: @escaping (_ error: Error?) -> Void) {
+            let userRecord = CKRecord(recordType: "User", recordID: User.currentUser()!.recordID!)
+
+            userRecord.setValue(user.firstName, forKey: User.keyFirstName)
+            userRecord.setValue(user.lastName, forKey: User.keyLastName)
+            userRecord.setValue(user.email, forKey: User.keyEmail)
+            userRecord.setValue(user.password, forKey: User.keyPassword)
+            userRecord.setValue(user.phoneNumber, forKey: User.keyPhoneNumber)
+
+            let modifyOperation = CKModifyRecordsOperation(recordsToSave: [userRecord])
+
+            modifyOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDS, error) in
+                DispatchQueue.main.async {
+                    completionHandler(error)
+                }
+            }
+
+            publicDatabase.add(modifyOperation)
+        }
+    
     //    func authenticateUserUsingSignInWithApple(user: User, credentials: ASAuthorizationAppleIDCredential, completionHandler: @escaping (_ user: User?,_ error: Error?) -> Void) {
     //
     //        let predicateEmail = NSPredicate(format: "\(emailAddressKey) = %@", user.email)

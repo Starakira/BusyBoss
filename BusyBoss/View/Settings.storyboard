@@ -139,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="-2665.217391304348" y="2130.8035714285716"/>
         </scene>
-        <!--View Controller-->
+        <!--User Profile View Controller-->
         <scene sceneID="t8a-PG-X7U">
             <objects>
-                <viewController id="9wo-er-06c" sceneMemberID="viewController">
+                <viewController id="9wo-er-06c" customClass="UserProfileViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lss-Xy-NgA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -296,6 +296,14 @@
                     <navigationItem key="navigationItem" id="gCB-2m-4Oi">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="yFQ-Cy-Hy4"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emailField" destination="ilc-rP-beo" id="az9-mz-pjs"/>
+                        <outlet property="firstNameField" destination="S6L-wI-8KT" id="wdY-Pc-hFt"/>
+                        <outlet property="lastNameField" destination="tYh-If-g5B" id="G1q-TP-3MH"/>
+                        <outlet property="phoneNoField" destination="4qW-RU-s7J" id="qN2-5f-8Di"/>
+                        <outlet property="saveButton" destination="yFQ-Cy-Hy4" id="DTH-xG-ldF"/>
+                        <outlet property="userImage" destination="uJE-30-jnJ" id="51E-Uj-wPh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8V-zo-er0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -952,10 +960,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="D8h-PL-0c4">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="fhp-Zc-KmE"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="fhp-Zc-KmE">
+                            <connections>
+                                <segue destination="IhT-sH-AEi" kind="unwind" unwindAction="unwindToSegue:" id="uAm-O8-Nus"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybl-6X-vAO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="IhT-sH-AEi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-630.43478260869574" y="1445.7589285714284"/>
         </scene>
