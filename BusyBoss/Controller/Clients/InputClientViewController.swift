@@ -21,7 +21,11 @@ class InputClientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        clientFirstName.delegate = self
+        clientCompanyName.delegate = self
+        clientAddress.delegate = self
+        clientEmailAddress.delegate = self
+        clientPhoneNo.delegate = self
     }
 
     // MARK: - Navigation
@@ -68,6 +72,14 @@ class InputClientViewController: UIViewController {
         ivc.delegate = self
         ivc.allowsEditing = true
         present(ivc, animated: true)
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        let firstName = (clientFirstName.text! as String)
+        let company = (clientCompanyName.text! as String)
+        
+
+        return true
     }
 
 }

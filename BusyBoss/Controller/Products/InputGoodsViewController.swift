@@ -20,6 +20,11 @@ class InputGoodsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        // Do any additional setup after loading the view.
+        productNameField.delegate = self
+        productPriceFields.delegate = self
+        productStockFields.delegate = self
+        productUnitFields.delegate = self
+        addButton.isEnabled = false
     }
    
     @IBAction func addImage(_ sender: UIButton) {
@@ -39,6 +44,22 @@ class InputGoodsViewController: UIViewController {
         let newGoods = goodsStruct(productName: productNameField.text!, productPrice: productPrice!, productImage: addProductImage.image!, productStock: productStock!, productUnit: productUnitFields.text!, description: productDescription.text!)
        
        self.goods = newGoods
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        let name = (productNameField.text! as String)
+        let price = (productPriceFields.text! as String)
+        let stock = (productStockFields.text! as String)
+        let unit = (productUnitFields.text! as String)
+        
+        if !name.isEmpty && !price.isEmpty && !stock.isEmpty && !unit.isEmpty{
+            addButton?.isEnabled = true
+            
+        } else {
+            addButton?.isEnabled = false
+            
+        }
+        return true
     }
 }
 
