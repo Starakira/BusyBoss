@@ -183,6 +183,8 @@ struct CloudKitManager {
         
         let modifyOperation = CKModifyRecordsOperation(recordsToSave: [clientRecord])
         
+        modifyOperation.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+        
         modifyOperation.modifyRecordsCompletionBlock = { editedRecord, editedRecordID, error in
             DispatchQueue.main.async {
                 completionHandler(editedRecordID?.first, error)

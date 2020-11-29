@@ -270,9 +270,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="GambarProductNewTransaction" destination="jSq-6o-Mav" id="9yj-pl-Ro0"/>
-                                            <outlet property="JumlahHargaNewTransaction" destination="YNU-e7-pNj" id="8DX-MA-4CG"/>
-                                            <outlet property="NameProductNewTransaction" destination="lqg-hZ-zoN" id="Wqb-ew-3sT"/>
+                                            <outlet property="productImage" destination="jSq-6o-Mav" id="9yj-pl-Ro0"/>
+                                            <outlet property="productNameLabel" destination="lqg-hZ-zoN" id="Wqb-ew-3sT"/>
+                                            <outlet property="productPriceLabel" destination="YNU-e7-pNj" id="8DX-MA-4CG"/>
                                             <outlet property="transactionProductQuantityLabel" destination="BL0-dR-ujB" id="OOh-Nt-Nm2"/>
                                         </connections>
                                     </tableViewCell>
@@ -434,10 +434,10 @@
                                                 <rect key="frame" x="20" y="13" width="48" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelButtonAction:" destination="afN-xs-20m" eventType="touchUpInside" id="5LR-gp-Bbj"/>
+                                                </connections>
                                             </button>
-                                            <connections>
-                                                <action selector="cancelButtonAction:" destination="afN-xs-20m" id="bRu-6B-fX9"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -495,7 +495,7 @@
                     <connections>
                         <outlet property="DateTransaction" destination="iHp-PO-P5Q" id="1ws-HO-rEg"/>
                         <outlet property="NameUserTransaction" destination="Mkx-Su-lf4" id="a6T-dF-aez"/>
-                        <outlet property="ProductListTransactionTableView" destination="kXF-dw-ZdX" id="dLa-BD-mGs"/>
+                        <outlet property="productListTransactionTableView" destination="kXF-dw-ZdX" id="dLa-BD-mGs"/>
                         <outlet property="transactionDiscountLabel" destination="vr7-Gd-Lkp" id="G4a-LH-3pV"/>
                         <outlet property="transactionNumberLabel" destination="S9Y-Og-E0V" id="E8C-ro-f9G"/>
                         <outlet property="transactionProductsTotalPriceLabel" destination="hcv-dg-kcs" id="XM7-nc-fv5"/>
@@ -597,9 +597,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="GambarProductNewTransaction" destination="ObH-XF-XOL" id="BM7-J0-Yqv"/>
-                                            <outlet property="JumlahHargaNewTransaction" destination="DYa-Dn-7p3" id="tyB-JK-Ewh"/>
-                                            <outlet property="NameProductNewTransaction" destination="vnu-Me-E4b" id="QlO-72-VZe"/>
+                                            <outlet property="productImage" destination="ObH-XF-XOL" id="BM7-J0-Yqv"/>
+                                            <outlet property="productNameLabel" destination="vnu-Me-E4b" id="QlO-72-VZe"/>
+                                            <outlet property="productPriceLabel" destination="DYa-Dn-7p3" id="tyB-JK-Ewh"/>
                                             <outlet property="transactionProductQuantityLabel" destination="URf-cv-HRp" id="lrp-Ux-lM1"/>
                                         </connections>
                                     </tableViewCell>
@@ -893,7 +893,7 @@
                         <outlet property="descriptionTextField" destination="YhQ-bl-dxD" id="4X5-X2-QqI"/>
                         <outlet property="discountTextField" destination="9wR-ll-blK" id="vRl-6a-ho7"/>
                         <outlet property="disountSwitch" destination="kGq-nE-EJn" id="OYs-9x-rx9"/>
-                        <outlet property="productListNewTransaction" destination="Z8Q-JR-3ri" id="r5g-s7-o1F"/>
+                        <outlet property="productListNewTransactionTableView" destination="Z8Q-JR-3ri" id="r5g-s7-o1F"/>
                         <outlet property="taxSwitch" destination="Y5L-4H-tcf" id="6uM-lt-U0d"/>
                         <outlet property="totalProductsPriceLabel" destination="4mn-Fu-Cvk" id="d6S-Qx-F00"/>
                         <outlet property="totalTaxLabel" destination="kyE-2O-R3O" id="A78-cy-8rc"/>

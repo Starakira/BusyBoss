@@ -8,6 +8,7 @@
 import UIKit
 
 class ClientsViewController: UIViewController {
+    
     var clients : [Client] = []
     var index = -1
     
@@ -15,7 +16,8 @@ class ClientsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        clientsTableView.tableFooterView = UIView()
         
         clientsTableView.delegate = self
         clientsTableView.dataSource = self
@@ -97,6 +99,8 @@ class ClientsViewController: UIViewController {
             print("Index \(index)")
             // Pass the selected object to the new view controller.
             clientDetailsViewController.client = clients[index]
+            
+            clientDetailsViewController.clientDetailsDelegate = self
         } else if let inputClientViewController = segue.destination as? InputClientViewController {
             // Pass the selected object to the new view controller.
             inputClientViewController.client = index != -1 ? clients[index] : nil
@@ -104,8 +108,13 @@ class ClientsViewController: UIViewController {
         
         index = -1
     }
-    
-    
+}
+
+extension ClientsViewController: ClientsConform {
+    func clientListPassData(client: Client) {
+        self.clients[index] = client
+        clientsTableView.reloadData()
+    }
 }
 
 extension ClientsViewController: UITableViewDelegate {

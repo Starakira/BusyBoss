@@ -11,7 +11,8 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var servicesView: UIView!
     @IBOutlet weak var goodsView: UIView!
-    var products: [Product] = []
+    var goodsProducts: [Product] = []
+    var servicesProducts: [Product] = []
     var goodsVC : GoodsViewController?
     var servicesVC : ServicesViewController?
     
@@ -95,16 +96,14 @@ class ProductsViewController: UIViewController {
                     print("Creating product successful")
                     newGoods!.recordID = recordID
                     
-                    self.products.append(newGoods!)
-                    self.goodsVC?.products.append(contentsOf: self.products)
+                    self.goodsProducts.append(newGoods!)
+                    self.goodsVC?.products.append(contentsOf: self.goodsProducts)
                     self.goodsVC!.goodsTableView.reloadData()
                     
                     pendingAction.dismiss(animated: true, completion: nil)
                 }
             }
-        }
-        
-        if let sourceViewController = sender.source as? InputServicesViewController {
+        } else if let sourceViewController = sender.source as? InputServicesViewController {
             var newServices = sourceViewController.product
             
             let pendingAction = Alert.displayPendingAlert(title: "Saving newServices")
@@ -125,8 +124,8 @@ class ProductsViewController: UIViewController {
                     print("Creating product successful")
                     newServices!.recordID = recordID
                     
-                    self.products.append(newServices!)
-                    self.servicesVC?.products.append(contentsOf: self.products)
+                    self.servicesProducts.append(newServices!)
+                    self.servicesVC?.products.append(contentsOf: self.servicesProducts)
                     self.servicesVC!.servicesTableView.reloadData()
                     
                     pendingAction.dismiss(animated: true, completion: nil)

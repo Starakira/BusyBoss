@@ -11,11 +11,18 @@ class ServicesViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var servicesTableView: UITableView!
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var products : [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        servicesTableView.tableFooterView = UIView()
         
         servicesTableView.dataSource = self
         servicesTableView.delegate = self
@@ -48,7 +55,7 @@ class ServicesViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "servicesCell", for: indexPath)as!ServicesTableViewCell
                let product = products[indexPath.row]
         cell.servicesLabel.text = product.name
-        cell.servicesPrice.text = String(product.price)
+        cell.servicesPrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
                return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

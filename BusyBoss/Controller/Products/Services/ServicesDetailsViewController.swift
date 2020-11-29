@@ -12,6 +12,12 @@ class ServicesDetailsViewController: UIViewController {
     @IBOutlet weak var serviceDescription: UILabel!
     @IBOutlet weak var servicePrice: UILabel!
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var product: Product?
     
     override func viewDidLoad() {
@@ -19,7 +25,7 @@ class ServicesDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let product = product {
             serviceName.text = product.name
-            servicePrice.text = String(product.price)
+            servicePrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
             serviceDescription.text = product.description
         }
     }

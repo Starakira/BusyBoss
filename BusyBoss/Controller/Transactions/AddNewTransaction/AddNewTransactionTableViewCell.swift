@@ -9,10 +9,10 @@ import UIKit
 
 class AddNewTransactionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var GambarProductNewTransaction: UIImageView!
-    @IBOutlet weak var NameProductNewTransaction: UILabel!
+    @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var transactionProductQuantityLabel: UILabel!
-    @IBOutlet weak var JumlahHargaNewTransaction: UILabel!
+    @IBOutlet weak var productPriceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

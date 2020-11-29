@@ -16,7 +16,7 @@ class TransactionDetailsViewController: UIViewController{
     @IBOutlet weak var transactionTaxLabel: UILabel!
     @IBOutlet weak var transactionTotalValueLabel: UILabel!
     @IBOutlet weak var DateTransaction: UILabel!
-    @IBOutlet weak var ProductListTransactionTableView: UITableView!
+    @IBOutlet weak var productListTransactionTableView: UITableView!
     
     var transaction : Transaction?
     var client: Client?
@@ -37,8 +37,10 @@ class TransactionDetailsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ProductListTransactionTableView.dataSource = self
-        ProductListTransactionTableView.delegate = self
+        productListTransactionTableView.tableFooterView = UIView()
+        
+        productListTransactionTableView.dataSource = self
+        productListTransactionTableView.delegate = self
         
         CloudKitManager.shared().transactionFetchAllProducts(transaction: transaction!) {
             (products, error) in
@@ -47,7 +49,7 @@ class TransactionDetailsViewController: UIViewController{
             } else {
                 
                 self.products = products
-                self.ProductListTransactionTableView.reloadData()
+                self.productListTransactionTableView.reloadData()
             }
         }
         
@@ -62,15 +64,15 @@ class TransactionDetailsViewController: UIViewController{
         }
         
         transactionNumberLabel.text = transaction?.transactionNumber
-        transactionProductsTotalPriceLabel.text = String(transaction?.value ?? 0.0)
-        transactionDiscountLabel.text = String(transaction?.discount ?? 0.0)
-        transactionTaxLabel.text = String(transaction?.tax ?? 0.0)
-        transactionTotalValueLabel.text = String(transaction?.value ?? 0.0)
-        DateTransaction.text = String(dateFormatter.string(from: transaction?.validityDate ?? Date()))
+        transactionProductsTotalPriceLabel.text = "Rp \(decimalFormatter.string(for: transaction?.value) ?? "0")"
+        transactionDiscountLabel.text = "Rp \(decimalFormatter.string(for: transaction?.discount) ?? "0")"
+        transactionTaxLabel.text = "Rp \(decimalFormatter.string(for: transaction?.tax) ?? "0")"
+        transactionTotalValueLabel.text = "Rp \(decimalFormatter.string(for: transaction?.value) ?? "0")"
+        DateTransaction.text = dateFormatter.string(from: transaction?.validityDate ?? Date())
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
-        dismiss(animated: true)
+        self.dismiss(animated: true)
     }
 }
 
@@ -90,9 +92,9 @@ extension TransactionDetailsViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         
-        cell.NameProductNewTransaction.text = product?.name
-        cell.JumlahHargaNewTransaction.text = String(product?.price ?? 0)
-        cell.GambarProductNewTransaction.image = product?.image
+        cell.productNameLabel.text = product?.name
+        cell.productPriceLabel.text = String(product?.price ?? 0)
+        cell.productImage.image = product?.image
         
         cell.setProductQuantity(transaction: transaction!, product: product)
         

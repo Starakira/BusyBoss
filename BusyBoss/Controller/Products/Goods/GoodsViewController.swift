@@ -10,12 +10,19 @@ import UIKit
 class GoodsViewController: UIViewController {
 
     @IBOutlet weak var goodsTableView: UITableView!
+    
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var products : [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(products)
+        goodsTableView.tableFooterView = UIView()
         
         goodsTableView.dataSource = self
         goodsTableView.delegate = self
@@ -62,8 +69,8 @@ extension GoodsViewController: UITableViewDataSource {
         let product = products[indexPath.row]
         cell.goodsLabel.text = product.name
         cell.goodsImage.image = product.image
-        cell.goodsPrice.text = String(product.price)
-        cell.goodsStock.text = String(product.stock ?? 0) + " " + (product.unit ?? "0")
+        cell.goodsPrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
+        cell.goodsStock.text = "\(decimalFormatter.string(for: product.stock) ?? "0") \(product.unit ?? "")"
         return cell
     }
 }

@@ -16,6 +16,12 @@ class GoodsDetailsViewController: UIViewController {
     @IBOutlet weak var goodsDetailsUnit: UILabel!
     @IBOutlet weak var goodsDetailsDescription: UILabel!
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var product: Product?
     
     override func viewDidLoad() {
@@ -24,7 +30,7 @@ class GoodsDetailsViewController: UIViewController {
         if let product = product {
             goodsDetailsLabel.text = product.name
             goodsDetailsImage.image = product.image
-            goodsDetailsPrice.text = String(product.price)
+            goodsDetailsPrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
             goodsDetailsStock.text = String(product.stock ?? 0)
             goodsDetailsUnit.text = product.unit
             goodsDetailsDescription.text = product.description

@@ -19,6 +19,8 @@ class EditClientViewController: UIViewController {
     
     var client: Client?
     
+    var editClientDelegate: ClientsConform?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,15 +37,39 @@ class EditClientViewController: UIViewController {
     }
     
     @IBAction func doneButtonAction(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-        print("Client = \(String(describing: client))")
+        let clientRecordID = client?.recordID
         
-        CloudKitManager.shared().clientEdit(client: client!) {
-            (record, error) in
-            if let error = error{
-                print(error.localizedDescription)
-            } else {
-                self.client?.recordID = record
+        print("Client = \(String(describing: self.client))")
+        
+        self.client?.image = self.addClientsImage.image
+        self.client?.firstName = self.clientFirstName.text ?? "No First Name"
+        self.client?.lastName =  self.clientLastName.text ?? "No Last Name"
+        self.client?.companyName = self.clientCompanyName.text ?? "No Company Name"
+        self.client?.companyAddress = self.clientAddress.text ?? "No Company Address"
+        self.client?.emailAddress = self.clientEmailAddress.text ?? "No Email"
+        self.client?.phoneNumber = self.clientPhoneNo.text ?? "No Phone Number"
+        
+        let pendingAction = Alert.displayPendingAlert(title: "Saving Client...")
+        
+        self.present(pendingAction, animated: true){
+                CloudKitManager.shared().clientEdit(client: self.client!) {
+                (record, error) in
+                
+                if let error = error{
+                    pendingAction.dismiss(animated: true) {
+                        Alert.showCloudKitError(self, error)
+                    }
+                } else {
+                    print("Client = \(String(describing: self.client))")
+                    
+                    self.client?.recordID = record
+                    
+                    pendingAction.dismiss(animated: true){
+                        self.client?.recordID = clientRecordID
+                        self.editClientDelegate?.clientListPassData(client: self.client!)
+                        self.dismiss(animated: true)
+                    }
+                }
             }
         }
     }

@@ -24,6 +24,8 @@ class TransactionViewController: UIViewController {
     var client: Client?
 
     override func viewDidLoad() {
+        tableView.tableFooterView = UIView()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
