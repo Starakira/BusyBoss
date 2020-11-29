@@ -23,6 +23,7 @@ class RegisterViewController: UIViewController {
         emailAddressTextField.delegate = self
         passwordTextField.delegate = self
         phoneNumberTextField.delegate = self
+        
     }
     
     @IBAction func registerButton(_ sender: Any) {

@@ -17,6 +17,7 @@ struct User {
     let email: String
     let password: String
     let phoneNumber: String
+    var image: UIImage?
     
     private static var user: User?
     
@@ -25,7 +26,7 @@ struct User {
     static let keyEmail = "emailAddress"
     static let keyPassword = "password"
     static let keyPhoneNumber = "phoneNumber"
-    
+    static let keyImage = ""
     static func currentUser() -> User? {
         return user
     }
@@ -60,8 +61,9 @@ extension User {
         let email = record[User.keyEmail] as? String ?? "No Email"
         let password = record[User.keyPassword] as? String ?? "No Password"
         let phoneNumber = record[User.keyPhoneNumber] as? String ?? "No Phone Number"
+        let image = ImageManager.convertToUIImage(file: record[User.keyImage])
         
-        self.init(recordID: recordID, firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber)
+        self.init(recordID: recordID, firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber, image: image)
     }
 }
 
