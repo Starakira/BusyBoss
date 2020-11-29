@@ -150,8 +150,16 @@ extension TransactionViewController : UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionViewCell") as! TransactionTableViewCell
         
         cell.labelStatus.text = transaction.status.rawValue.capitalized
-        cell.labelStatus.backgroundColor = .yellow
         cell.labelStatus.textAlignment = .center
+        
+        if transaction.status.rawValue.capitalized == "Ongoing"{
+            cell.labelStatus.backgroundColor = .yellow
+        } else if transaction.status.rawValue.capitalized == "Completed" {
+            cell.labelStatus.backgroundColor = .green
+        } else {
+            cell.labelStatus.backgroundColor = .red
+        }
+            
         cell.labelDescription.text = transaction.description
         cell.labelTotalPrice.text = "Rp. \(String(describing: transaction.value))"
         cell.labelTransactionCode.text = transaction.transactionNumber
