@@ -12,6 +12,12 @@ class AddTransactionProductServicesDetailsViewController: UIViewController {
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var product: Product?
     
     var productListDelegate: ProductServicesDismiss?
@@ -20,7 +26,7 @@ class AddTransactionProductServicesDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         productNameLabel.text = product?.name
-        productPriceLabel.text = String(product?.price ?? 0.0)
+        productPriceLabel.text = "Rp \(decimalFormatter.string(for: product?.price) ?? "0")"
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {

@@ -8,7 +8,7 @@
 import UIKit
 
 class GoodsViewController: UIViewController {
-
+    
     @IBOutlet weak var goodsTableView: UITableView!
     
     let decimalFormatter : NumberFormatter = {
@@ -27,27 +27,29 @@ class GoodsViewController: UIViewController {
         goodsTableView.dataSource = self
         goodsTableView.delegate = self
         
-        CloudKitManager.shared().productsFetchAll {
-            (products, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            else {
-                print("Fetching products successful")
-                print("Products = \(products.count)")
-                
-                for product in products {
-                    print(product.type.rawValue)
-                    if product.type.rawValue == "goods"{
-                        self.products.append(product)
-                        self.goodsTableView.reloadData()
-                        print(self.products)
+        let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
+        
+        self.present(pendingAction, animated: true){
+            CloudKitManager.shared().productsFetchAll {
+                (products, error) in
+                if let error = error {
+                    pendingAction.dismiss(animated: true){
+                        Alert.showCloudKitError(self, error)
+                    }
+                }
+                else {
+                    pendingAction.dismiss(animated: true){
+                        for product in products {
+                            if product.type.rawValue == "goods"{
+                                self.products.append(product)
+                                self.goodsTableView.reloadData()
+                                print(self.products)
+                            }
+                        }
                     }
                 }
             }
         }
-        
-        print(products)
     }
 }
 
@@ -61,11 +63,18 @@ extension GoodsViewController: UITableViewDelegate {
 
 extension GoodsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if products.count == 0 {
+            tableView.setEmptyView(title: "It's empty!", message: "Add your new Product \n by clicking \"+\" button")
+        }
+        else {
+            tableView.restore()
+        }
+        
         return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "goodsCell", for: indexPath)as!GoodsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "goodsCell", for: indexPath)as!GoodsTableViewCell
         let product = products[indexPath.row]
         cell.goodsLabel.text = product.name
         cell.goodsImage.image = product.image

@@ -11,14 +11,13 @@ protocol ProductServicesDismiss {
 
 import UIKit
 
-class AddTransactionProductServicesViewController: UIViewController, ProductServicesDismiss {
-    func performDismissal(checkProduct: Product) {
-        dismiss(animated: true, completion: nil)
-        self.checkProduct = checkProduct
-        if self.checkProduct != nil {
-            passProductDelegate?.productListPassData(product: self.checkProduct!)
-        }
-    }
+class AddTransactionProductServicesViewController: UIViewController {
+    
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
     
     var checkProduct: Product?
     
@@ -35,21 +34,24 @@ class AddTransactionProductServicesViewController: UIViewController, ProductServ
         servicesProductListTableView.dataSource = self
         servicesProductListTableView.delegate = self
         
-        CloudKitManager.shared().productsFetchAll {
-            (products, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            else {
-                print("Fetching products successful")
-                print("Products = \(products.count)")
-                
-                for product in products {
-                    print(product.type.rawValue)
-                    if product.type.rawValue == "services"{
-                        self.products.append(product)
-                        self.servicesProductListTableView.reloadData()
-                        print(self.products)
+        let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
+        
+        self.present(pendingAction, animated: true){
+            CloudKitManager.shared().productsFetchAll {
+                (products, error) in
+                if let error = error {
+                    pendingAction.dismiss(animated: true){
+                        Alert.showCloudKitError(self, error)
+                    }
+                }
+                else {
+                    pendingAction.dismiss(animated: true){
+                        for product in products {
+                            if product.type.rawValue == "services"{
+                                self.products.append(product)
+                                self.servicesProductListTableView.reloadData()
+                            }
+                        }
                     }
                 }
             }
@@ -64,6 +66,16 @@ class AddTransactionProductServicesViewController: UIViewController, ProductServ
     }
 }
 
+extension AddTransactionProductServicesViewController: ProductServicesDismiss{
+    func performDismissal(checkProduct: Product) {
+        dismiss(animated: true, completion: nil)
+        self.checkProduct = checkProduct
+        if self.checkProduct != nil {
+            passProductDelegate?.productListPassData(product: self.checkProduct!)
+        }
+    }
+}
+
 extension AddTransactionProductServicesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
@@ -73,6 +85,13 @@ extension AddTransactionProductServicesViewController: UITableViewDelegate {
 
 extension AddTransactionProductServicesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if products.count == 0 {
+            tableView.setEmptyView(title: "It's empty!", message: "You can add new product \n from the \"Products\" tab")
+        }
+        else {
+            tableView.restore()
+        }
+        
         return products.count
     }
     
@@ -80,7 +99,7 @@ extension AddTransactionProductServicesViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListJasaViewCell", for: indexPath)as!AddNewTransactionProductServicesTableViewCell
         let product = products[indexPath.row]
         cell.NameJasaLabel.text = product.name
-        cell.TotalHargaLabel.text = String(product.price)
+        cell.TotalHargaLabel.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
         return cell
     }
 }

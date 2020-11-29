@@ -40,4 +40,8 @@ class AddTransactionProductsViewController: UIViewController {
             vc.passProductDelegate = myDelegate
         }
     }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }

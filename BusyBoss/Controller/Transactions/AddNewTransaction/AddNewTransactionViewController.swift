@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CloudKit
 
 protocol ClientsConform {
     func clientListPassData(client: Client)
@@ -27,7 +28,7 @@ class AddNewTransactionViewController: UIViewController {
     
     @IBOutlet weak var transactionNumberTextField: UITextField!
     
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var transactionDescriptionTextField: UITextField!
     
     @IBOutlet weak var discountTextField: UITextField!
     
@@ -90,7 +91,7 @@ class AddNewTransactionViewController: UIViewController {
         validityDateTextField.text = dateFormatter.string(from: validityDate ?? Date())
         
         transactionNumberTextField.delegate = self
-        descriptionTextField.delegate = self
+        transactionDescriptionTextField.delegate = self
         
         discountTextField.delegate = self
         validityDateTextField.delegate = self
@@ -104,10 +105,15 @@ class AddNewTransactionViewController: UIViewController {
     @IBAction func discountSwitchAction(_ sender: Any) {
         if disountSwitch.isOn {
             discountTextField.isHidden = false
+            
+            getTotalValue()
         } else {
             discountTextField.isHidden = true
+            discountTextField.text = ""
             
             discount = 0.0
+            
+            getTax()
             getTotalValue()
         }
     }
@@ -115,21 +121,23 @@ class AddNewTransactionViewController: UIViewController {
     @IBAction func taxSwitchAction(_ sender: Any) {
         if taxSwitch.isOn {
             totalTaxLabel.isHidden = false
-            tax = totalProductPrice*0.1
-            totalTaxLabel.text = "Rp " + decimalFormatter.string(for: tax)!
             
+            getTax()
             getTotalValue()
         } else {
             totalTaxLabel.isHidden = true
-            tax = 0.0
             
+            tax = 0.0
             getTotalValue()
         }
     }
     
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
         
-        transaction = Transaction(transactionNumber: transactionNumber, description: description, status: TransactionStatus.ongoing, approval: TransactionApproval.pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalValue)
+        transaction = Transaction(transactionNumber: transactionNumber, description: transactionDescription, status: TransactionStatus.ongoing, approval: TransactionApproval.pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalValue)
+        
+        transaction?.clientReference = CKRecord.Reference(recordID: (client?.recordID)!, action: CKRecord_Reference_Action.none)
+        
         let pendingAction = Alert.displayPendingAlert(title: "Saving new transaction to Database...")
         self.present(pendingAction, animated: true) {
             CloudKitManager.shared().transactionCreate(transaction: self.transaction!) {
@@ -183,13 +191,17 @@ class AddNewTransactionViewController: UIViewController {
         }
     }
     
-    func getTotalProductPrice() {
-        
+    func getTax() {
+        if taxSwitch.isOn {
+            tax = (totalProductPrice - discount) * 0.1
+            totalTaxLabel.text = "Rp \(decimalFormatter.string(for: tax) ?? "0")"
+        } else {
+            tax = 0.0
+        }
     }
     
     func getTotalValue(){
-        
-        totalValue = totalProductPrice - discount - tax
+        totalValue = totalProductPrice - discount + tax
         totalTransactionValueLabel.text = "Rp " + decimalFormatter.string(for: totalValue)!
     }
 }
@@ -206,7 +218,7 @@ extension AddNewTransactionViewController: ProductsConform {
         self.products.append(product)
         totalProductPrice += product.price * Double(product.transactionQuantity ?? 0)
         totalProductsPriceLabel.text = "Rp " + decimalFormatter.string(for: totalProductPrice)!
-        
+        getTax()
         getTotalValue()
         
         productListNewTransactionTableView.reloadData()
@@ -217,16 +229,15 @@ extension AddNewTransactionViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == transactionNumberTextField {
             transactionNumber = transactionNumberTextField.text ?? ""
-            print("Transaction Number : \(transactionNumber)")
-        } else if textField == descriptionTextField {
-            transactionDescription = descriptionTextField.text ?? ""
+        } else if textField == transactionDescriptionTextField {
+            transactionDescription = transactionDescriptionTextField.text ?? ""
         }
         else if textField == discountTextField {
             discount = Double(textField.text ?? "0.0") ?? 0.0
+            getTax()
             getTotalValue()
         } else if textField == validityDateTextField {
             validityDate = dateFormatter.date(from: textField.text ?? "00/00/0000")
-            print("Date is" +  dateFormatter.string(from: validityDate ?? Date()))
         }
     }
     
@@ -245,8 +256,10 @@ extension AddNewTransactionViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         let product = products[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
+        
         cell.productNameLabel.text = product.name
         cell.transactionProductQuantityLabel.text = String(product.transactionQuantity ?? 0)
         cell.productPriceLabel.text = String(product.price)

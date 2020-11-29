@@ -28,8 +28,6 @@ class AddNewTransactionClientViewController: UIViewController {
                 print(error.localizedDescription)
             }
             else {
-                print("Fetching client successful")
-                print("Clients = \(clients.count)")
                 self.clients = clients
                 self.ContactClientListTableView.reloadData()
             }
@@ -53,6 +51,13 @@ extension AddNewTransactionClientViewController: UITableViewDelegate{
 
 extension AddNewTransactionClientViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if clients.count == 0 {
+            tableView.setEmptyView(title: "It's empty!", message: "You can add clients \n from the \"Clients\" tab")
+        }
+        else {
+            tableView.restore()
+        }
+        
         return clients.count
     }
     

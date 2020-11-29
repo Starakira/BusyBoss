@@ -14,6 +14,12 @@ class AddTransactionProductGoodsDetailsViewContoller: UIViewController {
     @IBOutlet weak var productQuantityLabel: UILabel!
     @IBOutlet weak var productImageLabel: UIImageView!
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var product: Product?
     
     var productListDelegate: ProductGoodsDismiss?
@@ -23,8 +29,9 @@ class AddTransactionProductGoodsDetailsViewContoller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        productImageLabel.image = product?.image
         productNameLabel.text = product?.name
-        productPriceLabel.text = String(product?.price ?? 0.0)
+        productPriceLabel.text = "Rp \(decimalFormatter.string(for: product?.price) ?? "0")"
         productQuantityLabel.text = String(productQuantity)
     }
     

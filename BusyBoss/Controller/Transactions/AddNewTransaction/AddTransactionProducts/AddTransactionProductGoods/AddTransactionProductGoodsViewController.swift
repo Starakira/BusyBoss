@@ -11,14 +11,14 @@ protocol ProductGoodsDismiss {
     func performDismissal (checkProduct: Product)
 }
 
-class AddTransactionProductGoodsViewController: UIViewController, ProductGoodsDismiss {
-    func performDismissal(checkProduct: Product) {
-        dismiss(animated: true, completion: nil)
-        self.checkProduct = checkProduct
-        if self.checkProduct != nil {
-            passProductDelegate?.productListPassData(product: self.checkProduct!)
-        }
-    }
+class AddTransactionProductGoodsViewController: UIViewController {
+    
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var checkProduct: Product?
     
     var products : [Product] = []
@@ -40,15 +40,10 @@ class AddTransactionProductGoodsViewController: UIViewController, ProductGoodsDi
                 print(error.localizedDescription)
             }
             else {
-                print("Fetching products successful")
-                print("Products = \(products.count)")
-                
                 for product in products {
-                    print(product.type.rawValue)
                     if product.type.rawValue == "goods"{
                         self.products.append(product)
                         self.goodsProductListTableView.reloadData()
-                        print(self.products)
                     }
                 }
             }
@@ -63,6 +58,18 @@ class AddTransactionProductGoodsViewController: UIViewController, ProductGoodsDi
     }
 }
 
+extension AddTransactionProductGoodsViewController: ProductGoodsDismiss {
+    func performDismissal(checkProduct: Product) {
+        
+        self.checkProduct = checkProduct
+        if self.checkProduct != nil {
+            passProductDelegate?.productListPassData(product: self.checkProduct!)
+        }
+        
+        dismiss(animated: true)
+    }
+}
+
 extension AddTransactionProductGoodsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
@@ -72,6 +79,13 @@ extension AddTransactionProductGoodsViewController: UITableViewDelegate {
 
 extension AddTransactionProductGoodsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if products.count == 0 {
+            tableView.setEmptyView(title: "It's empty!", message: "You can add new product \n from the \"Products\" tab")
+        }
+        else {
+            tableView.restore()
+        }
+        
         return products.count
     }
     
@@ -80,7 +94,7 @@ extension AddTransactionProductGoodsViewController: UITableViewDataSource {
         let product = products[indexPath.row]
         cell.NamaBarangLabel.text = product.name
         cell.JumlahStockBarang.text = String(product.stock ?? 0)
-        cell.TotalHargaLabel.text = String(product.price)
+        cell.TotalHargaLabel.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
         cell.GambarBarang.image = product.image
         return cell
     }

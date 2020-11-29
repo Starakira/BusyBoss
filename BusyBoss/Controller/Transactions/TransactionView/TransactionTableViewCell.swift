@@ -27,11 +27,12 @@ class TransactionTableViewCell: UITableViewCell {
     }
 
     func setClientName(transaction: Transaction) {
+        
         if let clientFirstName = transaction.client?.firstName {
             self.labelClientName.text = clientFirstName
         }
         
-        if let clientLastName = transaction.client?.firstName {
+        if let clientLastName = transaction.client?.lastName {
             self.labelClientName.text = "\(String(self.labelClientName.text ?? "")) \(clientLastName)"
         }
         
@@ -49,7 +50,25 @@ class TransactionTableViewCell: UITableViewCell {
         }
     }
     
-    func getProductList(transaction: Transaction) {
+    func setTransactionValue(transaction: Transaction){
+        print("Calling setTransactionValue")
+        var totalPrice: Double = 0
         
+        if let products = transaction.products{
+            for product in products {
+                totalPrice += Double(product.price) * Double(product.transactionQuantity ?? 0)
+            }
+            labelTotalPrice.text = String(totalPrice)
+        } else {
+            CloudKitManager.shared().transactionFetchTotalPrice(transaction: transaction){
+                (totalprice, error) in
+                print("setTransactionValue Function is called...")
+                if let error = error {
+                    print("Error Fetch Price : \(error.localizedDescription)")
+                } else {
+                    self.labelTotalPrice.text = String(totalprice)
+                }
+            }
+        }
     }
 }

@@ -53,17 +53,28 @@ class ProductsViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        print("hi")
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? GoodsViewController{
-            goodsVC = vc
+            let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
+            
+            self.present(pendingAction, animated: true)
+            
+            pendingAction.dismiss(animated: true){
+                self.goodsVC = vc
+            }
         }
         
         if let vc = segue.destination as? ServicesViewController{
-            servicesVC = vc
+            let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
+            
+            self.present(pendingAction, animated: true)
+            
+            pendingAction.dismiss(animated: true){
+                self.servicesVC = vc
+            }
         }
     }
     /*
@@ -79,7 +90,7 @@ class ProductsViewController: UIViewController {
         if let sourceViewController = sender.source as? InputGoodsViewController {
             var newGoods = sourceViewController.product
             
-            let pendingAction = Alert.displayPendingAlert(title: "Saving newGoods")
+            let pendingAction = Alert.displayPendingAlert(title: "Creating product...")
             self.present(pendingAction, animated: true, completion: nil)
             
             CloudKitManager.shared().productCreate(product: newGoods!) {
@@ -93,7 +104,6 @@ class ProductsViewController: UIViewController {
                     print("ID not created!")
                 }
                 else {
-                    print("Creating product successful")
                     newGoods!.recordID = recordID
                     
                     self.goodsProducts.append(newGoods!)
@@ -106,7 +116,7 @@ class ProductsViewController: UIViewController {
         } else if let sourceViewController = sender.source as? InputServicesViewController {
             var newServices = sourceViewController.product
             
-            let pendingAction = Alert.displayPendingAlert(title: "Saving newServices")
+            let pendingAction = Alert.displayPendingAlert(title: "Creating product...")
             self.present(pendingAction, animated: true, completion: nil)
             
             CloudKitManager.shared().productCreate(product: newServices!) {

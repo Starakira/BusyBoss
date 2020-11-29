@@ -153,7 +153,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="TransactionSegmentedControl" destination="yqD-Zy-5kD" id="w9j-hF-ZFI"/>
-                        <outlet property="tableView" destination="vri-Qb-TJi" id="pzl-pD-VeT"/>
+                        <outlet property="transactionTableView" destination="vri-Qb-TJi" id="pzl-pD-VeT"/>
                         <segue destination="afN-xs-20m" kind="presentation" identifier="transactionDetailsSegue" id="hfN-l0-vm3"/>
                     </connections>
                 </viewController>
@@ -612,9 +612,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="transactionDescriptionLabel:" destination="mgx-Ww-VKt" eventType="editingDidEnd" id="GpQ-Sv-UeS"/>
-                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY6-6d-jeS">
                                 <rect key="frame" x="20" y="557" width="37" height="21"/>
@@ -890,7 +887,6 @@
                     </view>
                     <connections>
                         <outlet property="clientTextField" destination="ylh-n2-5Vb" id="czy-kC-DQy"/>
-                        <outlet property="descriptionTextField" destination="YhQ-bl-dxD" id="4X5-X2-QqI"/>
                         <outlet property="discountTextField" destination="9wR-ll-blK" id="vRl-6a-ho7"/>
                         <outlet property="disountSwitch" destination="kGq-nE-EJn" id="OYs-9x-rx9"/>
                         <outlet property="productListNewTransactionTableView" destination="Z8Q-JR-3ri" id="r5g-s7-o1F"/>
@@ -898,7 +894,8 @@
                         <outlet property="totalProductsPriceLabel" destination="4mn-Fu-Cvk" id="d6S-Qx-F00"/>
                         <outlet property="totalTaxLabel" destination="kyE-2O-R3O" id="A78-cy-8rc"/>
                         <outlet property="totalTransactionValueLabel" destination="Hat-fO-bKB" id="GLW-UV-XlV"/>
-                        <outlet property="transactionNumberTextField" destination="ZTG-Sz-w7v" id="2kP-3v-QQc"/>
+                        <outlet property="transactionDescriptionTextField" destination="YhQ-bl-dxD" id="Wxh-Bb-SOV"/>
+                        <outlet property="transactionNumberTextField" destination="ZTG-Sz-w7v" id="kL5-3U-0MS"/>
                         <outlet property="validityDateTextField" destination="ASn-VT-YOP" id="FrD-6t-4da"/>
                     </connections>
                 </viewController>
@@ -1073,7 +1070,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Add Products" id="jV3-yD-iXU">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Iob-E1-Wyx"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Iob-E1-Wyx">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="0nj-0o-Cmf" id="6Iq-HD-7GT"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1307,7 +1308,7 @@
                                     <navigationItem title="Good" id="Dtu-oC-AlC">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="Ubh-ad-I2X">
                                             <connections>
-                                                <action selector="cancelButtonAction:" destination="zah-Tg-Z5F" id="MY3-9f-BnA"/>
+                                                <action selector="cancelButtonAction:" destination="zah-Tg-Z5F" id="ch1-zm-bNp"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="P93-ET-o0X">
@@ -1356,6 +1357,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bEh-UT-cmN"/>
                     <connections>
+                        <outlet property="productImageLabel" destination="NXu-Oe-gte" id="cxJ-kx-uhH"/>
                         <outlet property="productNameLabel" destination="xfK-WB-cJv" id="Pa6-FW-iTL"/>
                         <outlet property="productPriceLabel" destination="j0i-K0-aqD" id="Bop-ob-uFW"/>
                         <outlet property="productQuantityLabel" destination="vKY-Qi-jBx" id="VMx-G6-p4e"/>
@@ -1448,7 +1450,7 @@
                                     <navigationItem title="Service" id="lZo-aH-pEy">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="FLX-v4-uAy">
                                             <connections>
-                                                <action selector="cancelButtonAction:" destination="jzM-L3-jkh" id="NWO-V4-eNq"/>
+                                                <action selector="cancelButtonAction:" destination="jzM-L3-jkh" id="QRu-VT-Th3"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="NFE-xs-5si">

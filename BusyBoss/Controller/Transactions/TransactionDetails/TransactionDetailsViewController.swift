@@ -16,11 +16,13 @@ class TransactionDetailsViewController: UIViewController{
     @IBOutlet weak var transactionTaxLabel: UILabel!
     @IBOutlet weak var transactionTotalValueLabel: UILabel!
     @IBOutlet weak var DateTransaction: UILabel!
+    
     @IBOutlet weak var productListTransactionTableView: UITableView!
     
     var transaction : Transaction?
     var client: Client?
     var products : [Product]?
+    var productQuantity: Int = 0
     
     let decimalFormatter : NumberFormatter = {
         let formatter = NumberFormatter()
@@ -42,14 +44,19 @@ class TransactionDetailsViewController: UIViewController{
         productListTransactionTableView.dataSource = self
         productListTransactionTableView.delegate = self
         
-        CloudKitManager.shared().transactionFetchAllProducts(transaction: transaction!) {
-            (products, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                
-                self.products = products
-                self.productListTransactionTableView.reloadData()
+        if let products = transaction?.products{
+            self.products = products
+            productListTransactionTableView.reloadData()
+        } else {
+            CloudKitManager.shared().transactionFetchAllProducts(transaction: transaction!) {
+                (products, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    
+                    self.products = products
+                    self.productListTransactionTableView.reloadData()
+                }
             }
         }
         
@@ -76,8 +83,6 @@ class TransactionDetailsViewController: UIViewController{
     }
 }
 
-
-
 extension TransactionDetailsViewController: UITableViewDelegate{
     
 }
@@ -90,7 +95,7 @@ extension TransactionDetailsViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let product = products?[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath) as! AddNewTransactionTableViewCell
         
         cell.productNameLabel.text = product?.name
         cell.productPriceLabel.text = String(product?.price ?? 0)
