@@ -31,7 +31,7 @@ class RegisterViewController: UIViewController {
             lastName: lastNameTextField.text!,
             email: emailAddressTextField.text!,
             password: passwordTextField.text!,
-            phoneNumber: phoneNumberTextField.text!)
+            phoneNumber: phoneNumberTextField.text!, image: #imageLiteral(resourceName: "BusyBoss_Logo"))
         
         if firstNameTextField.isEmpty {
             Alert.showAlert(view: self, title: "First Name Empty", message: "Please fill out your first name!")

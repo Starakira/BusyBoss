@@ -45,6 +45,7 @@
 		F599E3A925513FFD00B78AFC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3A825513FFD00B78AFC /* Alert.swift */; };
 		F599E3AE2551408900B78AFC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F599E3AD2551408900B78AFC /* CloudKit.framework */; };
 		F599E3B22551549E00B78AFC /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39D25513D4C00B78AFC /* Login.storyboard */; };
+		F5A2968C25741D380088F31A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A2968B25741D380088F31A /* UserProfileViewController.swift */; };
 		F5D3070D2566608C001BF94A /* Products.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5D3070C2566608C001BF94A /* Products.storyboard */; };
 		F5D3076725666252001BF94A /* GoodsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D3075725666251001BF94A /* GoodsDetailsViewController.swift */; };
 		F5D3076825666252001BF94A /* ServicesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D3075825666251001BF94A /* ServicesDetailsViewController.swift */; };
@@ -101,6 +102,7 @@
 		F599E3A825513FFD00B78AFC /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		F599E3AB2551407F00B78AFC /* BusyBoss.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BusyBoss.entitlements; sourceTree = "<group>"; };
 		F599E3AD2551408900B78AFC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F5A2968B25741D380088F31A /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		F5D3070C2566608C001BF94A /* Products.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Products.storyboard; sourceTree = "<group>"; };
 		F5D3075725666251001BF94A /* GoodsDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsDetailsViewController.swift; sourceTree = "<group>"; };
 		F5D3075825666251001BF94A /* ServicesDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesDetailsViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		F599E3272551384E00B78AFC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F5A2968A25741CD90088F31A /* Settings */,
 				F599E38A25513C1700B78AFC /* Login */,
 				F599E38B25513C2200B78AFC /* Register */,
 				F599E38925513B1400B78AFC /* Transactions */,
@@ -394,6 +397,14 @@
 			path = Transactions;
 			sourceTree = "<group>";
 		};
+		F5A2968A25741CD90088F31A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F5A2968B25741D380088F31A /* UserProfileViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -471,6 +482,7 @@
 			files = (
 				F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */,
 				F5D3076825666252001BF94A /* ServicesDetailsViewController.swift in Sources */,
+				F5A2968C25741D380088F31A /* UserProfileViewController.swift in Sources */,
 				F52FADD225593505002AF6C3 /* TransactionTableViewCell.swift in Sources */,
 				F599E37D2551398400B78AFC /* TransactionViewController.swift in Sources */,
 				F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */,

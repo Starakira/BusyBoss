@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ServicesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ServicesViewController: UIViewController{
     
     @IBOutlet weak var servicesTableView: UITableView!
     
@@ -52,6 +52,27 @@ class ServicesViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
+
+extension ServicesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(identifier: "servicesDetails") as! ServicesDetailsViewController
+        vc.product = products[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension ServicesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if products.count == 0 {
             tableView.setEmptyView(title: "It's empty!", message: "Add your new Product \n by clicking \"+\" button")
@@ -70,22 +91,4 @@ class ServicesViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.servicesPrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
         return cell
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(identifier: "servicesDetails") as! ServicesDetailsViewController
-        vc.product = products[indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
