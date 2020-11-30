@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WRt-Wb-fSx">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -100,7 +100,7 @@
                             <constraint firstItem="ADp-vy-JP5" firstAttribute="top" secondItem="Mym-Kr-fAv" secondAttribute="bottom" constant="27" id="6IZ-gF-vUP"/>
                             <constraint firstItem="Grc-yW-Mb6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="46" id="7nI-Fc-9M4"/>
                             <constraint firstItem="5h4-Wa-EJp" firstAttribute="centerY" secondItem="Js0-yH-Tfu" secondAttribute="centerY" id="7z3-Ma-v9h"/>
-                            <constraint firstItem="DkI-Xy-MhM" firstAttribute="top" secondItem="KNs-tW-JUd" secondAttribute="bottom" constant="19" id="G0s-HW-Jn4"/>
+                            <constraint firstItem="DkI-Xy-MhM" firstAttribute="top" secondItem="KNs-tW-JUd" secondAttribute="bottom" constant="63" id="G0s-HW-Jn4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jgf-lV-iTQ" secondAttribute="trailing" constant="44" id="G4Z-CV-ZnQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Grc-yW-Mb6" secondAttribute="trailing" constant="44" id="I9G-cI-62Z"/>
                             <constraint firstItem="ud9-aB-0qy" firstAttribute="top" secondItem="jgf-lV-iTQ" secondAttribute="bottom" constant="44.5" id="K4k-q2-Sit"/>

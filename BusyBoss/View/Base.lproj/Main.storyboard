@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uih-hw-und">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uih-hw-und">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,7 +31,7 @@
         <scene sceneID="2Gn-4U-CpO">
             <objects>
                 <viewControllerPlaceholder storyboardName="Transactions" id="hch-re-UrR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="hMS-2N-MuT"/>
+                    <tabBarItem key="tabBarItem" title="Transactions" image="doc.text.magnifyingglass" catalog="system" id="hMS-2N-MuT"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IKn-7c-GGA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -41,7 +41,7 @@
         <scene sceneID="eGh-ZC-OQH">
             <objects>
                 <viewControllerPlaceholder storyboardName="Products" id="DIx-e0-jz3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kBo-BH-q4v"/>
+                    <tabBarItem key="tabBarItem" title="Products" image="cube.box" catalog="system" id="kBo-BH-q4v"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1Q-HY-x3c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,7 +51,7 @@
         <scene sceneID="gaq-F5-ac2">
             <objects>
                 <viewControllerPlaceholder storyboardName="Clients" id="uJr-3O-tvr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gSU-ot-ubK"/>
+                    <tabBarItem key="tabBarItem" title="Clients" image="mail" catalog="system" id="gSU-ot-ubK"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IEP-oa-LZ2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,11 +61,17 @@
         <scene sceneID="y1I-EX-Mg9">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="wjc-lo-2u1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ruk-sA-6vS"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="ruk-sA-6vS"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvK-Dh-SI5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4406" y="1621"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cube.box" catalog="system" width="128" height="124"/>
+        <image name="doc.text.magnifyingglass" catalog="system" width="113" height="128"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="mail" catalog="system" width="128" height="93"/>
+    </resources>
 </document>
