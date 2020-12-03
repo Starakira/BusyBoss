@@ -150,6 +150,7 @@ struct CloudKitManager {
         operation.recordFetchedBlock = {record in
             let newClient = Client(record: record)
             clients.append(newClient)
+            print("ClientFetcheAllBlock")
         }
         
         operation.queryCompletionBlock = {cursor, error in
@@ -375,14 +376,18 @@ struct CloudKitManager {
     func transactionFetchProductQuantity(transactionID: CKRecord.ID, productID: CKRecord.ID, completionHandler: @escaping (_ totalQuantity: Int, _ error: Error?) -> Void) {
         print("transactionFetchProductQuantity is called!")
         
+        print("TransactionID: \(transactionID), ProductID: \(productID)")
+        
         var total: Int = 0
         
-        let predicateTransactionID = NSPredicate(format: "recordID = %@", transactionID)
-        let predicateProductID = NSPredicate(format: "recordID = %@", productID)
+        let predicateTransactionID = NSPredicate(format: "transactionReference = %@", CKRecord.Reference(recordID: transactionID, action: CKRecord_Reference_Action.none))
+        let predicateProductID = NSPredicate(format: "productReference = %@", CKRecord.Reference(recordID: productID, action: CKRecord_Reference_Action.none))
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateTransactionID, predicateProductID])
         let query = CKQuery(recordType: "Quantity", predicate: predicate)
         let operation = CKQueryOperation(query: query)
         operation.desiredKeys = ["quantity"]
+        
+        print("Operation : \(operation)")
         
         operation.recordFetchedBlock = { record in
             total = record["quantity"] as! Int

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -61,7 +62,9 @@
         <scene sceneID="y1I-EX-Mg9">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="wjc-lo-2u1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="ruk-sA-6vS"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="ruk-sA-6vS">
+                        <imageReference key="selectedImage" image="gearshape" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvK-Dh-SI5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

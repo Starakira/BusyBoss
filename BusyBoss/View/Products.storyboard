@@ -13,7 +13,7 @@
         <scene sceneID="cqs-pg-xtI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfE-5a-ccm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Products" id="siU-CE-0aD"/>
+                    <tabBarItem key="tabBarItem" title="Products" image="cube.box" catalog="system" id="siU-CE-0aD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1YR-sL-wQZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -739,6 +739,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cube.box" catalog="system" width="128" height="124"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="font Color set">
             <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

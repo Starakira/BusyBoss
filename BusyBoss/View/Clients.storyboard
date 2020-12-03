@@ -13,7 +13,7 @@
         <scene sceneID="4lf-6k-bva">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bId-Xe-gOo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Clients" id="VBa-BS-cUB"/>
+                    <tabBarItem key="tabBarItem" title="Clients" image="mail" catalog="system" id="VBa-BS-cUB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="O32-if-Pam">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -633,6 +633,7 @@
     </scenes>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="mail" catalog="system" width="128" height="93"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>

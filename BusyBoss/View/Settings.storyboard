@@ -258,11 +258,11 @@
             </objects>
             <point key="canvasLocation" x="-1507.2463768115942" y="1445.7589285714284"/>
         </scene>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="dg7-f2-isJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bk3-rs-jje" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="1Bx-Wd-9mb"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="1Bx-Wd-9mb"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QKo-cr-koO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -974,6 +974,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <namedColor name="font Color set">
             <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
