@@ -373,6 +373,8 @@ struct CloudKitManager {
     }
     
     func transactionFetchProductQuantity(transactionID: CKRecord.ID, productID: CKRecord.ID, completionHandler: @escaping (_ totalQuantity: Int, _ error: Error?) -> Void) {
+        print("transactionFetchProductQuantity is called!")
+        
         var total: Int = 0
         
         let predicateTransactionID = NSPredicate(format: "recordID = %@", transactionID)
@@ -380,15 +382,19 @@ struct CloudKitManager {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateTransactionID, predicateProductID])
         let query = CKQuery(recordType: "Quantity", predicate: predicate)
         let operation = CKQueryOperation(query: query)
+        operation.desiredKeys = ["quantity"]
         
         operation.recordFetchedBlock = { record in
-            total = record["quantity"] as? Int ?? 0
+            total = record["quantity"] as! Int
+            print("Total Quantity recordFetchedBlock : \(total)")
         }
         
         operation.queryCompletionBlock = {cursor, error in
-            completionHandler(total, error)
+            DispatchQueue.main.async {
+                print("DispatchQuantity")
+                completionHandler(total, error)
+            }
         }
-        
         publicDatabase.add(operation)
     }
     

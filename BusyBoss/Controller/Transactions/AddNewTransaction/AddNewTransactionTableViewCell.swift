@@ -26,19 +26,19 @@ class AddNewTransactionTableViewCell: UITableViewCell {
     }
     
     func setProductQuantity(transaction: Transaction, product: Product?) {
-        if let transactionQuantity = product?.transactionQuantity {
-            self.transactionProductQuantityLabel.text = String(transactionQuantity)
-        }else {
-            CloudKitManager.shared().transactionFetchProductQuantity(transactionID: transaction.recordID!, productID: (product?.recordID)!) {
+        if let productID = product?.recordID {
+            print("ProductID fetched!")
+            CloudKitManager.shared().transactionFetchProductQuantity(transactionID: transaction.recordID!, productID: productID) {
                 (quantity, error) in
                 if let error = error {
-                    print(error.localizedDescription)
+                    print("setProductQuantity error : \(error.localizedDescription)")
                 } else {
-                    DispatchQueue.main.async {
-                        self.transactionProductQuantityLabel.text = String(quantity)
-                    }
+                    self.transactionProductQuantityLabel.text = String(quantity)
                 }
             }
+        }else {
+            print("ProductID not fetched!")
+            self.transactionProductQuantityLabel.text = String(product?.transactionQuantity ?? 0)
         }
     }
 }
