@@ -30,7 +30,7 @@ class InputClientViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if self.client == nil {
-            self.client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "shiba icon new"),
+            self.client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "placeholder image client"),
                                 firstName: clientFirstName.text!,
                                 lastName: clientLastName.text!,
                                 emailAddress: clientEmailAddress.text!,
@@ -46,7 +46,7 @@ class InputClientViewController: UIViewController {
     // MARK: - Action
     
     @IBAction func doneButton(_ sender: Any) {
-        let client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "shiba icon new"),
+        let client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "placeholder image client"),
                             firstName: clientFirstName.text!,
                             lastName: clientLastName.text!,
                             emailAddress: clientEmailAddress.text!,

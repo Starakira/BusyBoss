@@ -77,6 +77,7 @@ extension ServicesViewController: UITableViewDataSource {
         if products.count == 0 {
             tableView.setEmptyView(title: "It's empty!", message: "Add your new Product \n by clicking \"+\" button")
         }
+        
         else {
             tableView.restore()
         }

@@ -5,6 +5,13 @@
 import UIKit
 import CloudKit
 import AuthenticationServices
+
+enum LoginError: Error{
+    case incompleteForm
+    case invalidEmail
+    case incorrectPasswordLength
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var emailLogin: UITextField!
@@ -20,9 +27,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
-        if let email = emailAddress, let password = password {
-            authenticate(emailAddress: email, password: password)
-        }
+//        if let email = emailAddress, let password = password {
+//            authenticate(emailText: email, passwordText: password)
+//        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -31,31 +38,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func loginButton(_ sender: Any) {
-        authenticate(emailAddress: emailLogin.text ?? "", password: passwordLogin.text ?? "")
+        do{
+           try  authenticate(emailText: emailLogin.text ?? "", passwordText: passwordLogin.text ?? "")
+        } catch LoginError.incompleteForm {
+            Alert.showAlert(view: self, title: "Incomplete Form", message: "Please fill out both email and password fields")
+        } catch LoginError.invalidEmail {
+            Alert.showAlert(view: self, title: "Invalid Email", message: "Please enter the correct email format")
+        }
+//        catch LoginError.incorrectPasswordLength {
+//            Alert.showAlert(view: self, title: "Invalid Password Length", message: "Password should be at least 8 characters long")
+//        }
+        catch {
+            Alert.showError(self, error)
+        }
     }
-    
-//    @IBAction func signInWithAppleButton(_ sender: Any) {
-//        let provider = ASAuthorizationAppleIDProvider()
-//        let request = provider.createRequest()
-//        request.requestedScopes = [.fullName, .email]
-//        
-//        let controller = ASAuthorizationController(authorizationRequests: [request])
-//        
-//        controller.delegate = self
-//        controller.presentationContextProvider = self
-//        
-//        controller.performRequests()
-//    }
-    
     
     func segueToMain(){
         self.performSegue(withIdentifier: "MainIdentifier", sender: nil)
     }
     
-    func authenticate(emailAddress: String, password: String){
+    func authenticate(emailText: String, passwordText: String) throws{
+        let email = emailText
+        let password = passwordText
+        
+        if email.isEmpty || password.isEmpty {
+            throw LoginError.incompleteForm
+        }
+        
+        if !email.isValidEmail {
+            throw LoginError.invalidEmail
+        }
+//
+//        if password.count < 8 {
+//            throw LoginError.incorrectPasswordLength
+//        }
+        
         let pendingAction = Alert.displayPendingAlert(title: "Logging You In...")
         self.present(pendingAction, animated: true) {
-            CloudKitManager.shared().authenticateUser(emailAddress: emailAddress, password: password) { currentUser, error in
+            CloudKitManager.shared().authenticateUser(emailAddress: emailText, password: passwordText) { currentUser, error in
                 if let error = error {
                     pendingAction.dismiss(animated: true) {
                         Alert.showError(self, error)

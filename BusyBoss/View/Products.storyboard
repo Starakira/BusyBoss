@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfE-5a-ccm">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,11 +13,14 @@
         <scene sceneID="cqs-pg-xtI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfE-5a-ccm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Products" id="siU-CE-0aD"/>
+                    <tabBarItem key="tabBarItem" title="Products" image="cube.box" catalog="system" id="siU-CE-0aD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1YR-sL-wQZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="font Color set"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -63,7 +67,7 @@
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bvh-4W-3J1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="qsV-cs-foK" firstAttribute="trailing" secondItem="Bvh-4W-3J1" secondAttribute="trailing" id="28d-XW-QPd"/>
                             <constraint firstItem="qsV-cs-foK" firstAttribute="leading" secondItem="Bvh-4W-3J1" secondAttribute="leading" id="9kb-cv-qej"/>
@@ -108,6 +112,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ev8-gC-Jpc">
                                 <rect key="frame" x="0.0" y="42" width="414" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" name="font Color set"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="New Item" id="NJf-Zo-2r3">
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="cfP-On-AxT">
@@ -138,7 +145,6 @@
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bGs-Hz-SCo">
                                 <rect key="frame" x="0.0" y="313" width="414" height="28.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28.5" id="pcc-hB-KwS"/>
                                 </constraints>
@@ -147,7 +153,6 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QnW-mI-iSH">
                                 <rect key="frame" x="0.0" y="341.5" width="414" height="34"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="lAo-lV-0Oh"/>
                                 </constraints>
@@ -156,7 +161,6 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Stock" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKO-Bl-C1Q">
                                 <rect key="frame" x="0.0" y="375.5" width="414" height="34"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="hYp-aG-E8v"/>
                                 </constraints>
@@ -165,7 +169,6 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Unit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oXU-6A-GXE">
                                 <rect key="frame" x="0.0" y="409.5" width="414" height="34"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="mM9-je-UvN"/>
                                 </constraints>
@@ -174,7 +177,6 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="  Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QmH-Ay-wbw">
                                 <rect key="frame" x="0.0" y="443.5" width="414" height="199"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="199" id="PYT-iR-Fbl"/>
                                 </constraints>
@@ -236,6 +238,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWl-y0-sgv">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" name="font Color set"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Item Detail" id="Ads-PS-QWl">
                                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="E13-vi-Me1"/>
@@ -248,7 +253,7 @@
                                     <constraint firstAttribute="height" constant="21" id="TsR-SH-eMK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="font Color set"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jxJ-11-Bkq">
@@ -265,14 +270,14 @@
                                         <rect key="frame" x="8" y="30" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-Ff-NaV">
                                         <rect key="frame" x="8" y="3" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -288,14 +293,14 @@
                                         <rect key="frame" x="8" y="8" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading stock..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHn-gO-WcN">
                                         <rect key="frame" x="8" y="35" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -311,14 +316,14 @@
                                         <rect key="frame" x="8" y="8" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading unit..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuG-WC-kxS">
                                         <rect key="frame" x="8" y="37" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -334,14 +339,14 @@
                                         <rect key="frame" x="8" y="8" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading description..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVF-Kn-kRe">
                                         <rect key="frame" x="8" y="37" width="351" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="font Color set"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -422,7 +427,7 @@
                                                         <constraint firstAttribute="height" constant="27" id="6EO-vG-OKW"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="font Color set"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stock:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5S5-5c-Xgw">
@@ -431,7 +436,7 @@
                                                         <constraint firstAttribute="height" constant="17" id="K2v-cM-SGV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="font Color set"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading price..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAS-B6-LVB">
@@ -440,7 +445,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="WKJ-pe-GMo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="font Color set"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading stock..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x03-Dz-TiJ">
@@ -449,7 +454,7 @@
                                                         <constraint firstAttribute="height" constant="17" id="BIC-qY-bQe"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="font Color set"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -518,7 +523,7 @@
                                                         <constraint firstAttribute="height" constant="27" id="HTR-UB-1mG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="font Color set"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading price..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-9S-iN1">
@@ -527,7 +532,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="cOu-Pc-NXo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="font Color set"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -570,6 +575,12 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlV-ss-Yab">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" name="font Color set"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textColor" name="font Color set 1"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="New Services" id="hH8-tr-OnL">
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="bxa-i1-m33">
@@ -582,7 +593,6 @@
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FzP-YV-J8v">
                                 <rect key="frame" x="20" y="114" width="374" height="34"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="93O-DI-Yda"/>
                                 </constraints>
@@ -591,7 +601,6 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnE-Ru-hgn">
                                 <rect key="frame" x="20" y="153" width="374" height="34"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="VGy-lA-eHg"/>
                                 </constraints>
@@ -600,7 +609,6 @@
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mXi-nf-wca">
                                 <rect key="frame" x="20" y="192" width="374" height="138"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="138" id="48r-rf-5ZH"/>
                                 </constraints>
@@ -651,11 +659,14 @@
                                     <constraint firstAttribute="height" constant="21" id="Qgr-ox-I3L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="font Color set"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XuZ-zy-6AU">
                                 <rect key="frame" x="0.0" y="35" width="414" height="44"/>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textColor" name="font Color set 1"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem id="xos-4A-qD0">
                                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="B1u-WG-P5o"/>
@@ -664,42 +675,38 @@
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8Y-FL-vpQ">
                                 <rect key="frame" x="20" y="204" width="374" height="21"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="0l7-pT-8Fo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="font Color set"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FT-yq-XRJ">
                                 <rect key="frame" x="20" y="294" width="374" height="21"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="nwI-Kc-X6f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="font Color set"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading price..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQD-rf-Ccl">
                                 <rect key="frame" x="20" y="228" width="374" height="21"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="vYD-3j-5rp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="font Color set"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading description..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-cC-AML">
                                 <rect key="frame" x="20" y="320" width="374" height="21"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="iZm-zG-H1j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="font Color set"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -738,7 +745,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cube.box" catalog="system" width="128" height="124"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="font Color set">
+            <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="font Color set 1">
+            <color red="0.0" green="0.18431372549019609" blue="0.38431372549019605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

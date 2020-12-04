@@ -8,7 +8,7 @@
 import UIKit
 
 class AddNewTransactionTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var transactionProductQuantityLabel: UILabel!
@@ -18,23 +18,27 @@ class AddNewTransactionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
     func setProductQuantity(transaction: Transaction, product: Product?) {
-        CloudKitManager.shared().transactionFetchProductQuantity(transactionID: transaction.recordID!, productID: (product?.recordID)!) {
-            (quantity, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                DispatchQueue.main.async {
+        if let productID = product?.recordID {
+            print("ProductID fetched!")
+            CloudKitManager.shared().transactionFetchProductQuantity(transactionID: transaction.recordID!, productID: productID) {
+                (quantity, error) in
+                if let error = error {
+                    print("setProductQuantity error : \(error.localizedDescription)")
+                } else {
                     self.transactionProductQuantityLabel.text = String(quantity)
                 }
             }
+        }else {
+            print("ProductID not fetched!")
+            self.transactionProductQuantityLabel.text = String(product?.transactionQuantity ?? 0)
         }
     }
 }
