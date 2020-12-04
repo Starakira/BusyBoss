@@ -23,6 +23,7 @@ class TransactionDetailsViewController: UIViewController{
     var client: Client?
     var products : [Product]?
     var productQuantity: Int = 0
+    public var documentData: Data?
     
     let decimalFormatter : NumberFormatter = {
         let formatter = NumberFormatter()
@@ -81,6 +82,95 @@ class TransactionDetailsViewController: UIViewController{
     @IBAction func cancelButtonAction(_ sender: Any) {
         self.dismiss(animated: true)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "previewSegue" {
+            guard let vc = segue.destination as? QoutationPDFPreviewViewController else { return }
+                if
+                    let ClientName = NameUserTransaction.text,
+                    let PriceTotal = transactionProductsTotalPriceLabel.text,
+                    let Discount = transactionDiscountLabel.text,
+                    let Tax = transactionTaxLabel.text,
+                    let GrandTotal = transactionTotalValueLabel.text,
+                    let Date = DateTransaction.text,
+                    let TitleNumber = transactionNumberLabel.text
+                
+                    {
+                    let pdfCreator = CreateQuotationPDF(
+                        tax: Tax,
+                        clientname: ClientName,
+                        clientphone: client?.phoneNumber ?? "No Number",
+                        clientemail: client?.emailAddress ?? "No Email",
+                        clientaddress: client?.companyAddress ?? "No Address",
+                        title: TitleNumber,
+                        total: PriceTotal,
+                        grandtotal: GrandTotal,
+                        discount: Discount,
+                        clientcompany: client?.companyName ?? "No Company",
+                        date : Date)
+                    
+                    vc.documentData = pdfCreator.createFlyer()
+                    }
+                
+            }
+        if segue.identifier == "previewSegue2" {
+            guard let vc = segue.destination as? InvoicePDFPreviewViewController else { return }
+                if let ClientName = NameUserTransaction.text,
+                    let PriceTotal = transactionProductsTotalPriceLabel.text,
+                    let Discount = transactionDiscountLabel.text,
+                    let Tax = transactionTaxLabel.text,
+                    let GrandTotal = transactionTotalValueLabel.text,
+                    let Date = DateTransaction.text,
+                    let TitleNumber = transactionNumberLabel.text
+                
+                    {
+                    let pdfCreator = CreateInvoicePDF(
+                        tax: Tax,
+                        clientname: ClientName,
+                        clientphone: client?.phoneNumber ?? "No Number",
+                        clientemail: client?.emailAddress ?? "No Email",
+                        clientaddress: client?.companyAddress ?? "No Address",
+                        title: TitleNumber,
+                        total: PriceTotal,
+                        grandtotal: GrandTotal,
+                        discount: Discount,
+                        clientcompany: client?.companyName ?? "No Company",
+                        date : Date)
+                    
+                    vc.documentData = pdfCreator.createFlyer()
+                    }
+            }
+        if segue.identifier == "previewSegue3" {
+            guard let vc = segue.destination as? ReceiptPDFPreviewViewController else { return }
+                if
+                    let ClientName = NameUserTransaction.text,
+                    let PriceTotal = transactionProductsTotalPriceLabel.text,
+                    let Discount = transactionDiscountLabel.text,
+                    let Tax = transactionTaxLabel.text,
+                    let GrandTotal = transactionTotalValueLabel.text,
+                    let Date = DateTransaction.text,
+                    let TitleNumber = transactionNumberLabel.text
+                
+                    {
+                    let pdfCreator = CreateReceiptPDF(
+                        tax: Tax,
+                        clientname: ClientName,
+                        clientphone: client?.phoneNumber ?? "No Number",
+                        clientemail: client?.emailAddress ?? "No Email",
+                        clientaddress: client?.companyAddress ?? "No Address",
+                        title: TitleNumber,
+                        total: PriceTotal,
+                        grandtotal: GrandTotal,
+                        discount: Discount,
+                        clientcompany: client?.companyName ?? "No Company",
+                        date : Date)
+                    
+                    vc.documentData = pdfCreator.createFlyer()
+                    }
+            }
+        }
+
+    
 }
 
 extension TransactionDetailsViewController: UITableViewDelegate{
@@ -94,7 +184,6 @@ extension TransactionDetailsViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let product = products?[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath) as! AddNewTransactionTableViewCell
         
         cell.productNameLabel.text = product?.name
