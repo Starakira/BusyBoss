@@ -96,7 +96,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="Mym-Kr-fAv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="0HY-mR-Esb"/>
                             <constraint firstItem="ADp-vy-JP5" firstAttribute="top" secondItem="Mym-Kr-fAv" secondAttribute="bottom" constant="27" id="6IZ-gF-vUP"/>
@@ -243,7 +243,7 @@
                             </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IRH-G7-BaQ"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="j7I-3Z-jbb" secondAttribute="trailing" constant="20" id="01e-p4-m4a"/>
                             <constraint firstItem="j7I-3Z-jbb" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="090-S6-XID"/>
@@ -305,6 +305,9 @@
     </scenes>
     <resources>
         <image name="BusyBoss_Logo" width="129.33332824707031" height="129.33332824707031"/>
+        <namedColor name="Background Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="font Color set">
             <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -316,9 +319,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
