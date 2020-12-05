@@ -37,7 +37,7 @@ class CompanyProfileViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell", for: indexPath)as!CompanyMenuTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "companyCell", for: indexPath)as!CompanyMenuTableViewCell
         let m = menuList[indexPath.row]
         cell.menuLabel.text = m.name
         return cell
