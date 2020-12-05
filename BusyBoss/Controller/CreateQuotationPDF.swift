@@ -37,7 +37,7 @@ class CreateQuotationPDF: NSObject {
         self.Date = date
     }
 
-    func createFlyer() -> Data {
+    func createFlyer(products: [Product]?) -> Data {
         
         
         let pdfMetaData = [
@@ -62,106 +62,54 @@ class CreateQuotationPDF: NSObject {
         let boldattributes = [ NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
         let validattributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20)]
         
-        
-        var products : [Product]?
-        var nameproduk = [Product.keyName]
         var unit = [Product.keyUnit]
-        var data2 = ["5","5","5","5","5"]
+        var quantity = ["5","5","5","5","5"]
         var price = [Product.keyPrice]
         var amount = ["tes"]
-        var term = ["1. Above information is not an invoice and only estimate of service/goods described above.","2. Payment will be collected prior to provision of service/goods described in this quote",/*"3. Payment to BCA 010188888 a/n PT Boss Gak Perlu Repot","coba","data","lebih","6"*/]
+        let term = ["1. Above information is not an invoice and only estimate of service/goods described above.","2. Payment will be collected prior to provision of service/goods described in this quote",/*"3. Payment to BCA 010188888 a/n PT Boss Gak Perlu Repot","coba","data","lebih","6"*/]
+        
+        guard var products = products else {return}
         
         //1 halaman
-        if nameproduk.count <= 5 {
+        if products.count <= 5 {
             
             context.beginPage()
             
             x = 1
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
+
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
+
             
             let Numbertext = "Number : "
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
             
-            for Product in nameproduk{
+            for (index, product) in products.enumerated() {
                 let tambah = a + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
+                
                 a = tambah
-                index += 1
-                let number = String(index)
+                let number = String(index+1)
                 number.draw(at: CGPoint(x: 35, y: 355 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 15{
-                    print(nameproduk)
                     break
                 }
-            
         }
-        
-        
-        for data in unit{
-            let tambah = c + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
-            c = tambah
-            unit.remove(at: 0)
-            index3 += 1
-            if index3 == 15{
-                print(unit)
-                break
-            }
-        }
-        
-        for data in data2{
-            let tambah = d + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
-            d = tambah
-            data2.remove(at: 0)
-            index4 += 1
-            if index4 == 15{
-                print(data2)
-                break
-            }
-        }
-        
-        for data in price{
-            let tambah = e + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
-            e = tambah
-            price.remove(at: 0)
-            index5 += 1
-            if index5 == 15{
-                print(price)
-                break
-            }
-        }
-        
-        for data in amount{
-            let tambah = f + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
-            f = tambah
-            amount.remove(at: 0)
-            index6 += 1
-            if index6 == 15{
-                print(amount)
-                break
-            }
-        }
-        
         
         let data = "To"
         data.draw(at: CGPoint(x: 20, y: 180), withAttributes : normalattributes)
@@ -241,13 +189,10 @@ class CreateQuotationPDF: NSObject {
             line.addLine(to: CGPoint(x: 590, y: 370))
             line.stroke()
             
-            let totalProduct = nameproduk.count + 1
-            print(nameproduk.count)
-            print(totalProduct)
+            let totalProduct = products.count + 1
             
             let yOffset = 20
             let totalyOffset = yOffset * totalProduct
-            print(totalyOffset)
             
         let Total = "Total"
         Total.draw(at: CGPoint(x: 400, y: 455 + totalyOffset), withAttributes : boldattributes)
@@ -393,7 +338,7 @@ class CreateQuotationPDF: NSObject {
             }
       
         // 1 1/2 halaman
-        } else if nameproduk.count >= 6 && nameproduk.count <= 15{
+        } else if products.count >= 6 && products.count <= 15{
             
             context.beginPage()
             
@@ -411,17 +356,17 @@ class CreateQuotationPDF: NSObject {
             var index5 = 0
             var index6 = 0
             
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = a + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
                 a = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 15{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             }
@@ -440,15 +385,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = d + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
                 d = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -650,7 +595,7 @@ class CreateQuotationPDF: NSObject {
         
         
         // 2 halaman
-        else if nameproduk.count >= 16 && nameproduk.count <= 26{
+        else if products.count >= 16 && products.count <= 26{
             context.beginPage()
             print("halaman 2 ")
             x = 2
@@ -667,17 +612,17 @@ class CreateQuotationPDF: NSObject {
             var index5 = 0
             var index6 = 0
             
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = a + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
                 a = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 15{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             
@@ -696,15 +641,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = d + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
                 d = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -849,17 +794,17 @@ class CreateQuotationPDF: NSObject {
             var fPage1_1 = 0
             
             
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = aPage1_1 + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
                 aPage1_1 = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 26{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             }
@@ -877,15 +822,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = dPage1_1 + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
                 dPage1_1 = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 26{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -941,7 +886,7 @@ class CreateQuotationPDF: NSObject {
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
             
-            if nameproduk.count <= 26 && term.count <= 10{
+            if products.count <= 26 && term.count <= 10{
                 
                 let yTrem = aPage1_1 + 340
                 for Term in term {
@@ -994,7 +939,7 @@ class CreateQuotationPDF: NSObject {
                 let titikdua0 = ":"
                 titikdua0.draw(at: CGPoint(x: 375, y: 90 +  yTTD + geser), withAttributes : normalattributes)
 
-            }else if nameproduk.count == 26 && term.count <= 3{
+            }else if products.count == 26 && term.count <= 3{
                 
                 
                 let yTrem = aPage1_1 + 340
@@ -1052,7 +997,7 @@ class CreateQuotationPDF: NSObject {
         
         }
         //2 1/2 halaman
-        else if nameproduk.count >= 27 && nameproduk.count <= 39 {
+        else if products.count >= 27 && products.count <= 39 {
             context.beginPage()
         
             print("halaman 2 1/2")
@@ -1071,17 +1016,17 @@ class CreateQuotationPDF: NSObject {
             var index5 = 0
             var index6 = 0
             
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = a + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
                 a = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 15{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             
@@ -1100,15 +1045,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = d + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
                 d = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -1249,17 +1194,17 @@ class CreateQuotationPDF: NSObject {
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
             var aPage2 = 0
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = aPage2 + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
                 aPage2 = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 39{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             
@@ -1278,15 +1223,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = d + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
                 d = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 39{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -1405,7 +1350,7 @@ class CreateQuotationPDF: NSObject {
             let email3 = addCompanyEmail(pageRect: pageRect)
         }
         // halaman 3
-        else if nameproduk.count >= 40 && nameproduk.count <= 50 {
+        else if products.count >= 40 && products.count <= 50 {
             //Page 1
             context.beginPage()
             
@@ -1423,17 +1368,17 @@ class CreateQuotationPDF: NSObject {
             var index5 = 0
             var index6 = 0
             
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = a + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
                 a = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 15{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             
@@ -1452,15 +1397,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = d + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
                 d = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -1601,17 +1546,17 @@ class CreateQuotationPDF: NSObject {
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
             var aPage2 = 0
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = aPage2 + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
                 aPage2 = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 39{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             
@@ -1630,15 +1575,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = d + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
                 d = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 39{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -1705,17 +1650,17 @@ class CreateQuotationPDF: NSObject {
             var fPage1_1 = 0
             
             
-            for Product in nameproduk{
+            for Product in products{
                 let tambah = aPage1_1 + 20
-                let Numbertext = Product
+                let Numbertext = Product.name
                 Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
                 aPage1_1 = tambah
                 index += 1
                 let number = String(index)
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                nameproduk.remove(at: 0)
+                products.remove(at: 0)
                 if index == 62{
-                    print(nameproduk)
+                    print(products)
                     break
                 }
             }
@@ -1733,15 +1678,15 @@ class CreateQuotationPDF: NSObject {
                 }
             }
             
-            for data in data2{
+            for data in quantity{
                 let tambah = dPage1_1 + 20
                 let Numbertext = data
                 Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
                 dPage1_1 = tambah
-                data2.remove(at: 0)
+                quantity.remove(at: 0)
                 index4 += 1
                 if index4 == 62{
-                    print(data2)
+                    print(quantity)
                     break
                 }
             }
@@ -1798,7 +1743,7 @@ class CreateQuotationPDF: NSObject {
             let phone3 = addCompanyContact(pageRect: pageRect)
             let email3 = addCompanyEmail(pageRect: pageRect)
             
-            if nameproduk.count <= 40 && term.count <= 10{
+            if products.count <= 40 && term.count <= 10{
                 
                 let yTrem = aPage1_1 + 340
                 for Term in term {
@@ -1851,7 +1796,7 @@ class CreateQuotationPDF: NSObject {
                 let titikdua0 = ":"
                 titikdua0.draw(at: CGPoint(x: 375, y: 90 +  yTTD + geser), withAttributes : normalattributes)
 
-            }else if nameproduk.count == 50 && term.count <= 3{
+            }else if products.count == 50 && term.count <= 3{
                 
                 
                 let yTrem = aPage1_1 + 340
