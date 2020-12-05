@@ -51,6 +51,20 @@ class Alert {
         view.present(alert, animated: true)
     }
     
+    static func showRetryCloudkitError(view: UIViewController, title: String, error: Error, completion: (() -> Void)? = nil) {
+        let errorMessage = CloudKitError.getUserFriendlyDescription(error: error)
+        let alert = UIAlertController.init(title: title, message: errorMessage, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Retry", style: .default) { _ in
+            alert.dismiss(animated: true, completion: completion)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {_ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        view.present(alert, animated: true)
+    }
+    
     static func displayPendingAlert(title: String) -> UIAlertController {
             //create an alert controller
             let pending = UIAlertController(title: title, message: " \n \n \n", preferredStyle: .alert)

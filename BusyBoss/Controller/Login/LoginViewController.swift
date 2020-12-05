@@ -72,17 +72,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         if !email.isValidEmail {
             throw LoginError.invalidEmail
         }
-//
-//        if password.count < 8 {
-//            throw LoginError.incorrectPasswordLength
-//        }
         
+        fetchUserCridentialsFromCloudKit(emailText: email, passwordText: password)
+    }
+    
+    func fetchUserCridentialsFromCloudKit(emailText: String, passwordText: String) {
         let pendingAction = Alert.displayPendingAlert(title: "Logging You In...")
         self.present(pendingAction, animated: true) {
             CloudKitManager.shared().authenticateUser(emailAddress: emailText, password: passwordText) { currentUser, error in
                 if let error = error {
                     pendingAction.dismiss(animated: true) {
-                        Alert.showError(self, error)
+                        Alert.showRetryCloudkitError(view: self, title: "Error Logging In", error: error) {
+                            self.fetchUserCridentialsFromCloudKit(emailText: emailText, passwordText: passwordText)
+                        }
                     }
                     return
                 }
