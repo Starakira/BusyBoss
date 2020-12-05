@@ -102,7 +102,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 355 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 15{
-                        print(produk)
                         break
                     }
             }
@@ -115,7 +114,6 @@ class CreateInvoicePDF: NSObject {
             unit.remove(at: 0)
             index3 += 1
             if index3 == 15{
-                print(unit)
                 break
             }
         }
@@ -128,7 +126,6 @@ class CreateInvoicePDF: NSObject {
             data2.remove(at: 0)
             index4 += 1
             if index4 == 15{
-                print(data2)
                 break
             }
         }
@@ -141,7 +138,6 @@ class CreateInvoicePDF: NSObject {
             price.remove(at: 0)
             index5 += 1
             if index5 == 15{
-                print(price)
                 break
             }
         }
@@ -154,7 +150,6 @@ class CreateInvoicePDF: NSObject {
             amount.remove(at: 0)
             index6 += 1
             if index6 == 15{
-                print(amount)
                 break
             }
         }
@@ -239,12 +234,9 @@ class CreateInvoicePDF: NSObject {
             line.stroke()
             
             let totalProduct = produk.count + 1
-            print(produk.count)
-            print(totalProduct)
             
             let yOffset = 20
             let totalyOffset = yOffset * totalProduct
-            print(totalyOffset)
             
         let Total = "Total"
         Total.draw(at: CGPoint(x: 400, y: 455 + totalyOffset), withAttributes : boldattributes)
@@ -291,7 +283,6 @@ class CreateInvoicePDF: NSObject {
 
                 //setting tanda tangan
                     let geser = g - 60
-                    print(geser)
                     
 
                 let Sincerely = "Sincerely,"
@@ -334,7 +325,6 @@ class CreateInvoicePDF: NSObject {
 
             //setting tanda tangan
                 let geser1 = g - 60
-                print(geser1)
 
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 300 + geser1), withAttributes : boldattributes)
@@ -370,7 +360,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 15{
-                        print(produk)
                         break
                     }
             }
@@ -385,7 +374,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 15{
-                    print(unit)
                     break
                 }
             }
@@ -398,7 +386,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
                     break
                 }
             }
@@ -411,7 +398,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 15{
-                    print(price)
                     break
                 }
             }
@@ -424,7 +410,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 15{
-                    print(amount)
                     break
                 }
             }
@@ -578,7 +563,6 @@ class CreateInvoicePDF: NSObject {
         // 2 halaman
         else if produk.count >= 16 && produk.count <= 26{
             context.beginPage()
-            print("halaman 2 ")
             x = 2
             let numberpage = String(x)
             var a = 0
@@ -603,7 +587,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 15{
-                        print(produk)
                         break
                     }
             
@@ -618,7 +601,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 15{
-                    print(unit)
                     break
                 }
             }
@@ -631,7 +613,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
                     break
                 }
             }
@@ -644,7 +625,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 15{
-                    print(price)
                     break
                 }
             }
@@ -657,7 +637,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 15{
-                    print(amount)
                     break
                 }
             }
@@ -785,7 +764,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 26{
-                        print(produk)
                         break
                     }
             }
@@ -798,7 +776,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 26{
-                    print(unit)
                     break
                 }
             }
@@ -811,7 +788,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 26{
-                    print(data2)
                     break
                 }
             }
@@ -824,7 +800,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 26{
-                    print(price)
                     break
                 }
             }
@@ -837,7 +812,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 26{
-                    print(amount)
                     break
                 }
             }
@@ -877,9 +851,6 @@ class CreateInvoicePDF: NSObject {
                     g = tambah
                 }
                 
-                print(aPage1_1)
-                print(yTrem)
-                
                 // setting terms
                 let yValid = yTrem - 20
                 let valid = "Please make your payment before:"
@@ -890,7 +861,6 @@ class CreateInvoicePDF: NSObject {
 
                 //setting tanda tangan
                     let geser = g - 60
-                    print("disini")
                     
                 let yTTD = yTrem + 85
                 let Sincerely = "Sincerely,"
@@ -907,9 +877,6 @@ class CreateInvoicePDF: NSObject {
                     g = tambah
                 }
                 
-                print(aPage1_1)
-                print(yTrem)
-                
                 // setting terms
                 let yValid = yTrem - 20
                 let valid = "Please make your payment before:"
@@ -920,7 +887,6 @@ class CreateInvoicePDF: NSObject {
 
                 //setting tanda tangan
                     let geser = g - 60
-                    print("disini 2")
                     
                 let yTTD = yTrem + 85
 
@@ -933,8 +899,6 @@ class CreateInvoicePDF: NSObject {
         //2 1/2 halaman
         else if produk.count >= 27 && produk.count <= 39 {
             context.beginPage()
-        
-            print("halaman 2 1/2")
             
             x = 3
             let numberpage = String(x)
@@ -960,7 +924,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 15{
-                        print(produk)
                         break
                     }
             
@@ -974,7 +937,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 15{
-                    print(unit)
                     break
                 }
             }
@@ -987,7 +949,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
                     break
                 }
             }
@@ -1000,7 +961,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 15{
-                    print(price)
                     break
                 }
             }
@@ -1013,7 +973,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 15{
-                    print(amount)
                     break
                 }
             }
@@ -1137,7 +1096,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 39{
-                        print(produk)
                         break
                     }
             
@@ -1151,7 +1109,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 39{
-                    print(unit)
                     break
                 }
             }
@@ -1164,7 +1121,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 39{
-                    print(data2)
                     break
                 }
             }
@@ -1177,7 +1133,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 39{
-                    print(price)
                     break
                 }
             }
@@ -1190,7 +1145,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 39{
-                    print(amount)
                     break
                 }
                 
@@ -1209,7 +1163,6 @@ class CreateInvoicePDF: NSObject {
             let email2 = addCompanyEmail(pageRect: pageRect)
             
             let set = aPage2 - 240
-            print(set)
             
             let Total = "Total"
             Total.draw(at: CGPoint(x: 400, y: 460 + set), withAttributes : boldattributes)
@@ -1286,7 +1239,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 15{
-                        print(produk)
                         break
                     }
                 
@@ -1301,7 +1253,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 15{
-                    print(unit)
                     break
                 }
             }
@@ -1314,7 +1265,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 15{
-                    print(data2)
                     break
                 }
             }
@@ -1327,7 +1277,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 15{
-                    print(price)
                     break
                 }
             }
@@ -1340,7 +1289,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 15{
-                    print(amount)
                     break
                 }
             }
@@ -1464,7 +1412,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 39{
-                        print(produk)
                         break
                     }
             
@@ -1479,7 +1426,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 39{
-                    print(unit)
                     break
                 }
             }
@@ -1492,7 +1438,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 39{
-                    print(data2)
                     break
                 }
             }
@@ -1505,7 +1450,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 39{
-                    print(price)
                     break
                 }
             }
@@ -1518,7 +1462,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 39{
-                    print(amount)
                     break
                 }
                 
@@ -1537,9 +1480,7 @@ class CreateInvoicePDF: NSObject {
             let email2 = addCompanyEmail(pageRect: pageRect)
             
             let set = aPage2 - 240
-            print(set)
-            
-            
+             
             //page 3
             context.beginPage()
             
@@ -1569,7 +1510,6 @@ class CreateInvoicePDF: NSObject {
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
                 produk.remove(at: 0)
                     if index == 62{
-                        print(produk)
                         break
                     }
             }
@@ -1582,7 +1522,6 @@ class CreateInvoicePDF: NSObject {
                 unit.remove(at: 0)
                 index3 += 1
                 if index3 == 62{
-                    print(unit)
                     break
                 }
             }
@@ -1595,7 +1534,6 @@ class CreateInvoicePDF: NSObject {
                 data2.remove(at: 0)
                 index4 += 1
                 if index4 == 62{
-                    print(data2)
                     break
                 }
             }
@@ -1608,7 +1546,6 @@ class CreateInvoicePDF: NSObject {
                 price.remove(at: 0)
                 index5 += 1
                 if index5 == 62{
-                    print(price)
                     break
                 }
             }
@@ -1621,7 +1558,6 @@ class CreateInvoicePDF: NSObject {
                 amount.remove(at: 0)
                 index6 += 1
                 if index6 == 62{
-                    print(amount)
                     break
                 }
             }
@@ -1662,9 +1598,6 @@ class CreateInvoicePDF: NSObject {
                     g = tambah
                 }
                 
-                print(aPage1_1)
-                print(yTrem)
-                
                 // setting terms
                 let yValid = yTrem - 20
                 let valid = "Please make your payment before:"
@@ -1675,7 +1608,6 @@ class CreateInvoicePDF: NSObject {
 
                 //setting tanda tangan
                     let geser = g - 60
-                    print("disini")
                     
                 let yTTD = yTrem + 85
 
@@ -1693,9 +1625,6 @@ class CreateInvoicePDF: NSObject {
                     g = tambah
                 }
                 
-                print(aPage1_1)
-                print(yTrem)
-                
                 // setting terms
                 let yValid = yTrem - 20
                 let valid = "Please make your payment before:"
@@ -1706,7 +1635,6 @@ class CreateInvoicePDF: NSObject {
 
                 //setting tanda tangan
                     let geser = g - 60
-                    print("disini 2")
                     
                 let yTTD = yTrem + 85
 
