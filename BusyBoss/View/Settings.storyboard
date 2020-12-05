@@ -192,6 +192,9 @@
                                     <constraint firstAttribute="height" constant="30" id="pE8-jf-VdD"/>
                                 </constraints>
                                 <state key="normal" title="Add photo"/>
+                                <connections>
+                                    <action selector="addPhotoButton:" destination="9wo-er-06c" eventType="touchUpInside" id="auf-v0-D2A"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lON-EH-Xm1">
                                 <rect key="frame" x="20" y="242" width="374" height="21"/>
@@ -267,7 +270,7 @@
                     <navigationItem key="navigationItem" id="gCB-2m-4Oi">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="yFQ-Cy-Hy4">
                             <connections>
-                                <segue destination="JNZ-Ch-e2y" kind="unwind" unwindAction="unwindToSegue:" id="LOl-PU-4Qa"/>
+                                <action selector="onSaveButtonTapped:" destination="9wo-er-06c" id="fQL-sw-jQ8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -281,7 +284,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A8V-zo-er0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="JNZ-Ch-e2y" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1507.2463768115942" y="1445.7589285714284"/>
         </scene>
@@ -443,7 +445,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="menuLabel" destination="KeN-YD-m3o" id="w3N-AO-G56"/>
-                                            <segue destination="5cJ-G6-Iyd" kind="show" identifier="toBankAccount" id="398-PN-Idm"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -912,7 +913,6 @@
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="fhp-Zc-KmE">
                             <connections>
                                 <action selector="savePasswordButton:" destination="V8z-rb-wpc" id="e9d-7d-2tU"/>
-                                <segue destination="IhT-sH-AEi" kind="unwind" unwindAction="unwindToSegue:" id="l4Y-cO-R5h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -924,16 +924,15 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ybl-6X-vAO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="IhT-sH-AEi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-630.43478260869574" y="1445.7589285714284"/>
         </scene>
         <!--Bank Account View Controller-->
         <scene sceneID="fln-vd-eYs">
             <objects>
-                <viewController id="5cJ-G6-Iyd" customClass="BankAccountViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bankAccount" id="5cJ-G6-Iyd" customClass="BankAccountViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2yj-nI-UP7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oou-tj-G6Q">
@@ -944,7 +943,7 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZS-8h-g4Z">
-                                <rect key="frame" x="20" y="104" width="374" height="34"/>
+                                <rect key="frame" x="20" y="148" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="TwJ-MV-VO0"/>
                                 </constraints>
@@ -952,7 +951,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kOP-MD-CUo">
-                                <rect key="frame" x="20" y="187" width="374" height="34"/>
+                                <rect key="frame" x="20" y="231" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="aDE-pI-DTR"/>
                                 </constraints>
@@ -960,7 +959,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xNq-fV-TQ0">
-                                <rect key="frame" x="20" y="270" width="374" height="34"/>
+                                <rect key="frame" x="20" y="314" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="p0m-5B-n2f"/>
                                 </constraints>
@@ -968,7 +967,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PtV-3e-xWM">
-                                <rect key="frame" x="20" y="75" width="374" height="21"/>
+                                <rect key="frame" x="20" y="119" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="lbI-An-0kC"/>
                                 </constraints>
@@ -977,7 +976,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keA-7w-tJL">
-                                <rect key="frame" x="20" y="158" width="374" height="21"/>
+                                <rect key="frame" x="20" y="202" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="idV-Mv-qYN"/>
                                 </constraints>
@@ -986,7 +985,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ine-j8-9kb">
-                                <rect key="frame" x="20" y="241" width="374" height="21"/>
+                                <rect key="frame" x="20" y="285" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="kfB-8x-knB"/>
                                 </constraints>

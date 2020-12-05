@@ -44,7 +44,8 @@ class CompanyProfileViewController: UIViewController, UITableViewDelegate, UITab
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            performSegue(withIdentifier: "toBankAccount", sender: self)
+            let vc = storyboard?.instantiateViewController(identifier: "bankAccount") as! BankAccountViewController
+                       self.navigationController?.pushViewController(vc, animated: true)
         }
         else if indexPath.row == 1{
             let vc = storyboard?.instantiateViewController(identifier: "signature") as! SignatureViewController

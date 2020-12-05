@@ -74,7 +74,27 @@ struct CloudKitManager {
             userRecord.setValue(user.phoneNumber, forKey: User.keyPhoneNumber)
 
             let modifyOperation = CKModifyRecordsOperation(recordsToSave: [userRecord])
+        
+            modifyOperation.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+        
+            modifyOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDS, error) in
+                DispatchQueue.main.async {
+                    completionHandler(error)
+                }
+            }
 
+            publicDatabase.add(modifyOperation)
+        }
+    
+    func userChangePassword(user: User, newPassword: String, completionHandler: @escaping (_ error: Error?) -> Void) {
+            let userRecord = CKRecord(recordType: "User", recordID: User.currentUser()!.recordID!)
+
+            userRecord.setValue(newPassword, forKey: User.keyPassword)
+
+            let modifyOperation = CKModifyRecordsOperation(recordsToSave: [userRecord])
+        
+            modifyOperation.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+        
             modifyOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDS, error) in
                 DispatchQueue.main.async {
                     completionHandler(error)
@@ -150,7 +170,6 @@ struct CloudKitManager {
         operation.recordFetchedBlock = {record in
             let newClient = Client(record: record)
             clients.append(newClient)
-            print("ClientFetcheAllBlock")
         }
         
         operation.queryCompletionBlock = {cursor, error in
@@ -374,9 +393,6 @@ struct CloudKitManager {
     }
     
     func transactionFetchProductQuantity(transactionID: CKRecord.ID, productID: CKRecord.ID, completionHandler: @escaping (_ totalQuantity: Int, _ error: Error?) -> Void) {
-        print("transactionFetchProductQuantity is called!")
-        
-        print("TransactionID: \(transactionID), ProductID: \(productID)")
         
         var total: Int = 0
         
@@ -387,16 +403,12 @@ struct CloudKitManager {
         let operation = CKQueryOperation(query: query)
         operation.desiredKeys = ["quantity"]
         
-        print("Operation : \(operation)")
-        
         operation.recordFetchedBlock = { record in
             total = record["quantity"] as! Int
-            print("Total Quantity recordFetchedBlock : \(total)")
         }
         
         operation.queryCompletionBlock = {cursor, error in
             DispatchQueue.main.async {
-                print("DispatchQuantity")
                 completionHandler(total, error)
             }
         }

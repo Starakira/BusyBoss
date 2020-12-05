@@ -27,9 +27,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
-//        if let email = emailAddress, let password = password {
-//            authenticate(emailText: email, passwordText: password)
-//        }
+        if let email = emailAddress, let password = password {
+            do{
+                try authenticate(emailText: email, passwordText: password)
+            } catch {
+                Alert.showError(self, error)
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

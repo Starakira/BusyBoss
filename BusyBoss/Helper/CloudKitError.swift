@@ -21,7 +21,7 @@ class CloudKitError {
         case CKError.Code.networkFailure:
             return "Cannot save to database due to request timeout.\nError Code: \(nsError.code.rawValue)"
         default:
-            return "The operation could not be completed.\nError Code: \(nsError.code)"
+            return "The operation could not be completed.\nError Code: \(nsError.code.rawValue)"
         }
     }
 }
