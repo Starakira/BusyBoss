@@ -217,7 +217,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Loading Transaction Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mkx-Su-lf4">
-                                <rect key="frame" x="130.33333333333334" y="103" width="263.66666666666663" height="21"/>
+                                <rect key="frame" x="130" y="103" width="264" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="h13-94-nx5"/>
                                 </constraints>
@@ -1603,7 +1603,7 @@
             </objects>
             <point key="canvasLocation" x="-2729" y="1314"/>
         </scene>
-        <!--View Controller-->
+        <!--InvoicePDF Preview View Controller-->
         <scene sceneID="IEe-xV-tF2">
             <objects>
                 <viewController id="JPZ-SA-8bZ" customClass="InvoicePDFPreviewViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">

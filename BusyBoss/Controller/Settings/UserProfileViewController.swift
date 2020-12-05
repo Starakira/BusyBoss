@@ -31,6 +31,9 @@ class UserProfileViewController: UIViewController {
         ivc.allowsEditing = true
         present(ivc, animated: true)
     }
+    @IBAction func logOutButton(_ sender: Any) {
+    print("insert log out code here")
+    }
     
     @IBAction func onSaveButtonTapped(_ sender: UIBarButtonItem) {
         let changeUser = User(firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!)
@@ -49,6 +52,7 @@ class UserProfileViewController: UIViewController {
         }
         
     }
+    
 }
     /*
  // MARK: - Navigation
