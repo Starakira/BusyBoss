@@ -36,7 +36,7 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func onSaveButtonTapped(_ sender: UIBarButtonItem) {
-        let changeUser = User(firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!)
+        let changeUser = User(firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!, signature: #imageLiteral(resourceName: "Image Placeholder"))
         let pendingAction = Alert.displayPendingAlert(title: "Saving new changes...")
         self.present(pendingAction, animated: true) {
             CloudKitManager.shared().userEdit(user: changeUser) { (error) in

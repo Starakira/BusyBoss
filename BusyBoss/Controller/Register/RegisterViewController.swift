@@ -38,7 +38,7 @@ class RegisterViewController: UIViewController {
             lastName: lastNameTextField.text!,
             email: emailAddressTextField.text!,
             password: passwordTextField.text!,
-            phoneNumber: phoneNumberTextField.text!, image: #imageLiteral(resourceName: "BusyBoss_Logo"))
+            phoneNumber: phoneNumberTextField.text!, image: #imageLiteral(resourceName: "placeholder image client"), signature: #imageLiteral(resourceName: "Image Placeholder"))
         
         let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
         

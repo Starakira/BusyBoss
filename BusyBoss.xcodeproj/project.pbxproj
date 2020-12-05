@@ -29,6 +29,8 @@
 		F58B15FA257B602D004E25B7 /* ReceiptPDFPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B15F4257B602D004E25B7 /* ReceiptPDFPreviewViewController.swift */; };
 		F58B15FB257B602D004E25B7 /* CreateReceiptPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B15F5257B602D004E25B7 /* CreateReceiptPDF.swift */; };
 		F58B15FC257B602D004E25B7 /* CreateInvoicePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B15F6257B602D004E25B7 /* CreateInvoicePDF.swift */; };
+		F58B15FF257B6823004E25B7 /* UIViewDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B15FE257B6823004E25B7 /* UIViewDraw.swift */; };
+		F58B1603257B7540004E25B7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F58B1602257B7540004E25B7 /* Settings.storyboard */; };
 		F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30D2551380E00B78AFC /* AppDelegate.swift */; };
 		F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30F2551380E00B78AFC /* SceneDelegate.swift */; };
 		F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F599E3162551380E00B78AFC /* BusyBoss.xcdatamodeld */; };
@@ -52,7 +54,6 @@
 		F599E38425513ADA00B78AFC /* ClientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */; };
 		F599E39225513D2500B78AFC /* Clients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38C25513D2500B78AFC /* Clients.storyboard */; };
 		F599E39425513D2500B78AFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E38E25513D2500B78AFC /* Main.storyboard */; };
-		F599E39625513D2500B78AFC /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39025513D2500B78AFC /* Settings.storyboard */; };
 		F599E39725513D2500B78AFC /* Transactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39125513D2500B78AFC /* Transactions.storyboard */; };
 		F599E39E25513D4C00B78AFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F599E39A25513D4C00B78AFC /* LaunchScreen.storyboard */; };
 		F599E3A925513FFD00B78AFC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E3A825513FFD00B78AFC /* Alert.swift */; };
@@ -97,6 +98,8 @@
 		F58B15F4257B602D004E25B7 /* ReceiptPDFPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptPDFPreviewViewController.swift; sourceTree = "<group>"; };
 		F58B15F5257B602D004E25B7 /* CreateReceiptPDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReceiptPDF.swift; sourceTree = "<group>"; };
 		F58B15F6257B602D004E25B7 /* CreateInvoicePDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInvoicePDF.swift; sourceTree = "<group>"; };
+		F58B15FE257B6823004E25B7 /* UIViewDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewDraw.swift; sourceTree = "<group>"; };
+		F58B1602257B7540004E25B7 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		F599E30A2551380E00B78AFC /* BusyBoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F599E30D2551380E00B78AFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F599E30F2551380E00B78AFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +125,6 @@
 		F599E38125513ADA00B78AFC /* ClientsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientsTableViewCell.swift; sourceTree = "<group>"; };
 		F599E38C25513D2500B78AFC /* Clients.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Clients.storyboard; sourceTree = "<group>"; };
 		F599E38E25513D2500B78AFC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F599E39025513D2500B78AFC /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		F599E39125513D2500B78AFC /* Transactions.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Transactions.storyboard; sourceTree = "<group>"; };
 		F599E39B25513D4C00B78AFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F599E39D25513D4C00B78AFC /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -298,8 +300,8 @@
 				F599E39D25513D4C00B78AFC /* Login.storyboard */,
 				F599E38C25513D2500B78AFC /* Clients.storyboard */,
 				F5D3070C2566608C001BF94A /* Products.storyboard */,
-				F599E39025513D2500B78AFC /* Settings.storyboard */,
 				F599E39125513D2500B78AFC /* Transactions.storyboard */,
+				F58B1602257B7540004E25B7 /* Settings.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -407,6 +409,7 @@
 		F599E3A725513FAA00B78AFC /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				F58B15FE257B6823004E25B7 /* UIViewDraw.swift */,
 				F599E3372551394700B78AFC /* CloudKitManager.swift */,
 				F53D12F0256BA90200E00B43 /* CloudKitError.swift */,
 				F53D12EF256BA90200E00B43 /* ImageManager.swift */,
@@ -507,8 +510,8 @@
 				F599E39E25513D4C00B78AFC /* LaunchScreen.storyboard in Resources */,
 				F599E39425513D2500B78AFC /* Main.storyboard in Resources */,
 				F599E31A2551380F00B78AFC /* Assets.xcassets in Resources */,
+				F58B1603257B7540004E25B7 /* Settings.storyboard in Resources */,
 				F599E39725513D2500B78AFC /* Transactions.storyboard in Resources */,
-				F599E39625513D2500B78AFC /* Settings.storyboard in Resources */,
 				F599E3B22551549E00B78AFC /* Login.storyboard in Resources */,
 				F5D3070D2566608C001BF94A /* Products.storyboard in Resources */,
 				F599E39225513D2500B78AFC /* Clients.storyboard in Resources */,
@@ -558,6 +561,7 @@
 				F52FADCE255934DF002AF6C3 /* User.swift in Sources */,
 				F599E3752551398400B78AFC /* AddNewTransactionTableViewCell.swift in Sources */,
 				F599E37C2551398400B78AFC /* ClientsDetailsViewController.swift in Sources */,
+				F58B15FF257B6823004E25B7 /* UIViewDraw.swift in Sources */,
 				F50475FE256265B6004C70E0 /* AddTransactionProductGoodsDetailsViewContoller.swift in Sources */,
 				F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */,
 				F58B15EA257B5FAF004E25B7 /* CompanyMenuTableViewCell.swift in Sources */,
