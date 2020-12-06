@@ -73,37 +73,10 @@ class QoutationPDFPreviewViewController: UIViewController {
     }
     
     @IBAction func BtnShare() {
-        guard
-            let clientname = labelclientname.text,
-            let clientphone = labelclientphone.text,
-            let clientaddress = labelclientaddress.text,
-            let clientcompany = labelclientcompany.text,
-            let clientemail = labelclientemail.text,
-            let datatotalvalue = labeltotal.text,
-            let datatax = labeltax.text,
-            let datadiscount = labeldiscount.text,
-            let datagrandtotal = labelgrandtotal.text,
-            let datavaliddate = labelvaliddate.text,
-            let datatitletransaction = labeltitle.text
-            else {
-                return }
-        let pdfCreator = CreateQuotationPDF(
-            tax: datatax,
-            clientname: clientname,
-            clientphone: clientphone,
-            clientemail: clientemail,
-            clientaddress: clientaddress,
-            title: datatitletransaction,
-            total: datatotalvalue,
-            grandtotal: datagrandtotal,
-            discount: datadiscount,
-            clientcompany: clientcompany,
-            date: datavaliddate
-        )
-    
-        let pdfData = pdfCreator.createFlyer(products: self.transaction?.products)
-        let vc = UIActivityViewController(activityItems: [pdfData], applicationActivities: [])
-        present(vc, animated: true, completion: nil)
+        if let data = documentData {
+            let vc = UIActivityViewController(activityItems: [data], applicationActivities: [])
+            present(vc, animated: true, completion: nil)
+        }
     }
 
     @IBAction func BtnApprove(_ sender: Any) {
@@ -116,7 +89,6 @@ class QoutationPDFPreviewViewController: UIViewController {
         }
         
     }
-    
     
     @IBAction func BtnReject(_ sender: Any) {
     }
