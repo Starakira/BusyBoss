@@ -660,7 +660,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sablon Jersey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cP-2U-ay8">
-                                <rect key="frame" x="153" y="116" width="108" height="21"/>
+                                <rect key="frame" x="20" y="116" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Qgr-ox-I3L"/>
                                 </constraints>
@@ -725,9 +725,9 @@
                             <constraint firstItem="NQD-rf-Ccl" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="DPK-j8-08x"/>
                             <constraint firstItem="XuZ-zy-6AU" firstAttribute="width" secondItem="5Vc-DZ-R8Q" secondAttribute="width" id="Dhg-Kx-uf8"/>
                             <constraint firstItem="XuZ-zy-6AU" firstAttribute="centerX" secondItem="bjV-X8-IiP" secondAttribute="centerX" id="GK8-PG-W1d"/>
-                            <constraint firstItem="9cP-2U-ay8" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="153" id="L7g-2Y-wAk"/>
+                            <constraint firstItem="9cP-2U-ay8" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="L7g-2Y-wAk"/>
                             <constraint firstItem="bBk-cC-AML" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="NJ5-uz-Q1P"/>
-                            <constraint firstItem="bjV-X8-IiP" firstAttribute="trailing" secondItem="9cP-2U-ay8" secondAttribute="trailing" constant="153" id="OD2-l0-h7M"/>
+                            <constraint firstItem="bjV-X8-IiP" firstAttribute="trailing" secondItem="9cP-2U-ay8" secondAttribute="trailing" constant="20" id="OD2-l0-h7M"/>
                             <constraint firstItem="bjV-X8-IiP" firstAttribute="top" secondItem="XuZ-zy-6AU" secondAttribute="top" constant="9" id="ZTo-nS-bkz"/>
                             <constraint firstItem="bBk-cC-AML" firstAttribute="top" secondItem="6FT-yq-XRJ" secondAttribute="bottom" constant="5" id="hfc-m0-0GK"/>
                             <constraint firstItem="6FT-yq-XRJ" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="kn2-4B-PbY"/>
