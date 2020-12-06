@@ -21,9 +21,9 @@ class SettingsMenuViewController: UIViewController, UITableViewDataSource, UITab
         configTable()
     }
     func configTable(){
-        menuList.append(menu(name: "profile", image:#imageLiteral(resourceName: "placeholder image client")))
-        menuList.append(menu(name: "company", image: #imageLiteral(resourceName: "placeholder image client")))
-        menuList.append(menu(name: "documents", image: #imageLiteral(resourceName: "placeholder image client")))
+        menuList.append(menu(name: "Profile", image:#imageLiteral(resourceName: "person circle logo")))
+        menuList.append(menu(name: "Company", image: #imageLiteral(resourceName: "building logo")))
+        menuList.append(menu(name: "Documents", image: #imageLiteral(resourceName: "document logo")))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,8 +49,8 @@ class SettingsMenuViewController: UIViewController, UITableViewDataSource, UITab
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if indexPath.row == 2 {
-            let alert = UIAlertController(title: "alert", message: "this feature is still locked. Coming soon", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: "Alert", message: "This feature is still locked, Coming Soon.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }

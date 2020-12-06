@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bId-Xe-gOo">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -155,7 +155,7 @@
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vac-dn-Ykz"/>
-                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="u4A-Ig-c5V" firstAttribute="top" secondItem="Vac-dn-Ykz" secondAttribute="top" id="5FU-Os-vLC"/>
                             <constraint firstItem="uCp-HT-6Wa" firstAttribute="centerX" secondItem="PWw-il-cs6" secondAttribute="centerX" id="E1E-hv-c9S"/>
@@ -301,7 +301,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZcK-bC-F7F"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="Vrb-gq-2ul" firstAttribute="centerX" secondItem="cRe-uj-ssf" secondAttribute="centerX" id="7uY-g1-1j2"/>
                             <constraint firstItem="Vrb-gq-2ul" firstAttribute="top" secondItem="cRe-uj-ssf" secondAttribute="bottom" constant="5" id="Ca0-mP-XCo"/>
@@ -453,7 +453,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8E9-gE-unj"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="Tu0-1O-rSq" firstAttribute="leading" secondItem="8E9-gE-unj" secondAttribute="leading" constant="20" id="3cd-Sw-fRX"/>
                             <constraint firstItem="8E9-gE-unj" firstAttribute="trailing" secondItem="Fy4-n7-Eoe" secondAttribute="trailing" constant="20" id="5pZ-hI-jhc"/>
@@ -621,7 +621,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UCU-4d-oXm"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="myP-eT-m0P" firstAttribute="top" secondItem="4Ab-PC-04Z" secondAttribute="bottom" constant="39" id="1ba-VU-mQa"/>
                             <constraint firstItem="J30-aH-rhd" firstAttribute="top" secondItem="UCU-4d-oXm" secondAttribute="top" id="1ks-gw-J9O"/>
@@ -659,6 +659,9 @@
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
+        <namedColor name="Background Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="font Color set">
             <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -667,9 +670,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
