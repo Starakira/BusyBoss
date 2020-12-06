@@ -37,6 +37,7 @@ class CreateQuotationPDF: NSObject {
         self.Date = date
     }
 
+    var yTotal = 0
     func createFlyer(products: [Product]?) -> Data {
         
         
@@ -187,6 +188,7 @@ class CreateQuotationPDF: NSObject {
             
             let yOffset = 20
             let totalyOffset = yOffset * totalProduct
+            yTotal = totalyOffset
             
         let Total = "Total"
         Total.draw(at: CGPoint(x: 400, y: 455 + totalyOffset), withAttributes : boldattributes)
@@ -214,6 +216,10 @@ class CreateQuotationPDF: NSObject {
             let address = addCompanyAddress(pageRect: pageRect)
             let phone = addCompanyContact(pageRect: pageRect)
             let email = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             if term.count <= 3 {
                 
@@ -448,6 +454,7 @@ class CreateQuotationPDF: NSObject {
             line.stroke()
                 
             let tes = a - 80
+            yTotal = tes
 
             let Total = "Total"
             Total.draw(at: CGPoint(x: 400, y: 460 + tes), withAttributes : boldattributes)
@@ -474,6 +481,10 @@ class CreateQuotationPDF: NSObject {
             let address = addCompanyAddress(pageRect: pageRect)
             let phone = addCompanyContact(pageRect: pageRect)
             let email = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             context.beginPage()
             
@@ -713,7 +724,7 @@ class CreateQuotationPDF: NSObject {
             let set1_1 = aPage1_1 - 200
             let Numbertext2 = "Number : "
             Numbertext2.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
-            
+            yTotal = set1_1
             let Total = "Total"
             let Discount = "Discount"
             let PPN = "PPN 10%"
@@ -730,6 +741,10 @@ class CreateQuotationPDF: NSObject {
             let address2 = addCompanyAddress(pageRect: pageRect)
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             if products.count <= 26 && term.count <= 10{
                 
@@ -808,7 +823,6 @@ class CreateQuotationPDF: NSObject {
 
                 //setting tanda tangan
                     let geser = g - 60
-                    print("disini 2")
                     
                 let yTTD = yTrem + 85
                 let please = "Please confirm acceptance of this quotation"
@@ -850,16 +864,7 @@ class CreateQuotationPDF: NSObject {
             x = 3
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
             for (index, product) in products.enumerated() {
                 let tambah = a + 20
@@ -1034,9 +1039,13 @@ class CreateQuotationPDF: NSObject {
             let address2 = addCompanyAddress(pageRect: pageRect)
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             let set = aPage2 - 240
-            print(set)
+            yTotal = set
             
             let Total = "Total"
             Total.draw(at: CGPoint(x: 400, y: 460 + set), withAttributes : boldattributes)
@@ -1108,6 +1117,7 @@ class CreateQuotationPDF: NSObject {
             let address3 = addCompanyAddress(pageRect: pageRect)
             let phone3 = addCompanyContact(pageRect: pageRect)
             let email3 = addCompanyEmail(pageRect: pageRect)
+            
         }
         // halaman 3
         else if products.count >= 40 && products.count <= 50 {
@@ -1117,16 +1127,7 @@ class CreateQuotationPDF: NSObject {
             x = 3
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
             for (index, product) in products.enumerated() {
                 let tambah = a + 20
@@ -1353,7 +1354,7 @@ class CreateQuotationPDF: NSObject {
             let Numbertext2 = "Number : "
             Numbertext2.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
             
-            
+            yTotal = set1_1
             let Total = "Total"
             let Discount = "Discount"
             let PPN = "PPN 10%"
@@ -1370,6 +1371,10 @@ class CreateQuotationPDF: NSObject {
             let address3 = addCompanyAddress(pageRect: pageRect)
             let phone3 = addCompanyContact(pageRect: pageRect)
             let email3 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             if products.count <= 40 && term.count <= 10{
                 
@@ -1608,6 +1613,90 @@ class CreateQuotationPDF: NSObject {
       let titleStringRect = CGRect(
         x: 150,
         y: 200,
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addTotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Total,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(455 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addDiscount(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Discount,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(475 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addTax(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Tax,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(495 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addGrandtotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: GrandTotal,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(515 + yTotal),
         width: titleStringSize.width,
         height: titleStringSize.height
       )

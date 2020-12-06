@@ -36,6 +36,8 @@ class CreateReceiptPDF: NSObject {
         self.Date = date
     }
     
+    var yTotal = 0
+    
     func createFlyer(products: [Product]?) -> Data {
         
       // 1
@@ -84,15 +86,6 @@ class CreateReceiptPDF: NSObject {
             x = 1
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
             let Numbertext = "Number : "
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
@@ -216,7 +209,7 @@ class CreateReceiptPDF: NSObject {
             let totalProduct = products.count + 1
             
             let totalyOffset = a - 80
-            print(totalyOffset)
+            yTotal = totalyOffset
             
         let Total = "Total"
         Total.draw(at: CGPoint(x: 400, y: 590 + totalyOffset), withAttributes : boldattributes)
@@ -242,6 +235,10 @@ class CreateReceiptPDF: NSObject {
             let address = addCompanyAddress(pageRect: pageRect)
             let phone = addCompanyContact(pageRect: pageRect)
             let email = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
                     
 
                 let Thanks = "Thank you for your purchase"
@@ -259,15 +256,6 @@ class CreateReceiptPDF: NSObject {
             x = 2
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
             let Numbertext = "Number : "
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
@@ -390,8 +378,7 @@ class CreateReceiptPDF: NSObject {
             
             let totalyOffset = a - 100
             
-            print("sini")
-            print(totalyOffset)
+            yTotal = totalyOffset
             
         let Total = "Total"
         Total.draw(at: CGPoint(x: 400, y: 590 + totalyOffset), withAttributes : boldattributes)
@@ -449,15 +436,6 @@ class CreateReceiptPDF: NSObject {
             x = 2
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
             let Numbertext = "Number : "
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
@@ -610,10 +588,6 @@ class CreateReceiptPDF: NSObject {
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
             var aPage1_1 = 0
-            var cPage1_1 = 0
-            var dPage1_1 = 0
-            var ePage1_1 = 0
-            var fPage1_1 = 0
             
             
             for (index, product) in products.enumerated() {
@@ -650,6 +624,7 @@ class CreateReceiptPDF: NSObject {
             let set1_1 = aPage1_1 - 200
             let Numbertext2 = "Number : "
             Numbertext2.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
+            yTotal = set1_1
             
             let Total = "Total"
             let Discount = "Discount"
@@ -667,6 +642,10 @@ class CreateReceiptPDF: NSObject {
             let address2 = addCompanyAddress(pageRect: pageRect)
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             let Thanks = "Thank you for your purchase"
             Thanks.draw(at: CGPoint(x: 20, y: 660), withAttributes : boldattributes)
@@ -682,15 +661,6 @@ class CreateReceiptPDF: NSObject {
             x = 3
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
             let Numbertext = "Number : "
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
@@ -875,9 +845,13 @@ class CreateReceiptPDF: NSObject {
             let address2 = addCompanyAddress(pageRect: pageRect)
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             let set = aPage2 - 240
-            print(set)
+            yTotal = set
             
             let Total = "Total"
             Total.draw(at: CGPoint(x: 400, y: 460 + set), withAttributes : boldattributes)
@@ -917,15 +891,6 @@ class CreateReceiptPDF: NSObject {
             x = 3
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
             let Numbertext = "Number : "
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
@@ -1128,10 +1093,6 @@ class CreateReceiptPDF: NSObject {
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
             var aPage1_1 = 0
-            var cPage1_1 = 0
-            var dPage1_1 = 0
-            var ePage1_1 = 0
-            var fPage1_1 = 0
             
             
             for (index, product) in products.enumerated() {
@@ -1167,7 +1128,7 @@ class CreateReceiptPDF: NSObject {
             let set1_1 = aPage1_1 - 200
             let Numbertext2 = "Number : "
             Numbertext2.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
-            
+            yTotal = set1_1
             
             let Total = "Total"
             let Discount = "Discount"
@@ -1185,6 +1146,10 @@ class CreateReceiptPDF: NSObject {
             let address3 = addCompanyAddress(pageRect: pageRect)
             let phone3 = addCompanyContact(pageRect: pageRect)
             let email3 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             let Thanks = "Thank you for your purchase"
             Thanks.draw(at: CGPoint(x: 20, y: 520 + set1_1), withAttributes : boldattributes)
@@ -1336,6 +1301,89 @@ class CreateReceiptPDF: NSObject {
       return titleStringRect.origin.y + titleStringRect.size.height
     }
     
+    func addTotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Total,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(590 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addDiscount(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Discount,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(610 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addTax(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Tax,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(630 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addGrandtotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: GrandTotal,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(650 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
     
     func addDocument(pageRect: CGRect) -> CGFloat {
       // 1
