@@ -21,7 +21,7 @@ class TransactionDetailsViewController: UIViewController{
     
     var transaction : Transaction?
     var client: Client?
-    var products : [Product]?
+
     var productQuantity: Int = 0
     public var documentData: Data?
     
@@ -45,32 +45,9 @@ class TransactionDetailsViewController: UIViewController{
         productListTransactionTableView.dataSource = self
         productListTransactionTableView.delegate = self
         
-        if let products = transaction?.products{
-            self.products = products
-            productListTransactionTableView.reloadData()
-        } else {
-            CloudKitManager.shared().transactionFetchAllProducts(transaction: transaction!) {
-                (products, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    
-                    self.products = products
-                    self.productListTransactionTableView.reloadData()
-                }
-            }
-        }
-        
-        CloudKitManager.shared().clientFetchOnce(clientID: (transaction?.clientReference?.recordID)!) {
-            (client, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                self.client = client
-                self.NameUserTransaction.text = (self.client?.firstName ?? "") + (self.client?.lastName ?? "")
-            }
-        }
-        
+        self.client = transaction?.client
+
+        self.NameUserTransaction.text = (self.client?.firstName ?? "") + (self.client?.lastName ?? "")
         transactionNumberLabel.text = transaction?.transactionNumber
         transactionProductsTotalPriceLabel.text = "Rp \(decimalFormatter.string(for: transaction?.value) ?? "0")"
         transactionDiscountLabel.text = "Rp \(decimalFormatter.string(for: transaction?.discount) ?? "0")"
@@ -109,7 +86,7 @@ class TransactionDetailsViewController: UIViewController{
                         clientcompany: client?.companyName ?? "No Company",
                         date : Date)
                     
-                    vc.documentData = pdfCreator.createFlyer()
+                    vc.documentData = pdfCreator.createFlyer(products: self.transaction?.products)
                     }
                 
             }
@@ -179,11 +156,11 @@ extension TransactionDetailsViewController: UITableViewDelegate{
 
 extension TransactionDetailsViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products?.count ?? 0
+        return transaction?.products?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let product = products?[indexPath.row]
+        let product = transaction?.products?[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath) as! AddNewTransactionTableViewCell
         
         cell.productNameLabel.text = product?.name

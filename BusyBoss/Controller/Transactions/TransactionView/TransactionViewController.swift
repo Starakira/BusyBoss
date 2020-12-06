@@ -21,13 +21,18 @@ class TransactionViewController: UIViewController {
     
     var transactionIndex = -1
     
-    var client: Client?
+    var selectedTransaction: Transaction?
+    
+    var pendingAction: UIAlertController?
     
     override func viewDidLoad() {
         transactionTableView.tableFooterView = UIView()
         
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
+        
+        //transactionTableView.backgroundColor = UIColor(red: 241/255, green: 242/255, blue: 246/255, alpha: 1)
+        //transactionTableView.backgroundView?.backgroundColor = UIColor(red: 241/255, green: 242/255, blue: 246/255, alpha: 1)
         
         self.transactionsAll = []
         let pendingAction = Alert.displayPendingAlert(title: "Loading transactions...")
@@ -73,14 +78,67 @@ class TransactionViewController: UIViewController {
         }
     }
     
+    func fetchSelectedTransactionData(completionHandler: @escaping () -> Void) {
+        selectedTransaction = transactionDataSource[transactionIndex]
+        pendingAction = Alert.displayPendingAlert(title: "Fetching selected transaction client...")
+        
+        if selectedTransaction?.products != nil, selectedTransaction?.client != nil {
+            completionHandler()
+            return
+        }
+        
+        self.present(pendingAction!, animated: true) {
+            self.fetchSelectedTransactionClient(self.selectedTransaction!) {
+                self.fetchSelectedTransactionProducts(self.selectedTransaction!) {
+                    //Cache the fetched transaction data for optimization
+                    self.transactionDataSource[self.transactionIndex] = self.selectedTransaction!
+                    self.pendingAction?.dismiss(animated: false, completion: {
+                        completionHandler()
+                    })
+                }
+            }
+        }
+    }
+    
+    private func fetchSelectedTransactionClient(_ transaction: Transaction, _ completionHandler: @escaping () -> Void) {
+        pendingAction?.title = "Fetching selected transaction client..."
+        
+        CloudKitManager.shared().clientFetchOnce(clientID: (selectedTransaction?.clientReference?.recordID)!) {
+            (client, error) in
+            if let error = error {
+                self.pendingAction?.dismiss(animated: false, completion: {
+                    Alert.showRetryCloudkitError(view: self, title: "Failed to fetch client information. \n Retry?", error: error) {self.fetchSelectedTransactionClient(transaction, completionHandler)}
+                })
+            } else {
+                self.selectedTransaction?.client = client
+                completionHandler()
+            }
+        }
+    }
+    
+    private func fetchSelectedTransactionProducts(_ transaction: Transaction, _ completionHandler: @escaping () -> Void) {
+        pendingAction?.title = "Fetching selected transaction products..."
+        
+        CloudKitManager.shared().transactionFetchAllProducts(transaction: selectedTransaction!) {
+            (products, error) in
+            if let error = error {
+                self.pendingAction?.dismiss(animated: false, completion: {
+                    Alert.showRetryCloudkitError(view: self, title: "Failed to fetch products information. \n Retry?", error: error) {self.fetchSelectedTransactionProducts(transaction, completionHandler)}
+                })
+            } else {
+                self.selectedTransaction?.products = products
+                completionHandler()
+            }
+        }
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? AddNewTransactionViewController {
             viewController.transactionDelegate = self
         } else if let viewController = segue.destination as? TransactionDetailsViewController {
-            viewController.transaction = transactionDataSource[transactionIndex]
-            viewController.products = transactionDataSource[transactionIndex].products
+            viewController.transaction = selectedTransaction
         }
     }
 }
@@ -128,7 +186,9 @@ extension UITableView {
 extension TransactionViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         transactionIndex = indexPath.row
-        performSegue(withIdentifier: "transactionDetailsSegue", sender: self)
+        fetchSelectedTransactionData {
+            self.performSegue(withIdentifier: "transactionDetailsSegue", sender: self)
+        }
     }
 }
 
