@@ -63,7 +63,7 @@ class CompanyProfileViewController: UIViewController, UITableViewDelegate, UITab
     }
     */
     func configTable(){
-        menuList.append(menu(name: "bank account"))
+        menuList.append(menu(name: "Bank Account"))
         menuList.append(menu(name: "Signature"))
     }
    struct menu {

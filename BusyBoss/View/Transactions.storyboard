@@ -926,6 +926,7 @@
                             <constraint firstItem="JQ8-xo-0oK" firstAttribute="trailing" secondItem="YhQ-bl-dxD" secondAttribute="trailing" constant="20" id="zaK-7E-ayV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bXD-gC-7Bj"/>
                     <connections>
                         <outlet property="clientTextField" destination="ylh-n2-5Vb" id="czy-kC-DQy"/>
                         <outlet property="discountTextField" destination="9wR-ll-blK" id="vRl-6a-ho7"/>
