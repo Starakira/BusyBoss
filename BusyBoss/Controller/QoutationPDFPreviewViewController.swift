@@ -23,11 +23,17 @@ class QoutationPDFPreviewViewController: UIViewController {
     @IBOutlet weak var labelgrandtotal: UILabel!
     @IBOutlet weak var labelvaliddate: UILabel!
     @IBOutlet weak var labeltitle: UILabel!
+    @IBOutlet weak var BtnApprove: UIButton!
+    @IBOutlet weak var BtnReject: UIButton!
     
     public var documentData: Data?
-    var client: Client?
-    
+    var transaction : Transaction?
+
     var clientName = String()
+    var clientCompany = String()
+    var clientAddress = String()
+    var clientPhone = String()
+    var clientEmail = String()
     var transactionTitle = String()
     var validDate = String()
     var total = String()
@@ -42,10 +48,10 @@ class QoutationPDFPreviewViewController: UIViewController {
         savedataview.isHidden = true
         
         labelclientname.text = clientName
-        labelclientcompany.text = client?.companyName
-        labelclientphone.text = client?.phoneNumber
-        labelclientaddress.text = client?.companyAddress
-        labelclientemail.text = client?.emailAddress
+        labelclientcompany.text = clientCompany
+        labelclientphone.text = clientPhone
+        labelclientaddress.text = clientAddress
+        labelclientemail.text = clientEmail
         labeltitle.text = transactionTitle
         labeltotal.text = total
         labeltax.text = tax
@@ -58,6 +64,9 @@ class QoutationPDFPreviewViewController: UIViewController {
             pdfView.autoScales = true
         }
         
+        BtnReject.layer.borderWidth = 4
+        BtnReject.layer.borderColor = UIColor.systemRed.cgColor
+        
     }
     @IBAction func BtnCancel(_ sender: Any) {
         dismiss(animated: true)
@@ -65,35 +74,50 @@ class QoutationPDFPreviewViewController: UIViewController {
     
     @IBAction func BtnShare() {
         guard
-            let clientname = labelclientname,
-            let clientphone = labelclientphone,
-            let clientaddress = labelclientaddress,
-            let clientcompany = labelclientcompany,
-            let clientemail = labelclientemail,
-            let datatotalvalue = labeltotal,
-            let datatax = labeltax,
-            let datadiscount = labeldiscount,
-            let datagrandtotal = labelgrandtotal,
-            let datavaliddate = labelvaliddate,
-            let datatitletransaction = labeltitle
+            let clientname = labelclientname.text,
+            let clientphone = labelclientphone.text,
+            let clientaddress = labelclientaddress.text,
+            let clientcompany = labelclientcompany.text,
+            let clientemail = labelclientemail.text,
+            let datatotalvalue = labeltotal.text,
+            let datatax = labeltax.text,
+            let datadiscount = labeldiscount.text,
+            let datagrandtotal = labelgrandtotal.text,
+            let datavaliddate = labelvaliddate.text,
+            let datatitletransaction = labeltitle.text
             else {
                 return }
         let pdfCreator = CreateQuotationPDF(
             tax: datatax,
             clientname: clientname,
             clientphone: clientphone,
-            clientemail: client?.emailAddress ?? "No Email",
-            clientaddress: client?.companyAddress ?? "No Address",
+            clientemail: clientemail,
+            clientaddress: clientaddress,
             title: datatitletransaction,
             total: datatotalvalue,
             grandtotal: datagrandtotal,
             discount: datadiscount,
-            clientcompany: client?.companyName ?? "No Company",
-            date : datavaliddate
+            clientcompany: clientcompany,
+            date: datavaliddate
         )
-        let pdfData = pdfCreator.createFlyer()
+    
+        let pdfData = pdfCreator.createFlyer(products: self.transaction?.products)
         let vc = UIActivityViewController(activityItems: [pdfData], applicationActivities: [])
         present(vc, animated: true, completion: nil)
     }
 
+    @IBAction func BtnApprove(_ sender: Any) {
+        func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            guard let vc = segue.destination as? TransactionDetailsViewController else {
+                return
+            }
+            vc.value = 1
+            print(vc.value)
+        }
+        
+    }
+    
+    
+    @IBAction func BtnReject(_ sender: Any) {
+    }
 }

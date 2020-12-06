@@ -16,6 +16,9 @@ class TransactionDetailsViewController: UIViewController{
     @IBOutlet weak var transactionTaxLabel: UILabel!
     @IBOutlet weak var transactionTotalValueLabel: UILabel!
     @IBOutlet weak var DateTransaction: UILabel!
+    @IBOutlet weak var Invoice: UIButton!
+    @IBOutlet weak var Receipt: UIButton!
+    
     
     @IBOutlet weak var productListTransactionTableView: UITableView!
     
@@ -23,6 +26,7 @@ class TransactionDetailsViewController: UIViewController{
     var client: Client?
 
     var productQuantity: Int = 0
+    var value = Int()
     public var documentData: Data?
     
     let decimalFormatter : NumberFormatter = {
@@ -46,6 +50,8 @@ class TransactionDetailsViewController: UIViewController{
         productListTransactionTableView.delegate = self
         
         self.client = transaction?.client
+//        Invoice.isEnabled = false
+        Receipt.isEnabled = false
 
         self.NameUserTransaction.text = (self.client?.firstName ?? "") + (self.client?.lastName ?? "")
         transactionNumberLabel.text = transaction?.transactionNumber
@@ -109,6 +115,10 @@ class TransactionDetailsViewController: UIViewController{
             vc.tax = transactionTaxLabel.text!
             vc.grandTotal = transactionTotalValueLabel.text!
             vc.validDate = DateTransaction.text!
+            vc.clientCompany = client?.companyName ?? "No Company"
+            vc.clientPhone = client?.phoneNumber ?? "No Number"
+            vc.clientEmail = client?.emailAddress ?? "No Email"
+            vc.clientAddress = client?.companyAddress ?? "No Address"
             
                 if let ClientName = NameUserTransaction.text,
                     let PriceTotal = transactionProductsTotalPriceLabel.text,
@@ -132,7 +142,7 @@ class TransactionDetailsViewController: UIViewController{
                         clientcompany: client?.companyName ?? "No Company",
                         date : Date)
                     
-                    vc.documentData = pdfCreator.createFlyer()
+                    vc.documentData = pdfCreator.createFlyer(products: self.transaction?.products)
                     }
             }
         if segue.identifier == "previewSegue3" {
@@ -171,12 +181,27 @@ class TransactionDetailsViewController: UIViewController{
                         clientcompany: client?.companyName ?? "No Company",
                         date : Date)
                     
-                    vc.documentData = pdfCreator.createFlyer()
+                    vc.documentData = pdfCreator.createFlyer(products: self.transaction?.products)
                     }
             }
         }
-
+    @IBAction func BtnQuotation(_ sender: Any) {
+    }
     
+    @IBAction func BtnInvoice(_ sender: Any) {
+        print(value)
+        if value == 1 {
+            Invoice.isEnabled = true
+            value = 0
+        }
+    }
+    
+    @IBAction func BtnReceipt(_ sender: Any) {
+        
+        if value == 1 {
+            Invoice.isEnabled = true
+        }
+    }
 }
 
 extension TransactionDetailsViewController: UITableViewDelegate{
