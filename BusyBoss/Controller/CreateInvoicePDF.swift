@@ -36,7 +36,7 @@ class CreateInvoicePDF: NSObject {
         self.Date = date
     }
 
-    func createFlyer() -> Data {
+    func createFlyer(products: [Product]?) -> Data {
         
 
         let pdfMetaData = [
@@ -63,96 +63,48 @@ class CreateInvoicePDF: NSObject {
         
         
         
-        var produk = ["Kacang2Kelinci","Kuaci Sambalado","Kaos Kaki","Baju lengan Panjang","Celana Pendek"/*,"6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62"*/]
-        var unit = ["Pieces","Pieces", "Pasang","Piece","Piece","Piece"]
-        var data2 = ["5","5","5","5","5"]
-        var price = ["100.000.000","100.000","100.000","100.000","100.000"]
-        var amount = ["500.000.000","500.000","500.000","500.000","500.000"]
         var term = ["1. Above information is not an invoice and only estimate of service/goods described above.","2. Payment will be collected prior to provision of service/goods described in this quote","3. Payment to BCA 010188888 a/n PT Boss Gak Perlu Repot"/*,"coba","data","lebih","6"*/]
+        guard var products = products else {return}
         
         //1 halaman
-        if produk.count <= 5 {
+        if products.count <= 5 {
             
             context.beginPage()
             
             x = 1
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
+
             
             let Numbertext = "Number : "
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
             
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = a + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
+                
                 a = tambah
-                index += 1
-                let number = String(index)
+                let number = String(index+1)
                 number.draw(at: CGPoint(x: 35, y: 355 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 15{
-                        break
-                    }
+                products.remove(at: 0)
+                if index == 15{
+                    break
+                }
             }
-        
-        for data in unit{
-            let tambah = c + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
-            c = tambah
-            unit.remove(at: 0)
-            index3 += 1
-            if index3 == 15{
-                break
-            }
-        }
-        
-        for data in data2{
-            let tambah = d + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
-            d = tambah
-            data2.remove(at: 0)
-            index4 += 1
-            if index4 == 15{
-                break
-            }
-        }
-        
-        for data in price{
-            let tambah = e + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
-            e = tambah
-            price.remove(at: 0)
-            index5 += 1
-            if index5 == 15{
-                break
-            }
-        }
-        
-        for data in amount{
-            let tambah = f + 20
-            let Numbertext = data
-            Numbertext.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
-            f = tambah
-            amount.remove(at: 0)
-            index6 += 1
-            if index6 == 15{
-                break
-            }
-        }
         
         
         let data = "To"
@@ -233,7 +185,7 @@ class CreateInvoicePDF: NSObject {
             line.addLine(to: CGPoint(x: 590, y: 370))
             line.stroke()
             
-            let totalProduct = produk.count + 1
+            let totalProduct = products.count + 1
             
             let yOffset = 20
             let totalyOffset = yOffset * totalProduct
@@ -332,84 +284,38 @@ class CreateInvoicePDF: NSObject {
             }
       
         // 1 1/2 halaman
-        } else if produk.count >= 6 && produk.count <= 15{
+        } else if products.count >= 6 && products.count <= 15{
             
             context.beginPage()
             
             x = 2
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
-            
-            for Product in produk{
-                let tambah = a + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
-                a = tambah
-                index += 1
-                let number = String(index)
-                number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 15{
-                        break
-                    }
-            }
-            
 
             
-            for data in unit{
-                let tambah = c + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 360 + tambah), withAttributes :normalattributes)
-                c = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 15{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = d + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
-                d = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 15{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = e + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 360 + tambah), withAttributes :normalattributes)
-                e = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 15{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = f + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 360 + tambah), withAttributes :normalattributes)
-                f = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 15{
+            for (index, product) in products.enumerated() {
+                let tambah = a + 20
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
+                
+                a = tambah
+                let number = String(index+1)
+                number.draw(at: CGPoint(x: 35, y: 355 + tambah), withAttributes :normalattributes)
+                products.remove(at: 0)
+                if index == 15{
                     break
                 }
             }
@@ -561,82 +467,35 @@ class CreateInvoicePDF: NSObject {
         
         
         // 2 halaman
-        else if produk.count >= 16 && produk.count <= 26{
+        else if products.count >= 16 && products.count <= 26{
             context.beginPage()
             x = 2
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = a + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
+                
                 a = tambah
-                index += 1
-                let number = String(index)
-                number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 15{
-                        break
-                    }
-            
-            }
-            
-            
-            for data in unit{
-                let tambah = c + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 360 + tambah), withAttributes :normalattributes)
-                c = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 15{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = d + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
-                d = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 15{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = e + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 360 + tambah), withAttributes :normalattributes)
-                e = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 15{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = f + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 360 + tambah), withAttributes :normalattributes)
-                f = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 15{
+                let number = String(index+1)
+                number.draw(at: CGPoint(x: 35, y: 355 + tambah), withAttributes :normalattributes)
+                products.remove(at: 0)
+                if index == 15{
                     break
                 }
             }
@@ -748,70 +607,30 @@ class CreateInvoicePDF: NSObject {
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
             var aPage1_1 = 0
-            var cPage1_1 = 0
-            var dPage1_1 = 0
-            var ePage1_1 = 0
-            var fPage1_1 = 0
             
             
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = aPage1_1 + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 200 + tambah), withAttributes :normalattributes)
+                
                 aPage1_1 = tambah
-                index += 1
-                let number = String(index)
+                let number = String(index+1)
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 26{
-                        break
-                    }
-            }
-            
-            for data in unit{
-                let tambah = cPage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 360 + tambah), withAttributes :normalattributes)
-                cPage1_1 = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 26{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = dPage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
-                dPage1_1 = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 26{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = ePage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 360 + tambah), withAttributes :normalattributes)
-                ePage1_1 = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 26{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = fPage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 360 + tambah), withAttributes :normalattributes)
-                fPage1_1 = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 26{
+                products.remove(at: 0)
+                if index == 26{
                     break
                 }
             }
@@ -841,7 +660,7 @@ class CreateInvoicePDF: NSObject {
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
             
-            if produk.count <= 26 && term.count <= 10{
+            if products.count <= 26 && term.count <= 10{
                 
                 let yTrem = aPage1_1 + 340
                 for Term in term {
@@ -866,7 +685,7 @@ class CreateInvoicePDF: NSObject {
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 15 +  yTTD + geser), withAttributes : boldattributes)
 
-            }else if produk.count == 26 && term.count <= 3{
+            }else if products.count == 26 && term.count <= 3{
                 
                 
                 let yTrem = aPage1_1 + 340
@@ -897,82 +716,36 @@ class CreateInvoicePDF: NSObject {
         
         }
         //2 1/2 halaman
-        else if produk.count >= 27 && produk.count <= 39 {
+        else if products.count >= 27 && products.count <= 39 {
             context.beginPage()
             
             x = 3
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = a + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
+                
                 a = tambah
-                index += 1
-                let number = String(index)
-                number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 15{
-                        break
-                    }
-            
-        }
-            
-            for data in unit{
-                let tambah = c + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 360 + tambah), withAttributes :normalattributes)
-                c = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 15{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = d + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
-                d = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 15{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = e + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 360 + tambah), withAttributes :normalattributes)
-                e = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 15{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = f + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 360 + tambah), withAttributes :normalattributes)
-                f = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 15{
+                let number = String(index+1)
+                number.draw(at: CGPoint(x: 35, y: 355 + tambah), withAttributes :normalattributes)
+                products.remove(at: 0)
+                if index == 15{
                     break
                 }
             }
@@ -1086,68 +859,30 @@ class CreateInvoicePDF: NSObject {
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
             var aPage2 = 0
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = aPage2 + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
-                aPage2 = tambah
-                index += 1
-                let number = String(index)
-                number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 39{
-                        break
-                    }
-            
-            }
-            
-            for data in unit{
-                let tambah = c + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 200 + tambah), withAttributes :normalattributes)
-                c = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 39{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = d + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
-                d = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 39{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = e + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 200 + tambah), withAttributes :normalattributes)
-                e = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 39{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = f + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 200 + tambah), withAttributes :normalattributes)
-                f = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 39{
-                    break
-                }
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
                 
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 200 + tambah), withAttributes :normalattributes)
+                
+                aPage2 = tambah
+                let number = String(index+1)
+                number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
+                products.remove(at: 0)
+                if index == 39{
+                    break
+                }
             }
                  
             let line2 = UIBezierPath()
@@ -1211,84 +946,37 @@ class CreateInvoicePDF: NSObject {
             let email3 = addCompanyEmail(pageRect: pageRect)
         }
         // halaman 3
-        else if produk.count >= 40 && produk.count <= 50 {
+        else if products.count >= 40 && products.count <= 50 {
             //Page 1
             context.beginPage()
             
             x = 3
             let numberpage = String(x)
             var a = 0
-            var c = 0
-            var d = 0
-            var e = 0
-            var f = 0
             var g = 0
-            var index = 0
-            var index3 = 0
-            var index4 = 0
-            var index5 = 0
-            var index6 = 0
             
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = a + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 360 + tambah), withAttributes :normalattributes)
-                a = tambah
-                index += 1
-                let number = String(index)
-                number.draw(at: CGPoint(x: 35, y: 360 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 15{
-                        break
-                    }
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 355 + tambah), withAttributes :normalattributes)
                 
-            }
-            
-            
-            for data in unit{
-                let tambah = c + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 360 + tambah), withAttributes :normalattributes)
-                c = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 15{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = d + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
-                d = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 15{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = e + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 360 + tambah), withAttributes :normalattributes)
-                e = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 15{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = f + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 360 + tambah), withAttributes :normalattributes)
-                f = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 15{
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 355 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 355 + tambah), withAttributes :normalattributes)
+                
+                a = tambah
+                let number = String(index+1)
+                number.draw(at: CGPoint(x: 35, y: 355 + tambah), withAttributes :normalattributes)
+                products.remove(at: 0)
+                if index == 15{
                     break
                 }
             }
@@ -1402,69 +1090,30 @@ class CreateInvoicePDF: NSObject {
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
             var aPage2 = 0
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = aPage2 + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
-                aPage2 = tambah
-                index += 1
-                let number = String(index)
-                number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 39{
-                        break
-                    }
-            
-            }
-            
-            
-            for data in unit{
-                let tambah = c + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 200 + tambah), withAttributes :normalattributes)
-                c = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 39{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = d + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
-                d = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 39{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = e + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 200 + tambah), withAttributes :normalattributes)
-                e = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 39{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = f + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 200 + tambah), withAttributes :normalattributes)
-                f = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 39{
-                    break
-                }
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
                 
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 200 + tambah), withAttributes :normalattributes)
+                
+                aPage2 = tambah
+                let number = String(index+1)
+                number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
+                products.remove(at: 0)
+                if index == 39{
+                    break
+                }
             }
                  
             let line2 = UIBezierPath()
@@ -1493,71 +1142,30 @@ class CreateInvoicePDF: NSObject {
             Amount.draw(at: CGPoint(x: 500, y: 170), withAttributes : boldattributes)
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
-            var aPage1_1 = 0
-            var cPage1_1 = 0
-            var dPage1_1 = 0
-            var ePage1_1 = 0
-            var fPage1_1 = 0
+            var aPage1_1 = 0            
             
-            
-            for Product in produk{
+            for (index, product) in products.enumerated() {
                 let tambah = aPage1_1 + 20
-                let Numbertext = Product
-                Numbertext.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
+                let productText = product.name
+                productText.draw(at: CGPoint(x: 90, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let unitText = product.unit ?? "n/a"
+                unitText.draw(at: CGPoint(x: 235, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let quantityText = String(product.transactionQuantity ?? 0)
+                quantityText.draw(at: CGPoint(x: 325, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let priceText = String(product.price)
+                priceText.draw(at: CGPoint(x: 380, y: 200 + tambah), withAttributes :normalattributes)
+                
+                let amountText = String(Double((product.transactionQuantity ?? 0)) * product.price)
+                amountText.draw(at: CGPoint(x: 480, y: 200 + tambah), withAttributes :normalattributes)
+                
                 aPage1_1 = tambah
-                index += 1
-                let number = String(index)
+                let number = String(index+1)
                 number.draw(at: CGPoint(x: 35, y: 200 + tambah), withAttributes :normalattributes)
-                produk.remove(at: 0)
-                    if index == 62{
-                        break
-                    }
-            }
-            
-            for data in unit{
-                let tambah = cPage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 235, y: 360 + tambah), withAttributes :normalattributes)
-                cPage1_1 = tambah
-                unit.remove(at: 0)
-                index3 += 1
-                if index3 == 62{
-                    break
-                }
-            }
-            
-            for data in data2{
-                let tambah = dPage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 325, y: 360 + tambah), withAttributes :normalattributes)
-                dPage1_1 = tambah
-                data2.remove(at: 0)
-                index4 += 1
-                if index4 == 62{
-                    break
-                }
-            }
-            
-            for data in price{
-                let tambah = ePage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 380, y: 360 + tambah), withAttributes :normalattributes)
-                ePage1_1 = tambah
-                price.remove(at: 0)
-                index5 += 1
-                if index5 == 62{
-                    break
-                }
-            }
-            
-            for data in amount{
-                let tambah = fPage1_1 + 20
-                let Numbertext = data
-                Numbertext.draw(at: CGPoint(x: 480, y: 360 + tambah), withAttributes :normalattributes)
-                fPage1_1 = tambah
-                amount.remove(at: 0)
-                index6 += 1
-                if index6 == 62{
+                products.remove(at: 0)
+                if index == 50{
                     break
                 }
             }
@@ -1588,7 +1196,7 @@ class CreateInvoicePDF: NSObject {
             let phone3 = addCompanyContact(pageRect: pageRect)
             let email3 = addCompanyEmail(pageRect: pageRect)
             
-            if produk.count <= 40 && term.count <= 10{
+            if products.count <= 40 && term.count <= 10{
                 
                 let yTrem = aPage1_1 + 340
                 for Term in term {
@@ -1614,7 +1222,7 @@ class CreateInvoicePDF: NSObject {
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 15 +  yTTD + geser), withAttributes : boldattributes)
 
-            }else if produk.count == 50 && term.count <= 3{
+            }else if products.count == 50 && term.count <= 3{
                 
                 
                 let yTrem = aPage1_1 + 340
