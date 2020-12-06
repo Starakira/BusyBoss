@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kfE-5a-ccm">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -67,7 +67,7 @@
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bvh-4W-3J1"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="qsV-cs-foK" firstAttribute="trailing" secondItem="Bvh-4W-3J1" secondAttribute="trailing" id="28d-XW-QPd"/>
                             <constraint firstItem="qsV-cs-foK" firstAttribute="leading" secondItem="Bvh-4W-3J1" secondAttribute="leading" id="9kb-cv-qej"/>
@@ -186,7 +186,7 @@
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kOy-Dn-hon"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="QmH-Ay-wbw" firstAttribute="trailing" secondItem="kOy-Dn-hon" secondAttribute="trailing" id="0MF-8q-jKZ"/>
                             <constraint firstItem="bGs-Hz-SCo" firstAttribute="leading" secondItem="kOy-Dn-hon" secondAttribute="leading" id="2UE-zh-IeR"/>
@@ -358,7 +358,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CAg-cu-bkV"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="YWl-y0-sgv" firstAttribute="width" secondItem="49r-lb-aoj" secondAttribute="width" id="2ln-mb-vTp"/>
                             <constraint firstItem="bzD-Db-eTr" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="7jF-It-9VH"/>
@@ -407,6 +407,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" name="Background Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="goodsCell" rowHeight="132" id="kDq-8Z-3Mp" customClass="GoodsTableViewCell" customModule="BusyBoss" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="132"/>
@@ -510,6 +511,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" name="Background Color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="servicesCell" rowHeight="74" id="vxq-0p-dwg" customClass="ServicesTableViewCell" customModule="BusyBoss" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="74"/>
@@ -619,7 +621,7 @@
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UTu-Jy-d1o"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="JlV-ss-Yab" firstAttribute="top" secondItem="UTu-Jy-d1o" secondAttribute="top" id="8WZ-AY-w6L"/>
                             <constraint firstItem="UTu-Jy-d1o" firstAttribute="trailing" secondItem="DnE-Ru-hgn" secondAttribute="trailing" constant="20" id="Evw-eG-kb9"/>
@@ -713,7 +715,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bjV-X8-IiP"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="s8Y-FL-vpQ" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="06y-gc-Y6d"/>
                             <constraint firstItem="bjV-X8-IiP" firstAttribute="trailing" secondItem="6FT-yq-XRJ" secondAttribute="trailing" constant="20" id="0Vp-5z-lfh"/>
@@ -749,6 +751,9 @@
     <resources>
         <image name="cube.box" catalog="system" width="128" height="124"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="Background Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="font Color set">
             <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -757,9 +762,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

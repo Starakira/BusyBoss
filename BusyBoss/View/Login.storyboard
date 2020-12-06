@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WRt-Wb-fSx">
-    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -96,7 +96,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="Mym-Kr-fAv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="45" id="0HY-mR-Esb"/>
                             <constraint firstItem="ADp-vy-JP5" firstAttribute="top" secondItem="Mym-Kr-fAv" secondAttribute="bottom" constant="27" id="6IZ-gF-vUP"/>
@@ -153,8 +153,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JZ-vX-OEu">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" name="font Color set"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Sign Up" id="ZJu-bE-ajt">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="zBc-Lu-qP1"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DnY-bk-B5k">
-                                <rect key="frame" x="20" y="123" width="374" height="34"/>
+                                <rect key="frame" x="20" y="79" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="qAl-GV-u1L"/>
                                 </constraints>
@@ -163,7 +175,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="e-mail address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5E-mp-vwM">
-                                <rect key="frame" x="20" y="286" width="374" height="34"/>
+                                <rect key="frame" x="20" y="242" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="fVB-97-JrJ"/>
                                 </constraints>
@@ -172,7 +184,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j7I-3Z-jbb">
-                                <rect key="frame" x="20" y="157" width="374" height="34"/>
+                                <rect key="frame" x="20" y="113" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="loQ-6x-w5N"/>
                                 </constraints>
@@ -181,7 +193,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="phone no." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hgy-hh-g6h">
-                                <rect key="frame" x="20" y="191" width="374" height="34"/>
+                                <rect key="frame" x="20" y="147" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="hS1-ai-uFS"/>
                                 </constraints>
@@ -190,7 +202,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-Mail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XK-P4-tia">
-                                <rect key="frame" x="20" y="257" width="374" height="21"/>
+                                <rect key="frame" x="20" y="213" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="pYl-sM-kUc"/>
                                 </constraints>
@@ -199,7 +211,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ld8-l5-elr">
-                                <rect key="frame" x="20" y="376" width="374" height="21"/>
+                                <rect key="frame" x="20" y="332" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Nn2-iz-eGe"/>
                                 </constraints>
@@ -208,7 +220,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2S-L4-qaA">
-                                <rect key="frame" x="20" y="504" width="374" height="30"/>
+                                <rect key="frame" x="20" y="460" width="374" height="30"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="IEa-L6-1WN"/>
@@ -221,7 +233,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MsV-4F-nUg">
-                                <rect key="frame" x="20" y="405" width="374" height="34"/>
+                                <rect key="frame" x="20" y="361" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="CPy-LI-BtK"/>
                                 </constraints>
@@ -229,21 +241,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7JZ-vX-OEu">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" name="font Color set"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Title" id="ZJu-bE-ajt">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="zBc-Lu-qP1"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IRH-G7-BaQ"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="j7I-3Z-jbb" secondAttribute="trailing" constant="20" id="01e-p4-m4a"/>
                             <constraint firstItem="j7I-3Z-jbb" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="090-S6-XID"/>
@@ -260,7 +260,7 @@
                             <constraint firstItem="j7I-3Z-jbb" firstAttribute="top" secondItem="DnY-bk-B5k" secondAttribute="bottom" id="Rhz-0W-cU7"/>
                             <constraint firstItem="h2S-L4-qaA" firstAttribute="top" secondItem="MsV-4F-nUg" secondAttribute="bottom" constant="65" id="cW3-7d-PVl"/>
                             <constraint firstItem="Hgy-hh-g6h" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="fYB-zs-VbU"/>
-                            <constraint firstItem="DnY-bk-B5k" firstAttribute="top" secondItem="IRH-G7-BaQ" secondAttribute="top" constant="123" id="fZR-Vc-c8S"/>
+                            <constraint firstItem="DnY-bk-B5k" firstAttribute="top" secondItem="IRH-G7-BaQ" secondAttribute="top" constant="79" id="fZR-Vc-c8S"/>
                             <constraint firstItem="4XK-P4-tia" firstAttribute="top" secondItem="Hgy-hh-g6h" secondAttribute="bottom" constant="32" id="pq4-Rt-Am0"/>
                             <constraint firstItem="h2S-L4-qaA" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="quC-zu-jfi"/>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="h2S-L4-qaA" secondAttribute="trailing" constant="20" id="rxi-yg-6b4"/>
@@ -305,6 +305,9 @@
     </scenes>
     <resources>
         <image name="BusyBoss_Logo" width="129.33332824707031" height="129.33332824707031"/>
+        <namedColor name="Background Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="font Color set">
             <color red="0.0" green="0.18400000035762787" blue="0.38400000333786011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -316,9 +319,6 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
