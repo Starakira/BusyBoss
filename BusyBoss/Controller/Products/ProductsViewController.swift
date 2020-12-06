@@ -58,23 +58,11 @@ class ProductsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? GoodsViewController{
-            let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
-            
-            self.present(pendingAction, animated: true)
-            
-            pendingAction.dismiss(animated: true){
-                self.goodsVC = vc
-            }
+            self.goodsVC = vc
         }
         
         if let vc = segue.destination as? ServicesViewController{
-            let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
-            
-            self.present(pendingAction, animated: true)
-            
-            pendingAction.dismiss(animated: true){
-                self.servicesVC = vc
-            }
+            self.servicesVC = vc
         }
     }
     /*
@@ -107,7 +95,7 @@ class ProductsViewController: UIViewController {
                     newGoods!.recordID = recordID
                     
                     self.goodsProducts.append(newGoods!)
-                    self.goodsVC?.products.append(contentsOf: self.goodsProducts)
+                    self.goodsVC?.products = self.goodsProducts
                     self.goodsVC!.goodsTableView.reloadData()
                     
                     pendingAction.dismiss(animated: true, completion: nil)
@@ -135,7 +123,7 @@ class ProductsViewController: UIViewController {
                     newServices!.recordID = recordID
                     
                     self.servicesProducts.append(newServices!)
-                    self.servicesVC?.products.append(contentsOf: self.servicesProducts)
+                    self.servicesVC?.products = self.servicesProducts
                     self.servicesVC!.servicesTableView.reloadData()
                     
                     pendingAction.dismiss(animated: true, completion: nil)

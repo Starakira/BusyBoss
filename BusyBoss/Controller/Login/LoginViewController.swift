@@ -9,7 +9,6 @@ import AuthenticationServices
 enum LoginError: Error{
     case incompleteForm
     case invalidEmail
-    case incorrectPasswordLength
 }
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
@@ -27,9 +26,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
-//        if let email = emailAddress, let password = password {
-//            authenticate(emailText: email, passwordText: password)
-//        }
+        print("UserDefault password : \(String(describing: password))")
+        
+        if let email = emailAddress, let password = password {
+            
+            do{
+                try authenticate(emailText: email, passwordText: password)
+            } catch {
+                Alert.showError(self, error)
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -38,17 +44,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        let encryptedPassword = EncryptionManager.shared().generateEncryptedString(inputString: passwordLogin.text ?? "No Password")
+        
         do{
-           try  authenticate(emailText: emailLogin.text ?? "", passwordText: passwordLogin.text ?? "")
+            try  authenticate(emailText: emailLogin.text ?? "", passwordText: encryptedPassword)
         } catch LoginError.incompleteForm {
             Alert.showAlert(view: self, title: "Incomplete Form", message: "Please fill out both email and password fields")
         } catch LoginError.invalidEmail {
             Alert.showAlert(view: self, title: "Invalid Email", message: "Please enter the correct email format")
-        }
-//        catch LoginError.incorrectPasswordLength {
-//            Alert.showAlert(view: self, title: "Invalid Password Length", message: "Password should be at least 8 characters long")
-//        }
-        catch {
+        } catch {
             Alert.showError(self, error)
         }
     }
@@ -68,17 +72,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         if !email.isValidEmail {
             throw LoginError.invalidEmail
         }
-//
-//        if password.count < 8 {
-//            throw LoginError.incorrectPasswordLength
-//        }
         
+        fetchUserCridentialsFromCloudKit(emailText: email, passwordText: password)
+    }
+    
+    func fetchUserCridentialsFromCloudKit(emailText: String, passwordText: String) {
         let pendingAction = Alert.displayPendingAlert(title: "Logging You In...")
         self.present(pendingAction, animated: true) {
             CloudKitManager.shared().authenticateUser(emailAddress: emailText, password: passwordText) { currentUser, error in
                 if let error = error {
                     pendingAction.dismiss(animated: true) {
-                        Alert.showError(self, error)
+                        Alert.showRetryCloudkitError(view: self, title: "Error Logging In", error: error) {
+                            self.fetchUserCridentialsFromCloudKit(emailText: emailText, passwordText: passwordText)
+                        }
                     }
                     return
                 }

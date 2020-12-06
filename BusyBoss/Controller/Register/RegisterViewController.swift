@@ -33,12 +33,52 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButton(_ sender: Any) {
+        do {
+            try checkValidUser()
+        } catch RegisterError.incompleteForm {
+            Alert.showAlert(view: self, title: "Incomplete Form", message: "Please fill out the required fields")
+        } catch RegisterError.invalidEmail {
+            Alert.showAlert(view: self, title: "Invalid Email", message: "Please use a valid email")
+        } catch RegisterError.incorrectPasswordLength {
+            Alert.showAlert(view: self, title: "Incorrect Password Length", message: "Password must be 8 characters long")
+        }
+        
+        catch {
+            Alert.showError(self, error)
+        }
+    }
+    
+    func checkValidUser() throws {
+        let firstName = firstNameTextField.text
+        let lastName = lastNameTextField.text
+        let email = emailAddressTextField.text
+        let password = passwordTextField.text
+        let phoneNumber = phoneNumberTextField.text
+        
+        if firstName!.isEmpty || lastName!.isEmpty || email!.isEmpty || password!.isEmpty || phoneNumber!.isEmpty {
+            throw RegisterError.incompleteForm
+        }
+        
+        if !email!.isValidEmail {
+            throw RegisterError.invalidEmail
+        }
+        
+        if password!.count < 8 {
+            throw RegisterError.incorrectPasswordLength
+        }
+        
+        registerNewUser()
+    }
+    
+    func registerNewUser(){
+        let encryptedPassword = EncryptionManager.shared().generateEncryptedString(inputString: passwordTextField.text!)
+        
         var user = User(
             firstName: firstNameTextField.text!,
             lastName: lastNameTextField.text!,
             email: emailAddressTextField.text!,
-            password: passwordTextField.text!,
-            phoneNumber: phoneNumberTextField.text!, image: #imageLiteral(resourceName: "BusyBoss_Logo"))
+            password: encryptedPassword,
+            phoneNumber: phoneNumberTextField.text!, image: #imageLiteral(resourceName: "placeholder image client"), signature: #imageLiteral(resourceName: "Image Placeholder"))
         
         let pendingAction = Alert.displayPendingAlert(title: "Registering New User...")
         

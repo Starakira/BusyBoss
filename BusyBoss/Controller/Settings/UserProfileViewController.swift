@@ -31,9 +31,23 @@ class UserProfileViewController: UIViewController {
         ivc.allowsEditing = true
         present(ivc, animated: true)
     }
+    @IBAction func logOutButton(_ sender: Any) {
+        Alert.showConfirmation(view: self, title: "Sign Out Confirmation", message: "Are you sure you want to sign out?") {
+            User.deleteCurrentUser()
+            
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            
+            let loginViewController = storyBoard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+            self.navigationController?.pushViewController(loginViewController, animated: true)
+            self.navigationController?.isNavigationBarHidden = true
+            self.navigationController?.tabBarController?.tabBar.isHidden = true
+        }
+    }
     
     @IBAction func onSaveButtonTapped(_ sender: UIBarButtonItem) {
-        let changeUser = User(firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!)
+        print("Save clicked!")
+        
+        let changeUser = User(firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!, signature: #imageLiteral(resourceName: "Image Placeholder"))
         let pendingAction = Alert.displayPendingAlert(title: "Saving new changes...")
         self.present(pendingAction, animated: true) {
             CloudKitManager.shared().userEdit(user: changeUser) { (error) in
@@ -42,13 +56,16 @@ class UserProfileViewController: UIViewController {
                         Alert.showCloudKitError(self, error)
                     }
                     else {
-                        self.dismiss(animated: true)
+                        Alert.showAlert(view: self, title: "Success!", message: "Profile has been successfully changed") {
+                            self.dismiss(animated: true)
+                        }
                     }
                 }
             }
         }
         
     }
+    
 }
     /*
  // MARK: - Navigation

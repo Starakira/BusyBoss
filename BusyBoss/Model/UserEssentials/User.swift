@@ -18,6 +18,7 @@ struct User {
     let password: String
     let phoneNumber: String
     let image: UIImage
+    let signature: UIImage?
     
     private static var user: User?
     
@@ -27,6 +28,7 @@ struct User {
     static let keyPassword = "password"
     static let keyPhoneNumber = "phoneNumber"
     static let keyImage = "image"
+    static let keySignature = "signature"
     
     static func currentUser() -> User? {
         return user
@@ -62,9 +64,10 @@ extension User {
         let email = record[User.keyEmail] as? String ?? "No Email"
         let password = record[User.keyPassword] as? String ?? "No Password"
         let phoneNumber = record[User.keyPhoneNumber] as? String ?? "No Phone Number"
-        let image = ImageManager.convertToUIImage(file: record[User.keyImage] as? CKAsset) ?? #imageLiteral(resourceName: "BusyBoss_Logo")
+        let image = ImageManager.convertToUIImage(file: record[User.keyImage] as? CKAsset) ?? #imageLiteral(resourceName: "placeholder image client")
+        let signature = ImageManager.convertToUIImage(file: record[User.keySignature] as? CKAsset) ?? #imageLiteral(resourceName: "Image Placeholder")
         
-        self.init(recordID: recordID, firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber, image: image)
+        self.init(recordID: recordID, firstName: firstName, lastName: lastName, email: email, password: password, phoneNumber: phoneNumber, image: image, signature: signature)
     }
 }
 

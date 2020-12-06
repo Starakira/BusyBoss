@@ -22,26 +22,16 @@ class ClientsViewController: UIViewController {
         clientsTableView.delegate = self
         clientsTableView.dataSource = self
         
-        let pendingAction = Alert.displayPendingAlert(title: "Loading clients...")
-        
-        self.present(pendingAction, animated: true){
-            CloudKitManager.shared().clientsFetchAll {
-                (clients, error) in
-                if let error = error {
-                    pendingAction.dismiss(animated: true){
-                        Alert.showCloudKitError(self, error)
-                    }
-                }
-                else {
-                    pendingAction.dismiss(animated: true){
-                        self.clients = clients
-                        self.clientsTableView.reloadData()
-                    }
-                }
+        CloudKitManager.shared().clientsFetchAll {
+            (clients, error) in
+            if let error = error {
+                Alert.showCloudKitError(self, error)
+            }
+            else {
+                self.clients = clients
+                self.clientsTableView.reloadData()
             }
         }
-        
-        
     }
     
     @IBAction func unwindToSegue(_ sender: UIStoryboardSegue) {
@@ -135,7 +125,7 @@ extension ClientsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "clientsCell", for: indexPath)as!ClientsTableViewCell
         let client = clients[indexPath.row]
         
-        cell.clientsLabel.text = client.firstName + client.lastName
+        cell.clientsLabel.text = client.firstName + " " + client.lastName
         cell.clientsImage.image = client.image
         cell.clientsCompanyName.text = client.companyName
         cell.clientsCompanyAddress.text = client.companyAddress
