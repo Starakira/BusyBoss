@@ -26,42 +26,24 @@ class ServicesViewController: UIViewController{
         
         servicesTableView.dataSource = self
         servicesTableView.delegate = self
-        
-        let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
-        
-        self.present(pendingAction, animated: true){
-            CloudKitManager.shared().productsFetchAll {
-                (products, error) in
-                if let error = error {
-                    pendingAction.dismiss(animated: true){
-                        Alert.showCloudKitError(self, error)
-                    }
-                }
-                else {
-                    pendingAction.dismiss(animated: true)
-                    for product in products {
-                        print(product.type.rawValue)
-                        if product.type.rawValue == "services"{
-                            self.products.append(product)
-                            self.servicesTableView.reloadData()
-                            print(self.products)
-                        }
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                Alert.showCloudKitError(self, error)
+                
+            }
+            else {
+                for product in products {
+                    print(product.type.rawValue)
+                    if product.type.rawValue == "services"{
+                        self.products.append(product)
+                        self.servicesTableView.reloadData()
+                        print(self.products)
                     }
                 }
             }
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension ServicesViewController: UITableViewDelegate {

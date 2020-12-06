@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum ClientError: Error {
+    case incompleteForm
+}
+
 class InputClientViewController: UIViewController {
     @IBOutlet weak var addClientsImage: UIImageView!
     @IBOutlet weak var clientFirstName: UITextField!
@@ -14,7 +18,7 @@ class InputClientViewController: UIViewController {
     @IBOutlet weak var clientCompanyName: UITextField!
     @IBOutlet weak var clientAddress: UITextField!
     @IBOutlet weak var clientEmailAddress: UITextField!
-    @IBOutlet weak var clientPhoneNo: UITextField!
+    @IBOutlet weak var clientPhoneNumber: UITextField!
     
     var client: Client?
     
@@ -34,7 +38,7 @@ class InputClientViewController: UIViewController {
                                 firstName: clientFirstName.text!,
                                 lastName: clientLastName.text!,
                                 emailAddress: clientEmailAddress.text!,
-                                phoneNumber: clientPhoneNo.text!,
+                                phoneNumber: clientPhoneNumber.text!,
                                 companyName: clientCompanyName.text!,
                                 companyAddress: clientAddress.text!)
         }
@@ -46,16 +50,14 @@ class InputClientViewController: UIViewController {
     // MARK: - Action
     
     @IBAction func doneButton(_ sender: Any) {
-        let client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "placeholder image client"),
-                            firstName: clientFirstName.text!,
-                            lastName: clientLastName.text!,
-                            emailAddress: clientEmailAddress.text!,
-                            phoneNumber: clientPhoneNo.text!,
-                            companyName: clientCompanyName.text!,
-                            companyAddress: clientAddress.text!)
-        
-        print("Creating client...")
-        self.client = client
+        do {
+            try checkValidClient()
+        } catch ClientError.incompleteForm {
+            Alert.showAlert(view: self, title: "Incomplete Form", message: "Please fill out the required fields")
+        }
+        catch {
+            Alert.showError(self, error)
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
@@ -69,7 +71,30 @@ class InputClientViewController: UIViewController {
         ivc.allowsEditing = true
         present(ivc, animated: true)
     }
-
+    
+    func checkValidClient() throws {
+        let firstName = clientFirstName.text
+        let lastName = clientLastName.text
+        let phoneNumber = clientPhoneNumber.text
+        
+        if firstName!.isEmpty || lastName!.isEmpty || phoneNumber!.isEmpty {
+            throw ClientError.incompleteForm
+        }
+        
+        createClient()
+    }
+    
+    func createClient(){
+        let client = Client(image: addClientsImage.image ?? #imageLiteral(resourceName: "placeholder image client"),
+                            firstName: clientFirstName.text!,
+                            lastName: clientLastName.text!,
+                            emailAddress: clientEmailAddress.text!,
+                            phoneNumber: clientPhoneNumber.text!,
+                            companyName: clientCompanyName.text!,
+                            companyAddress: clientAddress.text!)
+        
+        self.client = client
+    }
 }
 
 extension InputClientViewController: UITextFieldDelegate{

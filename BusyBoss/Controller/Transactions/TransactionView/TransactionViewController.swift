@@ -35,22 +35,15 @@ class TransactionViewController: UIViewController {
         //transactionTableView.backgroundView?.backgroundColor = UIColor(red: 241/255, green: 242/255, blue: 246/255, alpha: 1)
         
         self.transactionsAll = []
-        let pendingAction = Alert.displayPendingAlert(title: "Loading transactions...")
         
-        self.present(pendingAction, animated: true){
-            CloudKitManager.shared().transactionsFetchAll() {
-                (transactions, error) in
-                if let error = error {
-                    pendingAction.dismiss(animated: true){
-                        Alert.showCloudKitError(self, error)
-                    }
-                } else {
-                    pendingAction.dismiss(animated: true){
-                        self.transactionDataSource.append(contentsOf: transactions)
-                        self.transactionsAll = transactions
-                        self.transactionTableView.reloadData()
-                    }
-                }
+        CloudKitManager.shared().transactionsFetchAll() {
+            (transactions, error) in
+            if let error = error {
+                Alert.showCloudKitError(self, error)
+            } else {
+                self.transactionDataSource.append(contentsOf: transactions)
+                self.transactionsAll = transactions
+                self.transactionTableView.reloadData()
             }
         }
     }
@@ -219,7 +212,7 @@ extension TransactionViewController : UITableViewDataSource {
         } else {
             cell.labelStatus.backgroundColor = .red
         }
-            
+        
         cell.labelDescription.text = transaction.description
         cell.labelTotalPrice.text = "Rp. \(String(describing: transaction.value))"
         cell.labelTransactionCode.text = transaction.transactionNumber

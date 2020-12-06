@@ -9,7 +9,6 @@ import AuthenticationServices
 enum LoginError: Error{
     case incompleteForm
     case invalidEmail
-    case incorrectPasswordLength
 }
 
 class LoginViewController: UIViewController, UITextFieldDelegate{
@@ -27,7 +26,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
+        print("UserDefault password : \(String(describing: password))")
+        
         if let email = emailAddress, let password = password {
+            
             do{
                 try authenticate(emailText: email, passwordText: password)
             } catch {
@@ -42,17 +44,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func loginButton(_ sender: Any) {
+        let encryptedPassword = EncryptionManager.shared().generateEncryptedString(inputString: passwordLogin.text ?? "No Password")
+        
         do{
-           try  authenticate(emailText: emailLogin.text ?? "", passwordText: passwordLogin.text ?? "")
+            try  authenticate(emailText: emailLogin.text ?? "", passwordText: encryptedPassword)
         } catch LoginError.incompleteForm {
             Alert.showAlert(view: self, title: "Incomplete Form", message: "Please fill out both email and password fields")
         } catch LoginError.invalidEmail {
             Alert.showAlert(view: self, title: "Invalid Email", message: "Please enter the correct email format")
-        }
-//        catch LoginError.incorrectPasswordLength {
-//            Alert.showAlert(view: self, title: "Invalid Password Length", message: "Password should be at least 8 characters long")
-//        }
-        catch {
+        } catch {
             Alert.showError(self, error)
         }
     }

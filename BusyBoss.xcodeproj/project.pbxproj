@@ -31,6 +31,7 @@
 		F58B15FC257B602D004E25B7 /* CreateInvoicePDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B15F6257B602D004E25B7 /* CreateInvoicePDF.swift */; };
 		F58B15FF257B6823004E25B7 /* UIViewDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B15FE257B6823004E25B7 /* UIViewDraw.swift */; };
 		F58B1603257B7540004E25B7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F58B1602257B7540004E25B7 /* Settings.storyboard */; };
+		F58B1607257B97DA004E25B7 /* EncryptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B1606257B97DA004E25B7 /* EncryptionManager.swift */; };
 		F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30D2551380E00B78AFC /* AppDelegate.swift */; };
 		F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30F2551380E00B78AFC /* SceneDelegate.swift */; };
 		F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F599E3162551380E00B78AFC /* BusyBoss.xcdatamodeld */; };
@@ -100,6 +101,7 @@
 		F58B15F6257B602D004E25B7 /* CreateInvoicePDF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInvoicePDF.swift; sourceTree = "<group>"; };
 		F58B15FE257B6823004E25B7 /* UIViewDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewDraw.swift; sourceTree = "<group>"; };
 		F58B1602257B7540004E25B7 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		F58B1606257B97DA004E25B7 /* EncryptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionManager.swift; sourceTree = "<group>"; };
 		F599E30A2551380E00B78AFC /* BusyBoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F599E30D2551380E00B78AFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F599E30F2551380E00B78AFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 		F599E3A725513FAA00B78AFC /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				F58B1606257B97DA004E25B7 /* EncryptionManager.swift */,
 				F58B15FE257B6823004E25B7 /* UIViewDraw.swift */,
 				F599E3372551394700B78AFC /* CloudKitManager.swift */,
 				F53D12F0256BA90200E00B43 /* CloudKitError.swift */,
@@ -569,6 +572,7 @@
 				F599E3662551398400B78AFC /* AddNewTransactionClientViewController.swift in Sources */,
 				F599E37E2551398400B78AFC /* AddNewTransactionProductServicesTableViewCell.swift in Sources */,
 				F599E37B2551398400B78AFC /* LoginViewController.swift in Sources */,
+				F58B1607257B97DA004E25B7 /* EncryptionManager.swift in Sources */,
 				F58B15E9257B5FAF004E25B7 /* ChangePasswordViewController.swift in Sources */,
 				F599E3782551398400B78AFC /* AddTransactionProductServicesViewController.swift in Sources */,
 				F5D3077225666252001BF94A /* InputGoodsViewController.swift in Sources */,

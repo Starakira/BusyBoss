@@ -27,25 +27,19 @@ class GoodsViewController: UIViewController {
         goodsTableView.dataSource = self
         goodsTableView.delegate = self
         
-        let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
-        
-        self.present(pendingAction, animated: true){
-            CloudKitManager.shared().productsFetchAll {
-                (products, error) in
-                if let error = error {
-                    pendingAction.dismiss(animated: true){
-                        Alert.showCloudKitError(self, error)
-                    }
-                }
-                else {
-                    pendingAction.dismiss(animated: true){
-                        for product in products {
-                            if product.type.rawValue == "goods"{
-                                self.products.append(product)
-                                self.goodsTableView.reloadData()
-                                print(self.products)
-                            }
-                        }
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                Alert.showCloudKitError(self, error)
+                
+            }
+            else {
+                
+                for product in products {
+                    if product.type.rawValue == "goods"{
+                        self.products.append(product)
+                        self.goodsTableView.reloadData()
+                        print(self.products)
                     }
                 }
             }
@@ -61,16 +55,16 @@ extension GoodsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-            return.delete
+        return.delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            products.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
         }
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                tableView.beginUpdates()
-                products.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                tableView.endUpdates()
-            }
-        }
+    }
 }
 
 extension GoodsViewController: UITableViewDataSource {
