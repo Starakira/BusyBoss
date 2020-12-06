@@ -117,7 +117,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="New Item" id="NJf-Zo-2r3">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="lFc-gR-1Ug"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="lFc-gR-1Ug">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="jLM-fS-vgu" id="Erh-wa-csm"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="cfP-On-AxT">
                                             <connections>
                                                 <segue destination="5fa-nX-6qI" kind="unwind" unwindAction="unwindToProductWithSender:" id="KTh-4a-y4e"/>
@@ -586,7 +590,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="New Services" id="hH8-tr-OnL">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="L9G-Fg-5nR"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="L9G-Fg-5nR">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="Si0-TW-trV" id="kvs-WH-bDR"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="bxa-i1-m33">
                                             <connections>
                                                 <segue destination="7JS-C5-hKs" kind="unwind" unwindAction="unwindToProductWithSender:" id="2LP-MS-q2U"/>
