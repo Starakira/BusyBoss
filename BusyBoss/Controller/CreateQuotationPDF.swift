@@ -65,7 +65,6 @@ class CreateQuotationPDF: NSObject {
         let term = ["1. Above information is not an invoice and only estimate of service/goods described above.","2. Payment will be collected prior to provision of service/goods described in this quote",/*"3. Payment to BCA 010188888 a/n PT Boss Gak Perlu Repot","coba","data","lebih","6"*/]
         
         guard var products = products else {return}
-        
         //1 halaman
         if products.count <= 5 {
             

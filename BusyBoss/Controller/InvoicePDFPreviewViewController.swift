@@ -108,10 +108,7 @@ class InvoicePDFPreviewViewController: UIViewController {
     }
     
     @IBAction func BtnPaid(_ sender: Any) {
-        let vc = TransactionDetailsViewController(nibName: "TransactionDetailsView", bundle: nil)
-        vc.value = 1
-        
-        navigationController?.pushViewController(vc, animated: true)
+     
     }
     
     @IBAction func BtnReject(_ sender: Any) {
