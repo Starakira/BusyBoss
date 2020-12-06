@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="width" constant="188" id="L9Z-32-tKX"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign in to create transatction documents, organize documents and review your business performance" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkI-Xy-MhM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sign in to create transaction documents, organize documents and review your business performance" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkI-Xy-MhM">
                                 <rect key="frame" x="45" y="298" width="325" height="63"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="font Color set"/>
@@ -174,7 +174,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="e-mail address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5E-mp-vwM">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="E-mail Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d5E-mp-vwM">
                                 <rect key="frame" x="20" y="242" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="fVB-97-JrJ"/>
@@ -232,7 +232,7 @@
                                     <action selector="registerButton:" destination="cbb-5u-Oey" eventType="touchUpInside" id="0re-yG-Iba"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MsV-4F-nUg">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MsV-4F-nUg">
                                 <rect key="frame" x="20" y="361" width="374" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="CPy-LI-BtK"/>
@@ -240,6 +240,15 @@
                                 <color key="textColor" name="font Color set"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Confrim Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pqq-jm-MVW">
+                                <rect key="frame" x="20" y="403" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="kbP-QG-4wz"/>
+                                </constraints>
+                                <color key="textColor" name="font Color set"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IRH-G7-BaQ"/>
@@ -249,6 +258,7 @@
                             <constraint firstItem="j7I-3Z-jbb" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="090-S6-XID"/>
                             <constraint firstItem="DnY-bk-B5k" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="4df-jL-zaH"/>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="DnY-bk-B5k" secondAttribute="trailing" constant="20" id="7J8-QR-UCf"/>
+                            <constraint firstItem="h2S-L4-qaA" firstAttribute="top" secondItem="Pqq-jm-MVW" secondAttribute="bottom" constant="23" id="8Z9-1a-9ey"/>
                             <constraint firstItem="Hgy-hh-g6h" firstAttribute="top" secondItem="j7I-3Z-jbb" secondAttribute="bottom" id="B8V-qs-3cP"/>
                             <constraint firstItem="ld8-l5-elr" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="B9w-9y-ZXu"/>
                             <constraint firstItem="4XK-P4-tia" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="DLr-gR-QOV"/>
@@ -258,15 +268,17 @@
                             <constraint firstItem="MsV-4F-nUg" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="Oq8-eT-eaR"/>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="ld8-l5-elr" secondAttribute="trailing" constant="20" id="QDy-b6-qUj"/>
                             <constraint firstItem="j7I-3Z-jbb" firstAttribute="top" secondItem="DnY-bk-B5k" secondAttribute="bottom" id="Rhz-0W-cU7"/>
-                            <constraint firstItem="h2S-L4-qaA" firstAttribute="top" secondItem="MsV-4F-nUg" secondAttribute="bottom" constant="65" id="cW3-7d-PVl"/>
                             <constraint firstItem="Hgy-hh-g6h" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="fYB-zs-VbU"/>
                             <constraint firstItem="DnY-bk-B5k" firstAttribute="top" secondItem="IRH-G7-BaQ" secondAttribute="top" constant="79" id="fZR-Vc-c8S"/>
+                            <constraint firstItem="Pqq-jm-MVW" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="ns5-fO-RA1"/>
                             <constraint firstItem="4XK-P4-tia" firstAttribute="top" secondItem="Hgy-hh-g6h" secondAttribute="bottom" constant="32" id="pq4-Rt-Am0"/>
                             <constraint firstItem="h2S-L4-qaA" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="quC-zu-jfi"/>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="h2S-L4-qaA" secondAttribute="trailing" constant="20" id="rxi-yg-6b4"/>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="Hgy-hh-g6h" secondAttribute="trailing" constant="20" id="sL3-Xj-ahc"/>
                             <constraint firstItem="d5E-mp-vwM" firstAttribute="top" secondItem="4XK-P4-tia" secondAttribute="bottom" constant="8" symbolic="YES" id="sQV-iK-SUe"/>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="4XK-P4-tia" secondAttribute="trailing" constant="20" id="v6g-hm-UTl"/>
+                            <constraint firstItem="Pqq-jm-MVW" firstAttribute="top" secondItem="MsV-4F-nUg" secondAttribute="bottom" constant="8" symbolic="YES" id="vDF-vp-wis"/>
+                            <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="Pqq-jm-MVW" secondAttribute="trailing" constant="20" id="wEt-pJ-ctX"/>
                             <constraint firstItem="IRH-G7-BaQ" firstAttribute="trailing" secondItem="d5E-mp-vwM" secondAttribute="trailing" constant="20" id="wOG-tU-hCd"/>
                             <constraint firstItem="d5E-mp-vwM" firstAttribute="leading" secondItem="IRH-G7-BaQ" secondAttribute="leading" constant="20" id="ybi-bn-Uyi"/>
                             <constraint firstItem="MsV-4F-nUg" firstAttribute="top" secondItem="ld8-l5-elr" secondAttribute="bottom" constant="8" symbolic="YES" id="yp4-Fi-hiF"/>
@@ -283,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIl-6q-dQi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2789.8550724637685" y="137.94642857142856"/>
+            <point key="canvasLocation" x="2789.8550724637685" y="137.77173913043478"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y1V-jz-zPR">

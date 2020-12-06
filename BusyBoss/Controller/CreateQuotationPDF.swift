@@ -412,6 +412,90 @@ class CreateQuotationPDF: NSObject {
         return titleStringRect.origin.y + titleStringRect.size.height
     }
     
+    func addTotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Total,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(455 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addDiscount(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Discount,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(475 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addTax(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Tax,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(495 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addGrandtotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: GrandTotal,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(515 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
     func addDocument(pageRect: CGRect) -> CGFloat {
         let titleFont = UIFont.systemFont(ofSize: 34.0, weight: .regular)
         
