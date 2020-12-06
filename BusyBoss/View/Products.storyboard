@@ -245,8 +245,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jersey Leeds United" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTg-We-tOq">
-                                <rect key="frame" x="129" y="278" width="156" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jersey Leeds United" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTg-We-tOq">
+                                <rect key="frame" x="20" y="278" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="TsR-SH-eMK"/>
                                 </constraints>
@@ -366,15 +366,16 @@
                             <constraint firstItem="dVy-F5-IxT" firstAttribute="top" secondItem="fTg-We-tOq" secondAttribute="bottom" constant="10" id="IWq-k8-kMy"/>
                             <constraint firstItem="dVy-F5-IxT" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="Jh2-rz-CY3"/>
                             <constraint firstItem="fTg-We-tOq" firstAttribute="top" secondItem="jxJ-11-Bkq" secondAttribute="bottom" constant="8" symbolic="YES" id="Nal-7o-gWi"/>
+                            <constraint firstItem="fTg-We-tOq" firstAttribute="centerX" secondItem="49r-lb-aoj" secondAttribute="centerX" id="PS1-wR-ROC"/>
                             <constraint firstItem="YWl-y0-sgv" firstAttribute="centerX" secondItem="CAg-cu-bkV" secondAttribute="centerX" id="SbV-QS-Tqs"/>
                             <constraint firstItem="jxJ-11-Bkq" firstAttribute="top" secondItem="YWl-y0-sgv" secondAttribute="bottom" constant="32" id="aun-Aa-Od9"/>
                             <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="aug-cm-7jN" secondAttribute="trailing" constant="20" id="b8A-43-4Lo"/>
                             <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="bzD-Db-eTr" secondAttribute="trailing" constant="20" id="baO-Ds-esv"/>
-                            <constraint firstItem="fTg-We-tOq" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="129" id="cgr-ow-2D0"/>
+                            <constraint firstItem="fTg-We-tOq" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="cgr-ow-2D0"/>
                             <constraint firstItem="aug-cm-7jN" firstAttribute="top" secondItem="dVy-F5-IxT" secondAttribute="bottom" constant="5" id="deC-0r-YU6"/>
                             <constraint firstItem="sbU-hO-Tx2" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="gRe-vd-0XC"/>
                             <constraint firstItem="aug-cm-7jN" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="gTd-be-ubt"/>
-                            <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="fTg-We-tOq" secondAttribute="trailing" constant="129" id="hea-De-FTd"/>
+                            <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="fTg-We-tOq" secondAttribute="trailing" constant="20" id="hea-De-FTd"/>
                             <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="sbU-hO-Tx2" secondAttribute="trailing" constant="20" id="tUN-hI-edS"/>
                             <constraint firstItem="YWl-y0-sgv" firstAttribute="top" secondItem="CAg-cu-bkV" secondAttribute="top" id="vYF-Ht-7QQ"/>
                         </constraints>
