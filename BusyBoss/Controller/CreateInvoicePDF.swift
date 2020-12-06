@@ -35,6 +35,7 @@ class CreateInvoicePDF: NSObject {
         self.ClientCompany = clientcompany
         self.Date = date
     }
+    var yTotal = 0
 
     func createFlyer(products: [Product]?) -> Data {
         
@@ -190,6 +191,8 @@ class CreateInvoicePDF: NSObject {
             let yOffset = 20
             let totalyOffset = yOffset * totalProduct
             
+            yTotal = yOffset
+            
         let Total = "Total"
         Total.draw(at: CGPoint(x: 400, y: 455 + totalyOffset), withAttributes : boldattributes)
         
@@ -210,6 +213,10 @@ class CreateInvoicePDF: NSObject {
             let clientemail = addClientEmail(pageRect: pageRect)
             let clientaddres = addClientAddress(pageRect: pageRect)
             let documentName = addDocument(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
 //            let imageBottom = addImage(pageRect: pageRect)
             let company = addCompany(pageRect: pageRect)
             let address = addCompanyAddress(pageRect: pageRect)
@@ -402,7 +409,8 @@ class CreateInvoicePDF: NSObject {
             line.stroke()
                 
             let tes = a - 80
-
+            yTotal = tes
+            
             let Total = "Total"
             Total.draw(at: CGPoint(x: 400, y: 460 + tes), withAttributes : boldattributes)
 
@@ -422,6 +430,10 @@ class CreateInvoicePDF: NSObject {
             let clientemail = addClientEmail(pageRect: pageRect)
             let clientaddres = addClientAddress(pageRect: pageRect)
             let documentName = addDocument(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
 //            let imageBottom = addImage(pageRect: pageRect)
             let company = addCompany(pageRect: pageRect)
             let address = addCompanyAddress(pageRect: pageRect)
@@ -642,6 +654,7 @@ class CreateInvoicePDF: NSObject {
             let set1_1 = aPage1_1 - 200
             let Numbertext2 = "Number : "
             Numbertext2.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
+            yTotal = set1_1
             
             let Total = "Total"
             let Discount = "Discount"
@@ -659,6 +672,10 @@ class CreateInvoicePDF: NSObject {
             let address2 = addCompanyAddress(pageRect: pageRect)
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             if products.count <= 26 && term.count <= 10{
                 
@@ -896,9 +913,13 @@ class CreateInvoicePDF: NSObject {
             let address2 = addCompanyAddress(pageRect: pageRect)
             let phone2 = addCompanyContact(pageRect: pageRect)
             let email2 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             let set = aPage2 - 240
-            
+            yTotal = set
             let Total = "Total"
             Total.draw(at: CGPoint(x: 400, y: 460 + set), withAttributes : boldattributes)
 
@@ -1178,7 +1199,7 @@ class CreateInvoicePDF: NSObject {
             let Numbertext2 = "Number : "
             Numbertext2.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
             
-            
+            yTotal = set1_1
             let Total = "Total"
             let Discount = "Discount"
             let PPN = "PPN 10%"
@@ -1195,6 +1216,10 @@ class CreateInvoicePDF: NSObject {
             let address3 = addCompanyAddress(pageRect: pageRect)
             let phone3 = addCompanyContact(pageRect: pageRect)
             let email3 = addCompanyEmail(pageRect: pageRect)
+            _ = addTotal(pageRect: pageRect)
+            _ = addDiscount(pageRect: pageRect)
+            _ = addTax(pageRect: pageRect)
+            _ = addGrandtotal(pageRect: pageRect)
             
             if products.count <= 40 && term.count <= 10{
                 
@@ -1361,6 +1386,111 @@ class CreateInvoicePDF: NSObject {
       return titleStringRect.origin.y + titleStringRect.size.height
     }
     
+    func addTotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Total,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(455 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addDiscount(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Discount,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(475 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addTax(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: Tax,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(495 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addGrandtotal(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: GrandTotal,
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 500,
+        y: CGFloat(515 + yTotal),
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
+    func addDocument(pageRect: CGRect) -> CGFloat {
+        let titleFont = UIFont.systemFont(ofSize: 34.0, weight: .regular)
+
+      let titleAttributes: [NSAttributedString.Key: Any] =
+        [NSAttributedString.Key.font: titleFont]
+
+      let attributedTitle = NSAttributedString(
+        string: "Invoice",
+        attributes: titleAttributes
+      )
+      let titleStringSize = attributedTitle.size()
+      let titleStringRect = CGRect(
+        x: 440,
+        y: 40,
+        width: titleStringSize.width,
+        height: titleStringSize.height
+      )
+      attributedTitle.draw(in: titleStringRect)
+      return titleStringRect.origin.y + titleStringRect.size.height
+    }
+    
     
     func addClientAddress(pageRect: CGRect) -> CGFloat {
         let titleFont = UIFont.systemFont(ofSize: 14.0, weight: .regular)
@@ -1376,26 +1506,6 @@ class CreateInvoicePDF: NSObject {
       let titleStringRect = CGRect(
         x: 160,
         y: 195,
-        width: titleStringSize.width,
-        height: titleStringSize.height
-      )
-      attributedTitle.draw(in: titleStringRect)
-      return titleStringRect.origin.y + titleStringRect.size.height
-    }
-    func addDocument(pageRect: CGRect) -> CGFloat {
-        let titleFont = UIFont.systemFont(ofSize: 34.0, weight: .regular)
-
-      let titleAttributes: [NSAttributedString.Key: Any] =
-        [NSAttributedString.Key.font: titleFont]
-
-      let attributedTitle = NSAttributedString(
-        string: "Invoice",
-        attributes: titleAttributes
-      )
-      let titleStringSize = attributedTitle.size()
-      let titleStringRect = CGRect(
-        x: 440,
-        y: 40,
         width: titleStringSize.width,
         height: titleStringSize.height
       )
