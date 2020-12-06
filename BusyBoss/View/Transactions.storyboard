@@ -40,7 +40,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vri-Qb-TJi">
-                                <rect key="frame" x="0.0" y="191" width="414" height="831"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="880"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TransactionViewCell" rowHeight="108" id="eja-sZ-h0r" customClass="TransactionTableViewCell" customModule="BusyBoss" customModuleProvider="target">
@@ -125,16 +125,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="5Ff-4F-luI">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="Trd-5f-Vd7"/>
-                                    <constraint firstAttribute="height" constant="56" id="X7W-x4-TrL"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yqD-Zy-5kD">
-                                <rect key="frame" x="36" y="152" width="343" height="32"/>
+                                <rect key="frame" x="36" y="103" width="343" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="yvH-Ov-rzn"/>
                                 </constraints>
@@ -155,13 +147,9 @@
                             <constraint firstAttribute="bottom" secondItem="vri-Qb-TJi" secondAttribute="bottom" constant="-126" id="9Rs-tu-psc"/>
                             <constraint firstItem="vri-Qb-TJi" firstAttribute="top" secondItem="yqD-Zy-5kD" secondAttribute="bottom" constant="8" id="Kqj-PL-Ztw"/>
                             <constraint firstItem="16M-cP-Vji" firstAttribute="trailing" secondItem="vri-Qb-TJi" secondAttribute="trailing" id="OMq-Oj-4c6"/>
-                            <constraint firstItem="5Ff-4F-luI" firstAttribute="centerX" secondItem="bDM-2v-J7y" secondAttribute="centerX" id="Rz2-X1-D3o"/>
                             <constraint firstItem="vri-Qb-TJi" firstAttribute="leading" secondItem="16M-cP-Vji" secondAttribute="leading" id="V9a-Z1-evb"/>
-                            <constraint firstItem="yqD-Zy-5kD" firstAttribute="top" secondItem="5Ff-4F-luI" secondAttribute="bottom" constant="8" id="bbc-ly-hnl"/>
-                            <constraint firstItem="5Ff-4F-luI" firstAttribute="top" secondItem="16M-cP-Vji" secondAttribute="top" id="gMh-sM-5H7"/>
-                            <constraint firstItem="5Ff-4F-luI" firstAttribute="leading" secondItem="16M-cP-Vji" secondAttribute="leading" id="l4l-o2-NyB"/>
+                            <constraint firstItem="yqD-Zy-5kD" firstAttribute="top" secondItem="16M-cP-Vji" secondAttribute="top" constant="15" id="Yea-KD-53U"/>
                             <constraint firstItem="yqD-Zy-5kD" firstAttribute="leading" secondItem="16M-cP-Vji" secondAttribute="leading" constant="36" id="mv7-mB-yr0"/>
-                            <constraint firstAttribute="trailing" secondItem="5Ff-4F-luI" secondAttribute="trailing" id="xb4-X9-fkS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Transactions" id="Pzu-iI-nq6">
@@ -979,15 +967,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="TuW-ij-C8u">
-                                <rect key="frame" x="0.0" y="73" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="X8E-o9-MKK"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vMT-OM-PKy">
-                                <rect key="frame" x="0.0" y="136" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClientContactViewCell" rowHeight="116" id="UH6-8c-6Io" customClass="AddNewTransactionClientTableViewCell" customModule="BusyBoss" customModuleProvider="target">
@@ -1110,16 +1091,13 @@
                         <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="amR-us-C2I" firstAttribute="centerX" secondItem="cSC-3H-IOH" secondAttribute="centerX" id="2nm-Xb-SyP"/>
-                            <constraint firstItem="TuW-ij-C8u" firstAttribute="trailing" secondItem="UDX-8b-ev4" secondAttribute="trailing" id="4On-kv-y6m"/>
                             <constraint firstItem="vMT-OM-PKy" firstAttribute="trailing" secondItem="UDX-8b-ev4" secondAttribute="trailing" id="5ux-5G-LQh"/>
-                            <constraint firstItem="TuW-ij-C8u" firstAttribute="top" secondItem="amR-us-C2I" secondAttribute="bottom" constant="17" id="AJL-UF-i5U"/>
                             <constraint firstItem="vMT-OM-PKy" firstAttribute="leading" secondItem="UDX-8b-ev4" secondAttribute="leading" id="Gf8-u9-upD"/>
                             <constraint firstItem="amR-us-C2I" firstAttribute="trailing" secondItem="UDX-8b-ev4" secondAttribute="trailing" id="Lng-zf-lXq"/>
-                            <constraint firstItem="TuW-ij-C8u" firstAttribute="leading" secondItem="UDX-8b-ev4" secondAttribute="leading" id="Rqj-F2-Twc"/>
-                            <constraint firstItem="vMT-OM-PKy" firstAttribute="top" secondItem="TuW-ij-C8u" secondAttribute="bottom" constant="19" id="YCo-PD-t9z"/>
                             <constraint firstItem="amR-us-C2I" firstAttribute="top" secondItem="UDX-8b-ev4" secondAttribute="top" id="bQK-Zl-W1l"/>
                             <constraint firstItem="amR-us-C2I" firstAttribute="leading" secondItem="UDX-8b-ev4" secondAttribute="leading" id="nJH-3L-yvS"/>
                             <constraint firstItem="vMT-OM-PKy" firstAttribute="bottom" secondItem="UDX-8b-ev4" secondAttribute="bottom" id="oTT-PM-gQd"/>
+                            <constraint firstItem="vMT-OM-PKy" firstAttribute="top" secondItem="amR-us-C2I" secondAttribute="bottom" id="oZd-h2-e3A"/>
                         </constraints>
                     </view>
                     <connections>
