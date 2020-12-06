@@ -8,11 +8,22 @@
 
 import Foundation
 import UIKit
+import CloudKit
 
 class Alert {
     
     static func showError(_ view: UIViewController,_ error: Error, completion: (() -> Void)? = nil) {
         let errorAlert = UIAlertController.init(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Dismiss", style: .cancel) { _ in
+            errorAlert.dismiss(animated: true, completion: completion)
+        }
+        errorAlert.addAction(alertAction)
+        view.present(errorAlert, animated: true)
+    }
+    
+    static func showCloudKitError(_ view: UIViewController,_ error: Error, completion: (() -> Void)? = nil) {
+        let errorMessage = CloudKitError.getUserFriendlyDescription(error: error)
+        let errorAlert = UIAlertController.init(title: "Error", message: errorMessage, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Dismiss", style: .cancel) { _ in
             errorAlert.dismiss(animated: true, completion: completion)
         }
@@ -35,6 +46,20 @@ class Alert {
             alert.dismiss(animated: true, completion: completion)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(confirmAction)
+        alert.addAction(cancelAction)
+        view.present(alert, animated: true)
+    }
+    
+    static func showRetryCloudkitError(view: UIViewController, title: String, error: Error, completion: (() -> Void)? = nil) {
+        let errorMessage = CloudKitError.getUserFriendlyDescription(error: error)
+        let alert = UIAlertController.init(title: title, message: errorMessage, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Retry", style: .default) { _ in
+            alert.dismiss(animated: true, completion: completion)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) {_ in
+            alert.dismiss(animated: true)
+        }
         alert.addAction(confirmAction)
         alert.addAction(cancelAction)
         view.present(alert, animated: true)
