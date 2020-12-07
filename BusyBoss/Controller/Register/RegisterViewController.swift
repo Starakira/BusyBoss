@@ -13,6 +13,7 @@ enum RegisterError: Error{
     case incompleteForm
     case invalidEmail
     case incorrectPasswordLength
+    case confirmPasswordMismatch
 }
 
 class RegisterViewController: UIViewController {
@@ -21,6 +22,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +43,9 @@ class RegisterViewController: UIViewController {
             Alert.showAlert(view: self, title: "Invalid Email", message: "Please use a valid email")
         } catch RegisterError.incorrectPasswordLength {
             Alert.showAlert(view: self, title: "Incorrect Password Length", message: "Password must be 8 characters long")
-        }
-        
-        catch {
+        } catch RegisterError.confirmPasswordMismatch {
+            Alert.showAlert(view: self, title: "Confirm Password Mismatch", message: "Your password doesn't match confirm password")
+        } catch {
             Alert.showError(self, error)
         }
     }
@@ -52,10 +54,12 @@ class RegisterViewController: UIViewController {
         let firstName = firstNameTextField.text
         let lastName = lastNameTextField.text
         let email = emailAddressTextField.text
-        let password = passwordTextField.text
         let phoneNumber = phoneNumberTextField.text
+        let password = passwordTextField.text
+        let confirmPassword = confirmPasswordTextField.text
         
-        if firstName!.isEmpty || lastName!.isEmpty || email!.isEmpty || password!.isEmpty || phoneNumber!.isEmpty {
+        
+        if firstName!.isEmpty || lastName!.isEmpty || email!.isEmpty || password!.isEmpty || confirmPassword!.isEmpty || phoneNumber!.isEmpty {
             throw RegisterError.incompleteForm
         }
         
@@ -65,6 +69,10 @@ class RegisterViewController: UIViewController {
         
         if password!.count < 8 {
             throw RegisterError.incorrectPasswordLength
+        }
+        
+        if password != confirmPassword {
+            throw RegisterError.confirmPasswordMismatch
         }
         
         registerNewUser()

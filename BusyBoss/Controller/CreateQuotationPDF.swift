@@ -425,7 +425,7 @@ class CreateQuotationPDF: NSObject {
       let titleStringSize = attributedTitle.size()
       let titleStringRect = CGRect(
         x: 500,
-        y: CGFloat(455 + yTotal),
+        y: CGFloat(455 + 500),
         width: titleStringSize.width,
         height: titleStringSize.height
       )
@@ -446,7 +446,7 @@ class CreateQuotationPDF: NSObject {
       let titleStringSize = attributedTitle.size()
       let titleStringRect = CGRect(
         x: 500,
-        y: CGFloat(475 + yTotal),
+        y: CGFloat(475 + 500),
         width: titleStringSize.width,
         height: titleStringSize.height
       )
@@ -467,7 +467,7 @@ class CreateQuotationPDF: NSObject {
       let titleStringSize = attributedTitle.size()
       let titleStringRect = CGRect(
         x: 500,
-        y: CGFloat(495 + yTotal),
+        y: CGFloat(495 + 500),
         width: titleStringSize.width,
         height: titleStringSize.height
       )
@@ -488,7 +488,7 @@ class CreateQuotationPDF: NSObject {
       let titleStringSize = attributedTitle.size()
       let titleStringRect = CGRect(
         x: 500,
-        y: CGFloat(515 + yTotal),
+        y: CGFloat(515 + 500),
         width: titleStringSize.width,
         height: titleStringSize.height
       )

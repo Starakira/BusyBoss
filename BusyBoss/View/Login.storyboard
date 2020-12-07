@@ -286,6 +286,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="54W-EA-rI1"/>
                     <connections>
+                        <outlet property="confirmPasswordTextField" destination="Pqq-jm-MVW" id="VI1-iS-u6N"/>
                         <outlet property="emailAddressTextField" destination="d5E-mp-vwM" id="KPk-6l-6EA"/>
                         <outlet property="firstNameTextField" destination="DnY-bk-B5k" id="gOb-yo-5za"/>
                         <outlet property="lastNameTextField" destination="j7I-3Z-jbb" id="Ubs-Yu-hQR"/>
