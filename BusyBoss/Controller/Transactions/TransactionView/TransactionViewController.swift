@@ -21,6 +21,12 @@ class TransactionViewController: UIViewController {
     
     var transactionIndex = -1
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     var selectedTransaction: Transaction?
     
     var pendingAction: UIAlertController?
@@ -214,7 +220,7 @@ extension TransactionViewController : UITableViewDataSource {
         }
         
         cell.labelDescription.text = transaction.description
-        cell.labelTotalPrice.text = "Rp. \(String(describing: transaction.value))"
+        cell.labelTotalPrice.text = "Rp. \(decimalFormatter.string(for: transaction.value) ?? "0")"
         cell.labelTransactionCode.text = transaction.transactionNumber
         
         cell.setClientName(transaction: transaction)

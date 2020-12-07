@@ -9,8 +9,8 @@ import UIKit
 
 class AddNewTransactionProductServicesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var NameJasaLabel: UILabel!
-    @IBOutlet weak var TotalHargaLabel: UILabel!
+    @IBOutlet weak var serviceLabel: UILabel!
+    @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var PlusMinus: UIStackView!
     
     override func awakeFromNib() {

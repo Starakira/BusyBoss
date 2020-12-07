@@ -223,7 +223,7 @@ extension TransactionDetailsViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath) as! AddNewTransactionTableViewCell
         
         cell.productNameLabel.text = product?.name
-        cell.productPriceLabel.text = String(product?.price ?? 0)
+        cell.productPriceLabel.text = "Rp. \(decimalFormatter.string(for: product?.price) ?? "0")"
         cell.productImage.image = product?.image
         
         cell.setProductQuantity(transaction: transaction!, product: product)

@@ -15,6 +15,12 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var labelTotalPrice: UILabel!
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -58,15 +64,15 @@ class TransactionTableViewCell: UITableViewCell {
             for product in products {
                 totalPrice += Double(product.price) * Double(product.transactionQuantity ?? 0)
             }
-            labelTotalPrice.text = String(totalPrice)
+            labelTotalPrice.text = "Rp. \(decimalFormatter.string(for: totalPrice) ?? "0")"
         } else {
             CloudKitManager.shared().transactionFetchTotalPrice(transaction: transaction){
-                (totalprice, error) in
+                (price, error) in
                 
                 if let error = error {
                     print("Error Fetch Price : \(error.localizedDescription)")
                 } else {
-                    self.labelTotalPrice.text = String(totalprice)
+                    self.labelTotalPrice.text = "Rp. \(self.decimalFormatter.string(for: price) ?? "0")"
                 }
             }
         }
