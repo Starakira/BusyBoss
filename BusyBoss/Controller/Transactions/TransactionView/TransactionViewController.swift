@@ -54,8 +54,6 @@ class TransactionViewController: UIViewController {
         }
     }
     
-    
-    
     @IBAction func segmentedTransaction(_ sender: UISegmentedControl) {
         refreshTableView(selectedSegmentIndex: sender.selectedSegmentIndex)
     }
@@ -153,8 +151,10 @@ extension TransactionViewController : TransactionConform{
 extension TransactionViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         transactionIndex = indexPath.row
+        
         fetchSelectedTransactionData {
             self.performSegue(withIdentifier: "transactionDetailsSegue", sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

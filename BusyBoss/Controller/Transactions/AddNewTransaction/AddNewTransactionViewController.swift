@@ -269,6 +269,9 @@ extension AddNewTransactionViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         
+        cell.selectionStyle = .none
+        cell.isUserInteractionEnabled = false
+        
         cell.productNameLabel.text = product.name
         cell.transactionProductQuantityLabel.text = String(product.transactionQuantity ?? 0)
         cell.productPriceLabel.text = String(product.price)

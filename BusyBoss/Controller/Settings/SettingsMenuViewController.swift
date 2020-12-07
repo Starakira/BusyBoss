@@ -57,15 +57,18 @@ class SettingsMenuViewController: UIViewController, UITableViewDataSource, UITab
         if indexPath.row == 0 {
             let vc = storyboard?.instantiateViewController(identifier: "userProfile") as! UserProfileViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         else if indexPath.row == 1 {
             let vc = storyboard?.instantiateViewController(identifier: "companyProfile") as! CompanyProfileViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         else if indexPath.row == 2 {
             let alert = UIAlertController(title: "Alert", message: "This feature is still locked, Coming Soon.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     

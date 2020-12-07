@@ -52,10 +52,11 @@ extension GoodsViewController: UITableViewDelegate {
         let vc = storyboard?.instantiateViewController(identifier: "goodsDetails") as! GoodsDetailsViewController
         vc.product = products[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return.delete
+        return .delete
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

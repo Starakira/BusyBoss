@@ -33,6 +33,7 @@
 		F58B15FF257B6823004E25B7 /* UIViewDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B15FE257B6823004E25B7 /* UIViewDraw.swift */; };
 		F58B1603257B7540004E25B7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F58B1602257B7540004E25B7 /* Settings.storyboard */; };
 		F58B1607257B97DA004E25B7 /* EncryptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58B1606257B97DA004E25B7 /* EncryptionManager.swift */; };
+		F58D5BD5257E493700A53B23 /* CreateQuotation2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58D5BD4257E493700A53B23 /* CreateQuotation2.swift */; };
 		F599E30E2551380E00B78AFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30D2551380E00B78AFC /* AppDelegate.swift */; };
 		F599E3102551380E00B78AFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F599E30F2551380E00B78AFC /* SceneDelegate.swift */; };
 		F599E3182551380E00B78AFC /* BusyBoss.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F599E3162551380E00B78AFC /* BusyBoss.xcdatamodeld */; };
@@ -106,6 +107,7 @@
 		F58B15FE257B6823004E25B7 /* UIViewDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewDraw.swift; sourceTree = "<group>"; };
 		F58B1602257B7540004E25B7 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		F58B1606257B97DA004E25B7 /* EncryptionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptionManager.swift; sourceTree = "<group>"; };
+		F58D5BD4257E493700A53B23 /* CreateQuotation2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateQuotation2.swift; sourceTree = "<group>"; };
 		F599E30A2551380E00B78AFC /* BusyBoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusyBoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F599E30D2551380E00B78AFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F599E30F2551380E00B78AFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -264,6 +266,20 @@
 			path = AddTransactionProductServices;
 			sourceTree = "<group>";
 		};
+		F58D5BDA257E5CE700A53B23 /* PDFKit */ = {
+			isa = PBXGroup;
+			children = (
+				F58D5BD4257E493700A53B23 /* CreateQuotation2.swift */,
+				F58B15F6257B602D004E25B7 /* CreateInvoicePDF.swift */,
+				F58B15F3257B602D004E25B7 /* CreateQuotationPDF.swift */,
+				F58B15F5257B602D004E25B7 /* CreateReceiptPDF.swift */,
+				F58B15F1257B602D004E25B7 /* InvoicePDFPreviewViewController.swift */,
+				F58B15F2257B602D004E25B7 /* QoutationPDFPreviewViewController.swift */,
+				F58B15F4257B602D004E25B7 /* ReceiptPDFPreviewViewController.swift */,
+			);
+			path = PDFKit;
+			sourceTree = "<group>";
+		};
 		F599E3012551380E00B78AFC = {
 			isa = PBXGroup;
 			children = (
@@ -326,12 +342,6 @@
 		F599E3272551384E00B78AFC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F58B15F6257B602D004E25B7 /* CreateInvoicePDF.swift */,
-				F58B15F3257B602D004E25B7 /* CreateQuotationPDF.swift */,
-				F58B15F5257B602D004E25B7 /* CreateReceiptPDF.swift */,
-				F58B15F1257B602D004E25B7 /* InvoicePDFPreviewViewController.swift */,
-				F58B15F2257B602D004E25B7 /* QoutationPDFPreviewViewController.swift */,
-				F58B15F4257B602D004E25B7 /* ReceiptPDFPreviewViewController.swift */,
 				F5A2968A25741CD90088F31A /* Settings */,
 				F599E38A25513C1700B78AFC /* Login */,
 				F599E38B25513C2200B78AFC /* Register */,
@@ -367,6 +377,7 @@
 		F599E38925513B1400B78AFC /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				F58D5BDA257E5CE700A53B23 /* PDFKit */,
 				F5519A6A256E36A900DD906B /* TransactionDetails */,
 				F5519A67256E33C400DD906B /* TransactionView */,
 				F5519A6B256E36CF00DD906B /* AddNewTransaction */,
@@ -644,6 +655,7 @@
 				F5D3076725666252001BF94A /* GoodsDetailsViewController.swift in Sources */,
 				F5047601256265CF004C70E0 /* AddTransactionProductServicesDetailsViewController.swift in Sources */,
 				F53D12F2256BA90200E00B43 /* CloudKitError.swift in Sources */,
+				F58D5BD5257E493700A53B23 /* CreateQuotation2.swift in Sources */,
 				F5CC97212579E5AF0090C721 /* ExtensionManager.swift in Sources */,
 				F58B15FA257B602D004E25B7 /* ReceiptPDFPreviewViewController.swift in Sources */,
 			);
@@ -787,7 +799,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BusyBoss/BusyBoss.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_TEAM = HAPJV2V5DY;
 				INFOPLIST_FILE = BusyBoss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -810,7 +822,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BusyBoss/BusyBoss.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_TEAM = HAPJV2V5DY;
 				INFOPLIST_FILE = BusyBoss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

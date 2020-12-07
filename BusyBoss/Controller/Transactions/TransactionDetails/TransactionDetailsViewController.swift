@@ -83,7 +83,7 @@ class TransactionDetailsViewController: UIViewController{
                     let TitleNumber = transactionNumberLabel.text
                 
                     {
-                    let pdfCreator = CreateQoutation2(
+                    let pdfCreator = CreateQuotation2(
                         tax: Tax,
                         clientname: ClientName,
                         clientphone: client?.phoneNumber ?? "No Number",
@@ -188,6 +188,9 @@ extension TransactionDetailsViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let product = transaction?.products?[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath) as! AddNewTransactionTableViewCell
+        
+        cell.selectionStyle = .none
+        cell.isUserInteractionEnabled = false
         
         cell.productNameLabel.text = product?.name
         cell.productPriceLabel.text = "Rp. \(decimalFormatter.string(for: product?.price) ?? "0")"

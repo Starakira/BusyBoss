@@ -73,6 +73,7 @@ extension AddTransactionProductServicesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         performSegue(withIdentifier: "AddServiceDetailsSegue", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

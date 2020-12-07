@@ -32,6 +32,12 @@ class TransactionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+          super.layoutSubviews()
+          let bottomSpace = 30.0 // Let's assume the space you want is 10
+        self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: CGFloat(bottomSpace), right: 0))
+     }
+    
     func setClientName(transaction: Transaction) {
         
         if let clientFirstName = transaction.client?.firstName {

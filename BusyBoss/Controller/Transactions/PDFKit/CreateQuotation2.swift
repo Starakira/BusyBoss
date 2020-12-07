@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreateQoutation2: NSObject {
+class CreateQuotation2: NSObject {
 
     let Tax         : String
     let ClientnName : String

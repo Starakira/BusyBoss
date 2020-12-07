@@ -436,7 +436,7 @@ struct CloudKitManager {
         operation.desiredKeys = [Client.keyFirstName, Client.keyLastName]
         
         operation.recordFetchedBlock = { record in
-            clientName = (record["firstName"] as? String ?? "") + (record["lastName"] as? String ?? "")
+            clientName = "\(record["firstName"] as? String ?? "No First Name") \(record["lastName"] ?? "No Last Name")"
         }
         
         operation.queryCompletionBlock = {cursor, error in

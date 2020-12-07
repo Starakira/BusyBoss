@@ -224,7 +224,7 @@
                                             <constraint firstAttribute="height" constant="34" id="3H8-dE-4Cl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad" textContentType="given-name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Last Name (Required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yLq-bJ-iZx">
                                         <rect key="frame" x="0.0" y="34" width="414" height="34"/>
@@ -232,7 +232,7 @@
                                             <constraint firstAttribute="height" constant="34" id="Xm6-lZ-Y8r"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad" textContentType="family-name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wDA-ah-u3u">
                                         <rect key="frame" x="0.0" y="68" width="414" height="34"/>
@@ -240,7 +240,7 @@
                                             <constraint firstAttribute="height" constant="34" id="aI8-oT-5kQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="organization"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n1S-Sh-JcV">
                                         <rect key="frame" x="0.0" y="102" width="414" height="34"/>
@@ -248,7 +248,7 @@
                                             <constraint firstAttribute="height" constant="34" id="s3k-Wo-698"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="street-address"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="edw-dn-WkN">
                                         <rect key="frame" x="0.0" y="136" width="414" height="34"/>
@@ -256,7 +256,7 @@
                                             <constraint firstAttribute="height" constant="34" id="PrX-QT-wTW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Phone Number (Required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ngk-c8-yVH">
                                         <rect key="frame" x="0.0" y="170" width="414" height="34"/>
@@ -264,7 +264,7 @@
                                             <constraint firstAttribute="height" constant="34" id="XSi-kB-ilH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -538,7 +538,7 @@
                                             <constraint firstAttribute="height" constant="34" id="NX9-aD-kSb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad" textContentType="given-name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Last Name (Required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WvL-XT-iCq">
                                         <rect key="frame" x="0.0" y="34" width="414" height="34"/>
@@ -546,7 +546,7 @@
                                             <constraint firstAttribute="height" constant="34" id="VJY-0X-r8O"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad" textContentType="family-name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jel-RW-LWK">
                                         <rect key="frame" x="0.0" y="68" width="414" height="34"/>
@@ -554,7 +554,7 @@
                                             <constraint firstAttribute="height" constant="34" id="68s-Fv-vza"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="organization"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ioP-un-Zzh">
                                         <rect key="frame" x="0.0" y="102" width="414" height="34"/>
@@ -562,7 +562,7 @@
                                             <constraint firstAttribute="height" constant="34" id="kZN-jI-5CG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="street-address"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="izr-uc-NRY">
                                         <rect key="frame" x="0.0" y="136" width="414" height="34"/>
@@ -570,7 +570,7 @@
                                             <constraint firstAttribute="height" constant="34" id="Ati-nI-xje"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Phone Number (Required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wpe-jJ-XuY">
                                         <rect key="frame" x="0.0" y="170" width="414" height="34"/>
@@ -578,7 +578,7 @@
                                             <constraint firstAttribute="height" constant="34" id="6YL-SS-MP2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
