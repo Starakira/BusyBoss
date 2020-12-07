@@ -40,10 +40,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uCp-HT-6Wa">
-                                <rect key="frame" x="0.0" y="88" width="414" height="730"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="730" id="MWr-XL-aY4"/>
                                     <constraint firstAttribute="width" constant="414" id="bW0-Kh-86n"/>
                                 </constraints>
                                 <color key="sectionIndexColor" name="font Color set"/>
@@ -149,7 +148,10 @@
                         <color key="backgroundColor" name="Background Color"/>
                         <constraints>
                             <constraint firstItem="uCp-HT-6Wa" firstAttribute="top" secondItem="Vac-dn-Ykz" secondAttribute="top" id="98h-nv-Bgg"/>
+                            <constraint firstAttribute="bottom" secondItem="uCp-HT-6Wa" secondAttribute="bottom" id="E0y-Ci-ptz"/>
                             <constraint firstItem="uCp-HT-6Wa" firstAttribute="centerX" secondItem="PWw-il-cs6" secondAttribute="centerX" id="E1E-hv-c9S"/>
+                            <constraint firstItem="uCp-HT-6Wa" firstAttribute="trailing" secondItem="Vac-dn-Ykz" secondAttribute="trailing" id="Zzc-Qa-XTZ"/>
+                            <constraint firstItem="uCp-HT-6Wa" firstAttribute="leading" secondItem="Vac-dn-Ykz" secondAttribute="leading" id="vy0-Qr-oeD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Clients" id="YOw-bq-Env">

@@ -40,13 +40,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cK-Kp-KsC">
-                                <rect key="frame" x="0.0" y="142" width="414" height="720"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="754"/>
                                 <connections>
                                     <segue destination="8b7-Db-aUc" kind="embed" id="K98-jK-9dR"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsV-cs-foK">
-                                <rect key="frame" x="0.0" y="142" width="414" height="720"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="754"/>
                                 <connections>
                                     <segue destination="ah1-xa-dOW" kind="embed" id="dut-0c-C7e"/>
                                 </connections>
@@ -70,8 +70,8 @@
                             <constraint firstItem="3cK-Kp-KsC" firstAttribute="trailing" secondItem="Bvh-4W-3J1" secondAttribute="trailing" id="EKC-4H-3OO"/>
                             <constraint firstItem="3cK-Kp-KsC" firstAttribute="leading" secondItem="Bvh-4W-3J1" secondAttribute="leading" id="EPr-w3-lXy"/>
                             <constraint firstItem="Dcb-lD-rVa" firstAttribute="top" secondItem="Bvh-4W-3J1" secondAttribute="top" constant="12" id="F76-cA-BGX"/>
-                            <constraint firstItem="qsV-cs-foK" firstAttribute="bottom" secondItem="Bvh-4W-3J1" secondAttribute="bottom" id="IV6-9H-aKM"/>
-                            <constraint firstItem="Bvh-4W-3J1" firstAttribute="bottom" secondItem="3cK-Kp-KsC" secondAttribute="bottom" id="TxJ-XG-eHe"/>
+                            <constraint firstItem="qsV-cs-foK" firstAttribute="bottom" secondItem="3ky-7f-Nrb" secondAttribute="bottom" id="IV6-9H-aKM"/>
+                            <constraint firstAttribute="bottom" secondItem="3cK-Kp-KsC" secondAttribute="bottom" id="TxJ-XG-eHe"/>
                             <constraint firstItem="qsV-cs-foK" firstAttribute="top" secondItem="Dcb-lD-rVa" secondAttribute="bottom" constant="11" id="byl-s9-MiU"/>
                             <constraint firstItem="Dcb-lD-rVa" firstAttribute="centerX" secondItem="Bvh-4W-3J1" secondAttribute="centerX" id="pWk-zA-BWI"/>
                             <constraint firstItem="3cK-Kp-KsC" firstAttribute="top" secondItem="Dcb-lD-rVa" secondAttribute="bottom" constant="11" id="vvK-mX-6EV"/>
@@ -93,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNp-7S-QdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2397" y="669"/>
+            <point key="canvasLocation" x="-2397.1014492753625" y="668.97321428571422"/>
         </scene>
         <!--Input Goods View Controller-->
         <scene sceneID="qJB-TH-2Ab">
@@ -398,12 +398,11 @@
             <objects>
                 <viewController id="8b7-Db-aUc" customClass="GoodsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zSd-7P-sWO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-iB-AoX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-iB-AoX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="Background Color"/>
                                 <prototypes>
@@ -488,6 +487,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X1x-X9-f5B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qzN-iB-AoX" secondAttribute="bottom" id="GOd-T2-D8u"/>
+                            <constraint firstItem="qzN-iB-AoX" firstAttribute="top" secondItem="zSd-7P-sWO" secondAttribute="top" id="KAr-h2-Vej"/>
+                            <constraint firstItem="qzN-iB-AoX" firstAttribute="trailing" secondItem="X1x-X9-f5B" secondAttribute="trailing" id="Yyo-Fe-rJX"/>
+                            <constraint firstItem="qzN-iB-AoX" firstAttribute="leading" secondItem="X1x-X9-f5B" secondAttribute="leading" id="aji-aP-KS8"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="goodsTableView" destination="qzN-iB-AoX" id="sIU-Ao-4St"/>
@@ -502,12 +507,11 @@
             <objects>
                 <viewController id="ah1-xa-dOW" customClass="ServicesViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WC7-zO-Ou1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="720"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XmF-fc-IaH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XmF-fc-IaH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="Background Color"/>
                                 <prototypes>
@@ -557,6 +561,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vYU-jF-b5v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XmF-fc-IaH" firstAttribute="top" secondItem="WC7-zO-Ou1" secondAttribute="top" id="1pC-ej-K9p"/>
+                            <constraint firstAttribute="bottom" secondItem="XmF-fc-IaH" secondAttribute="bottom" id="3AS-33-DEi"/>
+                            <constraint firstItem="XmF-fc-IaH" firstAttribute="trailing" secondItem="vYU-jF-b5v" secondAttribute="trailing" id="XtX-zk-6Cv"/>
+                            <constraint firstItem="XmF-fc-IaH" firstAttribute="leading" secondItem="vYU-jF-b5v" secondAttribute="leading" id="gHN-95-TE1"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="servicesTableView" destination="XmF-fc-IaH" id="2FR-jj-ACA"/>

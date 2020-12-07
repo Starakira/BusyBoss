@@ -968,7 +968,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vMT-OM-PKy">
-                                <rect key="frame" x="0.0" y="56" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClientContactViewCell" rowHeight="116" id="UH6-8c-6Io" customClass="AddNewTransactionClientTableViewCell" customModule="BusyBoss" customModuleProvider="target">
@@ -1096,7 +1096,7 @@
                             <constraint firstItem="amR-us-C2I" firstAttribute="trailing" secondItem="UDX-8b-ev4" secondAttribute="trailing" id="Lng-zf-lXq"/>
                             <constraint firstItem="amR-us-C2I" firstAttribute="top" secondItem="UDX-8b-ev4" secondAttribute="top" id="bQK-Zl-W1l"/>
                             <constraint firstItem="amR-us-C2I" firstAttribute="leading" secondItem="UDX-8b-ev4" secondAttribute="leading" id="nJH-3L-yvS"/>
-                            <constraint firstItem="vMT-OM-PKy" firstAttribute="bottom" secondItem="UDX-8b-ev4" secondAttribute="bottom" id="oTT-PM-gQd"/>
+                            <constraint firstItem="vMT-OM-PKy" firstAttribute="bottom" secondItem="cSC-3H-IOH" secondAttribute="bottom" id="oTT-PM-gQd"/>
                             <constraint firstItem="vMT-OM-PKy" firstAttribute="top" secondItem="amR-us-C2I" secondAttribute="bottom" id="oZd-h2-e3A"/>
                         </constraints>
                     </view>
@@ -1141,15 +1141,14 @@
                                     <action selector="SegmentedAddProductList:" destination="0nj-0o-Cmf" eventType="valueChanged" id="3cq-NB-WhZ"/>
                                 </connections>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8st-xt-z1K">
-                                <rect key="frame" x="0.0" y="118" width="414" height="690"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8st-xt-z1K">
+                                <rect key="frame" x="0.0" y="118" width="414" height="724"/>
                                 <connections>
                                     <segue destination="5aX-Sx-QWE" kind="embed" id="eaY-kp-GcG"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaL-HF-1UX">
-                                <rect key="frame" x="0.0" y="118" width="414" height="690"/>
+                                <rect key="frame" x="0.0" y="118" width="414" height="724"/>
                                 <connections>
                                     <segue destination="Q5y-aC-Kaq" kind="embed" id="hfX-F6-dGx"/>
                                 </connections>
@@ -1158,7 +1157,10 @@
                         <viewLayoutGuide key="safeArea" id="M4X-bl-kl3"/>
                         <color key="backgroundColor" name="Background Color"/>
                         <constraints>
+                            <constraint firstItem="8st-xt-z1K" firstAttribute="trailing" secondItem="M4X-bl-kl3" secondAttribute="trailing" id="2O7-G9-92k"/>
                             <constraint firstItem="gaL-HF-1UX" firstAttribute="top" secondItem="ovA-d9-dr6" secondAttribute="bottom" constant="17" id="4hT-HP-At0"/>
+                            <constraint firstItem="8st-xt-z1K" firstAttribute="top" secondItem="ovA-d9-dr6" secondAttribute="bottom" constant="17" id="4w8-ik-qN2"/>
+                            <constraint firstItem="8st-xt-z1K" firstAttribute="bottom" secondItem="zny-hc-gXs" secondAttribute="bottom" id="8dE-b8-pKM"/>
                             <constraint firstItem="ovA-d9-dr6" firstAttribute="centerX" secondItem="M4X-bl-kl3" secondAttribute="centerX" id="FHR-aN-2Zq"/>
                             <constraint firstItem="ta9-x0-NSi" firstAttribute="width" secondItem="zny-hc-gXs" secondAttribute="width" id="J9v-49-I3M"/>
                             <constraint firstItem="ovA-d9-dr6" firstAttribute="top" secondItem="M4X-bl-kl3" secondAttribute="top" constant="70" id="JUr-q0-7ta"/>
@@ -1166,8 +1168,9 @@
                             <constraint firstItem="gaL-HF-1UX" firstAttribute="leading" secondItem="M4X-bl-kl3" secondAttribute="leading" id="WFN-oa-dEP"/>
                             <constraint firstItem="ta9-x0-NSi" firstAttribute="top" secondItem="M4X-bl-kl3" secondAttribute="top" id="YSU-LV-HdU"/>
                             <constraint firstItem="gaL-HF-1UX" firstAttribute="trailing" secondItem="M4X-bl-kl3" secondAttribute="trailing" id="Z7g-U7-TjF"/>
+                            <constraint firstItem="8st-xt-z1K" firstAttribute="leading" secondItem="M4X-bl-kl3" secondAttribute="leading" id="bDm-3n-Wwg"/>
                             <constraint firstItem="ovA-d9-dr6" firstAttribute="width" secondItem="zny-hc-gXs" secondAttribute="width" multiplier="0.903382" id="vbR-cO-Hlz"/>
-                            <constraint firstItem="gaL-HF-1UX" firstAttribute="bottom" secondItem="M4X-bl-kl3" secondAttribute="bottom" id="vfB-Ks-G1s"/>
+                            <constraint firstItem="gaL-HF-1UX" firstAttribute="bottom" secondItem="zny-hc-gXs" secondAttribute="bottom" id="vfB-Ks-G1s"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1185,12 +1188,11 @@
             <objects>
                 <viewController id="5aX-Sx-QWE" customClass="AddTransactionProductGoodsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bZh-MH-c1B">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="690"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oxz-EL-I3f">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="690"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oxz-EL-I3f">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductListBarangViewCell" rowHeight="115" id="bFq-Ao-ZsD" customClass="AddTransactionProductGoodsTableViewCell" customModule="BusyBoss" customModuleProvider="target">
@@ -1275,6 +1277,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hmo-Cb-7lW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oxz-EL-I3f" firstAttribute="trailing" secondItem="Hmo-Cb-7lW" secondAttribute="trailing" id="Eyk-o2-nWC"/>
+                            <constraint firstItem="oxz-EL-I3f" firstAttribute="top" secondItem="bZh-MH-c1B" secondAttribute="top" id="UQP-dg-kgV"/>
+                            <constraint firstItem="oxz-EL-I3f" firstAttribute="leading" secondItem="Hmo-Cb-7lW" secondAttribute="leading" id="k8k-cQ-tAo"/>
+                            <constraint firstAttribute="bottom" secondItem="oxz-EL-I3f" secondAttribute="bottom" id="sVV-bK-Hsn"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="goodsProductListTableView" destination="oxz-EL-I3f" id="Z5Y-0l-EQE"/>
@@ -1290,7 +1298,7 @@
             <objects>
                 <viewController id="zah-Tg-Z5F" customClass="AddTransactionProductGoodsDetailsViewContoller" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Ui-cn-zl5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="636"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NXu-Oe-gte">
@@ -1440,12 +1448,11 @@
             <objects>
                 <viewController id="Q5y-aC-Kaq" customClass="AddTransactionProductServicesViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SFu-qx-3Eh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="690"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="25T-eU-BR8">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="677"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="25T-eU-BR8">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductListJasaViewCell" rowHeight="73" id="FAY-0J-DZb" customClass="AddNewTransactionProductServicesTableViewCell" customModule="BusyBoss" customModuleProvider="target">
@@ -1494,6 +1501,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DYp-Sn-q3E"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="25T-eU-BR8" secondAttribute="bottom" id="6St-ws-uSG"/>
+                            <constraint firstItem="25T-eU-BR8" firstAttribute="top" secondItem="SFu-qx-3Eh" secondAttribute="top" id="Cjv-Bz-Y1j"/>
+                            <constraint firstItem="25T-eU-BR8" firstAttribute="trailing" secondItem="DYp-Sn-q3E" secondAttribute="trailing" id="Szj-2g-9t1"/>
+                            <constraint firstItem="25T-eU-BR8" firstAttribute="leading" secondItem="DYp-Sn-q3E" secondAttribute="leading" id="xNW-TC-Bay"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="servicesProductListTableView" destination="25T-eU-BR8" id="8G6-rw-KFM"/>
@@ -1509,7 +1522,7 @@
             <objects>
                 <viewController id="jzM-L3-jkh" customClass="AddTransactionProductServicesDetailsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jxb-rM-OC2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="636"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDM-Mb-X9G">
