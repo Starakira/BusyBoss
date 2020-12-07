@@ -64,7 +64,7 @@ extension AddNewTransactionClientViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClientContactViewCell", for: indexPath)as!AddNewTransactionClientTableViewCell
         let client = clients[indexPath.row]
-        cell.NameContactClient.text = client.firstName + client.lastName
+        cell.NameContactClient.text = client.firstName + " " + client.lastName
         cell.NameCompanyClient.text = client.companyName
         cell.AddressCompanyClient.text = client.companyAddress
         cell.NumberTelephoneCompany.text = client.phoneNumber

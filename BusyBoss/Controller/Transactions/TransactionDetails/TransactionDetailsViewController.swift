@@ -58,7 +58,7 @@ class TransactionDetailsViewController: UIViewController{
 //        Invoice.isEnabled = false
         Receipt.isEnabled = false
 
-        self.NameUserTransaction.text = (self.client?.firstName ?? "") + (self.client?.lastName ?? "")
+        self.NameUserTransaction.text = (self.client?.firstName ?? "") + " " + (self.client?.lastName ?? "")
         transactionNumberLabel.text = transaction?.transactionNumber
         transactionProductsTotalPriceLabel.text = "Rp \(decimalFormatter.string(for: totalProductPrice) ?? "0")"
         transactionDiscountLabel.text = "Rp \(decimalFormatter.string(for: transaction?.discount) ?? "0")"

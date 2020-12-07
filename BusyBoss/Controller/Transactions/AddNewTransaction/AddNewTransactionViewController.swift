@@ -218,7 +218,7 @@ class AddNewTransactionViewController: UIViewController {
 extension AddNewTransactionViewController: ClientsConform {
     func clientListPassData(client: Client) {
         self.client = client
-        self.clientTextField.text = client.firstName + client.lastName
+        self.clientTextField.text = client.firstName + " " + client.lastName
     }
 }
 
