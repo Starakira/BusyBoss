@@ -1,14 +1,14 @@
 //
-//  CreateInvoicePDF.swift
+//  CreateQoutation2.swift
 //  BusyBoss
 //
-//  Created by Andre Marines ado Tena Uak on 30/11/20.
+//  Created by Andre Marines ado Tena Uak on 07/12/20.
 //
 
 import UIKit
 
-class CreateInvoicePDF: NSObject {
-    
+class CreateQoutation2: NSObject {
+
     let Tax         : String
     let ClientnName : String
     let ClientPhone : String
@@ -209,6 +209,7 @@ class CreateInvoicePDF: NSObject {
             //add data ke PDF
             let titletransaction = addTitle(pageRect: pageRect)
             let clientname = addClientName(pageRect: pageRect)
+            let clientcompanyname = addClientName(pageRect: pageRect)
             let clientphone = addClientPhone(pageRect: pageRect)
             let clientemail = addClientEmail(pageRect: pageRect)
             let clientaddres = addClientAddress(pageRect: pageRect)
@@ -235,7 +236,7 @@ class CreateInvoicePDF: NSObject {
                 
                 // setting terms
                     
-                let valid = "Please make your payment before:"
+                let valid = "This offer valid until : "
                 valid.draw(at: CGPoint(x: 20, y: 560),withAttributes : validattributes)
 
                 let Terms = "Terms and Condition :"
@@ -247,6 +248,22 @@ class CreateInvoicePDF: NSObject {
 
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 675 + geser), withAttributes : boldattributes)
+                
+                let Signature = "Signature "
+                Signature.draw(at: CGPoint(x: 300, y: 720 + geser), withAttributes : normalattributes)
+                
+                let titikdua = ":"
+                titikdua.draw(at: CGPoint(x: 375, y: 720 + geser), withAttributes : normalattributes)
+                
+                let Name = "Name"
+                Name.draw(at: CGPoint(x: 300, y: 740 + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 740 + geser), withAttributes : normalattributes)
+                
+                let Position = "Position"
+                Position.draw(at: CGPoint(x: 300, y: 760 + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 760 + geser), withAttributes : normalattributes)
 
 
             }else if term.count >= 10{
@@ -263,21 +280,22 @@ class CreateInvoicePDF: NSObject {
 
                 let titletransaction = addTitle(pageRect: pageRect)
                 let clientname = addClientName(pageRect: pageRect)
+                let clientcompanyname = addClientName(pageRect: pageRect)
                 let clientphone = addClientPhone(pageRect: pageRect)
                 let clientemail = addClientEmail(pageRect: pageRect)
                 let clientaddres = addClientAddress(pageRect: pageRect)
                 let documentName = addDocument(pageRect: pageRect)
-                _ = addClientCompany(pageRect: pageRect)
 //                let imageBottom = addImage(pageRect: pageRect)
                 let company = addCompany(pageRect: pageRect)
                 let address = addCompanyAddress(pageRect: pageRect)
                 let phone = addCompanyContact(pageRect: pageRect)
                 let email = addCompanyEmail(pageRect: pageRect)
+                _ = addClientCompany(pageRect: pageRect)
 
                 // setting terms
 
 
-                let valid = "Please make your payment before:"
+                let valid = "This offer valid until : "
                 valid.draw(at: CGPoint(x: 20, y: 180 ),withAttributes : validattributes)
 
                 let Terms = "Terms and Condition :"
@@ -288,6 +306,22 @@ class CreateInvoicePDF: NSObject {
 
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 300 + geser1), withAttributes : boldattributes)
+                
+                let Signature = "Signature "
+                Signature.draw(at: CGPoint(x: 300, y: 360 + geser1), withAttributes : normalattributes)
+                
+                let titikdua = ":"
+                titikdua.draw(at: CGPoint(x: 375, y: 360 + geser1), withAttributes : normalattributes)
+                
+                let Name = "Name"
+                Name.draw(at: CGPoint(x: 300, y: 380 + geser1), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 380 + geser1), withAttributes : normalattributes)
+                
+                let Position = "Position"
+                Position.draw(at: CGPoint(x: 300, y: 400 + geser1), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 400 + geser1), withAttributes : normalattributes)
 
             }
       
@@ -426,6 +460,7 @@ class CreateInvoicePDF: NSObject {
                 
             let titletransaction = addTitle(pageRect: pageRect)
             let clientname = addClientName(pageRect: pageRect)
+            let clientcompanyname = addClientName(pageRect: pageRect)
             let clientphone = addClientPhone(pageRect: pageRect)
             let clientemail = addClientEmail(pageRect: pageRect)
             let clientaddres = addClientAddress(pageRect: pageRect)
@@ -455,7 +490,7 @@ class CreateInvoicePDF: NSObject {
             // setting terms
             
             
-            let valid = "Please make your payment before:"
+            let valid = "This offer valid until : "
             valid.draw(at: CGPoint(x: 20, y: 180 ),withAttributes : validattributes)
 
             let Terms = "Terms and Condition :"
@@ -474,6 +509,22 @@ class CreateInvoicePDF: NSObject {
      
             let Sincerely = "Sincerely,"
             Sincerely.draw(at: CGPoint(x: 20, y: 300 + geser), withAttributes : boldattributes)
+            
+            let Signature = "Signature "
+            Signature.draw(at: CGPoint(x: 300, y: 360 + geser), withAttributes : normalattributes)
+            
+            let titikdua = ":"
+            titikdua.draw(at: CGPoint(x: 375, y: 360 + geser), withAttributes : normalattributes)
+            
+            let Name = "Name"
+            Name.draw(at: CGPoint(x: 300, y: 380 + geser), withAttributes : normalattributes)
+        
+            titikdua.draw(at: CGPoint(x: 375, y: 380 + geser), withAttributes : normalattributes)
+            
+            let Position = "Position"
+            Position.draw(at: CGPoint(x: 300, y: 400 + geser), withAttributes : normalattributes)
+        
+            titikdua.draw(at: CGPoint(x: 375, y: 400 + geser), withAttributes : normalattributes)
 
         }
         
@@ -597,16 +648,17 @@ class CreateInvoicePDF: NSObject {
             
             let titletransaction = addTitle(pageRect: pageRect)
             let clientname = addClientName(pageRect: pageRect)
+            let clientcompanyname = addClientName(pageRect: pageRect)
             let clientphone = addClientPhone(pageRect: pageRect)
             let clientemail = addClientEmail(pageRect: pageRect)
             let clientaddres = addClientAddress(pageRect: pageRect)
             let documentName = addDocument(pageRect: pageRect)
-            _ = addClientCompany(pageRect: pageRect)
 //            let imageBottom = addImage(pageRect: pageRect)
             let company = addCompany(pageRect: pageRect)
             let address = addCompanyAddress(pageRect: pageRect)
             let phone = addCompanyContact(pageRect: pageRect)
             let email = addCompanyEmail(pageRect: pageRect)
+            _ = addClientCompany(pageRect: pageRect)
             context.beginPage()
             
             // setting tampilan table
@@ -691,7 +743,7 @@ class CreateInvoicePDF: NSObject {
                 
                 // setting terms
                 let yValid = yTrem - 20
-                let valid = "Please make your payment before:"
+                let valid = "This offer valid until : "
                 valid.draw(at: CGPoint(x: 20, y: yValid),withAttributes : validattributes)
 
                 let Terms = "Terms and Condition :"
@@ -703,6 +755,22 @@ class CreateInvoicePDF: NSObject {
                 let yTTD = yTrem + 85
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 15 +  yTTD + geser), withAttributes : boldattributes)
+                
+                let Signature = "Signature "
+                Signature.draw(at: CGPoint(x: 300, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let titikdua = ":"
+                titikdua.draw(at: CGPoint(x: 375, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Name = "Name"
+                Name.draw(at: CGPoint(x: 300, y: 90 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 90 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Position = "Position"
+                Position.draw(at: CGPoint(x: 300, y: 105 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 105 + yTTD + geser), withAttributes : normalattributes)
 
             }else if products.count == 26 && term.count <= 3{
                 
@@ -717,7 +785,7 @@ class CreateInvoicePDF: NSObject {
                 
                 // setting terms
                 let yValid = yTrem - 20
-                let valid = "Please make your payment before:"
+                let valid = "This offer valid until : "
                 valid.draw(at: CGPoint(x: 20, y: yValid),withAttributes : validattributes)
 
                 let Terms = "Terms and Condition :"
@@ -730,6 +798,22 @@ class CreateInvoicePDF: NSObject {
 
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 15 +  yTTD + geser), withAttributes : boldattributes)
+                
+                let Signature = "Signature "
+                Signature.draw(at: CGPoint(x: 300, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let titikdua = ":"
+                titikdua.draw(at: CGPoint(x: 375, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Name = "Name"
+                Name.draw(at: CGPoint(x: 300, y: 90 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 90 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Position = "Position"
+                Position.draw(at: CGPoint(x: 300, y: 105 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 105 + yTTD + geser), withAttributes : normalattributes)
                 
             }
         
@@ -852,16 +936,17 @@ class CreateInvoicePDF: NSObject {
 
             let titletransaction = addTitle(pageRect: pageRect)
             let clientname = addClientName(pageRect: pageRect)
+            let clientcompanyname = addClientName(pageRect: pageRect)
             let clientphone = addClientPhone(pageRect: pageRect)
             let clientemail = addClientEmail(pageRect: pageRect)
             let clientaddres = addClientAddress(pageRect: pageRect)
             let documentName = addDocument(pageRect: pageRect)
-            _ = addClientCompany(pageRect: pageRect)
 //            let imageBottom = addImage(pageRect: pageRect)
             let company = addCompany(pageRect: pageRect)
             let address = addCompanyAddress(pageRect: pageRect)
             let phone = addCompanyContact(pageRect: pageRect)
             let email = addCompanyEmail(pageRect: pageRect)
+            _ = addClientCompany(pageRect: pageRect)
         
             //page2
             context.beginPage()
@@ -950,7 +1035,7 @@ class CreateInvoicePDF: NSObject {
             Numbertext.draw(at: CGPoint(x: 440, y: 75), withAttributes :normalattributes)
             
             // setting terms
-            let valid = "Please make your payment before:"
+            let valid = "This offer valid until : "
             valid.draw(at: CGPoint(x: 20, y: 240),withAttributes : validattributes)
 
             let Terms = "Terms and Condition :"
@@ -960,6 +1045,22 @@ class CreateInvoicePDF: NSObject {
                 let set2 = g - 60
             let Sincerely = "Sincerely,"
             Sincerely.draw(at: CGPoint(x: 20, y: 380 + set2), withAttributes : boldattributes)
+            
+            let Signature = "Signature "
+            Signature.draw(at: CGPoint(x: 300, y: 420 + set2), withAttributes : normalattributes)
+            
+            let titikdua = ":"
+            titikdua.draw(at: CGPoint(x: 375, y: 420 + set2), withAttributes : normalattributes)
+            
+            let Name = "Name"
+            Name.draw(at: CGPoint(x: 300, y: 440 + set2), withAttributes : normalattributes)
+        
+            titikdua.draw(at: CGPoint(x: 375, y: 440 + set2), withAttributes : normalattributes)
+            
+            let Position = "Position"
+            Position.draw(at: CGPoint(x: 300, y: 460 + set2), withAttributes : normalattributes)
+        
+            titikdua.draw(at: CGPoint(x: 375, y: 460 + set2), withAttributes : normalattributes)
 
             //add data ke PDF
             
@@ -1089,7 +1190,7 @@ class CreateInvoicePDF: NSObject {
 
             let titletransaction = addTitle(pageRect: pageRect)
             let clientname = addClientName(pageRect: pageRect)
-            _ = addClientCompany(pageRect: pageRect)
+            let clientcompanyname = addClientName(pageRect: pageRect)
             let clientphone = addClientPhone(pageRect: pageRect)
             let clientemail = addClientEmail(pageRect: pageRect)
             let clientaddres = addClientAddress(pageRect: pageRect)
@@ -1099,6 +1200,7 @@ class CreateInvoicePDF: NSObject {
             let address = addCompanyAddress(pageRect: pageRect)
             let phone = addCompanyContact(pageRect: pageRect)
             let email = addCompanyEmail(pageRect: pageRect)
+            _ = addClientCompany(pageRect: pageRect)
         
             //page 2
             context.beginPage()
@@ -1167,7 +1269,7 @@ class CreateInvoicePDF: NSObject {
             Amount.draw(at: CGPoint(x: 500, y: 170), withAttributes : boldattributes)
             IDR2.draw(at: CGPoint(x: 507, y: 190), withAttributes : boldattributes)
             
-            var aPage1_1 = 0            
+            var aPage1_1 = 0
             
             for (index, product) in products.enumerated() {
                 let tambah = aPage1_1 + 20
@@ -1237,7 +1339,7 @@ class CreateInvoicePDF: NSObject {
                 
                 // setting terms
                 let yValid = yTrem - 20
-                let valid = "Please make your payment before:"
+                let valid = "This offer valid until : "
                 valid.draw(at: CGPoint(x: 20, y: yValid),withAttributes : validattributes)
 
                 let Terms = "Terms and Condition :"
@@ -1250,6 +1352,21 @@ class CreateInvoicePDF: NSObject {
 
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 15 +  yTTD + geser), withAttributes : boldattributes)
+                let Signature = "Signature "
+                Signature.draw(at: CGPoint(x: 300, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let titikdua = ":"
+                titikdua.draw(at: CGPoint(x: 375, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Name = "Name"
+                Name.draw(at: CGPoint(x: 300, y: 90 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 90 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Position = "Position"
+                Position.draw(at: CGPoint(x: 300, y: 105 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 105 + yTTD + geser), withAttributes : normalattributes)
 
             }else if products.count == 50 && term.count <= 3{
                 
@@ -1264,7 +1381,7 @@ class CreateInvoicePDF: NSObject {
                 
                 // setting terms
                 let yValid = yTrem
-                let valid = "Please make your payment before:"
+                let valid = "This offer valid until : "
                 valid.draw(at: CGPoint(x: 20, y: yValid),withAttributes : validattributes)
 
                 let Terms = "Terms and Condition :"
@@ -1277,6 +1394,23 @@ class CreateInvoicePDF: NSObject {
 
                 let Sincerely = "Sincerely,"
                 Sincerely.draw(at: CGPoint(x: 20, y: 15 +  yTTD + geser), withAttributes : boldattributes)
+                
+                let Signature = "Signature "
+                Signature.draw(at: CGPoint(x: 300, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let titikdua = ":"
+                titikdua.draw(at: CGPoint(x: 375, y: 75 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Name = "Name"
+                Name.draw(at: CGPoint(x: 300, y: 90 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 90 + yTTD + geser), withAttributes : normalattributes)
+                
+                let Position = "Position"
+                Position.draw(at: CGPoint(x: 300, y: 105 + yTTD + geser), withAttributes : normalattributes)
+            
+                titikdua.draw(at: CGPoint(x: 375, y: 105 + yTTD + geser), withAttributes : normalattributes)
+
             }
         }
       }
@@ -1483,7 +1617,7 @@ class CreateInvoicePDF: NSObject {
         [NSAttributedString.Key.font: titleFont]
 
       let attributedTitle = NSAttributedString(
-        string: "Invoice",
+        string: "Quotation",
         attributes: titleAttributes
       )
       let titleStringSize = attributedTitle.size()
@@ -1505,13 +1639,13 @@ class CreateInvoicePDF: NSObject {
         [NSAttributedString.Key.font: titleFont]
 
       let attributedTitle = NSAttributedString(
-        string: ClientnName,
+        string: ClientAddres,
         attributes: titleAttributes
       )
       let titleStringSize = attributedTitle.size()
       let titleStringRect = CGRect(
-        x: 160,
-        y: 195,
+        x: 150,
+        y: 220,
         width: titleStringSize.width,
         height: titleStringSize.height
       )

@@ -98,7 +98,19 @@ class CreateQuotationPDF: NSObject {
                     addRecipientInfo(numberPage: totalPageCount)
                     addTableHeader(offset: 0)
                     
-                    for index in 0...14{
+                    for index in 0...7{
+                        if (self.products.count == 0) {
+                            addFooter(offset: offsetY)
+                            break
+                        }
+                        offsetY = offsetY + 20
+                        
+                        addProduct(product: self.products.remove(at: 0), offsetY: offsetY)
+                        productNumber = productNumber + 1
+                        let number = String(productNumber)
+                        number.draw(at: CGPoint(x: 35, y: 355 + offsetY), withAttributes :normalattributes)
+                    }
+                    for index in 0...5{
                         if (self.products.count == 0) {
                             break
                         }
@@ -111,12 +123,14 @@ class CreateQuotationPDF: NSObject {
                     }
                     firstPage = false
                 } else {
+                    offsetY = 0
+                    context.beginPage()
                     if (self.products.count == 0) {
                         addFooter(offset: offsetY)
                         processDone = true
                         return
                     }
-                    context.beginPage()
+                    
                     
                     let targetNumber = productNumber + 23
                     
@@ -172,7 +186,7 @@ class CreateQuotationPDF: NSObject {
         PPN.draw(at: CGPoint(x: 400, y: 495 + totalOffset), withAttributes : boldattributes)
         
         let GrandTotal = "Grand Total"
-        GrandTotal.draw(at: CGPoint(x: 400, y: 515 + totalOffset), withAttributes : boldattributes)
+        GrandTotal.draw(at: CGPoint(x: 400, y:515 + totalOffset), withAttributes : boldattributes)
         
         //Term
         var offsetX = 0
