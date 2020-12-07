@@ -50,7 +50,6 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func onSaveButtonTapped(_ sender: UIBarButtonItem) {
-        print("Save clicked!")
         
         let changeUser = User(recordID: userRecordID, firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!, signature: #imageLiteral(resourceName: "Image Placeholder"))
         let pendingAction = Alert.displayPendingAlert(title: "Saving new changes...")
