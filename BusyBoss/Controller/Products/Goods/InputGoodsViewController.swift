@@ -31,6 +31,12 @@ class InputGoodsViewController: UIViewController {
                ivc.allowsEditing = true
                present(ivc, animated: true)
     }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let button = sender as? UIBarButtonItem, button === addButton else {
             

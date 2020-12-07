@@ -103,7 +103,7 @@ class TransactionDetailsViewController: UIViewController{
                         clientcompany: client?.companyName ?? "No Company",
                         date : Date)
                     
-                    vc.documentData = pdfCreator.createFlyer(products: self.transaction?.products)
+                    vc.documentData = pdfCreator.createFlyer(products: (self.transaction?.products)!)
                     }
                 
             }

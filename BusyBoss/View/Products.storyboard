@@ -40,23 +40,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cK-Kp-KsC">
-                                <rect key="frame" x="0.0" y="190" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="754"/>
                                 <connections>
                                     <segue destination="8b7-Db-aUc" kind="embed" id="K98-jK-9dR"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsV-cs-foK">
-                                <rect key="frame" x="0.0" y="190" width="414" height="672"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="754"/>
                                 <connections>
                                     <segue destination="ah1-xa-dOW" kind="embed" id="dut-0c-C7e"/>
                                 </connections>
                             </containerView>
-                            <searchBar contentMode="redraw" misplaced="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="ZhY-LQ-oPd">
-                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dcb-lD-rVa">
-                                <rect key="frame" x="20" y="148" width="374" height="32"/>
+                                <rect key="frame" x="20" y="100" width="374" height="32"/>
                                 <segments>
                                     <segment title="Goods"/>
                                     <segment title="Services"/>
@@ -73,13 +69,10 @@
                             <constraint firstItem="qsV-cs-foK" firstAttribute="leading" secondItem="Bvh-4W-3J1" secondAttribute="leading" id="9kb-cv-qej"/>
                             <constraint firstItem="3cK-Kp-KsC" firstAttribute="trailing" secondItem="Bvh-4W-3J1" secondAttribute="trailing" id="EKC-4H-3OO"/>
                             <constraint firstItem="3cK-Kp-KsC" firstAttribute="leading" secondItem="Bvh-4W-3J1" secondAttribute="leading" id="EPr-w3-lXy"/>
-                            <constraint firstItem="qsV-cs-foK" firstAttribute="bottom" secondItem="Bvh-4W-3J1" secondAttribute="bottom" id="IV6-9H-aKM"/>
-                            <constraint firstItem="ZhY-LQ-oPd" firstAttribute="width" secondItem="3ky-7f-Nrb" secondAttribute="width" id="J1i-wY-IxS"/>
-                            <constraint firstItem="Dcb-lD-rVa" firstAttribute="top" secondItem="ZhY-LQ-oPd" secondAttribute="bottom" constant="4" id="Jm5-2q-u5v"/>
-                            <constraint firstItem="Bvh-4W-3J1" firstAttribute="bottom" secondItem="3cK-Kp-KsC" secondAttribute="bottom" id="TxJ-XG-eHe"/>
+                            <constraint firstItem="Dcb-lD-rVa" firstAttribute="top" secondItem="Bvh-4W-3J1" secondAttribute="top" constant="12" id="F76-cA-BGX"/>
+                            <constraint firstItem="qsV-cs-foK" firstAttribute="bottom" secondItem="3ky-7f-Nrb" secondAttribute="bottom" id="IV6-9H-aKM"/>
+                            <constraint firstAttribute="bottom" secondItem="3cK-Kp-KsC" secondAttribute="bottom" id="TxJ-XG-eHe"/>
                             <constraint firstItem="qsV-cs-foK" firstAttribute="top" secondItem="Dcb-lD-rVa" secondAttribute="bottom" constant="11" id="byl-s9-MiU"/>
-                            <constraint firstItem="ZhY-LQ-oPd" firstAttribute="centerX" secondItem="Bvh-4W-3J1" secondAttribute="centerX" id="gih-tU-6tI"/>
-                            <constraint firstItem="ZhY-LQ-oPd" firstAttribute="top" secondItem="Bvh-4W-3J1" secondAttribute="top" id="hm2-IS-PP1"/>
                             <constraint firstItem="Dcb-lD-rVa" firstAttribute="centerX" secondItem="Bvh-4W-3J1" secondAttribute="centerX" id="pWk-zA-BWI"/>
                             <constraint firstItem="3cK-Kp-KsC" firstAttribute="top" secondItem="Dcb-lD-rVa" secondAttribute="bottom" constant="11" id="vvK-mX-6EV"/>
                             <constraint firstItem="Dcb-lD-rVa" firstAttribute="width" secondItem="3ky-7f-Nrb" secondAttribute="width" multiplier="0.903382" id="zyc-JR-wGi"/>
@@ -100,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNp-7S-QdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2397" y="669"/>
+            <point key="canvasLocation" x="-2397.1014492753625" y="668.97321428571422"/>
         </scene>
         <!--Input Goods View Controller-->
         <scene sceneID="qJB-TH-2Ab">
@@ -117,7 +110,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="New Item" id="NJf-Zo-2r3">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="lFc-gR-1Ug"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="lFc-gR-1Ug">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="jLM-fS-vgu" id="Erh-wa-csm"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="cfP-On-AxT">
                                             <connections>
                                                 <segue destination="5fa-nX-6qI" kind="unwind" unwindAction="unwindToProductWithSender:" id="KTh-4a-y4e"/>
@@ -248,8 +245,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jersey Leeds United" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTg-We-tOq">
-                                <rect key="frame" x="129" y="278" width="156" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jersey Leeds United" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTg-We-tOq">
+                                <rect key="frame" x="20" y="278" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="TsR-SH-eMK"/>
                                 </constraints>
@@ -369,15 +366,16 @@
                             <constraint firstItem="dVy-F5-IxT" firstAttribute="top" secondItem="fTg-We-tOq" secondAttribute="bottom" constant="10" id="IWq-k8-kMy"/>
                             <constraint firstItem="dVy-F5-IxT" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="Jh2-rz-CY3"/>
                             <constraint firstItem="fTg-We-tOq" firstAttribute="top" secondItem="jxJ-11-Bkq" secondAttribute="bottom" constant="8" symbolic="YES" id="Nal-7o-gWi"/>
+                            <constraint firstItem="fTg-We-tOq" firstAttribute="centerX" secondItem="49r-lb-aoj" secondAttribute="centerX" id="PS1-wR-ROC"/>
                             <constraint firstItem="YWl-y0-sgv" firstAttribute="centerX" secondItem="CAg-cu-bkV" secondAttribute="centerX" id="SbV-QS-Tqs"/>
                             <constraint firstItem="jxJ-11-Bkq" firstAttribute="top" secondItem="YWl-y0-sgv" secondAttribute="bottom" constant="32" id="aun-Aa-Od9"/>
                             <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="aug-cm-7jN" secondAttribute="trailing" constant="20" id="b8A-43-4Lo"/>
                             <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="bzD-Db-eTr" secondAttribute="trailing" constant="20" id="baO-Ds-esv"/>
-                            <constraint firstItem="fTg-We-tOq" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="129" id="cgr-ow-2D0"/>
+                            <constraint firstItem="fTg-We-tOq" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="cgr-ow-2D0"/>
                             <constraint firstItem="aug-cm-7jN" firstAttribute="top" secondItem="dVy-F5-IxT" secondAttribute="bottom" constant="5" id="deC-0r-YU6"/>
                             <constraint firstItem="sbU-hO-Tx2" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="gRe-vd-0XC"/>
                             <constraint firstItem="aug-cm-7jN" firstAttribute="leading" secondItem="CAg-cu-bkV" secondAttribute="leading" constant="20" id="gTd-be-ubt"/>
-                            <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="fTg-We-tOq" secondAttribute="trailing" constant="129" id="hea-De-FTd"/>
+                            <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="fTg-We-tOq" secondAttribute="trailing" constant="20" id="hea-De-FTd"/>
                             <constraint firstItem="CAg-cu-bkV" firstAttribute="trailing" secondItem="sbU-hO-Tx2" secondAttribute="trailing" constant="20" id="tUN-hI-edS"/>
                             <constraint firstItem="YWl-y0-sgv" firstAttribute="top" secondItem="CAg-cu-bkV" secondAttribute="top" id="vYF-Ht-7QQ"/>
                         </constraints>
@@ -400,12 +398,11 @@
             <objects>
                 <viewController id="8b7-Db-aUc" customClass="GoodsViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zSd-7P-sWO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-iB-AoX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzN-iB-AoX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="Background Color"/>
                                 <prototypes>
@@ -490,6 +487,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X1x-X9-f5B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qzN-iB-AoX" secondAttribute="bottom" id="GOd-T2-D8u"/>
+                            <constraint firstItem="qzN-iB-AoX" firstAttribute="top" secondItem="zSd-7P-sWO" secondAttribute="top" id="KAr-h2-Vej"/>
+                            <constraint firstItem="qzN-iB-AoX" firstAttribute="trailing" secondItem="X1x-X9-f5B" secondAttribute="trailing" id="Yyo-Fe-rJX"/>
+                            <constraint firstItem="qzN-iB-AoX" firstAttribute="leading" secondItem="X1x-X9-f5B" secondAttribute="leading" id="aji-aP-KS8"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="goodsTableView" destination="qzN-iB-AoX" id="sIU-Ao-4St"/>
@@ -504,12 +507,11 @@
             <objects>
                 <viewController id="ah1-xa-dOW" customClass="ServicesViewController" customModule="BusyBoss" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WC7-zO-Ou1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XmF-fc-IaH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="680"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XmF-fc-IaH">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" name="Background Color"/>
                                 <prototypes>
@@ -559,6 +561,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vYU-jF-b5v"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XmF-fc-IaH" firstAttribute="top" secondItem="WC7-zO-Ou1" secondAttribute="top" id="1pC-ej-K9p"/>
+                            <constraint firstAttribute="bottom" secondItem="XmF-fc-IaH" secondAttribute="bottom" id="3AS-33-DEi"/>
+                            <constraint firstItem="XmF-fc-IaH" firstAttribute="trailing" secondItem="vYU-jF-b5v" secondAttribute="trailing" id="XtX-zk-6Cv"/>
+                            <constraint firstItem="XmF-fc-IaH" firstAttribute="leading" secondItem="vYU-jF-b5v" secondAttribute="leading" id="gHN-95-TE1"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="servicesTableView" destination="XmF-fc-IaH" id="2FR-jj-ACA"/>
@@ -586,7 +594,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="New Services" id="hH8-tr-OnL">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="L9G-Fg-5nR"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="L9G-Fg-5nR">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="Si0-TW-trV" id="kvs-WH-bDR"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="bxa-i1-m33">
                                             <connections>
                                                 <segue destination="7JS-C5-hKs" kind="unwind" unwindAction="unwindToProductWithSender:" id="2LP-MS-q2U"/>
@@ -658,7 +670,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sablon Jersey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cP-2U-ay8">
-                                <rect key="frame" x="153" y="116" width="108" height="21"/>
+                                <rect key="frame" x="20" y="116" width="374" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Qgr-ox-I3L"/>
                                 </constraints>
@@ -723,9 +735,9 @@
                             <constraint firstItem="NQD-rf-Ccl" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="DPK-j8-08x"/>
                             <constraint firstItem="XuZ-zy-6AU" firstAttribute="width" secondItem="5Vc-DZ-R8Q" secondAttribute="width" id="Dhg-Kx-uf8"/>
                             <constraint firstItem="XuZ-zy-6AU" firstAttribute="centerX" secondItem="bjV-X8-IiP" secondAttribute="centerX" id="GK8-PG-W1d"/>
-                            <constraint firstItem="9cP-2U-ay8" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="153" id="L7g-2Y-wAk"/>
+                            <constraint firstItem="9cP-2U-ay8" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="L7g-2Y-wAk"/>
                             <constraint firstItem="bBk-cC-AML" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="NJ5-uz-Q1P"/>
-                            <constraint firstItem="bjV-X8-IiP" firstAttribute="trailing" secondItem="9cP-2U-ay8" secondAttribute="trailing" constant="153" id="OD2-l0-h7M"/>
+                            <constraint firstItem="bjV-X8-IiP" firstAttribute="trailing" secondItem="9cP-2U-ay8" secondAttribute="trailing" constant="20" id="OD2-l0-h7M"/>
                             <constraint firstItem="bjV-X8-IiP" firstAttribute="top" secondItem="XuZ-zy-6AU" secondAttribute="top" constant="9" id="ZTo-nS-bkz"/>
                             <constraint firstItem="bBk-cC-AML" firstAttribute="top" secondItem="6FT-yq-XRJ" secondAttribute="bottom" constant="5" id="hfc-m0-0GK"/>
                             <constraint firstItem="6FT-yq-XRJ" firstAttribute="leading" secondItem="bjV-X8-IiP" secondAttribute="leading" constant="20" id="kn2-4B-PbY"/>
