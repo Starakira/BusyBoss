@@ -134,7 +134,16 @@ extension ClientsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if clients.count == 0 {
+            tableView.setEmptyView(title: "It's empty!", message: "Add your new Client \n by clicking \"+\" button")
+        }
+        else {
+            tableView.restore()
+        }
+        
         return clients.count
     }
-    
+        
 }
+

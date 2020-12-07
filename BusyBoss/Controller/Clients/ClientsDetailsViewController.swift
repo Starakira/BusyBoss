@@ -23,7 +23,7 @@ class ClientsDetailsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         if let client = client{
-            clientsNameLabel.text = client.firstName + client.lastName
+            clientsNameLabel.text = client.firstName + " " + client.lastName
             clientsImage.image = client.image
             clientsCompanyName.text = client.companyName
             clientsCompanyAddress.text = client.companyAddress
@@ -58,3 +58,5 @@ extension ClientsDetailsViewController: ClientsConform {
         clientsPhoneNo.text = client.phoneNumber
     }
 }
+
+
