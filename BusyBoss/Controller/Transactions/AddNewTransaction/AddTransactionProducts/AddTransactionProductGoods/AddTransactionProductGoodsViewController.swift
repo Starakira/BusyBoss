@@ -92,10 +92,10 @@ extension AddTransactionProductGoodsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListBarangViewCell", for: indexPath)as!AddTransactionProductGoodsTableViewCell
         let product = products[indexPath.row]
-        cell.NamaBarangLabel.text = product.name
-        cell.JumlahStockBarang.text = String(product.stock ?? 0)
-        cell.TotalHargaLabel.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
-        cell.GambarBarang.image = product.image
+        cell.goodNameLabel.text = product.name
+        cell.goodStockLabel.text = String(product.stock ?? 0)
+        cell.productPriceLabel.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
+        cell.goodImageView.image = product.image?.withRoundedCorners(radius: 50)
         return cell
     }
 }

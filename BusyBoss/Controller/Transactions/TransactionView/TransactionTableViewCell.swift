@@ -39,7 +39,7 @@ class TransactionTableViewCell: UITableViewCell {
         }
         
         if let clientLastName = transaction.client?.lastName {
-            self.labelClientName.text = "\(String(self.labelClientName.text ?? "")) \(clientLastName)"
+            self.labelClientName.text = " \(String(self.labelClientName.text ?? "")) \(clientLastName)"
         }
         
         else if let clientRecordID = transaction.clientReference?.recordID {

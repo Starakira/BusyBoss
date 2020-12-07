@@ -16,7 +16,12 @@ class ClientsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        clientsImage.layer.borderWidth = 1
+        clientsImage.layer.masksToBounds = false
+        clientsImage.layer.borderColor = UIColor.clear.cgColor
+        clientsImage.layer.cornerRadius = clientsImage.frame.height/2
+        clientsImage.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

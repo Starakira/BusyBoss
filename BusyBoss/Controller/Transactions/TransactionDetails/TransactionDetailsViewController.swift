@@ -224,7 +224,7 @@ extension TransactionDetailsViewController: UITableViewDataSource{
         
         cell.productNameLabel.text = product?.name
         cell.productPriceLabel.text = "Rp. \(decimalFormatter.string(for: product?.price) ?? "0")"
-        cell.productImage.image = product?.image
+        cell.productImage.image = product?.image?.withRoundedCorners(radius: 50)
         
         cell.setProductQuantity(transaction: transaction!, product: product)
         

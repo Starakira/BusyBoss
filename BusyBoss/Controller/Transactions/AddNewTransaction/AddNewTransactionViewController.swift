@@ -273,7 +273,7 @@ extension AddNewTransactionViewController: UITableViewDataSource{
         cell.transactionProductQuantityLabel.text = String(product.transactionQuantity ?? 0)
         cell.productPriceLabel.text = String(product.price)
         
-        cell.productImage.image = product.image
+        cell.productImage.image = product.image?.withRoundedCorners(radius: 50)
         return cell
     }
 }

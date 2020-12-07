@@ -21,13 +21,21 @@ class UserProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
+        userImage.layer.borderWidth = 1
+        userImage.layer.masksToBounds = false
+        userImage.layer.borderColor = UIColor.clear.cgColor
+        userImage.layer.cornerRadius = userImage.frame.height/2
+        userImage.clipsToBounds = true
+        userImage.image = user?.image
+        
         userRecordID = (user?.recordID)!
         firstNameField.text = user?.firstName
         lastNameField.text = user?.lastName
         phoneNoField.text = user?.phoneNumber
         emailField.text = user?.email
-        userImage.image = user?.image
+        
     }
     @IBAction func addPhotoButton(_ sender: Any) {
         let ivc = UIImagePickerController()
@@ -71,7 +79,7 @@ class UserProfileViewController: UIViewController {
     }
     
 }
-    /*
+/*
  // MARK: - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation

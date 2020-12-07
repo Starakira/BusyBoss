@@ -83,7 +83,7 @@ extension GoodsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "goodsCell", for: indexPath)as!GoodsTableViewCell
         let product = products[indexPath.row]
         cell.goodsLabel.text = product.name
-        cell.goodsImage.image = product.image
+        cell.goodsImage.image = product.image?.withRoundedCorners(radius: 50)
         cell.goodsPrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
         cell.goodsStock.text = "\(decimalFormatter.string(for: product.stock) ?? "0") \(product.unit ?? "")"
         return cell

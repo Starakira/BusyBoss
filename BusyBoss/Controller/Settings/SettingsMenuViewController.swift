@@ -17,6 +17,11 @@ class SettingsMenuViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userProfileImage.layer.borderWidth = 1
+        userProfileImage.layer.masksToBounds = false
+        userProfileImage.layer.borderColor = UIColor.clear.cgColor
+        userProfileImage.layer.cornerRadius = userProfileImage.frame.height/2
+        userProfileImage.clipsToBounds = true
         userProfileImage.image = User.currentUser()?.image
         
         menuTableView.dataSource=self
