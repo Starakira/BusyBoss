@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class UserProfileViewController: UIViewController {
     @IBOutlet weak var firstNameField: UITextField!
@@ -15,14 +16,26 @@ class UserProfileViewController: UIViewController {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    let user = User.currentUser()
+    var userRecordID: CKRecord.ID?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
-        firstNameField.text = User.currentUser()?.firstName
-        lastNameField.text = User.currentUser()?.lastName
-        phoneNoField.text = User.currentUser()?.phoneNumber
-        emailField.text = User.currentUser()?.email
-        userImage.image = User.currentUser()?.image
+        userImage.layer.borderWidth = 1
+        userImage.layer.masksToBounds = false
+        userImage.layer.borderColor = UIColor.clear.cgColor
+        userImage.layer.cornerRadius = userImage.frame.height/2
+        userImage.clipsToBounds = true
+        userImage.image = user?.image
+        
+        userRecordID = (user?.recordID)!
+        firstNameField.text = user?.firstName
+        lastNameField.text = user?.lastName
+        phoneNoField.text = user?.phoneNumber
+        emailField.text = user?.email
+        
     }
     @IBAction func addPhotoButton(_ sender: Any) {
         let ivc = UIImagePickerController()
@@ -45,9 +58,8 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func onSaveButtonTapped(_ sender: UIBarButtonItem) {
-        print("Save clicked!")
         
-        let changeUser = User(firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!, signature: #imageLiteral(resourceName: "Image Placeholder"))
+        let changeUser = User(recordID: userRecordID, firstName: firstNameField.text!, lastName: lastNameField.text!, email: emailField.text!, password: User.currentUser()!.password, phoneNumber: phoneNoField.text!, image: userImage.image!, signature: #imageLiteral(resourceName: "Image Placeholder"))
         let pendingAction = Alert.displayPendingAlert(title: "Saving new changes...")
         self.present(pendingAction, animated: true) {
             CloudKitManager.shared().userEdit(user: changeUser) { (error) in
@@ -57,17 +69,17 @@ class UserProfileViewController: UIViewController {
                     }
                     else {
                         Alert.showAlert(view: self, title: "Success!", message: "Profile has been successfully changed") {
+                            User.setCurrentUser(user: changeUser)
                             self.dismiss(animated: true)
                         }
                     }
                 }
             }
         }
-        
     }
     
 }
-    /*
+/*
  // MARK: - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation

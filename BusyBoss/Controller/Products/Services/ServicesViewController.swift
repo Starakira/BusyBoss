@@ -51,6 +51,7 @@ extension ServicesViewController: UITableViewDelegate {
         let vc = storyboard?.instantiateViewController(identifier: "servicesDetails") as! ServicesDetailsViewController
         vc.product = products[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

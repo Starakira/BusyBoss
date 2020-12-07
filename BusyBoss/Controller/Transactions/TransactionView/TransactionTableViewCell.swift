@@ -15,6 +15,12 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var labelTotalPrice: UILabel!
     
+    let decimalFormatter : NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -26,6 +32,12 @@ class TransactionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+          super.layoutSubviews()
+          let bottomSpace = 30.0 // Let's assume the space you want is 10
+        self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: CGFloat(bottomSpace), right: 0))
+     }
+    
     func setClientName(transaction: Transaction) {
         
         if let clientFirstName = transaction.client?.firstName {
@@ -33,7 +45,7 @@ class TransactionTableViewCell: UITableViewCell {
         }
         
         if let clientLastName = transaction.client?.lastName {
-            self.labelClientName.text = "\(String(self.labelClientName.text ?? "")) \(clientLastName)"
+            self.labelClientName.text = " \(String(self.labelClientName.text ?? "")) \(clientLastName)"
         }
         
         else if let clientRecordID = transaction.clientReference?.recordID {
@@ -51,22 +63,22 @@ class TransactionTableViewCell: UITableViewCell {
     }
     
     func setTransactionValue(transaction: Transaction){
-        print("Calling setTransactionValue")
+        
         var totalPrice: Double = 0
         
         if let products = transaction.products{
             for product in products {
                 totalPrice += Double(product.price) * Double(product.transactionQuantity ?? 0)
             }
-            labelTotalPrice.text = String(totalPrice)
+            labelTotalPrice.text = "Rp. \(decimalFormatter.string(for: totalPrice) ?? "0")"
         } else {
             CloudKitManager.shared().transactionFetchTotalPrice(transaction: transaction){
-                (totalprice, error) in
-                print("setTransactionValue Function is called...")
+                (price, error) in
+                
                 if let error = error {
                     print("Error Fetch Price : \(error.localizedDescription)")
                 } else {
-                    self.labelTotalPrice.text = String(totalprice)
+                    self.labelTotalPrice.text = "Rp. \(self.decimalFormatter.string(for: price) ?? "0")"
                 }
             }
         }

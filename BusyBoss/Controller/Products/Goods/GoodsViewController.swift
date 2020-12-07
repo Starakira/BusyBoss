@@ -52,10 +52,11 @@ extension GoodsViewController: UITableViewDelegate {
         let vc = storyboard?.instantiateViewController(identifier: "goodsDetails") as! GoodsDetailsViewController
         vc.product = products[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return.delete
+        return .delete
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -83,7 +84,7 @@ extension GoodsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "goodsCell", for: indexPath)as!GoodsTableViewCell
         let product = products[indexPath.row]
         cell.goodsLabel.text = product.name
-        cell.goodsImage.image = product.image
+        cell.goodsImage.image = product.image?.withRoundedCorners(radius: 50)
         cell.goodsPrice.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
         cell.goodsStock.text = "\(decimalFormatter.string(for: product.stock) ?? "0") \(product.unit ?? "")"
         return cell

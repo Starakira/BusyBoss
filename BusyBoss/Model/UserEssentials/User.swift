@@ -17,7 +17,7 @@ struct User {
     let email: String
     let password: String
     let phoneNumber: String
-    let image: UIImage
+    let image: UIImage?
     let signature: UIImage?
     
     private static var user: User?

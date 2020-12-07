@@ -26,8 +26,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         let emailAddress = UserDefaults.standard.string(forKey: User.keyEmail)
         let password = UserDefaults.standard.string(forKey: User.keyPassword)
         
-        print("UserDefault password : \(String(describing: password))")
-        
         if let email = emailAddress, let password = password {
             
             do{

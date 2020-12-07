@@ -25,6 +25,12 @@ class EditClientViewController: UIViewController {
         super.viewDidLoad()
 
         //If client exist, then fill the fields
+        addClientsImage.layer.borderWidth = 1
+        addClientsImage.layer.masksToBounds = false
+        addClientsImage.layer.borderColor = UIColor.clear.cgColor
+        addClientsImage.layer.cornerRadius = addClientsImage.frame.height/2
+        addClientsImage.clipsToBounds = true
+        
         if let client = client {
             addClientsImage.image = client.image
             clientFirstName.text = client.firstName

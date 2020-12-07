@@ -16,6 +16,10 @@ protocol ProductsConform {
     func productListPassData(product: Product)
 }
 
+enum AddTransactionError: Error {
+    case incompleteForm
+}
+
 class AddNewTransactionViewController: UIViewController {
     
     @IBOutlet weak var clientTextField: UITextField!
@@ -130,7 +134,55 @@ class AddNewTransactionViewController: UIViewController {
     }
     
     @IBAction func newTransactionSaveButtonAction(_ sender: Any) {
+        do {
+            try checkValidTransaction()
+        } catch AddTransactionError.incompleteForm {
+            Alert.showAlert(view: self, title: "Incomplete Form", message: "Please fill out Transaction Title, Client, and Products")
+        } catch {
+            Alert.showError(self, error)
+        }
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? AddNewTransactionClientViewController {
+            vc.clientsListDelegate = self
+        } else if let vc = segue.destination as? AddTransactionProductsViewController {
+            vc.myDelegate = self
+        }
+    }
+    
+    func getTax() {
+        if taxSwitch.isOn {
+            tax = (totalProductPrice - discount) * 0.1
+            totalTaxLabel.text = "Rp \(decimalFormatter.string(for: tax) ?? "0")"
+        } else {
+            tax = 0.0
+        }
+    }
+    
+    func getTotalValue(){
+        totalValue = totalProductPrice - discount + tax
+        totalTransactionValueLabel.text = "Rp " + decimalFormatter.string(for: totalValue)!
+    }
+    
+    func checkValidTransaction() throws {
         
+        let transactionTitle = transactionNumberTextField.text
+        let client = clientTextField.text
+        let description = transactionDescriptionTextField.text
+        
+        if transactionTitle!.isEmpty || client!.isEmpty || products.isEmpty {
+            throw AddTransactionError.incompleteForm
+        }
+        
+        createTransaction()
+    }
+    
+    func createTransaction() {
         transaction = Transaction(transactionNumber: transactionNumber, description: transactionDescription, status: TransactionStatus.ongoing, approval: TransactionApproval.pending, products: products, client: client, validityDate: validityDate ?? Date(), discount: discount, tax: tax, value: totalValue)
         
         transaction?.clientReference = CKRecord.Reference(recordID: (client?.recordID)!, action: CKRecord_Reference_Action.none)
@@ -161,38 +213,12 @@ class AddNewTransactionViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func cancelButtonAction(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? AddNewTransactionClientViewController {
-            vc.clientsListDelegate = self
-        } else if let vc = segue.destination as? AddTransactionProductsViewController {
-            vc.myDelegate = self
-        }
-    }
-    
-    func getTax() {
-        if taxSwitch.isOn {
-            tax = (totalProductPrice - discount) * 0.1
-            totalTaxLabel.text = "Rp \(decimalFormatter.string(for: tax) ?? "0")"
-        } else {
-            tax = 0.0
-        }
-    }
-    
-    func getTotalValue(){
-        totalValue = totalProductPrice - discount + tax
-        totalTransactionValueLabel.text = "Rp " + decimalFormatter.string(for: totalValue)!
-    }
 }
 
 extension AddNewTransactionViewController: ClientsConform {
     func clientListPassData(client: Client) {
         self.client = client
-        self.clientTextField.text = client.firstName + client.lastName
+        self.clientTextField.text = client.firstName + " " + client.lastName
     }
 }
 
@@ -243,11 +269,14 @@ extension AddNewTransactionViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath)as!AddNewTransactionTableViewCell
         
+        cell.selectionStyle = .none
+        cell.isUserInteractionEnabled = false
+        
         cell.productNameLabel.text = product.name
         cell.transactionProductQuantityLabel.text = String(product.transactionQuantity ?? 0)
         cell.productPriceLabel.text = String(product.price)
         
-        cell.productImage.image = product.image
+        cell.productImage.image = product.image?.withRoundedCorners(radius: 50)
         return cell
     }
 }

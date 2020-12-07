@@ -9,10 +9,10 @@ import UIKit
 
 class AddTransactionProductGoodsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var NamaBarangLabel: UILabel!
-    @IBOutlet weak var JumlahStockBarang: UILabel!
-    @IBOutlet weak var TotalHargaLabel: UILabel!
-    @IBOutlet weak var GambarBarang: UIImageView!
+    @IBOutlet weak var goodNameLabel: UILabel!
+    @IBOutlet weak var goodStockLabel: UILabel!
+    @IBOutlet weak var productPriceLabel: UILabel!
+    @IBOutlet weak var goodImageView: UIImageView!
     @IBOutlet weak var PlusMinus: UIStackView!
     
     override func awakeFromNib() {

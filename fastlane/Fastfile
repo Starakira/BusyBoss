@@ -11,16 +11,15 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:ios)
 
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    #increment_build_number(build_number: ENV['CI_JOB_ID'])
-        increment_build_number
-    get_certificates 
+    increment_build_number
+    get_certificates
     get_provisioning_profile 
     build_app(scheme: "BusyBoss")
     upload_to_testflight

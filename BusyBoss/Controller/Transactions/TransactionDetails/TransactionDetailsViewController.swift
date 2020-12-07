@@ -24,8 +24,9 @@ class TransactionDetailsViewController: UIViewController{
     
     var transaction : Transaction?
     var client: Client?
+    
+    var totalProductPrice: Double = 0
 
-    var productQuantity: Int = 0
     var value = Int()
     public var documentData: Data?
     
@@ -49,13 +50,15 @@ class TransactionDetailsViewController: UIViewController{
         productListTransactionTableView.dataSource = self
         productListTransactionTableView.delegate = self
         
+        for product in transaction?.products ?? [] {
+            totalProductPrice += Double(product.price) * Double( product.transactionQuantity ?? 0)
+        }
+        
         self.client = transaction?.client
-//        Invoice.isEnabled = false
-        Receipt.isEnabled = false
 
-        self.NameUserTransaction.text = (self.client?.firstName ?? "") + (self.client?.lastName ?? "")
+        self.NameUserTransaction.text = (self.client?.firstName ?? "") + " " + (self.client?.lastName ?? "")
         transactionNumberLabel.text = transaction?.transactionNumber
-        transactionProductsTotalPriceLabel.text = "Rp \(decimalFormatter.string(for: transaction?.value) ?? "0")"
+        transactionProductsTotalPriceLabel.text = "Rp \(decimalFormatter.string(for: totalProductPrice) ?? "0")"
         transactionDiscountLabel.text = "Rp \(decimalFormatter.string(for: transaction?.discount) ?? "0")"
         transactionTaxLabel.text = "Rp \(decimalFormatter.string(for: transaction?.tax) ?? "0")"
         transactionTotalValueLabel.text = "Rp \(decimalFormatter.string(for: transaction?.value) ?? "0")"
@@ -69,16 +72,6 @@ class TransactionDetailsViewController: UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "previewSegue" {
             guard let vc = segue.destination as? QoutationPDFPreviewViewController else { return }
-            vc.clientName = NameUserTransaction.text!
-            vc.clientCompany = client?.companyName ?? "No Company"
-            vc.clientPhone = client?.phoneNumber ?? "No Number"
-            vc.clientEmail = client?.emailAddress ?? "No Email"
-            vc.clientAddress = client?.companyAddress ?? "No Address"
-            vc.transactionTitle = transactionNumberLabel.text!
-            vc.total = transactionProductsTotalPriceLabel.text!
-            vc.tax = transactionTaxLabel.text!
-            vc.grandTotal = transactionTotalValueLabel.text!
-            vc.validDate = DateTransaction.text!
             
                 if
                     let ClientName = NameUserTransaction.text,
@@ -90,7 +83,7 @@ class TransactionDetailsViewController: UIViewController{
                     let TitleNumber = transactionNumberLabel.text
                 
                     {
-                    let pdfCreator = CreateQuotationPDF(
+                    let pdfCreator = CreateQuotation2(
                         tax: Tax,
                         clientname: ClientName,
                         clientphone: client?.phoneNumber ?? "No Number",
@@ -109,17 +102,6 @@ class TransactionDetailsViewController: UIViewController{
             }
         if segue.identifier == "previewSegue2" {
             guard let vc = segue.destination as? InvoicePDFPreviewViewController else { return }
-            vc.clientName = NameUserTransaction.text!
-            vc.transactionTitle = transactionNumberLabel.text!
-            vc.total = transactionProductsTotalPriceLabel.text!
-            vc.tax = transactionTaxLabel.text!
-            vc.grandTotal = transactionTotalValueLabel.text!
-            vc.validDate = DateTransaction.text!
-            vc.clientCompany = client?.companyName ?? "No Company"
-            vc.clientPhone = client?.phoneNumber ?? "No Number"
-            vc.clientEmail = client?.emailAddress ?? "No Email"
-            vc.clientAddress = client?.companyAddress ?? "No Address"
-            
                 if let ClientName = NameUserTransaction.text,
                     let PriceTotal = transactionProductsTotalPriceLabel.text,
                     let Discount = transactionDiscountLabel.text,
@@ -147,16 +129,6 @@ class TransactionDetailsViewController: UIViewController{
             }
         if segue.identifier == "previewSegue3" {
             guard let vc = segue.destination as? ReceiptPDFPreviewViewController else { return }
-            vc.clientName = NameUserTransaction.text!
-            vc.clientCompany = client?.companyName ?? "No Company"
-            vc.clientPhone = client?.phoneNumber ?? "No Number"
-            vc.clientEmail = client?.emailAddress ?? "No Email"
-            vc.clientAddress = client?.companyAddress ?? "No Address"
-            vc.transactionTitle = transactionNumberLabel.text!
-            vc.total = transactionProductsTotalPriceLabel.text!
-            vc.tax = transactionTaxLabel.text!
-            vc.grandTotal = transactionTotalValueLabel.text!
-            vc.validDate = DateTransaction.text!
             
                 if
                     let ClientName = NameUserTransaction.text,
@@ -217,9 +189,12 @@ extension TransactionDetailsViewController: UITableViewDataSource{
         let product = transaction?.products?[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "productListNewViewCell", for: indexPath) as! AddNewTransactionTableViewCell
         
+        cell.selectionStyle = .none
+        cell.isUserInteractionEnabled = false
+        
         cell.productNameLabel.text = product?.name
-        cell.productPriceLabel.text = String(product?.price ?? 0)
-        cell.productImage.image = product?.image
+        cell.productPriceLabel.text = "Rp. \(decimalFormatter.string(for: product?.price) ?? "0")"
+        cell.productImage.image = product?.image?.withRoundedCorners(radius: 50)
         
         cell.setProductQuantity(transaction: transaction!, product: product)
         

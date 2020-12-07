@@ -34,24 +34,17 @@ class AddTransactionProductServicesViewController: UIViewController {
         servicesProductListTableView.dataSource = self
         servicesProductListTableView.delegate = self
         
-        let pendingAction = Alert.displayPendingAlert(title: "Loading products...")
-        
-        self.present(pendingAction, animated: true){
-            CloudKitManager.shared().productsFetchAll {
-                (products, error) in
-                if let error = error {
-                    pendingAction.dismiss(animated: true){
-                        Alert.showCloudKitError(self, error)
-                    }
-                }
-                else {
-                    pendingAction.dismiss(animated: true){
-                        for product in products {
-                            if product.type.rawValue == "services"{
-                                self.products.append(product)
-                                self.servicesProductListTableView.reloadData()
-                            }
-                        }
+        CloudKitManager.shared().productsFetchAll {
+            (products, error) in
+            if let error = error {
+                Alert.showCloudKitError(self, error)
+                
+            }
+            else {
+                for product in products {
+                    if product.type.rawValue == "services"{
+                        self.products.append(product)
+                        self.servicesProductListTableView.reloadData()
                     }
                 }
             }
@@ -80,6 +73,7 @@ extension AddTransactionProductServicesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         index = indexPath.row
         performSegue(withIdentifier: "AddServiceDetailsSegue", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -98,8 +92,8 @@ extension AddTransactionProductServicesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductListJasaViewCell", for: indexPath)as!AddNewTransactionProductServicesTableViewCell
         let product = products[indexPath.row]
-        cell.NameJasaLabel.text = product.name
-        cell.TotalHargaLabel.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
+        cell.serviceLabel.text = product.name
+        cell.totalPriceLabel.text = "Rp \(decimalFormatter.string(for: product.price) ?? "0")"
         return cell
     }
 }

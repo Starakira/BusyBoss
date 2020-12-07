@@ -26,6 +26,11 @@ class InputClientViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        addClientsImage.layer.borderWidth = 1
+        addClientsImage.layer.masksToBounds = false
+        addClientsImage.layer.borderColor = UIColor.clear.cgColor
+        addClientsImage.layer.cornerRadius = addClientsImage.frame.height/2
+        addClientsImage.clipsToBounds = true
     }
 
     // MARK: - Navigation

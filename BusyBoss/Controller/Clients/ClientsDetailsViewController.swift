@@ -22,8 +22,14 @@ class ClientsDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        clientsImage.layer.borderWidth = 1
+        clientsImage.layer.masksToBounds = false
+        clientsImage.layer.borderColor = UIColor.clear.cgColor
+        clientsImage.layer.cornerRadius = clientsImage.frame.height/2
+        clientsImage.clipsToBounds = true
+        
         if let client = client{
-            clientsNameLabel.text = client.firstName + client.lastName
+            clientsNameLabel.text = client.firstName + " " + client.lastName
             clientsImage.image = client.image
             clientsCompanyName.text = client.companyName
             clientsCompanyAddress.text = client.companyAddress
@@ -58,3 +64,5 @@ extension ClientsDetailsViewController: ClientsConform {
         clientsPhoneNo.text = client.phoneNumber
     }
 }
+
+

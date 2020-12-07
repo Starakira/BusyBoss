@@ -9,17 +9,31 @@ import UIKit
 
 class SettingsMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var companyProfileImage: UIImageView!
     @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var companyProfileImage: UIImageView!
     @IBOutlet weak var menuTableView: UITableView!
+    
     var menuList = [menu]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userProfileImage.layer.borderWidth = 1
+        userProfileImage.layer.masksToBounds = false
+        userProfileImage.layer.borderColor = UIColor.clear.cgColor
+        userProfileImage.layer.cornerRadius = userProfileImage.frame.height/2
+        userProfileImage.clipsToBounds = true
+        userProfileImage.image = User.currentUser()?.image
+        
         menuTableView.dataSource=self
         menuTableView.delegate=self
         // Do any additional setup after loading the view.
         configTable()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        userProfileImage.image = User.currentUser()?.image
+    }
+    
     func configTable(){
         menuList.append(menu(name: "Profile", image:#imageLiteral(resourceName: "person circle logo")))
         menuList.append(menu(name: "Company", image: #imageLiteral(resourceName: "building logo")))
@@ -43,15 +57,18 @@ class SettingsMenuViewController: UIViewController, UITableViewDataSource, UITab
         if indexPath.row == 0 {
             let vc = storyboard?.instantiateViewController(identifier: "userProfile") as! UserProfileViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         else if indexPath.row == 1 {
             let vc = storyboard?.instantiateViewController(identifier: "companyProfile") as! CompanyProfileViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
         else if indexPath.row == 2 {
             let alert = UIAlertController(title: "Alert", message: "This feature is still locked, Coming Soon.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
