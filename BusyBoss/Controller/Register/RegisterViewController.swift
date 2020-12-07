@@ -50,6 +50,10 @@ class RegisterViewController: UIViewController {
         }
     }
     
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
     func checkValidUser() throws {
         let firstName = firstNameTextField.text
         let lastName = lastNameTextField.text

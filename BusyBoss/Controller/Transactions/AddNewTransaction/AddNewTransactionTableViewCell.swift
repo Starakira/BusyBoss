@@ -41,4 +41,28 @@ class AddNewTransactionTableViewCell: UITableViewCell {
             self.transactionProductQuantityLabel.text = String(product?.transactionQuantity ?? 0)
         }
     }
+    
+    func getProductTotalValue(transaction: Transaction) -> Double{
+        
+        var totalPrice: Double = 0
+        
+        if let products = transaction.products{
+            for product in products {
+                totalPrice += Double(product.price) * Double(product.transactionQuantity ?? 0)
+            }
+            return totalPrice
+        } else {
+            CloudKitManager.shared().transactionFetchTotalPrice(transaction: transaction){
+                (totalprice, error) in
+                
+                if let error = error {
+                    print("Error Fetch Price : \(error.localizedDescription)")
+                } else {
+                    totalPrice = Double(totalprice)
+                }
+            }
+        }
+        
+        return totalPrice
+    }
 }

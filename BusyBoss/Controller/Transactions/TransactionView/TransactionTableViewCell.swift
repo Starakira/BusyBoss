@@ -51,7 +51,7 @@ class TransactionTableViewCell: UITableViewCell {
     }
     
     func setTransactionValue(transaction: Transaction){
-        print("Calling setTransactionValue")
+        
         var totalPrice: Double = 0
         
         if let products = transaction.products{
@@ -62,7 +62,7 @@ class TransactionTableViewCell: UITableViewCell {
         } else {
             CloudKitManager.shared().transactionFetchTotalPrice(transaction: transaction){
                 (totalprice, error) in
-                print("setTransactionValue Function is called...")
+                
                 if let error = error {
                     print("Error Fetch Price : \(error.localizedDescription)")
                 } else {

@@ -164,7 +164,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Sign Up" id="ZJu-bE-ajt">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="zBc-Lu-qP1"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="zBc-Lu-qP1">
+                                            <connections>
+                                                <action selector="cancelButtonAction:" destination="cbb-5u-Oey" id="a9E-8m-Ma4"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

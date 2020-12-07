@@ -24,8 +24,9 @@ class TransactionDetailsViewController: UIViewController{
     
     var transaction : Transaction?
     var client: Client?
+    
+    var totalProductPrice: Double = 0
 
-    var productQuantity: Int = 0
     var value = Int()
     public var documentData: Data?
     
@@ -49,13 +50,17 @@ class TransactionDetailsViewController: UIViewController{
         productListTransactionTableView.dataSource = self
         productListTransactionTableView.delegate = self
         
+        for product in transaction?.products ?? [] {
+            totalProductPrice += Double(product.price) * Double( product.transactionQuantity ?? 0)
+        }
+        
         self.client = transaction?.client
 //        Invoice.isEnabled = false
         Receipt.isEnabled = false
 
         self.NameUserTransaction.text = (self.client?.firstName ?? "") + (self.client?.lastName ?? "")
         transactionNumberLabel.text = transaction?.transactionNumber
-        transactionProductsTotalPriceLabel.text = "Rp \(decimalFormatter.string(for: transaction?.value) ?? "0")"
+        transactionProductsTotalPriceLabel.text = "Rp \(decimalFormatter.string(for: totalProductPrice) ?? "0")"
         transactionDiscountLabel.text = "Rp \(decimalFormatter.string(for: transaction?.discount) ?? "0")"
         transactionTaxLabel.text = "Rp \(decimalFormatter.string(for: transaction?.tax) ?? "0")"
         transactionTotalValueLabel.text = "Rp \(decimalFormatter.string(for: transaction?.value) ?? "0")"
