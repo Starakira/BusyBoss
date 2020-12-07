@@ -44,8 +44,9 @@ class CompanyProfileViewController: UIViewController, UITableViewDelegate, UITab
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let vc = storyboard?.instantiateViewController(identifier: "bankAccount") as! BankAccountViewController
-                       self.navigationController?.pushViewController(vc, animated: true)
+            let alert = UIAlertController(title: "Alert", message: "This feature is still locked, Coming Soon.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else if indexPath.row == 1{
             let vc = storyboard?.instantiateViewController(identifier: "signature") as! SignatureViewController
