@@ -99,9 +99,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="ybx-9L-UOh"/>
                     <connections>
-                        <outlet property="companyProfileImage" destination="Pxi-Qi-Phn" id="Khn-Mk-F3j"/>
+                        <outlet property="companyProfileImage" destination="FLy-In-3cJ" id="hU8-yo-Bz9"/>
                         <outlet property="menuTableView" destination="br9-Wt-8qt" id="7bS-Ea-8SB"/>
-                        <outlet property="userProfileImage" destination="FLy-In-3cJ" id="hU8-yo-Bz9"/>
+                        <outlet property="userProfileImage" destination="Pxi-Qi-Phn" id="Khn-Mk-F3j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tGz-h3-iQL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

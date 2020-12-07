@@ -9,17 +9,26 @@ import UIKit
 
 class SettingsMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var companyProfileImage: UIImageView!
     @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var companyProfileImage: UIImageView!
     @IBOutlet weak var menuTableView: UITableView!
+    
     var menuList = [menu]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userProfileImage.image = User.currentUser()?.image
+        
         menuTableView.dataSource=self
         menuTableView.delegate=self
         // Do any additional setup after loading the view.
         configTable()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        userProfileImage.image = User.currentUser()?.image
+    }
+    
     func configTable(){
         menuList.append(menu(name: "Profile", image:#imageLiteral(resourceName: "person circle logo")))
         menuList.append(menu(name: "Company", image: #imageLiteral(resourceName: "building logo")))

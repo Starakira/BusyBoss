@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -172,7 +172,6 @@
 				59A2CEE6A915B1B065A8A40F /* Pods-BusyBoss.debug.xcconfig */,
 				2C0E24F244CEA5698E709A61 /* Pods-BusyBoss.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -788,7 +787,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BusyBoss/BusyBoss.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = HAPJV2V5DY;
 				INFOPLIST_FILE = BusyBoss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -811,7 +810,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BusyBoss/BusyBoss.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = HAPJV2V5DY;
 				INFOPLIST_FILE = BusyBoss/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

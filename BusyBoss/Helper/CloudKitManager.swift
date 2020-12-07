@@ -65,44 +65,55 @@ struct CloudKitManager {
     }
     
     func userEdit(user: User, completionHandler: @escaping (_ error: Error?) -> Void) {
-            let userRecord = CKRecord(recordType: "User", recordID: User.currentUser()!.recordID!)
-
-            userRecord.setValue(user.firstName, forKey: User.keyFirstName)
-            userRecord.setValue(user.lastName, forKey: User.keyLastName)
-            userRecord.setValue(user.email, forKey: User.keyEmail)
-            userRecord.setValue(user.password, forKey: User.keyPassword)
-            userRecord.setValue(user.phoneNumber, forKey: User.keyPhoneNumber)
-
-            let modifyOperation = CKModifyRecordsOperation(recordsToSave: [userRecord])
+        let userRecord = CKRecord(recordType: "User", recordID: User.currentUser()!.recordID!)
         
-            modifyOperation.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+        userRecord.setValue(user.firstName, forKey: User.keyFirstName)
+        userRecord.setValue(user.lastName, forKey: User.keyLastName)
+        userRecord.setValue(user.email, forKey: User.keyEmail)
+        userRecord.setValue(user.password, forKey: User.keyPassword)
+        userRecord.setValue(user.phoneNumber, forKey: User.keyPhoneNumber)
         
-            modifyOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDS, error) in
-                DispatchQueue.main.async {
-                    completionHandler(error)
-                }
+        if let userImage = user.image {
+            let data = userImage.pngData();
+            let url = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString+".dat")!
+            do {
+                try data!.write(to: url)
+            } catch let e as NSError {
+                print("Error! \(e.localizedDescription)");
             }
-
-            publicDatabase.add(modifyOperation)
+            userRecord.setValue(CKAsset(fileURL: url), forKey: User.keyImage)
         }
+        
+        let modifyOperation = CKModifyRecordsOperation(recordsToSave: [userRecord])
+        
+        modifyOperation.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+        
+        modifyOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDS, error) in
+            DispatchQueue.main.async {
+                completionHandler(error)
+            }
+        }
+        
+        publicDatabase.add(modifyOperation)
+    }
     
     func userChangePassword(user: User, newPassword: String, completionHandler: @escaping (_ error: Error?) -> Void) {
-            let userRecord = CKRecord(recordType: "User", recordID: User.currentUser()!.recordID!)
-
-            userRecord.setValue(newPassword, forKey: User.keyPassword)
-
-            let modifyOperation = CKModifyRecordsOperation(recordsToSave: [userRecord])
+        let userRecord = CKRecord(recordType: "User", recordID: User.currentUser()!.recordID!)
         
-            modifyOperation.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+        userRecord.setValue(newPassword, forKey: User.keyPassword)
         
-            modifyOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDS, error) in
-                DispatchQueue.main.async {
-                    completionHandler(error)
-                }
+        let modifyOperation = CKModifyRecordsOperation(recordsToSave: [userRecord])
+        
+        modifyOperation.savePolicy = CKModifyRecordsOperation.RecordSavePolicy.changedKeys
+        
+        modifyOperation.modifyRecordsCompletionBlock = { (savedRecords, deletedRecordIDS, error) in
+            DispatchQueue.main.async {
+                completionHandler(error)
             }
-
-            publicDatabase.add(modifyOperation)
         }
+        
+        publicDatabase.add(modifyOperation)
+    }
     
     //    func authenticateUserUsingSignInWithApple(user: User, credentials: ASAuthorizationAppleIDCredential, completionHandler: @escaping (_ user: User?,_ error: Error?) -> Void) {
     //
